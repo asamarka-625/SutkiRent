@@ -1,0 +1,39 @@
+# Файлы Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Файлы venv
+.venv/
+
+# Файлы IDE
+.idea/
+
+# Docker
+Dockerfile.parser
+Dockerfile.web
+docker-compose.yml
+docker-compose-main.yml
+Dockerfile.parser.dockerignore
+Dockerfile.web.dockerignore
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# Other
+backend
+frontend
+frontend-old
+nginx
+postgresql
+web_app
+.env
+nginx.conf
+pg_hba.conf
+postgresql.conf
+google1d57d613b149a8b2.html
+web.env

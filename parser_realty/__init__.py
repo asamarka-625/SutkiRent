@@ -1,0 +1,1 @@
+from parser_realty.main import main

@@ -1,0 +1,1 @@
+from web_app.src.admin.content import ContentAdmin, PhotoContentAdmin, CategoryContentAdmin
