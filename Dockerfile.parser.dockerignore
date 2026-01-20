@@ -31,9 +31,9 @@ frontend-old
 nginx
 postgresql
 web_app
-.env
 nginx.conf
 pg_hba.conf
 postgresql.conf
 google1d57d613b149a8b2.html
+old.env
 web.env

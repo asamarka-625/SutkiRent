@@ -31,10 +31,10 @@ frontend-old
 nginx
 postgresql
 parser_realty
-.env
 nginx.conf
 pg_hba.conf
 postgresql.conf
 google1d57d613b149a8b2.html
+old.env
 parser.env
 run_parser.py
