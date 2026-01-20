@@ -1,0 +1,135 @@
+
+
+.pageLayout { 
+  /* background-color: brown; */
+  width: 100%;
+  height: 250px;
+  display: grid;
+  /* grid-template-columns: 37% auto; Первый блок — 10%, второй — 90% */
+  grid-template-columns: 170px auto auto; 
+ 
+  /* md */
+  @media (max-width: 48em){
+    grid-template-columns: 1fr;
+    grid-template-rows: 180px 1fr auto;
+    height: 100%;
+  } 
+  @media (min-width: 48em) and (max-width: 64em){
+    grid-template-columns: 180px auto auto;
+  } 
+}
+
+
+.topBanner {
+  /* Позиционирование и размеры */
+  position: absolute;
+  width: 100%;
+  padding: 5px 0;
+  margin: 0;
+  
+  /* Внешний вид */
+  background-color: var(--mantine-color-orangeColor-6); /* Зеленый цвет, можно изменить */
+  color: var(--mantine-color-grayColor-0);
+  text-align: center;
+  
+  /* Закругления */
+  border-radius: 12px 12px 0 0; /* Только верхние углы закруглены */
+  
+  /* Текст */
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @media (min-width: 48em){
+    display: none;
+  } 
+  
+  /* Тень (опционально) */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+.sideBanner {
+  /* Позиционирование и размеры */
+  position: absolute;
+  width: 50%;
+  padding: 5px 0;
+  margin: 0;
+  
+  /* Внешний вид */
+  background-color: var(--mantine-color-orangeColor-6); /* Зеленый цвет, можно изменить */
+  color: var(--mantine-color-grayColor-0);
+  text-align: center;
+  
+  /* Закругления */
+  border-radius:  0 0 12px 12px; 
+  
+  /* Текст */
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @media (max-width: 48em){
+    display: none;
+  } 
+  
+  /* Тень (опционально) */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+.banner { 
+  position: absolute;
+  z-index: 50;
+  left: -40px;
+  @media (max-width: 48em){
+    display: none;
+  } 
+}
+
+
+.cardDescription {
+  padding: var(--mantine-spacing-lg);
+  justify-content: center;
+  max-width: 300px;
+  @media (max-width: 48em){
+    padding: 0;
+  } 
+
+}
+
+.carddiv {
+  padding: var(--mantine-spacing-sm);
+  justify-content: center;
+  width: 100%;
+  align-content: center;
+}
+
+
+.costLayout { 
+  position: relative;
+  /* background-color: brown; */
+  border-left: solid 1px;
+  border-color: var(--mantine-color-grayColor-3);
+  width: 100%;
+  height: 100%;
+  display: grid; 
+  flex-direction: column;
+  grid-template-rows: 70% 30%; /* Первый блок — 10%, второй — 90% */
+  /* sm */
+  @media (max-width: 48em){
+    border-left: none;
+    align-items: flex-end;
+    flex-direction: row;
+  } 
+}
+
+.shortName { 
+  font-weight: 600;
+}
+.characteristics { 
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-grayColor-6);
+  }
+
+.location {
+  padding-top: var(--mantine-font-size-lg);
+  }

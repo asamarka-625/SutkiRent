@@ -1,0 +1,611 @@
+:root {
+  --breakpoint-xs: '30em';
+  --breakpoint-sm: '48em';
+  --breakpoint-md: '64em';
+  --breakpoint-lg: '74em';
+  --breakpoint-xl: '90em',
+}
+ 
+.paperdiv { 
+    /* padding: 25px 80px 25px 80px;
+
+    @media (min-width: 90em){
+      
+      padding: 25px 200px 25px 200px;
+    } 
+    @media (max-width: 48em){
+     
+      padding: 0;
+      padding-top: 10px;
+    }  */
+
+    width: 90%; /* На мобильных займет 90% экрана */
+    max-width: 1280px; /* Но не больше 1280px */
+    margin: 0 auto;
+
+      @media (max-width: 30em){
+      /* background-color: rgb(82, 82, 182); */
+       width: 100%; 
+    } 
+  }
+
+  
+
+
+  .paperdivLarge { 
+    padding: 15px;
+
+    @media (min-width: 90em){
+      /* background-color: rgb(82, 82, 182); */
+      padding: 25px 100px 25px 100px;
+    } 
+    @media (max-width: 48em){
+      /* background-color: rgb(82, 82, 182); */
+      padding: 0;
+      padding-top: 10px;
+    } 
+  }
+
+
+.papercard { 
+  padding: 16px;
+  /* margin: 20px; */
+  background-color: var(--mantine-color-grayColor-0);
+  border-radius: 20px;
+  /* border: solid 1px;
+  border-color: var(--mantine-color-grayColor-3); */
+
+ @media (max-width: 48em){
+    } 
+
+}
+
+.papercardObjectVertical { 
+  background-color: white;
+  border-radius: 20px;
+  min-width: 250px;
+  max-width: 300px; 
+  min-height: 380px;
+  border: solid 1px;
+  border-color: var(--mantine-color-grayColor-3);
+
+ @media (max-width: 48em){
+  min-width: none; 
+    } 
+    
+
+}
+
+
+.papercardObjectHorizontal{ 
+  /* text-align: center; */
+  /* display: inline; */
+  /* background-color: blueviolet; */
+  transition: all 0.3s ease;
+  /* transition: color 0.3s ease; */
+  height: 250px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--mantine-color-grayColor-0);
+  border-radius: 20px;
+  /* height: 250px;
+  max-width: 3000px;  */
+  /* min-height: 380px; */
+  border: solid 1px;
+  overflow: hidden;
+  border-color: var(--mantine-color-grayColor-3);
+  box-shadow: 0 0px 0px rgba(97, 97, 97, 0.096);
+  /* @media (min-width: 30em) and (max-width: 48em){
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+      }  */
+  @media (max-width: 48em){
+  /* min-width: none;  */
+    /* border-radius: 0px; */
+      height: 100%;
+    } 
+}
+  .papercardObjectHorizontal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 5px rgba(97, 97, 97, 0.096);
+    background-color: rgba(159, 255, 135, 0.26);
+  }
+
+  .papercardObjectHorizontal.hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 5px rgba(97, 97, 97, 0.096);
+    background-color: rgba(159, 255, 135, 0.26);
+  }
+
+.blockHoz { 
+  /* max-height: 300px; */
+   height: 100%;
+  position: relative;
+  /* background-color: rgb(255, 0, 43); */
+  /* width: 30%; */
+  height: 100%;
+  /* height: inherit; */
+  overflow: hidden;
+}
+
+
+.blockHoz img{ 
+  object-fit: cover;
+  /* background-color: rgb(68, 19, 90); */
+  border-radius: 20px;
+  height: 100%;
+  width: 110%;
+
+  @media (max-width: 48em){
+  /* min-width: none;  */
+    border-radius: 0px;
+    } 
+} 
+
+.block { 
+  position: relative;
+  /* background-color: rgb(255, 0, 43); */
+  height: 250px;
+  max-height: 300px;
+  width: inherit;
+  overflow: hidden;
+}
+
+.block img{ 
+  object-fit: cover;
+  border-radius: 20px;
+  object-fit: cover;
+  width: 100%;
+  height: 110%;
+} 
+
+.papergrid { 
+  /* background-color: aquamarine; */
+  display: grid;
+  gap: var(--mantine-spacing-md);
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 64em){
+    /* background-color: rgb(82, 82, 182); */
+    grid-template-columns: repeat(2, 1fr);
+  } 
+
+  @media (max-width: 48em){
+    /* background-color: rgb(82, 82, 182); */
+    grid-template-columns: repeat(1, 1fr);
+  } 
+}
+
+
+
+.cardDescription {
+  display: inline-block;
+/* //  font-size: small; */
+  padding: var(--mantine-spacing-xs);
+}
+
+
+/* ФИЛЬТРЫ */
+
+.filterBlock { 
+  display: flex;
+  background-color: var(--mantine-color-grayColor-0);
+  /* padding: 3px; */
+  border: solid 1px;
+  border-color: var(--mantine-color-grayColor-5);
+  border-radius: 5px;
+  /* font-weight: 600; */
+  /* background-color: var(--mantine-color-grayColor-0);
+  place-items: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: end;
+  padding: 3px;
+  border: solid 1px;
+  border-color: var(--mantine-color-grayColor-5);
+  border-radius: 10px;
+  font-weight: 600;
+  max-width: 85%; */
+
+  @media (max-width: 64em) {
+    /* grid-auto-rows: auto; */
+    /* display: grid; */
+    /* border: none; */
+    /* background-color: transparent;
+    grid-template-columns: auto; */
+  }
+}
+
+
+
+
+  @media (max-width: 768px){
+    .filterBlock {  display: none; }
+ 
+    /* background-color: rgb(82, 82, 182); */
+    /* padding: 0; */
+  
+  } 
+
+.filterBlockMobile { 
+  border: solid 1px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: flex-start;
+  padding: 10px;
+  border-color: var(--mantine-color-grayColor-5);
+  border-radius: 20px;
+  /* background-color: var(--mantine-color-grayColor-0); */
+background:
+ linear-gradient(45deg, #2e7a30 25%, transparent 25%, transparent 75%, #3d8b3f 75%, #3d8b3f),
+    /* Создает большие треугольники под углом 45° с мягкими зелеными оттенками */
+
+    linear-gradient(-45deg, #5ca85e 25%, transparent 25%, transparent 75%, #4e9750 75%, #4e9750),
+    /* Создает большие треугольники под углом -45° с чуть более светлыми оттенками */
+
+    /* Средние треугольники - дополнительные приглушенные оттенки */
+    linear-gradient(135deg, #6db66f 15%, transparent 15%, transparent 85%, #5da85f 85%, #5da85f),
+    /* Создает средние треугольники под углом 135° с мягкими салатовыми оттенками */
+
+    linear-gradient(-135deg, #7bc47d 15%, transparent 15%, transparent 85%, #6bb46d 85%, #6bb46d),
+    /* Создает средние треугольники под углом -135° с очень светлыми зелеными оттенками */
+
+    /* Акцентные треугольники - приглушенные сине-зеленые оттенки */
+    linear-gradient(90deg, #6baa9a 10%, transparent 10%, transparent 90%, #5b998a 90%, #5b998a),
+    /* Создает вертикальные треугольники с мягкими бирюзовыми оттенками */
+
+    linear-gradient(-90deg, #7bb8a5 10%, transparent 10%, transparent 90%, #6ba794 90%, #6ba794),
+    /* Создает вертикальные треугольники с светлыми бирюзовыми оттенками */
+
+    /* Фоновый градиент */
+    linear-gradient(120deg, #c5e1c6, #b5d7b6);
+
+  background-size:
+    200px 200px,  /* Большие треугольники */
+    200px 200px,  /* Большие треугольники */
+    100px 100px,  /* Средние треугольники */
+    100px 100px,  /* Средние треугольники */
+    100% 100%;    /* Фоновый градиент */
+
+  background-position:
+    0 0,           /* Большие треугольники */
+    100px 100px,   /* Большие треугольники */
+    50px 50px,     /* Средние треугольники */
+    150px 150px,   /* Средние треугольники */
+    0 0;           /* Фоновый градиент */
+
+  animation: backgroundMove 20s linear infinite;
+
+    margin-bottom: 15px;
+  /* justify-content: center */
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position:
+      0 0,
+      100px 100px,
+      50px 50px,
+      150px 150px,
+      0 0;
+  }
+  100% {
+    background-position:
+      200px 200px,
+      300px 300px,
+      150px 150px,
+      250px 250px,
+      0 0;
+  }
+}
+
+
+
+@media (min-width: 769px) {
+.filterBlockMobile { 
+  display: none;
+  }
+}
+
+.filterItem {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  max-width:250px
+  /* margin-left: 15px; */
+}
+
+
+.filterBlockDates {
+  border-radius: 5px;
+  /* place-items: center; */
+  background-color: var(--mantine-color-grayColor-0);
+  display: grid;
+  grid-template-columns: repeat(2,max-content max-content);
+  @media (max-width: 64em) {
+    /* padding: 10px; */
+    /* padding-left: 25px;
+    padding-right: 25px; */
+    /* border: solid 1px; */
+    border-color: var(--mantine-color-grayColor-5);
+    /* border-radius: 10px; */
+  }
+ }
+
+ .filterBlockRegion {
+  border-radius: 5px;
+  /* place-items: center; */
+  background-color: var(--mantine-color-grayColor-0);
+  display: grid;
+  grid-template-columns: repeat(1, minmax(50px, max-content));
+  @media (max-width: 64em) {
+    /* padding: 10px; */
+    /* border: solid 1px; */
+    border-color: var(--mantine-color-grayColor-5);
+    /* border-radius: 10px; */
+  }
+ }
+
+
+.citySelect { 
+  /* text-overflow: ellipsis; */
+  /* background-color: blueviolet; */
+  /* color: rgb(62, 32, 172); */
+  margin-left: 15px;
+/* &::-webkit-input-placeholder {
+  color: blueviolet;
+} */
+@media (max-width: 599px) {
+  width: 100%;
+  margin-left: 0;
+  /* border-bottom: solid 1px;
+  border-color: var(--mantine-color-grayColor-5); */
+}
+}
+
+.citySelectMobile { 
+  /* text-overflow: ellipsis; */
+  /* background-color: blueviolet; */
+  /* color: rgb(62, 32, 172); */
+  /* margin-left: 15px; */
+  margin-bottom: 15px;
+/* &::-webkit-input-placeholder {
+  color: blueviolet;
+} */
+@media (max-width: 599px) {
+  width: 100%;
+  margin-left: 0;
+  /* border-bottom: solid 1px;
+  border-color: var(--mantine-color-grayColor-5); */
+}
+
+}
+
+
+  .datePicker { 
+    max-width:250px;
+    /* margin-left: 5px; */
+    /* margin-left: 25px; */
+    max-width: 130px;
+    cursor: pointer;
+    margin-left: 15px;
+    @media (max-width: 599px) {
+      width: 100%;
+        margin-left: 0;
+      max-width: none;
+      /* border-bottom: solid 1px;
+      border-color: var(--mantine-color-grayColor-5); */
+    }
+    /* @media (max-width: 90em){
+      margin-left: 25px;
+   }  */
+  }
+
+    .datePickerOnBook { 
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+  }
+
+  
+
+
+  .numbInput { 
+       max-width:250px;
+      margin-left: 15px;
+    /* max-width: 130px; */
+    @media (max-width: 769px) {
+      width: 100%;
+      margin-top: 15px;
+       max-width:100%;
+         margin-left: 0px;
+        /* margin-left: 0;
+      max-width: none; */
+      /* border-bottom: solid 1px;
+      border-color: var(--mantine-color-grayColor-5); */
+    }
+    /* @media (max-width: 90em){
+      margin-left: 25px;
+   }  */
+    /* background-color: #909; */
+    /* @media (max-width: 64em){
+      margin-left: 25px;
+   }  */
+}
+
+
+
+
+
+
+
+
+
+/* Базовые стили контейнера */
+.tabs-container {
+  max-width: 800px;
+  margin: 20px auto;
+  display: block;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+  @media (max-width: 48em) {
+    .tabs-container {
+      display: none;
+    }
+  }
+
+/* Стили системы вкладок */
+.tabs {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+/* Стили подписей вкладок (теперь это кнопки) */
+.tab-label {
+  touch-action: manipulation;
+  display: inline-block;
+  padding: 12px 24px;
+  cursor: pointer;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+  color: #555;
+  font-weight: 600;
+  font-size: 16px;
+  background: transparent;
+}
+
+/* Стиль активной вкладки */
+.tab-label.active {
+  color: var(--mantine-color-sberGreenColor-9);
+  border-bottom-color: var(--mantine-color-sberGreenColor-9);
+}
+
+/* Содержимое вкладок */
+.tab-content {
+  display: none;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Показываем активную вкладку */
+.tab-content.active {
+  display: block;
+  padding-bottom: 0;
+}
+
+/* Стили списков */
+.amenities-list,
+.inv-list,
+.rules-list {
+  list-style: none;
+  /* padding: 0; */
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.amenities-list li,
+.inv-list li,
+.rules-list li {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  color: var(--mantine-color-grayColor-7);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.amenities-list i,
+.inv-list i,
+.rules-list i {
+  margin-right: 10px;
+  color: #6b7280;
+  width: 20px;
+  text-align: center;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  @media (max-width: 48em) {
+    .amenities-list,
+    .inv-list,
+    .rules-list {
+          gap: 0px;
+}
+  }
+
+
+
+/* Для балуна */
+.ymaps-balloon {
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+/* Для контента балуна */
+.ymaps-balloon-content {
+  padding: 0 !important;
+  margin-right: 0 !important;
+  background: transparent !important;
+}
+
+/* Убираем "хвостик" у балуна */
+.ymaps-balloon__tail {
+  display: none !important;
+}
+
+.papercardObjectHorizontalLK{ 
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--mantine-color-grayColor-0);
+  border-radius: 20px;
+  border: solid 1px;
+  overflow: hidden;
+  border-color: var(--mantine-color-grayColor-3);
+  @media (max-width: 48em){
+    height: 100%;
+  } 
+}
+
+.papercardObjectHorizontalLK:hover {
+  transform: translateY(-2px);
+}
+
+.blockHozLK { 
+  height: 130px;
+  width: 170px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  @media (max-width: 48em){
+    width: 100%;
+    height: 200px;
+  } 
+}
+
+.blockHozLK img,
+.blockHozLK > div {
+  object-fit: cover;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  @media (max-width: 48em){
+    border-radius: 0px;
+  } 
+}

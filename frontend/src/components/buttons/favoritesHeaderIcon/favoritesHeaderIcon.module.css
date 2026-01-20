@@ -1,0 +1,22 @@
+.favoritesIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like_svg {
+    height: 18px;
+    width: 18px;
+    transition: .18s;
+    --color-like: var(--mantine-color-grayColor-2);
+}
+
+.like_svg_liked {
+    height: 18px;
+    width: 18px;
+    transition: .18s;
+    --color-like: var(--mantine-color-orangeColor-4);
+}
+
+
+

@@ -1,0 +1,33 @@
+
+.text-high {
+    color: var(--mantine-color-sberGreenColor-9);
+    /* text-decoration: underline; */
+    text-decoration-color:  var(--mantine-color-sberGreenColor-9);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.headingInfo { 
+    font-weight: 600;
+    color: var(--mantine-color-grayColor-8);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.leftSection  { 
+    width: 30%; 
+    @media (max-width: 74em) {
+        width: 100%; 
+    }
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--mantine-color-grayColor-9);
+  /* padding: 2rem 2rem 1.5rem; Отступы только для заголовка */
+  margin: 0;
+  font-weight: 700;
+
+  @media (max-width: 64em) {
+    font-size: 12px;
+  }
+}

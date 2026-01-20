@@ -1,0 +1,95 @@
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--mantine-color-grayColor-0); /* Фоновый цвет, если картинка не загрузится */
+  padding: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.bannerContent {
+  /* max-width: 60%; */
+  z-index: 2;
+}
+
+.bannerTitle {
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  margin-bottom: 15px;
+  color: var(--mantine-color-grayColor-9);
+
+}
+
+.bannerText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--mantine-color-sberGreenColor-9);
+  margin-bottom: 45px;
+}
+
+.bannerButton {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bannerButton:hover {
+  background-color: #e64a19;
+}
+
+.bannerImage {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+  max-width: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 48em) {
+  .banner {
+    flex-direction: column;
+    padding: 20px;
+    background-image: none;
+  }
+
+  .bannerText {
+    text-align: left;
+  }
+
+  .bannerTitle {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .bannerContent {
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .bannerImage {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+  }
+
+}

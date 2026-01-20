@@ -1,0 +1,116 @@
+
+.textStyle12 {
+  font-size: 12px;
+  line-height: 120%;
+}
+
+
+.HeadingStyle1 {
+  /* margin-top: 90px;
+  margin-bottom: 90px; */
+  
+  /* padding-top: var(--mantine-font-size-sm);
+  padding-bottom: var(--mantine-font-size-md);
+  padding-left: var(--mantine-font-size-sm); */
+  /* font-size: rem(20); */
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  color: var(--mantine-color-grayColor-9);
+}
+
+.HeadingStyle2Main {
+   color: var(--mantine-color-grayColor-9);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* padding-top: var(--mantine-font-size-sm);
+    padding-bottom: var(--mantine-font-size-md);
+    padding-left: var(--mantine-font-size-sm); */
+    /* font-size: rem(20); */
+    font-weight: 800;
+    font-size: 32px;
+
+     @media (max-width: 48em){
+          font-size: 26px;
+
+      } 
+  }
+
+
+.HeadingStyle2 {
+    margin: 0;
+    padding-top: var(--mantine-font-size-sm);
+    padding-bottom: var(--mantine-font-size-md);
+    padding-left: var(--mantine-font-size-sm);
+    /* font-size: rem(20); */
+    font-weight: 600
+  }
+
+  .HeadingStyle3 {
+    margin: 0;
+    padding-top: var(--mantine-font-size-lg);
+    /* padding-bottom: var(--mantine-font-size-sm); */
+    font-weight: 600;
+  }
+
+  .HeadingStyleCost { 
+    /* z-index: 10000000; */
+    top: 80%;   
+    position: absolute;
+    margin: var(--mantine-font-size-md );
+    color: var(--mantine-color-grayColor-0);
+  }
+ 
+  .HeadingStyleCost h1 {
+    margin: 0;
+    /* font-size: rem(20); */
+    font-weight: 400
+  }
+  
+  .HeadingStyleCost span{
+    margin-bottom: 5px;
+    /* font-size: rem(20); */
+    font-weight: 400
+  }
+
+  .HeadingStyleCostSmall { 
+    row-gap: 0;
+    flex-wrap: 'wrap';
+    display: 'flex';
+    /* z-index: 10000000; */
+    margin: var(--mantine-font-size-md );
+    /* color: var(--mantine-color-grayColor-0); */
+  }
+ 
+  .HeadingStyleCostSmall  h3 {
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 500;
+    /* font-size: rem(20); */
+  }
+
+  
+  .HeadingStyleCostSmall  span{
+    white-space: nowrap;
+    margin-bottom: 2px;
+    /* font-size: rem(20); */
+    font-weight: 500;
+    /* @media (min-width: 48em) and (max-width: 64em){
+      display: 'block',
+      width: '100%',
+      textAlign: 'center'
+    }  */
+  }
+/* 
+  .HeadingBoldSmall {
+    margin: 0;
+    padding-top: var(--mantine-font-size-sm);
+    padding-bottom: var(--mantine-font-size-md);
+    padding-left: var(--mantine-font-size-sm);
+    font-size: rem(20);
+    font-weight: 600;
+  } */
+
+  
+

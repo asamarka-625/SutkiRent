@@ -36,21 +36,25 @@ async def sql_get_available_apartments(
             return ObjectsResponse(next_page=False, count=0, apartments=[])
 
         # 1. Собираем базовые фильтры для Apartment в список
-        filters = [Apartment.capacity >= quantity]
+        filters = [Apartment.capacity >= quantity, Apartment.visibility.is_(True)]
         if region_id:
             filters.append(Apartment.region_id == region_id)
+
         if children_count is not None:
             filters.append(Apartment.max_children_count >= children_count)
 
         if sleeping_places:
             if sleeping_places.min: filters.append(Apartment.capacity >= sleeping_places.min)
             if sleeping_places.max: filters.append(Apartment.capacity <= sleeping_places.max)
+
         if floor:
             if floor.min: filters.append(Apartment.floor >= floor.min)
             if floor.max: filters.append(Apartment.floor <= floor.max)
+
         if area:
             if area.min: filters.append(Apartment.area >= area.min)
             if area.max: filters.append(Apartment.area <= area.max)
+
         if room:
             if room.min: filters.append(Apartment.rooms >= room.min)
             if room.max: filters.append(Apartment.rooms <= room.max)
@@ -99,9 +103,11 @@ async def sql_get_available_apartments(
             query = query.where(departure_check)
 
             if price:
-                if price.min is not None: query = query.having(total_cost_expr >= price.min)
-                if price.max is not None:
-                    query = query.having(total_cost_expr <= price.max)
+                price_filters = []
+                if price.min is not None: price_filters.append(total_cost_expr >= price.min)
+                if price.max is not None: price_filters.append(total_cost_expr <= price.max)
+                if price_filters:
+                    query = query.having(sa.and_(*price_filters))
 
         else:
             query = sa.select(
@@ -113,7 +119,7 @@ async def sql_get_available_apartments(
         query = query.options(
             so.selectinload(Apartment.photos),
             so.selectinload(Apartment.metro_stations)
-        ).limit(page_size + 1).offset((page - 1) * page_size)
+        ).limit(page_size + 1).offset((page - 1) * page_size).order_by(Apartment.priority.desc())
 
         result = await session.execute(query)
         rows = result.all()
@@ -131,7 +137,6 @@ async def sql_get_available_apartments(
                 main_photo = next((p.url for p in apt.photos if p.order == 0), apt.photos[0].url)
 
             apartments_response.append(ApartmentResponse(
-                external_id=apt.external_id,
                 title=apt.title,
                 cost=float(t_cost) if t_cost else 0.0,
                 rooms=apt.rooms,

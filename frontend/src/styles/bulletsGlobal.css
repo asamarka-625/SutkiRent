@@ -1,0 +1,96 @@
+/* Main container */
+.bullet-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Title styling */
+  .list-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #4a4a4a;
+    position: relative;
+  }
+  
+  .list-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #6b940c, #31da07);
+    margin: 10px auto;
+    border-radius: 2px;
+  }
+  
+  /* List styling */
+  .cool-bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* List items */
+  .bullet-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .bullet-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  }
+  
+  /* Bullet/number styling */
+  .bullet-number {
+    background: linear-gradient(135deg, #6b940c, #31da07);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  /* Content styling */
+  .bullet-content h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0;
+    /* font-size: 1.3rem; */
+  }
+  
+  .bullet-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .bullet-item {
+      flex-direction: column;
+    }
+    
+    .bullet-number {
+      margin-bottom: 15px;
+      display: none;
+    }
+    
+    .list-title {
+      font-size: 1.8rem;
+    }
+  }
+

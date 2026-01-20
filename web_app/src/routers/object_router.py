@@ -1,8 +1,9 @@
 # Внешние зависимости
+from typing import List
 from fastapi import APIRouter
 # Внутренние модули
-from web_app.src.crud import sql_get_available_apartments
-from web_app.src.schemas import ApartmentFilter, ObjectsResponse
+from web_app.src.crud import sql_get_available_apartments, sql_get_regions
+from web_app.src.schemas import ApartmentFilter, ObjectsResponse, RegionResponse
 
 
 router = APIRouter(
@@ -19,8 +20,7 @@ router = APIRouter(
 async def get_apartments(
     filter_params: ApartmentFilter
 ):
-    print(filter_params)
-    response = await sql_get_available_apartments(
+    apartments = await sql_get_available_apartments(
         quantity=(filter_params.adults + len(filter_params.children)),
         page=filter_params.page,
         page_size=filter_params.page_size,
@@ -35,4 +35,14 @@ async def get_apartments(
         room=filter_params.room
     )
 
-    return response
+    return apartments
+
+
+@router.get(
+    "/regions",
+    response_model=List[RegionResponse],
+    summary="Получаем список регионов"
+)
+async def get_regions():
+    regions = await sql_get_regions()
+    return regions

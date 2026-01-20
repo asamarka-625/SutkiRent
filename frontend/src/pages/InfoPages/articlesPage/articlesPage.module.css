@@ -1,0 +1,19 @@
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-sberGreenColor-9);
+    position: relative;
+    transition: color 0.3s ease;
+  
+    &:hover {
+        color: var(--mantine-color-sberGreenColor-9);
+    }
+  
+/* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }

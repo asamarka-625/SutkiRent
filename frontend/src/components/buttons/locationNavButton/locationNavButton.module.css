@@ -1,0 +1,40 @@
+
+/* svg:hover path { 
+    fill: var(--mantine-color-sberGreenColor-9)
+} */
+
+.tab { 
+    padding: 10px 20px;
+    cursor: default;
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-sberGreenColor-9);
+    position: relative;
+    transition: color 0.3s ease;
+  
+ 
+     &:hover {
+        color: var(--mantine-color-sberGreenColor-9);
+    } 
+  
+    /* &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transform: scaleX(0);
+        background-color: var(--mantine-color-grayColor-9);
+        transition: width 0.3s ease;
+    } */
+/* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+  
+  .tab.active::after {
+    transform: scaleX(1);
+  }

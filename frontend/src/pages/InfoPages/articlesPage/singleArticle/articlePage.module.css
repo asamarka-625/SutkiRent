@@ -1,0 +1,156 @@
+
+.textHigh {
+  position: absolute;
+  bottom: 0;
+    color: var(--mantine-color-grayColor-0);
+    font-size: 30px;
+    font-weight: 700;
+    justify-self: anchor-center;
+    /* text-decoration: underline;
+    text-decoration-color:  var(--mantine-color-sberGreenColor-9); */
+    margin-right: 5px;
+    text-align: center;
+    margin-left: 5px;
+    margin: 50px;
+}
+
+.papercardItem { 
+    padding-top: 16px;
+    /* padding-left: 16px; */
+    /* margin: 20px; */
+    /* background-color: var(--mantine-color-grayColor-0); */
+    border-radius: 20px;
+    font-size: 16px;
+    text-align: justify;
+    /* border: solid 1px;
+    border-color: var(--mantine-color-grayColor-3); */
+  
+   @media (max-width: 48em){
+       font-size: 12px;
+      } 
+  
+  }
+
+  .customOverlay {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.85;
+    pointer-events: none; 
+  }
+
+  
+.carouselImages {
+    height: 400px;
+    width: 600px;
+    object-fit: cover;
+    display: block;
+  
+    @media (max-width: 30em) {
+      height: 100%;
+      width: 100%;
+      /* background-color: rgb(82, 82, 182); */
+      /* display: none; */
+  
+      /* transform: translateX(-100); */
+    }
+  }
+
+.banner {
+  position: relative;
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white; 
+  padding: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  margin-top: -28px;
+  border: 3px solid;
+  border-color: var(--mantine-color-grayColor-3);
+}
+
+
+.bannerImage {
+  position: relative;
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--mantine-color-grayColor-0); /* Фоновый цвет, если картинка не загрузится */
+  /* padding: 60px; */
+  border-radius: 20px;
+  overflow: hidden;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 1000px;
+  height: 450px;
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  z-index: 100;
+  /* border: 3px solid;
+  border-color: var(--mantine-color-grayColor-3); */
+}
+
+.bannerBorder {
+  position: absolute;
+  /* top: 40;
+  bottom: 40; */
+  width: 100%;
+  height: 90%;
+  margin-top: 20px;
+  background-color: transparent; /* Фоновый цвет, если картинка не загрузится */
+  /* padding: 60px; */
+  overflow: hidden;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
+  /* margin-top: 20px;
+  max-width: 900px; */
+  /* height: 450px; */
+  /* background-size: cover;
+  background-position: left; */
+  border-width: 3px 0px 3px;
+  border-style: solid;
+  border-color: var(--mantine-color-grayColor-0);
+}
+
+
+
+@media (max-width: 48em) {
+  .banner {
+    flex-direction: column;
+    /* padding: 20px; */
+    background-image: none;
+    /* margin-top: 20; */
+  }
+
+  .textHigh {
+    font-size: 24px;
+    margin: 30px;
+  }
+}
+
+@media (max-width: 30em) {
+  .banner {
+    flex-direction: column;
+    padding: 20px;
+    background-image: none;
+    margin-top: 10px;
+  }
+
+  .textHigh {
+    font-size: 20px;
+    align-self: anchor-center;;
+    margin: 30px;
+  }
+
+  .customOverlay {
+     background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 70%, rgba(0, 0, 0, 0) 100%);
+  }
+}

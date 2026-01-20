@@ -1,0 +1,145 @@
+
+.lowerUpperMenuMobile {
+  /* --apps--app-shell-navbar-z-index: 1000000; */
+  /* max-width: 300px; */
+  padding: 100px 40px; 
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size:  var(--mantine-font-size-md);
+  color: var(--mantine-color-grayColor-7);
+  position: relative;
+  transition: color 0.3s ease;
+
+  &:hover {
+      color: var(--mantine-color-orangeColor-5);
+      --color-partner: var(--mantine-color-orangeColor-5);
+      --color-phone: var(--mantine-color-orangeColor-5);
+      --color-plus: var(--mantine-color-orangeColor-5);
+  }
+
+  &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      transform: scaleX(0);
+      background-color: var(--mantine-color-grayColor-9);
+      transition: width 0.3s ease;
+  }
+
+/* 
+  .navbar.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .navbar-content {
+    padding: 16px;
+  } */
+/* 
+  @media (max-width: 768px) {
+      font-size: var(--mantine-font-size-xs); ;
+    } */ 
+
+    /* с вакансиями сайт список кино by id by class name */
+     /* теги и атрибуты html документа для парсера 
+     вложенные элементы перебрать */
+}
+
+.metroButton {
+  transition: all 0.3s ease;
+  font-size: var(--mantine-font-size-sm);
+  border-radius: 40px;
+  border: solid 1px;
+  padding: 5px;
+  color: var(--mantine-color-grayColor-9);
+  border-color: var(--mantine-color-grayColor-5);
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto; /* Первый блок — 10%, второй — 90% */
+  width: 100%; 
+  /* gap: 10px; */
+  border-radius: 20px;
+  /* background-color: var(); */
+  /* background-color: rgb(155, 155, 34); */
+  background-color: var(--mantine-color-grayColor-0);
+  /* z-index: 11150; */
+  /* border-radius: 20px; */
+  /* color: white; */
+
+  /* transition: transform 0.3s ease-in-out;
+  transform: translateX(0); */
+
+  @media (max-width: 64em){
+    min-width: 260px;
+    /* background-color: rgb(82, 82, 182); */
+    /* display: none; */
+
+    /* transform: translateX(-100); */
+  } 
+}
+
+.buttonRow {
+  display: flex;
+  align-items: flex-end;
+  align-content: flex-end;
+  flex-direction: column;
+  padding: 16px;
+  padding-bottom: 0;
+
+    @media (max-width: 64em){
+    display: none;
+    /* background-color: rgb(82, 82, 182); */
+    /* display: none; */
+
+    /* transform: translateX(-100); */
+  } 
+}
+
+.buttonRowMobile{
+  display: flex;
+  /* align-items: flex-end;
+  align-content: flex-end; */
+  flex-direction: column;
+  padding: 16px;
+  /* padding-bottom: 0; */
+  padding-top: 0;
+
+    @media (min-width: 64em){
+    display: none;
+    /* background-color: rgb(82, 82, 182); */
+    /* display: none; */
+
+    /* transform: translateX(-100); */
+  } 
+}
+
+
+.textHigh {
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);  
+  color: var(--mantine-color-sberGreenColor-9);
+  text-decoration-color: var(--mantine-color-sberGreenColor-9);
+  /* margin-right: 5px;
+  margin-left: 5px; */
+  margin-top: 10px;
+  cursor: pointer;
+  display: none;
+  background-color: var(--mantine-color-grayColor-0);
+  border-radius: 20px;
+  padding: 8px 16px;
+  /* font-size: 18px; */
+  font-weight: 500;
+
+  @media (max-width: 74em) {
+    display: block;
+  }
+}

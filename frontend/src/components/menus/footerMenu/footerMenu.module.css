@@ -1,0 +1,91 @@
+
+
+.tab-main-footer {
+    padding: 10px 0px;
+    /* cursor: pointer; */
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-grayColor-0);
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 600;
+ 
+  /* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+  
+  .tab-sub-footer {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-grayColor-0);
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    /* padding: 0px 20px; */
+  /* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+
+  .tab-sub-footer-static {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-grayColor-0);
+    position: relative;
+    font-weight: 400;
+  }
+
+    .tab-sub-footer:hover{
+    color: var(--mantine-color-grayColor-5);
+  }
+
+   .tab-sub-footer-pol {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size:  var(--mantine-font-size-md);
+    color: var(--mantine-color-grayColor-3);
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    /* padding: 0px 20px; */
+  /* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+
+    .tab-sub-footer-pol:hover{
+    color: var(--mantine-color-grayColor-0);
+  }
+  
+  .footer { 
+    background-color: #272727;
+    padding: 70px 80px 90px 80px;
+    @media (min-width: 90em){
+      /* background-color: rgb(82, 82, 182); */
+      padding: 70px 200px 90px 200px;
+    } 
+  }
+
+   .copy { 
+    background-color: #05A508;
+    /* padding: 70px 80px 90px 80px;
+    @media (min-width: 90em){
+      padding: 70px 200px 90px 200px;
+    }  */
+  }

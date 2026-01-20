@@ -1,0 +1,48 @@
+.pageLayout {
+  width: 100%;
+  height: 100%;
+  background-color: var(--mantine-color-grayColor-2);
+  background: var(--mantine-color-grayColor-2);
+}
+
+.lowerUpperMenuMobileDesk {
+  width: 100%;
+  background-color: var(--mantine-color-grayColor-2);
+  background: var(--mantine-color-grayColor-2);
+}
+
+.tabsContainer {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 14px;
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--mantine-color-grayColor-8);
+}
+
+.tab:hover {
+  background-color: var(--mantine-color-grayColor-2);
+}
+
+.active {
+  background-color: var(--mantine-color-sberGreenColor-1);
+  color: var(--mantine-color-sberGreenColor-9);
+}
+
+.highlighter {
+  width: 4px;
+  border-radius: 4px;
+  margin-right: 6px;
+  background-color: var(--mantine-color-sberGreenColor-9);
+}
+
+

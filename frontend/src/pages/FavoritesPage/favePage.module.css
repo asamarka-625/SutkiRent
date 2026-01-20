@@ -1,0 +1,131 @@
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: var(--mantine-font-size-md);
+  color: var(--mantine-color-sberGreenColor-9);
+  position: relative;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--mantine-color-sberGreenColor-9);
+  }
+}
+
+/* //разметка страницы */
+.pageLayoutLarge {
+  /* background-color: brown; */
+  /* background-color: var(--mantine-color-grayColor-0); */
+  margin: 0 auto;
+  padding-left: 16px;
+  display: grid;
+  grid-template-columns: minmax(800px, 1200px) minmax(400px, 1200px);
+  width: 100%;
+  gap: 10px;
+
+
+  @media (max-width: 74em) {
+    grid-template-columns: 65% 35%;
+  }
+
+  @media (max-width: 64em) {
+    grid-template-columns: 100%;
+  }
+
+  @media (max-width: 30em) {
+      padding-left: 0px;
+  }
+}
+
+
+.title {
+  font-size: 1.5rem;
+  color: var(--mantine-color-grayColor-9);
+  /* padding: 2rem 2rem 1.5rem; Отступы только для заголовка */
+  margin: 0;
+  font-weight: 700;
+
+  @media (max-width: 64em) {
+    font-size: 12px;
+  }
+}
+
+
+.title {
+  font-size: 1.5rem;
+  color: var(--mantine-color-grayColor-9);
+  /* padding: 2rem 2rem 1.5rem; Отступы только для заголовка */
+  margin: 0;
+  font-weight: 700;
+}
+
+
+/* //разметка первой части */
+.pageLayout {
+  /* background-color: brown; */
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 100%;
+  /* Первый блок — 10%, второй — 90% */
+  width: 100%;
+  /* gap: 10px; */
+
+  @media (max-width: 74em) {
+    /* background-color: aquamarine; */
+    grid-template-columns: 100%;
+    /* Первый блок — 10%, второй — 90% */
+  }
+}
+
+
+.textHigh {
+  color: var(--mantine-color-sberGreenColor-9);
+  text-decoration-color: var(--mantine-color-sberGreenColor-9);
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  display: none;
+
+  @media (max-width: 74em) {
+    display: block;
+  }
+}
+
+
+.navbar {
+  @media (max-width: 74em) {
+    /* background-color: aquamarine; */
+    display: none;
+  }
+}
+
+.navbarMobile {
+  /* z-index: 100; */
+  /* width: 20%; */
+  max-width: '80vw';
+  max-height: '80vh';
+
+  /* position: absolute; */
+  /* margin-top: 100px; */
+  /* right: calc(100vw + 50px);  */
+  @media (min-width: 74em) {
+    display: none;
+  }
+}
+
+.closeButton {
+  position: 'absolute';
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

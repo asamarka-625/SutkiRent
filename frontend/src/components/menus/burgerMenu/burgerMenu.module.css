@@ -1,0 +1,69 @@
+
+.lowerUpperMenuMobile {
+  padding: 100px 40px; 
+  background-color: var(--mantine-color-grayColor-2) !important;
+  min-height: 100vh;
+  width: 100%;
+  @media (min-width: 48em){
+    padding: 10px 6px;
+    display: none;
+  } 
+}
+
+/* Стили для AppShell.Navbar - серый фон - ПРИМЕНЯЕМ ВЕЗДЕ */
+:global([data-mantine-component="AppShell.Navbar"]),
+:global(.mantine-AppShell-navbar),
+:global(nav[data-mantine-component="AppShell.Navbar"]),
+:global(nav.mantine-AppShell-navbar),
+:global(.mantine-AppShell-section[data-section="navbar"]),
+:global(.mantine-AppShell-section) {
+  background-color: var(--mantine-color-grayColor-2) !important;
+  background: var(--mantine-color-grayColor-2) !important;
+}
+
+@media (max-width: 48em) {
+  :global([data-mantine-component="AppShell.Navbar"]:not([hidden])),
+  :global(.mantine-AppShell-navbar:not([hidden])),
+  :global(nav[data-mantine-component="AppShell.Navbar"]:not([hidden])),
+  :global(nav.mantine-AppShell-navbar:not([hidden])) {
+    background-color: var(--mantine-color-grayColor-2) !important;
+    background: var(--mantine-color-grayColor-2) !important;
+    background-image: none !important;
+  }
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size:  var(--mantine-font-size-md);
+  color: var(--mantine-color-grayColor-7) !important;
+  position: relative;
+  transition: color 0.3s ease;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+      color: var(--mantine-color-orangeColor-5) !important;
+      --color-partner: var(--mantine-color-orangeColor-5);
+      --color-phone: var(--mantine-color-orangeColor-5);
+      --color-plus: var(--mantine-color-orangeColor-5);
+  }
+
+  &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      transform: scaleX(0);
+      background-color: var(--mantine-color-grayColor-9);
+      transition: width 0.3s ease;
+  }
+/* 
+  @media (max-width: 768px) {
+      font-size: var(--mantine-font-size-xs); ;
+    } */
+}

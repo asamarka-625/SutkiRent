@@ -1,0 +1,33 @@
+.notificationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notificationItem {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--mantine-color-grayColor-1);
+    border: 1px solid var(--mantine-color-grayColor-3);
+    transition: all 0.2s ease;
+}
+
+.notificationItem:hover {
+    background-color: var(--mantine-color-grayColor-2);
+    border-color: var(--mantine-color-grayColor-4);
+}
+
+.notificationItem.unread {
+    background-color: var(--mantine-color-sberGreenColor-0);
+    border-color: var(--mantine-color-sberGreenColor-3);
+    border-left: 4px solid var(--mantine-color-sberGreenColor-9);
+}
+
+.notificationItem.unread:hover {
+    background-color: var(--mantine-color-sberGreenColor-1);
+}
+
+.notificationContent {
+    width: 100%;
+}
+

@@ -1,0 +1,22 @@
+
+.text-high {
+    color: var(--mantine-color-sberGreenColor-9);
+    /* text-decoration: underline; */
+    text-decoration-color:  var(--mantine-color-sberGreenColor-9);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.headingInfo { 
+    font-weight: 600;
+    color: var(--mantine-color-grayColor-8);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+
+.more { 
+    text-decoration: underline; 
+    cursor: pointer;
+    font-weight: 500;
+    background-color: var(--mantine-color-grayColor-0);
+  }

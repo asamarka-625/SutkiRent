@@ -1,0 +1,64 @@
+.card {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: var(--mantine-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+
+.gradientOverlay {
+  position: absolute;
+  /* top: 0; */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: 
+  /* linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),  */
+   linear-gradient(180deg, 
+              rgba(0, 0, 0, 0) 0%, 
+              #002E01 80%, 
+              #003B01 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  /* padding: 20px; */
+  color: white;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Адаптивные стили для карусели */
+.carousel {
+  --slide-size: 25%;
+}
+
+@media (max-width: 64em) { /* md breakpoint */
+  .carousel {
+    --slide-size: 50%;
+  }
+}
+
+@media (max-width: 48em) { /* sm breakpoint */
+  .carousel {
+    --slide-size: 100%;
+  }
+}

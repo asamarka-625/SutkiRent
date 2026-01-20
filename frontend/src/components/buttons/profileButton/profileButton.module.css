@@ -1,0 +1,43 @@
+.tab {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab:hover {
+    color: var(--mantine-color-orangeColor-5);
+    --color-partner: var(--mantine-color-orangeColor-5);
+    --color-phone: var(--mantine-color-orangeColor-5);
+    --color-plus: var(--mantine-color-orangeColor-5);
+}
+
+.tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transform: scaleX(0);
+    background-color: var(--mantine-color-grayColor-9);
+    transition: width 0.3s ease;
+}
+
+.tab.active::after {
+    transform: scaleX(1);
+}
+
+.profileName { 
+    color: var(--mantine-color-grayColor-8);
+    font-weight: 500;
+}
+
+.profileSubName { 
+    color: var(--mantine-color-grayColor-6);
+    font-weight: 400;
+}
+
+

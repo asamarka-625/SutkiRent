@@ -57,7 +57,6 @@ class ApartmentFilter(BaseModel):
 
 # Схема ответа объекта
 class ApartmentResponse(BaseModel):
-    external_id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
     cost: Annotated[float, Field(ge=0)]
     rooms: Annotated[int, Field(ge=0)]

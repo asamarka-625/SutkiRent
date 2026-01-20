@@ -1,0 +1,68 @@
+
+.address { 
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-grayColor-6);
+    /* background-color: brown;
+    color: blue; */
+}
+
+
+.shortName { 
+  font-weight: 600;
+}
+.characteristics { 
+    font-size: var(--mantine-font-size-sm);
+  }
+
+.metro { 
+    font-size: var(--mantine-font-size-sm);
+  }
+
+  
+.customOverlay {
+  position: absolute; /* или fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+
+    rgba(0, 0, 0, 0) 0%,    /* Полная прозрачность вверху */
+    rgba(51, 51, 51, 0.35) 100% /* Непрозрачный черный внизу */
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.topBanner {
+  /* Позиционирование и размеры */
+  position: absolute;
+  width: 100%;
+  padding: 5px 0;
+  margin: 0;
+  
+  /* Внешний вид */
+  background-color: var(--mantine-color-orangeColor-6); /* Зеленый цвет, можно изменить */
+  color: var(--mantine-color-grayColor-0);
+  text-align: center;
+  
+  /* Закругления */
+  border-radius: 12px 12px 0 0; /* Только верхние углы закруглены */
+  
+  /* Текст */
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+  
+  /* Тень (опционально) */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+/* Для адаптивности */
+@media (max-width: 768px) {
+  .top-banner {
+    padding: 15px 0;
+    font-size: 1rem;
+    border-radius: 8px 8px 0 0;
+  }
+}

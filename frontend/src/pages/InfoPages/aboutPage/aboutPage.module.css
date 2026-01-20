@@ -1,0 +1,8 @@
+
+.text-high {
+    color: var(--mantine-color-sberGreenColor-9);
+    /* text-decoration: underline; */
+    text-decoration-color:  var(--mantine-color-sberGreenColor-9);
+    margin-right: 5px;
+    margin-left: 5px;
+}

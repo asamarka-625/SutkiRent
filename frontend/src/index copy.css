@@ -1,0 +1,66 @@
+@import "./styles/paperGlobal.css";
+@import "./styles/headingsGlobal.css";
+@import "./styles/bulletsGlobal.css";
+@import "./styles/embla.css";
+
+body {
+  /* overflow: hidden; */
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --color-partner: var(--mantine-color-grayColor-6);
+  --color-phone: var(--mantine-color-grayColor-6);
+  --color-location: var(--mantine-color-sberGreenColor-9);
+  --color-plus: var(--mantine-color-grayColor-6);
+  --color-enter: var(--mantine-color-grayColor-6);
+  --color-like: var(--mantine-color-grayColor-6);
+  --color-logo: #05A508;
+  /* padding: 25px 80px 25px 80px; */
+}
+
+
+/* @import "@fontsource/roboto-flex"; */
+svg path{ 
+  transition: 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h3 { 
+  font-size: 18px;
+}
+
+input, textarea, button {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+btnCok {
+  color: #05A508;
+}
+/* div {
+  color: var(--mantine-color-grayColor-9);
+}
+
+
+/* 
+path { 
+  fill: var(--mantine-color-grayColor-6);
+} */
+
+p {
+  margin: 0;
+  padding: 0;
+  /* color: var(--mantine-color-grayColor-9); */
+} 

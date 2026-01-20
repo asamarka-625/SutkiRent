@@ -1,0 +1,68 @@
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: var(--mantine-font-size-md);
+    color: var(--mantine-color-sberGreenColor-9);
+    position: relative;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--mantine-color-sberGreenColor-9);
+    }
+
+    .searchButton {
+        @media (max-width: 600px) {
+            flex-basis: '100%';
+            /* margin-top: '16px'; */
+            order: 1;
+            align-self: 'flex-start';
+            margin-top: '16px';
+        }
+    }
+
+    .searchButton2 {
+        color: var(--mantine-color-grayColor-0);
+        background-color: var(--mantine-color-sberGreenColor-9);
+        padding: 16px;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+}
+
+
+
+.bannerContainer {
+    margin-left: 60px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    @media (max-width: 600px) {
+             display: none;
+        }
+}
+
+.bannerBlock {
+    display: block;
+}
+
+.bannerHead {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    /* color: aqua; */
+    color: var(--mantine-color-sberGreenColor-9);
+}
+
+.bannerText {
+    color: var(--mantine-color-grayColor-0);
+    font-size: 14px;
+}

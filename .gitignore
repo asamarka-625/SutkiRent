@@ -8,7 +8,6 @@ __pycache__/
 .venv
 
 backend
-frontend
 frontend-old
 nginx
 pg_hba.conf

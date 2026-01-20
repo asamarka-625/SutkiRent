@@ -1,0 +1,203 @@
+.links {
+    border-top-right-radius: var(--mantine-radius-md);
+    border-bottom-right-radius: var(--mantine-radius-md);
+ padding: 0 var(--mantine-spacing-md);
+ margin-right: var(--mantine-spacing-md);
+    font-size: var(--mantine-font-size-xl);
+    font-weight: 500;
+    height: rem(44px);
+    line-height: rem(44px);
+}
+
+.footer { 
+  position: relative;
+
+}
+/* 
+.header {
+  order: 1;
+} */
+
+
+.pageLayoutLarge {
+  /* background-color: brown; */
+  /* background-color: var(--mantine-color-grayColor-0); */
+  /* margin: 0 auto; */
+  /* padding-left: 16px; */
+  display: grid;
+  grid-template-columns: minmax(250px, 340px) minmax(400px, auto);
+  width: 100%;
+  /* gap: 10px; */
+
+  @media (max-width: 74em) {
+   grid-template-columns: minmax(150px, 300px) minmax(400px, auto);
+  }
+
+  @media (max-width: 64em) {
+    grid-template-columns: 100%;
+    margin-top: 60px;
+  }
+
+}
+
+
+.tab {
+    /* padding: 10px 20px; */
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    /* color: var(--mantine-color-grayColor-9); */
+    position: relative;
+    transition: color 0.3s ease;
+  
+    &:hover {
+        color: var(--mantine-color-orangeColor-5);
+        --color-partner: var(--mantine-color-orangeColor-5);
+        --color-phone: var(--mantine-color-orangeColor-5);
+        --color-plus: var(--mantine-color-orangeColor-5);
+        --color-like: var(--mantine-color-orangeColor-5);
+        --color-logo: var(--mantine-color-orangeColor-5);
+    }
+  
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transform: scaleX(0);
+        background-color: var(--mantine-color-grayColor-9);
+        transition: width 0.3s ease;
+    }
+/* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+  
+  .tab.active::after {
+    transform: scaleX(1);
+  }
+
+
+  
+.tab-desc {
+  font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-grayColor-9);
+    position: relative;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--mantine-color-redColor-5);
+    }
+  
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transform: scaleX(0);
+        background-color: var(--mantine-color-grayColor-9);
+        transition: width 0.3s ease;
+    }
+/* 
+    @media (max-width: 768px) {
+        font-size: var(--mantine-font-size-xs); ;
+      } */
+  }
+  
+  .tab-desc.active {
+    background-color: var(--mantine-color-redColor-5);
+    transform: scaleX(1);
+  }
+  
+
+.desktop-component {
+    display: block;
+}
+
+.mobile-component {
+    display: none;
+}
+
+@media (max-width: 48em) {
+  .mobile-component {
+    display: flex;
+  }
+  .desktop-component {
+    display: none;
+  }
+}
+
+.upperMenu { 
+  width: 90%; /* На мобильных займет 90% экрана */
+  max-width: 1280px; /* Но не больше 1280px */
+  margin: 0 auto;
+  padding: 6px 0px; 
+  /* padding: 6px 80px; 
+  @media (min-width: 90em){
+   
+    padding: 6px 200px;
+  } 
+ */
+ @media (max-width: 48em){
+   
+  display: none;
+} 
+}
+
+.lowerUpperMenu {
+  width: 90%; /* На мобильных займет 90% экрана */
+  /* max-width: 1280px; Но не больше 1280px */
+  margin: 0 auto;
+  padding: 22px 0px; 
+  /* 
+  @media (min-width: 90em){
+   
+    padding: 6px 200px;
+  } 
+  */
+  @media (max-width: 64em){
+    
+    display: none;
+  } 
+}
+
+.lowerUpperMenuMobile {
+  padding: 6px 32px 6px 40px; 
+  @media (min-width: 64em){
+    /* background-color: rgb(82, 82, 182); */
+    padding: 10px 6px;
+    display: none;
+  } 
+}
+
+.lowerUpperMenuMobileLinks {
+  display: block;
+  @media (max-width: 48em){
+    /* background-color: rgb(82, 82, 182); */
+    display: none;
+  } 
+}
+
+.burgerPadding {
+  padding-top: 200px;
+}
+
+.pageTitle { 
+  margin: 0;
+  margin-left: 160px;
+  font-weight: 700;
+  /* font-size: 20px; */
+  color: var(--mantine-color-grayColor-7);
+}
+
+

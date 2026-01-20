@@ -19,6 +19,7 @@ class Region(Base):
         nullable=False,
         unique=True
     )
+    order: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
 
     # Связи
     cities: so.Mapped[List["City"]] = so.relationship(
@@ -32,6 +33,9 @@ class Region(Base):
 
     def __repr__(self):
         return f"<Region(id={self.id}, title='{self.title}')>"
+
+    def __str__(self):
+        return self.title
 
 
 # Таблица городов
@@ -68,6 +72,9 @@ class City(Base):
     def __repr__(self):
         return f"<City(id={self.id}, title='{self.title}')>"
 
+    def __str__(self):
+        return self.title
+
 
 # Таблица станций метро
 class MetroStation(Base):
@@ -85,6 +92,9 @@ class MetroStation(Base):
 
     def __repr__(self):
         return f"<MetroStation(id={self.id}, title='{self.title}')>"
+
+    def __str__(self):
+        return self.title
 
 
 # Таблица апартаментов (основная)
@@ -104,7 +114,20 @@ class Apartment(Base):
     longitude: so.Mapped[sa.Float] = so.mapped_column(sa.Float)
     capacity: so.Mapped[int] = so.mapped_column(sa.Integer)
     max_children_count: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
-    availability: so.Mapped[str] = so.mapped_column(sa.String(50), default="available", index=True)
+    availability: so.Mapped[str] = so.mapped_column(sa.String(50), default="available")
+
+    priority: so.Mapped[int] = so.mapped_column(
+        sa.Integer,
+        nullable=False,
+        default=0,
+        index=True
+    )
+    visibility: so.Mapped[bool] = so.mapped_column(
+        sa.Boolean,
+        default=True,
+        nullable=False,
+        index=True
+    )
 
     # Цены (текущие)
     price_without_discount: so.Mapped[sa.Float] = so.mapped_column(sa.Float, nullable=False)
@@ -243,6 +266,9 @@ class PhotoApartment(Photo):
 
     def __repr__(self):
         return f"<PhotoApartment(id={self.id}, url='{self.url}')>"
+
+    def __str__(self):
+        return self.url
 
 
 # Таблица услуг

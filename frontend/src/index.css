@@ -1,0 +1,123 @@
+@import "./styles/paperGlobal.css";
+@import "./styles/headingsGlobal.css";
+@import "./styles/bulletsGlobal.css";
+@import "./styles/embla.css";
+
+body {
+  /* overflow: hidden; */
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --color-partner: var(--mantine-color-grayColor-6);
+  --color-phone: var(--mantine-color-grayColor-6);
+  --color-location: var(--mantine-color-sberGreenColor-9);
+  --color-plus: var(--mantine-color-grayColor-6);
+  --color-enter: var(--mantine-color-grayColor-6);
+  --color-like: var(--mantine-color-grayColor-6);
+  --color-logo: #05A508;
+  /* background-color: rgb(255, 236, 234); */
+  /* padding: 25px 80px 25px 80px; */
+}
+
+
+/* @import "@fontsource/roboto-flex"; */
+svg path{ 
+  transition: 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h3 { 
+  font-size: 18px;
+}
+
+input, textarea, button {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+btnCok {
+  color: #05A508;
+}
+/* div {
+  color: var(--mantine-color-grayColor-9);
+}
+
+
+/* 
+path { 
+  fill: var(--mantine-color-grayColor-6);
+} */
+
+p {
+  margin: 0;
+  padding: 0;
+  /* color: var(--mantine-color-grayColor-9); */
+}
+
+/* Стили для мобильного меню - серый фон - ПРИМЕНЯЕМ ВЕЗДЕ */
+[data-mantine-component="AppShell.Navbar"],
+.mantine-AppShell-navbar,
+nav[data-mantine-component="AppShell.Navbar"],
+nav.mantine-AppShell-navbar,
+.mantine-AppShell-navbar > div,
+.mantine-AppShell-navbar > *,
+.mantine-hidden-from-sm [data-mantine-component="AppShell.Navbar"],
+.mantine-hidden-from-sm .mantine-AppShell-navbar,
+.mantine-hidden-from-sm nav,
+.mantine-AppShell-navbar[data-mantine-component="AppShell.Navbar"],
+.mantine-AppShell-section[data-section="navbar"],
+.mantine-AppShell-section {
+  background-color: var(--mantine-color-grayColor-2) !important;
+  background: var(--mantine-color-grayColor-2) !important;
+}
+
+/* Стили для меню личного кабинета */
+div[style*="z-index: 9999999"][style*="position: fixed"],
+div[style*="zIndex: 9999999"][style*="position: fixed"],
+div[style*="z-index:9999999"][style*="position:fixed"] {
+  background-color: var(--mantine-color-grayColor-2) !important;
+  background: var(--mantine-color-grayColor-2) !important;
+}
+
+/* Для мобильных устройств - только цвет фона */
+@media (max-width: 48em) {
+  [data-mantine-component="AppShell.Navbar"]:not([hidden]),
+  .mantine-AppShell-navbar:not([hidden]),
+  nav[data-mantine-component="AppShell.Navbar"]:not([hidden]),
+  nav.mantine-AppShell-navbar:not([hidden]) {
+    background-color: var(--mantine-color-grayColor-2) !important;
+    background: var(--mantine-color-grayColor-2) !important;
+    background-image: none !important;
+  }
+  
+  /* Убеждаемся, что текст виден */
+  .mantine-AppShell-navbar button,
+  .mantine-AppShell-navbar .mantine-Button-root,
+  .mantine-AppShell-navbar button span,
+  .mantine-AppShell-navbar .mantine-Button-root span,
+  .mantine-AppShell-navbar .mantine-Group-root,
+  .mantine-AppShell-navbar .mantine-Group-root *,
+  .mantine-AppShell-navbar .mantine-Flex-root,
+  .mantine-AppShell-navbar .mantine-Flex-root * {
+    color: #495057 !important;
+  }
+  
+  .mantine-AppShell-navbar button:hover,
+  .mantine-AppShell-navbar .mantine-Button-root:hover,
+  .mantine-AppShell-navbar button:hover span,
+  .mantine-AppShell-navbar .mantine-Button-root:hover span {
+    color: #fd7e14 !important;
+  }
+} 
