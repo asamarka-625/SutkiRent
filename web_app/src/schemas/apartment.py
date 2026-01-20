@@ -57,6 +57,7 @@ class ApartmentFilter(BaseModel):
 
 # Схема ответа объекта
 class ApartmentResponse(BaseModel):
+    id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
     cost: Annotated[float, Field(ge=0)]
     rooms: Annotated[int, Field(ge=0)]
@@ -77,3 +78,8 @@ class ObjectsResponse(BaseModel):
     next_page: bool
     count: Annotated[int, Field(ge=0)]
     apartments: List[ApartmentResponse]
+
+
+# Схема запроса для избранного
+class FavoriteRequest(BaseModel):
+    apartment_id: Annotated[int, Field(ge=1)]

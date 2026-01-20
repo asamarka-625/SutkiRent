@@ -11,7 +11,7 @@ from web_app.src.dependencies import get_current_user_by_access_token, get_data_
 
 router = APIRouter(
     prefix="/api/user",
-    tags=["Objects"]
+    tags=["User"]
 )
 
 

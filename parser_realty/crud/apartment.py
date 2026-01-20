@@ -6,7 +6,7 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import SQLAlchemyError, NoResultFound
 # Внутренние модули
-from models import (Apartment as ApartmentModel, Photo, MetroStation as MetroStationModel,
+from models import (Apartment as ApartmentModel, PhotoApartment, MetroStation as MetroStationModel,
                     Service, City, ApartmentMetro, ApartmentService, PriceHistory,
                     ApartmentAvailability)
 from parser_realty.core import cfg, connection
@@ -224,7 +224,11 @@ async def sql_add_or_update_apartment(data: Apartment, session: AsyncSession) ->
                     new_photos_list.append(current_photos[index])
 
                 else:
-                    new_photo = Photo(url=url_str, order=index)
+                    new_photo = PhotoApartment(
+                        apartment_id=apartment.id,
+                        url=url_str,
+                        order=index
+                    )
                     new_photos_list.append(new_photo)
 
             apartment.photos = new_photos_list
@@ -257,7 +261,7 @@ async def sql_add_or_update_apartment(data: Apartment, session: AsyncSession) ->
             await session.flush()
 
             for order, photo in enumerate(data.photos):
-                new_photo = Photo(
+                new_photo = PhotoApartment(
                     apartment_id=new_apartment.id,
                     url=str(photo.url),
                     order=order

@@ -190,6 +190,9 @@ class Apartment(Base):
     def __repr__(self):
         return f"<Apartment(id={self.id}, title='{self.title}')>"
 
+    def __str__(self):
+        return self.title
+
 
 # Календарь объектов
 class ApartmentAvailability(Base):
@@ -310,6 +313,10 @@ class Favorite(Base):
     # Связи
     user: so.Mapped["User"] = so.relationship(back_populates="favorites")
     apartment: so.Mapped["Apartment"] = so.relationship(back_populates="favorites")
+
+    __table_args__ = (
+        sa.UniqueConstraint('user_id', 'apartment_id', name='_user_favorite_uc'),
+    )
 
     def __repr__(self):
         return f"<Favorite(id={self.id}, user_id='{self.user_id}, apartment_id={self.apartment_id}')>"

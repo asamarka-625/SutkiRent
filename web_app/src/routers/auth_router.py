@@ -18,7 +18,7 @@ from web_app.src.crud import sql_create_user, sql_get_user_by_email, sql_update_
 
 router = APIRouter(
     prefix="/api/v1/auth",
-    tags=["authentication"]
+    tags=["Authentication"]
 )
 
 

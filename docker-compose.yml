@@ -43,5 +43,24 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  frontend:
+    build: ./frontend
+    depends_on:
+      - web
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    #  - "443:443"
+    depends_on:
+      - web
+      - frontend
+    volumes:
+      - ./nginx/nginx.local.conf:/etc/nginx/nginx.conf
+    #  - ./backend/media:/var/www/media
+    #  - ./backend/staticfiles:/var/www/staticfiles
+    #  - /etc/letsencrypt:/etc/letsencrypt:ro
+
 volumes:
   postgres_data:

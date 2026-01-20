@@ -9,7 +9,7 @@ from web_app.src.schemas import ContentResponse
 
 router = APIRouter(
     prefix="/api/content",
-    tags=["Objects"]
+    tags=["Content"]
 )
 
 

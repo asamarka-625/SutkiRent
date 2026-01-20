@@ -26,11 +26,11 @@ class User(Base):
     )
 
     # Дополнительная информация
-    phone: Optional[so.Mapped[str]] = so.mapped_column(sa.String(11), nullable=True)
-    surname: Optional[so.Mapped[str]] = so.mapped_column(sa.String(64), nullable=True)
-    patronymic: Optional[so.Mapped[str]] = so.mapped_column(sa.String(64), nullable=True)
-    date_of_birth: Optional[so.Mapped[date]] = so.mapped_column(sa.Date, nullable=True)
-    about: Optional[so.Mapped[str]] = so.mapped_column(sa.String(255), nullable=True)
+    phone: so.Mapped[Optional[str]] = so.mapped_column(sa.String(11), nullable=True)
+    surname: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64), nullable=True)
+    patronymic: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64), nullable=True)
+    date_of_birth: so.Mapped[Optional[date]] = so.mapped_column(sa.Date, nullable=True)
+    about: so.Mapped[Optional[str]] = so.mapped_column(sa.String(255), nullable=True)
 
     # Связи
     favorites: so.Mapped[List["Favorite"]] = so.relationship(

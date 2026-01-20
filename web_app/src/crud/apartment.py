@@ -4,10 +4,10 @@ from datetime import date
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from fastapi import HTTPException, status
 # Внутренние модули
-from models import Apartment, ApartmentAvailability
+from models import Apartment, ApartmentAvailability, Favorite
 from web_app.src.core import cfg, connection
 from web_app.src.schemas import (ApartmentResponse, ObjectsResponse, PriceFilter, SleepFilter,
                                  FloorFilter, AreaFilter, RoomFilter)
@@ -137,6 +137,7 @@ async def sql_get_available_apartments(
                 main_photo = next((p.url for p in apt.photos if p.order == 0), apt.photos[0].url)
 
             apartments_response.append(ApartmentResponse(
+                id=apt.id,
                 title=apt.title,
                 cost=float(t_cost) if t_cost else 0.0,
                 rooms=apt.rooms,
@@ -162,4 +163,106 @@ async def sql_get_available_apartments(
 
     except Exception as e:
         cfg.logger.error(f"Unexpected error get available apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Обновляем регион для всех объектов с определенным городом
+@connection
+async def sql_upd_region_for_apartments(
+    city_id: int,
+    region_id: int,
+    session: AsyncSession
+) -> None:
+    try:
+        await session.execute(
+           sa.update(Apartment)
+           .where(Apartment.city_id == city_id)
+           .values({
+               Apartment.region_id: region_id
+           })
+        )
+        await session.commit()
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(
+            f"Database error update region for apartments (region_id: {region_id}, city_id: {city_id}): {e}"
+        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(
+            f"Unexpected error update region for apartments (region_id: {region_id}, city_id: {city_id}): {e}"
+        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Добавить объект в избранного у пользователя
+@connection
+async def sql_add_favorite_for_user(
+    user_id: int,
+    apartment_id: int,
+    session: AsyncSession
+) -> None:
+    try:
+        await session.execute(
+            sa.insert(Favorite)
+            .values({
+                Favorite.user_id: user_id,
+                Favorite.apartment_id: apartment_id
+            })
+        )
+        await session.commit()
+
+    except IntegrityError:
+        # Эта ошибка возникнет при нарушении UniqueConstraint (дубликате)
+        await session.rollback()
+        cfg.logger.warning(f"User {user_id} already has apartment {apartment_id} in favorites")
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="The object is already in your favorites"
+        )
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error add apartment ({apartment_id}) in favorite for user ({user_id}): {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error add apartment ({apartment_id}) in favorite for user ({user_id}): {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Удалить объект из избранного у пользователя
+@connection
+async def sql_remove_favorite_for_user(
+    user_id: int,
+    apartment_id: int,
+    session: AsyncSession
+) -> None:
+    try:
+        result = await session.execute(
+            sa.delete(Favorite)
+            .where(
+                Favorite.user_id == user_id,
+                Favorite.apartment_id == apartment_id
+            )
+        )
+
+        # Проверяем, была ли удалена хоть одна запись
+        if result.rowcount == 0:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Favorite not found"
+            )
+
+        await session.commit()
+
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error remove apartment ({apartment_id}) in favorite for user ({user_id}): {e}")
+        raise HTTPException(status_code=500, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error remove apartment ({apartment_id}) in favorite for user ({user_id}): {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
