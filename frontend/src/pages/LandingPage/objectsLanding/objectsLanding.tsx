@@ -76,8 +76,8 @@ export function ObjectsLandingPage() {
     // const newCategory = { id: -1, name: "Все категории" };
     const [cityData, setСityData] = useState<Filters[]>([])
     const cityDataRem = (Array.isArray(cityData) ? cityData : []).map(item => ({
-        value: item.id.toString(), // Select обычно ожидает string
-        label: item.name,
+        value: item.order.toString(), // Select обычно ожидает string
+        label: item.title,
     }));
     const [categoryData, setCategoryData] = useState<Filters[]>([])
     const categoryDataRem = (Array.isArray(categoryData) ? categoryData : []).map(item => ({

@@ -96,7 +96,7 @@ export async function getServiceData() {
 
 export async function getRegionsData() {
   const response = await fetch(
-    fetchAddress + '/objects/region/'
+    fetchAddress + '/objects/regions/'
     , {
       method: 'GET',
       headers: {

@@ -1,141 +1,69 @@
-import { useNavigate } from 'react-router-dom';
 import { fetchAddress } from '../globalSettings.ts'
-// 1. Тип для параметров (все поля необязательные)
-type ObjectsDataParams = Partial<{
-  cost_min: string;
-  cost_max: string;
-  type: string;
-  amount_rooms_min: string;
-  amount_rooms_max: string;
-  floor_min: string;
-  floor_max: string;
-  region: string;
-  city: string;
-  space_min: string;
-  space_max: string;
-  booking_date_after: string;
-  booking_date_before: string;
-  amount_sleeps_min: string;
-  amount_sleeps_max: string;
-  view: string,
-  toilet: string,
-  near_metros: string;
-  inRoom: string;
-  availability: string;
-  dopService: string;
+
+// Тип для нового формата запроса (все поля необязательные)
+type ObjectsRequestParams = Partial<{
   page: number;
+  page_size: number;
+  adults: number;
+  children: string; // JSON строка: [{"age": цифра}]
+  region_id: number;
+  start_date: string; // "год-месяц-день"
+  end_date: string; // "год-месяц-день"
+  price: {
+    min: number;
+    max: number;
+  };
+  sleep: {
+    min: number;
+    max: number;
+  };
+  floor: {
+    min: number;
+    max: number;
+  };
+  area: {
+    min: number;
+    max?: number;
+  };
+  room: {
+    min: number;
+    max: number;
+  };
 }>;
 
-// 2. Объект с дефолтными значениями (все поля = '')
-const defaultParams = {
-  cost_min: '',
-  cost_max: '',
-  type: '',
-  amount_rooms_min: '',
-  amount_rooms_max: '',
-  floor_min: '',
-  floor_max: '',
-  region: '',
-  city: '',
-  space_min: '',
-  space_max: '',
-  booking_date_after: '',
-  booking_date_before: '',
-  amount_sleeps_min: '',
-  amount_sleeps_max: '',
-  near_metros: '',
-  view: '',
-  toilet: '',
-} satisfies ObjectsDataParams; // (проверка, что defaultParams соответствует типу)
-
-
-interface InventoryItem {
-  id: number;
-  name: string;
-}
-
-interface DataItem {
-  id: number;
-  inventory: InventoryItem;
-  amount: number;
-  object: number;
-}
-
-function buildQueryString(params: Record<string, any>): string {
-  const queryParts: string[] = [];
+// Параллельная загрузка страниц
+export async function getObjectsDataParallel(requestParams: ObjectsRequestParams = {}, maxPages: number = 10) {
+  // Базовый запрос без page
+  const baseParams = { ...requestParams };
+  delete baseParams.page;
   
-  for (const [key, value] of Object.entries(params)) {
-    if (value === undefined || value === null || value === '') continue;
-
-    // Обработка специальных полей (списки через запятую)
-    // if (['near_metro', 'type', 'view_from_window', 'bathroom'].includes(key)) {
-    //   // Преобразуем "item1,item2" в "item1+item2"
-    //   const formattedValue = String(value).split(',').join('+');
-    //   queryParts.push(`${key}=${encodeURIComponent(formattedValue)}`);
-    // }
-    // Обработка числовых списков (inventories, services, accessibility)
-    else if (['inventories', 'services', 'accessibility', 'inRoom', 'dopService', 
-      'near_metro', 'type', 'view_from_window', 'bathroom'].includes(key)) {
-      // Преобразуем "1,2" в "key=1&key=2"
-      const items = String(value).split(',');
-      items.forEach(item => {
-        queryParts.push(`${key}=${encodeURIComponent(item.trim())}`);
-      });
-    }
-    // Остальные параметры
-    else {
-      queryParts.push(`${key}=${encodeURIComponent(value)}`);
-    }
-  }
-
-  return queryParts.join('&');
-}
-
-// Параллельная загрузка страниц RealtyCalendar
-export async function getObjectsDataParallel(newParams: ObjectsDataParams = {}, maxPages: number = 10) {
-  const finalParams = { ...defaultParams, ...newParams };
+  // Гарантируем page_size = 10 и area.min = 50
+  const baseBody = {
+    page_size: 10,
+    area: { min: 50, ...baseParams.area },
+    ...baseParams
+  };
   
-  // Формируем базовую строку запроса без rc_page
-  const baseQueryString = buildQueryString({
-    cost_min: finalParams.cost_min,
-    cost_max: finalParams.cost_max,
-    amount_rooms_min: finalParams.amount_rooms_min,
-    amount_rooms_max: finalParams.amount_rooms_max,
-    floor_min: finalParams.floor_min,
-    floor_max: finalParams.floor_max,
-    region: finalParams.region,
-    city: finalParams.city,
-    space_min: finalParams.space_min,
-    space_max: finalParams.space_max,
-    booking_date_after: finalParams.booking_date_after,
-    booking_date_before: finalParams.booking_date_before,
-    amount_sleeps_min: finalParams.amount_sleeps_min,
-    amount_sleeps_max: finalParams.amount_sleeps_max,
-    view_from_window: finalParams.view,
-    bathroom: finalParams.toilet,
-    type: finalParams.type,
-    near_metro: finalParams.near_metros,
-    inventories: finalParams.inRoom,
-    services: finalParams.dopService,
-    accessibility: finalParams.availability,
-  });
-
-  console.log('🚀 Параллельная загрузка страниц RealtyCalendar...');
+  console.log('🚀 Параллельная загрузка объектов...');
   
   // Создаем массив промисов для параллельной загрузки страниц
   const pagePromises = Array.from({ length: maxPages }, (_, i) => i + 1).map(async (pageNum) => {
-    const url = `${fetchAddress}/objects/?${baseQueryString}&rc_page=${pageNum}`;
+    const requestBody = {
+      ...baseBody,
+      page: pageNum
+    };
     
     try {
-      const response = await fetch(url, {
-        method: 'GET',
+      const response = await fetch(`${fetchAddress}/objects/`, {
+        method: 'POST', // или 'GET' в зависимости от вашего API
         headers: {
           "Content-Type": "application/json",
-        }
+        },
+        body: JSON.stringify(requestBody)
       });
       
       if (!response.ok) {
-        console.warn(`⚠️  Страница ${pageNum}: ${response.status}`);
+        console.warn(`⚠️ Страница ${pageNum}: ${response.status}`);
         return [];
       }
       
@@ -152,7 +80,7 @@ export async function getObjectsDataParallel(newParams: ObjectsDataParams = {}, 
   // Ждем все промисы
   const results = await Promise.all(pagePromises);
   
-  // Объединяем все результаты и фильтруем пустые страницы
+  // Объединяем все результаты и фильтруем пустые
   const allObjects = results.flat().filter(obj => obj);
   
   console.log(`📦 Всего загружено: ${allObjects.length} объектов`);
@@ -160,49 +88,25 @@ export async function getObjectsDataParallel(newParams: ObjectsDataParams = {}, 
   return allObjects;
 }
 
-export async function getObjectsData(newParams: ObjectsDataParams = {}) {
-  const finalParams = { ...defaultParams, ...newParams };
-
-  const queryString = buildQueryString({
-    cost_min: finalParams.cost_min,
-    cost_max: finalParams.cost_max,
-    amount_rooms_min: finalParams.amount_rooms_min,
-    amount_rooms_max: finalParams.amount_rooms_max,
-    floor_min: finalParams.floor_min,
-    floor_max: finalParams.floor_max,
-    region: finalParams.region,
-    city: finalParams.city,
-    space_min: finalParams.space_min,
-    space_max: finalParams.space_max,
-    booking_date_after: finalParams.booking_date_after,
-    booking_date_before: finalParams.booking_date_before,
-    amount_sleeps_min: finalParams.amount_sleeps_min,
-    amount_sleeps_max: finalParams.amount_sleeps_max,
-    view_from_window: finalParams.view,
-    bathroom: finalParams.toilet,
-    type: finalParams.type,
-    near_metro: finalParams.near_metros,
-    inventories: finalParams.inRoom,
-    services: finalParams.dopService,
-    accessibility: finalParams.availability,
-    page: finalParams.page
-  });
-
-  const url = fetchAddress + '/objects/?' + queryString;
+// Обычная загрузка одной страницы
+export async function getObjectsData(requestParams: ObjectsRequestParams = {}) {
+  // Гарантируем page_size = 10 и area.min = 50
+  const requestBody = {
+    page_size: 10,
+    area: { min: 50, ...requestParams.area },
+    ...requestParams
+  };
   
-
-  const response = await fetch(url, {
-    method: 'GET',
+  const response = await fetch(`${fetchAddress}/objects/`, {
+    method: 'POST', 
     headers: {
       "Content-Type": "application/json",
-      //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
-      //   'X-CSRFToken': 'csrftoken',
-      //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
-    }
-  })
-  return response
+    },
+    body: JSON.stringify(requestBody)
+  });
+  
+  return response;
 }
-
 
 
 export async function getObjectDataById(id: string) {

@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Принимаем переменную окружения для build time
-ARG VITE_API_URL=/api
+ARG VITE_API_URL=http://localhost:8000/api
 ENV VITE_API_URL=$VITE_API_URL
 
 # Сборка production версии

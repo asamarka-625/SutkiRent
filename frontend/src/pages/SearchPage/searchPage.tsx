@@ -1,6 +1,6 @@
 import { DoubleDateRangePickerMobile } from "../../components/buttons/dataRange/dateRange_mobile.tsx";
 import { GuestPickerMobile } from "../../components/buttons/guestButton/guestButton_mobile.tsx";
-import { Button, Text, Group, Select, Divider, NumberInput, SimpleGrid, Modal, Skeleton, Loader, CloseButton} from "@mantine/core";
+import { Button, Text, Group, Select, Divider, NumberInput, SimpleGrid, Modal, Skeleton, Loader, CloseButton } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import styles from "./searchPage.module.css";
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -85,7 +85,7 @@ interface Point {
 function transformObjectsToPoints(originalArray: any[]): any[] {
     if (!Array.isArray(originalArray)) return [];
     return originalArray.map(obj => ({
-        id: obj.pk,
+        id: obj.id,
         coordinates: [obj.latitude, obj.longitude],
         cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Цена не указана',
         media: obj.media || null,
@@ -116,6 +116,18 @@ function transformObjects(originalArray: any[]): any[] {
     }));
 }
 
+const createRange = (minValue, maxValue) => {
+    const hasMin = minValue !== undefined && minValue !== '';
+    const hasMax = maxValue !== undefined && maxValue !== '';
+
+    if (!hasMin && !hasMax) return null;
+
+    const range = {};
+    if (hasMin) range.min = Number(minValue);
+    if (hasMax) range.max = Number(maxValue);
+
+    return range;
+};
 
 export function SearchPage() {
 
@@ -125,6 +137,7 @@ export function SearchPage() {
     const pageRef = useRef<number>(1);
     const lastPage = useRef<number>(1);
     const abrupt = useRef<boolean>(false);
+    const countAll = useRef<boolean>(false);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -146,8 +159,8 @@ export function SearchPage() {
     const [cityData, setСityData] = useState<Filters[]>([])
 
     const cityDataRem = (Array.isArray(cityData) ? cityData : []).map(item => ({
-        value: item.id?.toString(), // Select обычно ожидает string
-        label: item.name,
+        value: item.order?.toString(), // Select обычно ожидает string
+        label: item.title,
     }));
     const [categoryData, setCategoryData] = useState<Filters[]>([])
     const categoryDataRem = (Array.isArray(categoryData) ? categoryData : []).map(item => ({
@@ -255,7 +268,7 @@ export function SearchPage() {
         };
     };
 
-    async function getObjectsDataFunc(searchParams: URLSearchParams, loadMore = false, abruptCancel = false) {
+    async function getObjectsDataFunc(searchParamsInFunc: URLSearchParams, loadMore = false, abruptCancel = false) {
         // setIsLoading(true);
 
         if (!isLoading.current) {
@@ -267,146 +280,202 @@ export function SearchPage() {
                 isLoading.current = true;
                 console.log('Обычная загрузка страницы ' + pageRef.current)
             }
-            const params = getSideParamsFromURL(searchParams) || [];
-
-
+            const params = getSideParamsFromURL(searchParamsInFunc) || [];
 
             const inDate1 = objectFilterForm.getValues().in[0];
             const inDate2 = objectFilterForm.getValues().in[1];
-            const rooms = objectFilterForm.getValues().guest[1]?.toString() || '';
+            const rooms = objectFilterForm.getValues().guest[1];
 
             if (inDate1 && inDate2) setIsDatesSet(true); else setIsDatesSet(false);
 
             // Когда указаны даты, backend возвращает все доступные объекты за раз
             // Используем клиентскую пагинацию для показа по 20 объектов
             const hasDates = inDate1 && inDate2;
-            if (hasDates && loadMore) {
-                // Клиентская пагинация: показываем следующие 20 из allObjects
-                const currentLength = visibleObjects.length;
-                const nextBatch = allObjects.slice(currentLength, currentLength + 20);
+            // if (hasDates && loadMore) {
+            //     // Клиентская пагинация: показываем следующие 20 из allObjects
+            //     const currentLength = visibleObjects.length;
+            //     const nextBatch = allObjects.slice(currentLength, currentLength + 20);
 
-                if (nextBatch.length > 0) {
-                    setVisibleObjects(prev => [...prev, ...nextBatch]);
-                    setPoints(prev => [...prev, ...nextBatch]);
-                    setHasMore(currentLength + nextBatch.length < allObjects.length);
-                } else {
-                    setHasMore(false);
-                }
-                setIsLoadingMore(false);
-                return;
-            }
+            //     if (nextBatch.length > 0) {
+            //         setVisibleObjects(prev => [...prev, ...nextBatch]);
+            //         setPoints(prev => [...prev, ...nextBatch]);
+            //         setHasMore(currentLength + nextBatch.length < allObjects.length);
+            //     } else {
+            //         setHasMore(false);
+            //     }
+            //     setIsLoadingMore(false);
+            //     return;
+            // }
 
             console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
 
+            const objectsParams = {
+                page: pageRef.current,
+
+                // adults - проверяем, существует ли значение
+                ...(objectFilterForm.getValues().guest?.[0] && {
+                    adults: Number(objectFilterForm.getValues().guest[0])
+                }),
+
+                // children - добавляем только если есть значение больше 0
+                // ...(objectFilterForm.getValues().guest?.[1] > 0 && {
+                //     children: Number(objectFilterForm.getValues().guest[1])
+                // }),
+
+                // region_id - сложная логика с учетом undefined и "-1"
+                ...(objectFilterForm.getValues().region && {
+                    // region_id: objectFilterForm.getValues().region || ""
+                    region_id: 1
+                }),
+
+                // start_date - добавляем только если inDate1 существует
+                ...(inDate1 && {
+                    start_date: new Intl.DateTimeFormat('fr-CA', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    }).format(inDate1)
+                }),
+
+                // end_date - добавляем только если inDate2 существует
+                ...(inDate2 && {
+                    end_date: new Intl.DateTimeFormat('fr-CA', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    }).format(inDate2)
+                }),
+
+                ...(() => {
+                    const priceRange = createRange(params.cost_min, params.cost_max);
+                    const sleepRange = createRange(params.amount_sleeps_min, params.amount_sleeps_max);
+                    const areaRange = createRange(params.space_min, params.space_max);
+                    const roomRange = createRange(rooms, params.amount_rooms_max);
+                    const floorRange = createRange(params.floor_start, params.floor_finish);
+
+                    const result = {};
+                    if (priceRange) result.price = priceRange;
+                    if (sleepRange) result.sleep = sleepRange;
+                    if (areaRange) result.area = areaRange;
+                    if (roomRange) result.room = roomRange;
+                    if (floorRange) result.floor = floorRange;
+
+                    return result;
+                })()
+
+            };
+
+            const response = await getObjectsData(objectsParams)
             // Backend сам делает параллельную загрузку страниц
-            const response = await getObjectsData({
-                page: hasDates ? 1 : pageRef.current,
-                cost_min: params.cost_min?.toString() || '',
-                cost_max: params.cost_max?.toString() || '',
-                type: params.category?.toString() || '',
-                near_metros: params.near_metros?.toString() || '',
-                inRoom: params.inRoom?.toString() || '',
-                availability: params.availability?.toString() || '',
-                dopService: params.dopService?.toString() || '',
-                amount_rooms_min: rooms || '',
-                amount_rooms_max: params.amount_rooms_max?.toString() || '',
-                amount_sleeps_min: params.amount_sleeps_min?.toString() || '',
-                amount_sleeps_max: params.amount_sleeps_max?.toString() || '',
-                floor_min: params.floor_start?.toString() || '',
-                floor_max: params.floor_finish?.toString() || '',
-                space_min: params.space_min?.toString() || '',
-                space_max: params.space_max?.toString() || '',
-                view: params.view?.toString() || '',
-                toilet: params.toilet?.toString() || '',
-                region: objectFilterForm.getValues().region === undefined
-                    ? undefined
-                    : objectFilterForm.getValues().region === "-1"
-                        ? ""
-                        : objectFilterForm.getValues().region || "",
-                city: searchParams.get('city') || '',
-                // type: objectFilterForm.getValues().category === undefined
-                //     ? undefined
-                //     : objectFilterForm.getValues().category === "-1"
-                //         ? ""
-                //         : objectFilterForm.getValues().category || "",
-                // type: objectFilterForm.getValues().category ? objectFilterForm.getValues().category : "",
-                // amount_rooms_min: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_min??.toString() || '',
-                // amount_rooms_max: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_max??.toString() || '',
-                booking_date_after:
-                    inDate1 ? new Intl.DateTimeFormat('fr-CA', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                    }).format(inDate1) :
-                        "",
-                booking_date_before:
-                    inDate2 ? new Intl.DateTimeFormat('fr-CA', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                    }).format(inDate2) :
-                        "",
-                // near_metros: (storedData ? JSON.parse(storedData) : null)?.near_metros??.toString() || '',
-            })
+            // const response = await getObjectsData({
+            //     page: hasDates ? 1 : pageRef.current,
+            //     cost_min: params.cost_min?.toString() || '',
+            //     cost_max: params.cost_max?.toString() || '',
+            //     type: params.category?.toString() || '',
+            //     near_metros: params.near_metros?.toString() || '',
+            //     inRoom: params.inRoom?.toString() || '',
+            //     availability: params.availability?.toString() || '',
+            //     dopService: params.dopService?.toString() || '',
+            //     amount_rooms_min: rooms || '',
+            //     amount_rooms_max: params.amount_rooms_max?.toString() || '',
+            //     amount_sleeps_min: params.amount_sleeps_min?.toString() || '',
+            //     amount_sleeps_max: params.amount_sleeps_max?.toString() || '',
+            //     floor_min: params.floor_start?.toString() || '',
+            //     floor_max: params.floor_finish?.toString() || '',
+            //     space_min: params.space_min?.toString() || '',
+            //     space_max: params.space_max?.toString() || '',
+            //     view: params.view?.toString() || '',
+            //     toilet: params.toilet?.toString() || '',
+            //     region: objectFilterForm.getValues().region === undefined
+            //         ? undefined
+            //         : objectFilterForm.getValues().region === "-1"
+            //             ? ""
+            //             : objectFilterForm.getValues().region || "",
+            //     city: searchParams.get('city') || '',
+            //     // type: objectFilterForm.getValues().category === undefined
+            //     //     ? undefined
+            //     //     : objectFilterForm.getValues().category === "-1"
+            //     //         ? ""
+            //     //         : objectFilterForm.getValues().category || "",
+            //     // type: objectFilterForm.getValues().category ? objectFilterForm.getValues().category : "",
+            //     // amount_rooms_min: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_min??.toString() || '',
+            //     // amount_rooms_max: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_max??.toString() || '',
+            //     booking_date_after:
+            //         inDate1 ? new Intl.DateTimeFormat('fr-CA', {
+            //             year: 'numeric',
+            //             month: '2-digit',
+            //             day: '2-digit'
+            //         }).format(inDate1) :
+            //             "",
+            //     booking_date_before:
+            //         inDate2 ? new Intl.DateTimeFormat('fr-CA', {
+            //             year: 'numeric',
+            //             month: '2-digit',
+            //             day: '2-digit'
+            //         }).format(inDate2) :
+            //             "",
+            //     // near_metros: (storedData ? JSON.parse(storedData) : null)?.near_metros??.toString() || '',
+            // })
 
             if (response.ok) {
                 const responseData = await response.json();
-                const data = Array.isArray(responseData) ? responseData : (responseData.results || []);
+                const data = responseData.apartments || [];
+                const areMore = responseData.next_page || false;
+                countAll.current += responseData.count;
 
-            if (data.length === 0 || abrupt.current === true && abruptCancel === false) {
-                if (!loadMore) {
-                    setPoints([])
-                }
-                lastPage.current = pageRef.current;
-                setIsLoadingMore(false);
-                setHasMore(false);
-                isLoading.current = false;
-                pageRef.current = 1;
-                return;
-            }
+                console.log(data);
 
-            const filteredData = objectFilterForm.getValues().guest ?
-                data.filter(item => item.capacity >= Number(objectFilterForm.getValues().guest[0]))
-                : data;
-            // Сортируем: сначала элементы с banner != null, затем остальные
-            const sortedData = [...filteredData].sort((a, b) => {
-                const hasBannerA = a.banner != null ? 1 : 0;
-                const hasBannerB = b.banner != null ? 1 : 0;
-                return hasBannerB - hasBannerA; // Сортируем по убыванию (1 сначала, потом 0)
-            });
-
-            const transformedData = transformObjectsToPoints(sortedData);
-
-            // Для запросов с датами backend возвращает ШТУКИ ПО RC-страницам; пока показываем как есть
-            if (hasDates) {
-                setVisibleObjects(transformedData);
-                setPoints(transformedData);
-                setHasMore(false);
-            } else {
-                // Для запросов БЕЗ дат - используем серверную пагинацию page=N
-                if (loadMore) {
-                    // догружаем следующую страницу и добавляем к списку
-                    const nextBatch = transformedData;
-                    if (nextBatch.length > 0) {
-                        setVisibleObjects(prev => [...prev, ...nextBatch]);
-                        setPoints(prev => [...prev, ...nextBatch]);
-                        setHasMore(nextBatch.length === 20);
-                        pageRef.current = pageRef.current + 1;
-                    } else {
-                        setHasMore(false);
+                if (data.length === 0 || abrupt.current === true && abruptCancel === false) {
+                    if (!loadMore) {
+                        setPoints([])
                     }
-                } else {
-                    // первая страница
-                    setVisibleObjects(transformedData);
-                    setPoints(transformedData);
-                    setHasMore(transformedData.length === 20);
-                    pageRef.current = 2; // следующая страница для догрузки
+                    lastPage.current = pageRef.current;
+                    setIsLoadingMore(false);
+                    setHasMore(false);
+                    isLoading.current = false;
+                    pageRef.current = 1;
+                    return;
                 }
-            }
 
-            if (abrupt.current) abrupt.current = false;
-            isLoading.current = false;
-            setIsLoadingMore(false);
+                const filteredData = data;
+                // Сортируем: сначала элементы с banner != null, затем остальные
+                const sortedData = [...filteredData].sort((a, b) => {
+                    const hasBannerA = a.banner != null ? 1 : 0;
+                    const hasBannerB = b.banner != null ? 1 : 0;
+                    return hasBannerB - hasBannerA; // Сортируем по убыванию (1 сначала, потом 0)
+                });
+
+                const transformedData = transformObjectsToPoints(sortedData);
+
+                // Для запросов с датами backend возвращает ШТУКИ ПО RC-страницам; пока показываем как есть
+           
+                    // Для запросов БЕЗ дат - используем серверную пагинацию page=N
+                    if (loadMore) {
+                        console.log('loadMore triggered')
+                        // догружаем следующую страницу и добавляем к списку
+                        const nextBatch = transformedData;
+                        if (nextBatch.length > 0) {
+                            setVisibleObjects(prev => [...prev, ...nextBatch]);
+                            setPoints(prev => [...prev, ...nextBatch]);
+                            setHasMore(nextBatch.length === 10);
+                            pageRef.current = pageRef.current + 1;
+                        } else {
+                            setHasMore(false);
+                        }
+                        if (areMore) getObjectsDataFunc(searchParams, true);
+                    } else {
+                        // первая страница
+                        console.log('ПЕРВАЯ СТРАНИЦА')
+                        setVisibleObjects(transformedData);
+                        setPoints(transformedData);
+                        setHasMore(transformedData.length === 10);
+                        pageRef.current = 2; // следующая страница для 
+                        if (areMore) getObjectsDataFunc(searchParams, true);
+                    }
+
+                if (abrupt.current) abrupt.current = false;
+                isLoading.current = false;
+                setIsLoadingMore(false);
 
             } else {
                 setHasMore(false);
@@ -416,7 +485,7 @@ export function SearchPage() {
                     showNotification({
                         title: "Ошибка сервера, обновите страницу",
                         message: error.statusText,
-                        icon: <IconX />
+                        // icon: <IconX />
                     })
                 }
             }
@@ -625,21 +694,22 @@ export function SearchPage() {
     }, []);
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (
-                !(window.innerHeight + document.documentElement.scrollTop >=
-                    document.documentElement.offsetHeight - (window.innerHeight*2)) ||
-                isLoadingMore ||
-                !hasMore
-            ) {
-                return;
-            }
-            // Загружаем следующую страницу
-            getObjectsDataFunc(searchParams, true);
-        };
+        // const handleScroll = () => {
+        //     if (
+        //         !(window.innerHeight + document.documentElement.scrollTop >=
+        //             document.documentElement.offsetHeight - (window.innerHeight * 2)) ||
+        //         isLoadingMore ||
+        //         !hasMore
+        //     ) {
+        //         return;
+        //     }
+        //     // Загружаем следующую страницу
+        //     console.log('handleScroll' + pageRef.current)
+        //     getObjectsDataFunc(searchParams, true);
+        // };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        // window.addEventListener('scroll', handleScroll);
+        // return () => window.removeEventListener('scroll', handleScroll);
     }, [isLoadingMore, hasMore, pageRef, visibleObjects]);
 
     useEffect(() => {
@@ -758,12 +828,12 @@ export function SearchPage() {
                                             // placeholder="Город, регион..."
                                             className="citySelect"
                                             maxDropdownHeight={400}
-                                styles={{
-                                    dropdown: {
-                                        maxHeight: '400px',
-                                        overflowY: 'auto'
-                                    }
-                                }}
+                                            styles={{
+                                                dropdown: {
+                                                    maxHeight: '400px',
+                                                    overflowY: 'auto'
+                                                }
+                                            }}
                                             variant="unstyled"
                                             // rightSection={<IconChevronDown size={16} />}
                                             data={cityDataRem}
@@ -959,8 +1029,8 @@ export function SearchPage() {
                 </form>
 
                 <Modal opened={openedModalFilter} onClose={() => { closeFilter(); toggle() }} centered
-                     zIndex={11000}
-                     overlayProps={{
+                    zIndex={11000}
+                    overlayProps={{
                         color: '#000',
                         opacity: 0.8,
                         blur: 2,
@@ -987,7 +1057,7 @@ export function SearchPage() {
                 </Modal>
 
                 <Modal opened={openedModalMap} onClose={closeMap} centered withCloseButton={false}
-                  zIndex={11000}
+                    zIndex={11000}
                     overlayProps={{
                         color: '#000',
                         opacity: 0.8,
