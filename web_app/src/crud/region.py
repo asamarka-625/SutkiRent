@@ -17,13 +17,14 @@ async def sql_get_regions(
 ) -> List[RegionResponse]:
     try:
         result = await session.execute(
-            sa.select(Region.title, Region.order)
+            sa.select(Region.id, Region.title, Region.order)
         )
 
         return [
             RegionResponse(
-                title=r[0],
-                order=r[1]
+                id=r[0],
+                title=r[1],
+                order=r[2]
             )
             for r in result.all()
         ]
