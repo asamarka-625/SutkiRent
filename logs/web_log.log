@@ -1,0 +1,12 @@
+2026-01-20 13:37:53,388 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-20 13:37:53,701 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-20 13:37:53,701 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-20 13:37:53,701 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-20 13:37:53,755 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-20 13:37:53,755 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-21 06:08:49,973 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-21 06:08:50,506 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-21 06:08:50,507 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-21 06:08:50,507 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-21 06:08:50,588 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-21 06:08:50,588 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
