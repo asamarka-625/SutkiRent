@@ -19,6 +19,16 @@
   } 
 }
 
+.pageLayoutLand { 
+  /* background-color: brown; */
+  width: 100%;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 180px 1fr auto;
+  height: 100%;
+}
+
 
 .topBanner {
   /* Позиционирование и размеры */

@@ -108,6 +108,24 @@ export async function getObjectsData(requestParams: ObjectsRequestParams = {}) {
   return response;
 }
 
+export async function getFeatObjectsData(requestParams: ObjectsRequestParams = {}) {
+  // Гарантируем page_size = 10 и area.min = 50
+  const requestBody = {
+    page_size: 6,
+    area: { min: 50, ...requestParams.area },
+    ...requestParams
+  };
+  
+  const response = await fetch(`${fetchAddress}/objects/`, {
+    method: 'POST', 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody)
+  });
+  
+  return response;
+}
 
 export async function getObjectDataById(id: string) {
   const response = await fetch(

@@ -40,6 +40,7 @@ type Object = {
     refreshList: () => void
     IsDatesSet: boolean
     highlightedId: number | null
+    landing: boolean
 };
 
 
@@ -70,15 +71,15 @@ export function SearchPageCard(props: Object) {
     //    }, []);
 
     return (
-        <div className={`papercardObjectHorizontal ${isHighlighted ? 'hover' : ''}`}>
-            <div className={styles[`pageLayout`]} >
+        <div className={`papercardObjectHorizontal ${isHighlighted ? 'hover' : ''}`} style={{ height: '100%' }}>
+            <div className={props.landing ? styles.pageLayoutLand : styles.pageLayout}>
                 <div className="blockHoz">
                     <LikeButton id={props.id}></LikeButton>
                     {props.banner ?
                         <div className={styles.topBanner}>{props.banner?.name}</div> : ""}
                     <ImageWithFallback
                         style={{
-                            ...(isMobile && { gridRow: 1 }),
+                            ...(isMobile || props.landing && { gridRow: 1 }),
                         }}
                         fallbackSrc="/blur_404.jpg"
                         src={props.media.url}
@@ -86,10 +87,15 @@ export function SearchPageCard(props: Object) {
                     ></ImageWithFallback>
                 </div>
                 <div className={styles[`carddiv`]} style={{
-                    ...(isMobile && { gridRow: 2 })
+                    ...(isMobile || props.landing && { gridRow: 2 })
                 }}>
                     <Flex
-                        className={styles[`cardDescription`]}
+                        className={styles[`cardDescription`]} style={{
+                            ...(props.landing && {
+                                padding: 0
+                                // paddingTop: 'var(--mantine-spacing-sm)',
+                            }),
+                        }}
                         direction={"column"}>
 
                         <div className={styles[``]}>Sutki Rent {typeName}</div>
@@ -104,7 +110,7 @@ export function SearchPageCard(props: Object) {
                             {/* <Divider orientation="vertical" /> */}
                         </Group>
                         <div className={styles[`location`]}>
-                            {props.near_metro.length === 0? <div className={styles[``]}>Близко к метро: {getMetroString(props.near_metro)}</div> : ''}
+                            {/* {props.near_metro.length === 0 ? <div className={styles[``]}>Близко к метро: {getMetroString(props.near_metro)}</div> : ''} */}
                             <div className={styles[``]}>
                                 <Flex gap={"xs"} align={"center"}>
                                     <LocationSVG width="15" height="15" />
@@ -130,14 +136,17 @@ export function SearchPageCard(props: Object) {
                     ...(isMobile && {
                         gridRow: 3,
                         width: '100%',
-                        // paddingTop: 'var(--mantine-spacing-sm)',
-                    }),
+                    })
                 }}>
                     {/* {props.banner ?
                         <div className={styles.sideBanner}>{props.banner?.name}</div> : ""} */}
 
 
-                    <Flex className="HeadingStyleCostSmall" gap={5} align="center" justify={"center"} direction={props.IsDatesSet && !isMobile ? 'column' : ''}>
+                    <Flex className="HeadingStyleCostSmall" gap={5} align="center" justify={"center"} direction={props.IsDatesSet && !isMobile ? 'column' : ''} style={{
+                         ...(props.landing && {
+                        display: 'none'
+                    })
+                    }}>
                         {props.IsDatesSet ? "" : <span>от</span>}
                         <h3>{props.cost} ₽</h3>
                         {props.IsDatesSet ? <span>за этот период</span> : <span>сутки</span>}
