@@ -30,26 +30,26 @@ interface Banner {
     name: string;
 }
 
-type Object = {
-    pk: number;
-    short_name: string;
-    cost: number;
-    type: string | null;
-    amount_rooms: number;
-    sleeps: string;
-    floor: number;
-    capacity: number;
-    region: string | null;
-    city: string;
-    banner: Banner | null;
-    space: number;
-    address: string;
-    near_metro: []; // или MetroStation[], если есть тип для станций метро
-    media: {
-        source_type: string; // или union тип, если возможны другие варианты
-        url: string;
-    };
-};
+// type Object = {
+//     id: number;
+//     title: string;
+//     cost: number;
+//     type: string | null;
+//     amount_rooms: number;
+//     sleeps: string;
+//     floor: number;
+//     capacity: number;
+//     region: string | null;
+//     city: string;
+//     banner: Banner | null;
+//     space: number;
+//     address: string;
+//     near_metro: []; // или MetroStation[], если есть тип для станций метро
+//     media: {
+//         source_type: string; // или union тип, если возможны другие варианты
+//         url: string;
+//     };
+// };
 
 interface Filters {
     id: number,
@@ -60,10 +60,7 @@ interface Point {
     id: number;
     coordinates: [number, number];
     // cost: string;
-    media: {
-        source_type: string; // или union тип, если возможны другие варианты
-        url: string;
-    };
+    media: [];
     space: number;
     amount_rooms: number;
     address: string;
@@ -87,34 +84,35 @@ function transformObjectsToPoints(originalArray: any[]): any[] {
     return originalArray.map(obj => ({
         id: obj.id,
         coordinates: [obj.latitude, obj.longitude],
-        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Цена не указана',
-        media: obj.media || null,
+        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Не указано',
+        media: { source_type: '', url: obj?.media[0] },
         space: obj.space || null,
-        amount_rooms: obj.amount_rooms || null,
+        amount_rooms: obj.rooms || null,
         address: obj.address || null,
         floor: obj.floor || null,
-        short_name: obj.short_name || null,
-        near_metro: obj.near_metro || null,
-        capacity: obj.capacity || null
+        short_name: obj.title || null,
+        near_metro: obj.metro || null,
+        capacity: obj.capacity || null,
+        sleeps: obj.sleeps || null
     }));
 }
 
-function transformObjects(originalArray: any[]): any[] {
-    if (!Array.isArray(originalArray)) return [];
-    return originalArray.map(obj => ({
-        id: obj.pk,
-        coordinates: [obj.latitude, obj.longitude],
-        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Цена не указана',
-        media: obj.media || null,
-        space: obj.space || null,
-        amount_rooms: obj.amount_rooms || null,
-        address: obj.address || null,
-        floor: obj.floor || null,
-        short_name: obj.short_name || null,
-        near_metro: obj.near_metro || null,
-        capacity: obj.capacity || null
-    }));
-}
+// function transformObjects(originalArray: any[]): any[] {
+//     if (!Array.isArray(originalArray)) return [];
+//     return originalArray.map(obj => ({
+//         id: obj.pk,
+//         coordinates: [obj.latitude, obj.longitude],
+//         cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Цена не указана',
+//         media: obj.media || null,
+//         space: obj.space || null,
+//         amount_rooms: obj.amount_rooms || null,
+//         address: obj.address || null,
+//         floor: obj.floor || null,
+//         short_name: obj.short_name || null,
+//         near_metro: obj.near_metro || null,
+//         capacity: obj.capacity || null
+//     }));
+// }
 
 const createRange = (minValue, maxValue) => {
     const hasMin = minValue !== undefined && minValue !== '';
@@ -188,7 +186,7 @@ export function SearchPage() {
         return tomorrow;
     });
 
-    const [objects, setObjects] = useState<Object[]>([
+    const [objects, setObjects] = useState([
 
     ])
 
@@ -377,9 +375,7 @@ export function SearchPage() {
                 console.log(data);
 
                 if (data.length === 0 || abrupt.current === true && abruptCancel === false) {
-                    if (!loadMoreRef.current) {
-                        setPoints([])
-                    }
+                    setPoints([])
                     lastPage.current = pageRef.current;
                     setIsLoadingMore(false);
                     setHasMore(false);
@@ -406,14 +402,17 @@ export function SearchPage() {
                     console.log('loadMore triggered')
                     // догружаем следующую страницу и добавляем к списку
                     const nextBatch = transformedData;
-                    if (nextBatch.length > 0) {
+                    if (nextBatch.length > 0 && !abrupt.current) {
                         setVisibleObjects(prev => [...prev, ...nextBatch]);
                         setPoints(prev => [...prev, ...nextBatch]);
                         setHasMore(nextBatch.length === 10);
                         pageRef.current = pageRef.current + 1;
                         getObjectsDataFunc(searchParams)
-                    } else {
-                        setHasMore(false);
+                    } else if (abrupt.current) {
+                        setVisibleObjects(nextBatch);
+                        setPoints(nextBatch);
+                        pageRef.current = pageRef.current + 1;
+                        getObjectsDataFunc(searchParams)
                     }
 
                 } else {
@@ -425,7 +424,9 @@ export function SearchPage() {
                     pageRef.current = 1;
                 }
 
-                if (abrupt.current) abrupt.current = false;
+                if (abrupt.current) {
+                    abrupt.current = false;
+                }
 
                 isLoading.current = false;
                 setIsLoadingMore(false);
@@ -486,8 +487,10 @@ export function SearchPage() {
         closeFilter()
         handleFilterChange()
         setVisibleObjects([])
+        setPoints([])
         //("tg tg")
         // setPage(1);
+
         pageRef.current = 1;
         console.log('handleFormSave страница' + pageRef.current)
 
@@ -496,6 +499,7 @@ export function SearchPage() {
 
         isLoading.current = false;
         abrupt.current = true;
+        countAll.current = 0; 
         getObjectsDataFunc(searchParams, true);
 
         // const formState = objectFilterForm.values
@@ -1099,7 +1103,7 @@ export function SearchPage() {
                                 {!isMobile ? <div>
                                     {isLoading.current || isLoadingMore ?
                                         <div className={styles.loadtext}>Идет загрузка стр.. {pageRef.current}<Loader type="dots" ml="30" size="xs" /></div> :
-                                        <div className={styles.loadtext}>Найдено {visibleObjects.length.toString()} объектов, {lastPage.current} стр.</div>}
+                                        <div className={styles.loadtext}>Найдено {countAll.current} объектов</div>}
                                 </div> : ': ' + visibleObjects.length.toString()}
 
                             </div>

@@ -81,7 +81,7 @@ export function SearchPageCard(props: Object) {
                             ...(isMobile && { gridRow: 1 }),
                         }}
                         fallbackSrc="/blur_404.jpg"
-                        src={props.media?.url}
+                        src={props.media.url}
                         alt={"Photo"}
                     ></ImageWithFallback>
                 </div>
@@ -93,10 +93,10 @@ export function SearchPageCard(props: Object) {
                         direction={"column"}>
 
                         <div className={styles[``]}>Sutki Rent {typeName}</div>
-                        <div className="HeadingStyle3" ref={contentRef} style={{ fontSize: "17px", maxHeight: '75px', overflow: "hidden" }}>{props.short_name }</div>
+                        <div className="HeadingStyle3" ref={contentRef} style={{ fontSize: "17px", maxHeight: '75px', overflow: "hidden" }}>{props.short_name}</div>
                         <Group className={styles[`characteristics`]} gap={3}>
                             <div>{props.amount_rooms} {declineRoomWord(props.amount_rooms)} • </div>
-                            <div>{props.space} м² • </div>
+                            {/* <div>{props.space} м² • </div> */}
                             {/* <Divider orientation="vertical" /> */}
                             <div>{props.floor} этаж • </div>
                             {/* <Divider orientation="vertical" /> */}
@@ -104,7 +104,7 @@ export function SearchPageCard(props: Object) {
                             {/* <Divider orientation="vertical" /> */}
                         </Group>
                         <div className={styles[`location`]}>
-                            <div className={styles[``]}>Близко к метро: {getMetroString(props.near_metro)}</div>
+                            {props.near_metro.length === 0? <div className={styles[``]}>Близко к метро: {getMetroString(props.near_metro)}</div> : ''}
                             <div className={styles[``]}>
                                 <Flex gap={"xs"} align={"center"}>
                                     <LocationSVG width="15" height="15" />
