@@ -137,7 +137,8 @@ export function SearchPage() {
     const pageRef = useRef<number>(1);
     const lastPage = useRef<number>(1);
     const abrupt = useRef<boolean>(false);
-    const countAll = useRef<boolean>(false);
+    const countAll = useRef<number>(0);
+    const loadMoreRef = useRef<boolean>(false);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -159,7 +160,7 @@ export function SearchPage() {
     const [cityData, setСityData] = useState<Filters[]>([])
 
     const cityDataRem = (Array.isArray(cityData) ? cityData : []).map(item => ({
-        value: item.order?.toString(), // Select обычно ожидает string
+        value: item.id?.toString(), // Select обычно ожидает string
         label: item.title,
     }));
     const [categoryData, setCategoryData] = useState<Filters[]>([])
@@ -268,13 +269,14 @@ export function SearchPage() {
         };
     };
 
-    async function getObjectsDataFunc(searchParamsInFunc: URLSearchParams, loadMore = false, abruptCancel = false) {
+    async function getObjectsDataFunc(searchParamsInFunc: URLSearchParams, abruptCancel = false) {
         // setIsLoading(true);
 
         if (!isLoading.current) {
-            if (loadMore) {
+            if (loadMoreRef.current) {
                 setIsLoadingMore(true);
                 console.log('Загружается больше, Страница ' + pageRef.current)
+                isLoading.current = true;
             } else {
                 // setPage(1);
                 isLoading.current = true;
@@ -322,10 +324,9 @@ export function SearchPage() {
                 //     children: Number(objectFilterForm.getValues().guest[1])
                 // }),
 
-                // region_id - сложная логика с учетом undefined и "-1"
                 ...(objectFilterForm.getValues().region && {
-                    // region_id: objectFilterForm.getValues().region || ""
-                    region_id: 1
+                    region_id: objectFilterForm.getValues().region
+                    // region_id: 1
                 }),
 
                 // start_date - добавляем только если inDate1 существует
@@ -366,67 +367,17 @@ export function SearchPage() {
             };
 
             const response = await getObjectsData(objectsParams)
-            // Backend сам делает параллельную загрузку страниц
-            // const response = await getObjectsData({
-            //     page: hasDates ? 1 : pageRef.current,
-            //     cost_min: params.cost_min?.toString() || '',
-            //     cost_max: params.cost_max?.toString() || '',
-            //     type: params.category?.toString() || '',
-            //     near_metros: params.near_metros?.toString() || '',
-            //     inRoom: params.inRoom?.toString() || '',
-            //     availability: params.availability?.toString() || '',
-            //     dopService: params.dopService?.toString() || '',
-            //     amount_rooms_min: rooms || '',
-            //     amount_rooms_max: params.amount_rooms_max?.toString() || '',
-            //     amount_sleeps_min: params.amount_sleeps_min?.toString() || '',
-            //     amount_sleeps_max: params.amount_sleeps_max?.toString() || '',
-            //     floor_min: params.floor_start?.toString() || '',
-            //     floor_max: params.floor_finish?.toString() || '',
-            //     space_min: params.space_min?.toString() || '',
-            //     space_max: params.space_max?.toString() || '',
-            //     view: params.view?.toString() || '',
-            //     toilet: params.toilet?.toString() || '',
-            //     region: objectFilterForm.getValues().region === undefined
-            //         ? undefined
-            //         : objectFilterForm.getValues().region === "-1"
-            //             ? ""
-            //             : objectFilterForm.getValues().region || "",
-            //     city: searchParams.get('city') || '',
-            //     // type: objectFilterForm.getValues().category === undefined
-            //     //     ? undefined
-            //     //     : objectFilterForm.getValues().category === "-1"
-            //     //         ? ""
-            //     //         : objectFilterForm.getValues().category || "",
-            //     // type: objectFilterForm.getValues().category ? objectFilterForm.getValues().category : "",
-            //     // amount_rooms_min: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_min??.toString() || '',
-            //     // amount_rooms_max: (storedData ? JSON.parse(storedData) : null)?.amount_rooms_max??.toString() || '',
-            //     booking_date_after:
-            //         inDate1 ? new Intl.DateTimeFormat('fr-CA', {
-            //             year: 'numeric',
-            //             month: '2-digit',
-            //             day: '2-digit'
-            //         }).format(inDate1) :
-            //             "",
-            //     booking_date_before:
-            //         inDate2 ? new Intl.DateTimeFormat('fr-CA', {
-            //             year: 'numeric',
-            //             month: '2-digit',
-            //             day: '2-digit'
-            //         }).format(inDate2) :
-            //             "",
-            //     // near_metros: (storedData ? JSON.parse(storedData) : null)?.near_metros??.toString() || '',
-            // })
 
             if (response.ok) {
                 const responseData = await response.json();
                 const data = responseData.apartments || [];
-                const areMore = responseData.next_page || false;
                 countAll.current += responseData.count;
+                loadMoreRef.current = responseData.next_page || false;
 
                 console.log(data);
 
                 if (data.length === 0 || abrupt.current === true && abruptCancel === false) {
-                    if (!loadMore) {
+                    if (!loadMoreRef.current) {
                         setPoints([])
                     }
                     lastPage.current = pageRef.current;
@@ -448,32 +399,34 @@ export function SearchPage() {
                 const transformedData = transformObjectsToPoints(sortedData);
 
                 // Для запросов с датами backend возвращает ШТУКИ ПО RC-страницам; пока показываем как есть
-           
-                    // Для запросов БЕЗ дат - используем серверную пагинацию page=N
-                    if (loadMore) {
-                        console.log('loadMore triggered')
-                        // догружаем следующую страницу и добавляем к списку
-                        const nextBatch = transformedData;
-                        if (nextBatch.length > 0) {
-                            setVisibleObjects(prev => [...prev, ...nextBatch]);
-                            setPoints(prev => [...prev, ...nextBatch]);
-                            setHasMore(nextBatch.length === 10);
-                            pageRef.current = pageRef.current + 1;
-                        } else {
-                            setHasMore(false);
-                        }
-                        if (areMore) getObjectsDataFunc(searchParams, true);
+                console.log(loadMoreRef.current)
+                // Для запросов БЕЗ дат - используем серверную пагинацию page=N
+                if (loadMoreRef.current) {
+                    isLoading.current = false;
+                    console.log('loadMore triggered')
+                    // догружаем следующую страницу и добавляем к списку
+                    const nextBatch = transformedData;
+                    if (nextBatch.length > 0) {
+                        setVisibleObjects(prev => [...prev, ...nextBatch]);
+                        setPoints(prev => [...prev, ...nextBatch]);
+                        setHasMore(nextBatch.length === 10);
+                        pageRef.current = pageRef.current + 1;
+                        getObjectsDataFunc(searchParams)
                     } else {
-                        // первая страница
-                        console.log('ПЕРВАЯ СТРАНИЦА')
-                        setVisibleObjects(transformedData);
-                        setPoints(transformedData);
-                        setHasMore(transformedData.length === 10);
-                        pageRef.current = 2; // следующая страница для 
-                        if (areMore) getObjectsDataFunc(searchParams, true);
+                        setHasMore(false);
                     }
 
+                } else {
+                    // первая страница
+                    console.log('ПОСЛЕДНЯЯ СТРАНИЦА' + loadMoreRef.current)
+                    setVisibleObjects(prev => [...prev, ...transformedData]);
+                    setPoints(prev => [...prev, ...transformedData]);
+                    setHasMore(false);
+                    pageRef.current = 1;
+                }
+
                 if (abrupt.current) abrupt.current = false;
+
                 isLoading.current = false;
                 setIsLoadingMore(false);
 
@@ -489,6 +442,7 @@ export function SearchPage() {
                     })
                 }
             }
+            isLoading.current = false;
 
         }
 
@@ -542,7 +496,7 @@ export function SearchPage() {
 
         isLoading.current = false;
         abrupt.current = true;
-        getObjectsDataFunc(searchParams, false, true);
+        getObjectsDataFunc(searchParams, true);
 
         // const formState = objectFilterForm.values
         // const { in: _, out: __, ...filteredValues } = formState
