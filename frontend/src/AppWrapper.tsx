@@ -34,6 +34,8 @@ import { SocialCompletePage } from './pages/LoginPage/socialCompletePage';
 import { SmsCompletePage } from './pages/LoginPage/smsCompletePage';
 import { YandexOAuthCallback } from './pages/LoginPage/yandexOAuthCallback';
 import { VKOAuthCallback } from './pages/LoginPage/vkOAuthCallback';
+import { LoginPageNatural } from './pages/LoginPage/loginPageNatural/loginPageNatural';
+import { RegisterNaturalPage } from './pages/LoginPage/registerNaturalPage';
 
 export function AppWrapper() {
   // Глобальный обработчик ошибок
@@ -73,8 +75,8 @@ export function AppWrapper() {
           <Route path="search" element={<SearchPage />}></Route>
           <Route path="object/:id" element={<ObjectPage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPageNatural/>} />
+          <Route path="register" element={<RegisterNaturalPage />} />
           <Route path="social-complete" element={<SocialCompletePage />} />
           <Route path="sms-complete" element={<SmsCompletePage />} />
           <Route path="auth/yandex/callback" element={<YandexOAuthCallback />} />

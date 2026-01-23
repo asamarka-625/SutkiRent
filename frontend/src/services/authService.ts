@@ -1,3 +1,5 @@
+import { fetchAddress } from "../globalSettings";
+
 interface User {
   id: number;
   username: string;
@@ -81,6 +83,97 @@ class AuthService {
     } catch (error) {
       return {
         success: false,
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
+
+  public async logInNatural(username: string, password: string): Promise<AuthResponse> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // this.token = data.token;
+        // this.user = data.user;
+        // localStorage.setItem('token', data.token);
+        // localStorage.setItem('user', JSON.stringify(data.user));
+        // Вызываем событие для обновления UI
+        window.dispatchEvent(new Event('storage'));
+      }
+      return data;
+    } catch (error) {
+      return {
+        success: false,
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
+  public async registerNatural(formData: any): Promise<RegisterResponse> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Register API error:', error);
+      return {
+        message: 'Ошибка соединения с сервером',
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
+  public async verifyEmail(email: string, code: string): Promise<VerifyResponse> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/verify-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, code }),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Verify email API error:', error);
+      return {
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
+  public async resendCode(email: string): Promise<{ message?: string; error?: string }> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/resend-code', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Resend code API error:', error);
+      return {
         error: 'Ошибка соединения с сервером'
       };
     }
@@ -173,7 +266,7 @@ class AuthService {
     return this.user;
   }
 
-   public async getProfile(): Promise<ProfileResponse> {
+  public async getProfile(): Promise<ProfileResponse> {
     if (!this.token) {
       return { success: false, error: 'Не авторизован' };
     }
@@ -256,3 +349,27 @@ class AuthService {
 }
 
 export default AuthService.getInstance();
+
+// Интерфейсы для API ответов
+interface RegisterResponse {
+  unique?: boolean;
+  message?: string;
+  error?: string;
+  detail?: string | Array<any>;
+  success?: boolean;
+}
+
+interface VerifyResponse {
+  token?: string;
+  user?: any;
+  error?: string;
+  detail?: string;
+  success?: boolean;
+}
+
+// Функции API-запросов в стиле AuthService
+class RegistrationService {
+
+}
+
+
