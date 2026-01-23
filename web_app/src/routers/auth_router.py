@@ -131,7 +131,10 @@ async def register(
     background_tasks: BackgroundTasks
 ):
     try:
-        if await sql_get_user_by_email(email=user.email) is not None:
+        if await sql_get_user_by_email(
+            email=user.email,
+            not_found_error=False
+        ) is not None:
             return {
                 "unique": False,
                 "message": "Email already exists"
@@ -172,6 +175,8 @@ async def register(
         raise
 
     except:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Registration failed"
