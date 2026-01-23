@@ -36,3 +36,43 @@
 2026-01-23 12:41:17,280 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-23 12:41:17,280 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 2026-01-23 12:43:16,879 - web_app.src.core.logger - INFO - User not found by email: string
+2026-01-23 13:07:34,589 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:07:34,924 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:07:34,924 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:07:34,924 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:07:34,978 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:07:34,978 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:08:41,265 - web_app.src.core.logger - INFO - User not found by email: mix0x@mail.ru
+2026-01-23 13:10:00,921 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:10:01,237 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:10:01,238 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:10:01,238 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:10:01,291 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:10:01,291 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:26:58,923 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:26:59,246 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:26:59,246 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:26:59,246 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:26:59,299 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:26:59,299 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:32:30,365 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:32:30,721 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:32:30,721 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:32:30,721 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:32:30,780 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:32:30,780 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:32:38,456 - web_app.src.core.logger - ERROR - Ошибка сохранения кода подтверждения: Object of type date is not JSON serializable
+2026-01-23 13:36:06,480 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:36:06,843 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:36:06,843 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:36:06,843 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:36:06,904 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:36:06,904 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:36:15,036 - web_app.src.core.logger - ERROR - Ошибка сохранения кода подтверждения: Object of type date is not JSON serializable
+2026-01-23 13:38:21,566 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 13:38:21,945 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 13:38:21,945 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 13:38:21,945 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 13:38:22,004 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 13:38:22,004 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 13:38:46,784 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru

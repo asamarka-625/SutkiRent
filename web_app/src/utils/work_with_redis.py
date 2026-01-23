@@ -163,14 +163,14 @@ class RedisService:
             return False
 
     async def save_verification_code(
-            self,
-            email: str,
-            code: str,
-            user_data: Dict[str, Any]
+        self,
+        email: str,
+        code: str,
+        user_data: Dict[str, Any]
     ) -> bool:
         """Сохранение кода подтверждения и данных пользователя"""
         try:
-            data_json = json.dumps(user_data)
+            data_json = json.dumps(user_data, cls=CustomJSONEncoder)
 
             code_key = f"{self.verification_prefix}code:{email}"
             attempts_key = f"{self.verification_prefix}attempts:{email}"
