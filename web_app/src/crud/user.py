@@ -15,14 +15,20 @@ from web_app.src.schemas import UserUpdate
 @connection
 async def sql_get_user_by_email(
     email: str,
-    session: AsyncSession
-) -> User:
+    session: AsyncSession,
+    not_found_error: bool = True
+) -> Optional[User]:
     try:
         user_result = await session.execute(
             sa.select(User)
             .where(User.email == email)
         )
-        user = user_result.scalar_one()
+
+        if not_found_error:
+            user = user_result.scalar_one()
+
+        else:
+            user = user_result.scalar_one_or_none()
 
         return user
 
