@@ -10,3 +10,29 @@
 2026-01-21 06:08:50,507 - web_app.src.core.logger - INFO - Инициализируем таблицы
 2026-01-21 06:08:50,588 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-21 06:08:50,588 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-22 05:58:20,122 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-22 05:58:20,545 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-22 05:58:20,545 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-22 05:58:20,545 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-22 05:58:20,596 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-22 05:58:20,597 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 06:03:31,707 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 06:03:32,138 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 06:03:32,138 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 06:03:32,138 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 06:03:32,190 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 06:03:32,190 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 12:40:47,167 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:40:48,399 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:40:49,699 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:40:51,196 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:40:53,045 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:40:55,735 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:41:00,021 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:41:16,893 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 12:41:17,226 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 12:41:17,226 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 12:41:17,226 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 12:41:17,280 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 12:41:17,280 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 12:43:16,879 - web_app.src.core.logger - INFO - User not found by email: string
