@@ -90,13 +90,13 @@ class AuthService {
 
 
   public async logInNatural(username: string, password: string): Promise<AuthResponse> {
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
     try {
       const response = await fetch(fetchAddress + '/v1/auth/login/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
+        body: formData,
       });
 
       const data = await response.json();
@@ -118,7 +118,7 @@ class AuthService {
     }
   }
 
-  public async registerNatural(formData: any): Promise<RegisterResponse> {
+  public async registerNatural(formData: any): Promise<any> {
     try {
       const response = await fetch(fetchAddress + '/v1/auth/register', {
         method: 'POST',
@@ -127,9 +127,7 @@ class AuthService {
         },
         body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
-      return data;
+      return response;
     } catch (error) {
       console.error('Register API error:', error);
       return {

@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextInput, Button, Paper, Title, Container, Group, Alert, Text, Divider, PasswordInput, Checkbox, Progress } from '@mantine/core';
+import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import LogoSVG from "../../icons/logo2.svg?react";
 import AuthService from '../../services/authService';
 import { Cookies } from 'react-cookie-consent';
 import styles from './loginPage.module.css';
 import authService from '../../services/authService';
+import { IMaskInput } from 'react-imask';
 
+  const formatDateLocal = (d: Date) => {
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
 export function RegisterNaturalPage() {
   const navigate = useNavigate();
   const authService = AuthService;
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [verifyStep, setVerifyStep] = useState(false);
@@ -93,7 +101,7 @@ export function RegisterNaturalPage() {
         if (value && value.length > 64) return 'Отчество не должно превышать 64 символов';
         return null;
       },
-       phone: (value) => {
+      phone: (value) => {
         const phoneRegex = /^[\+]?[78][-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/;
         const cleanPhone = value.replace(/\s/g, '').replace(/[()-]/g, '');
         if (!value) return 'Введите номер телефона';
@@ -190,16 +198,16 @@ export function RegisterNaturalPage() {
       // Добавляем опциональные поля если они заполнены
       if (form.values.surname) formData.surname = form.values.surname;
       if (form.values.patronymic) formData.patronymic = form.values.patronymic;
-      if (form.values.date_of_birth) formData.date_of_birth = form.values.date_of_birth;
+      if (form.values.date_of_birth) formData.date_of_birth = formatDateLocal(form.values.date_of_birth);
       if (form.values.phone) formData.phone = form.values.phone;
 
       // Используем метод регистрации в стиле AuthService
       const result = await authService.registerNatural(formData);
 
-      if (result.unique) {
+      if (result.ok) {
         // Сохраняем данные в sessionStorage для восстановления
-        sessionStorage.setItem('registrationData', JSON.stringify({ email: email }));
-        sessionStorage.setItem('registrationTime', Date.now().toString());
+        // sessionStorage.setItem('registrationData', JSON.stringify({ email: email }));
+        // sessionStorage.setItem('registrationTime', Date.now().toString());
 
         setVerificationEmail(email);
         setVerifyStep(true);
@@ -376,16 +384,24 @@ export function RegisterNaturalPage() {
                 mb="md"
               />
 
-              <TextInput
+              <DateInput
                 label="Дата рождения"
-                type="date"
                 {...form.getInputProps('date_of_birth')}
                 mb="md"
+                dateParser={(input) => {
+                  const parts = input.split('.');
+                  if (parts.length === 3) {
+                    return new Date(+parts[2], +parts[1] - 1, +parts[0]);
+                  }
+                  return null;
+                }}
               />
 
               <TextInput
                 label="Номер телефона"
                 placeholder="79991234567"
+                component={IMaskInput}
+                mask="80000000000"
                 {...form.getInputProps('phone')}
                 mb="md"
               />
