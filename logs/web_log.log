@@ -76,3 +76,60 @@
 2026-01-23 13:38:22,004 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-23 13:38:22,004 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 2026-01-23 13:38:46,784 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-23 14:02:02,236 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-23 14:02:02,599 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-23 14:02:02,599 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-23 14:02:02,599 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-23 14:02:02,698 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-23 14:02:02,699 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-23 14:02:41,530 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-23 14:04:06,598 - web_app.src.core.logger - ERROR - Database error create new user: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $9: '2026-01-23' ('str' object has no attribute 'toordinal')
+[SQL: INSERT INTO users (name, email, password_hash, bonuses, is_active, created_at, updated_at, phone, surname, patronymic, date_of_birth, about) VALUES ($1::VARCHAR, $2::VARCHAR, $3::VARCHAR, $4::INTEGER, $5::BOOLEAN, now(), now(), $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::DATE, $10::VARCHAR) RETURNING users.id, users.created_at, users.updated_at]
+[parameters: ('maks', 'mix0x@mail.ru', '$argon2id$v=19$m=1024,t=2,p=2$KIWwNobwnhMCgLBWihEi5A$sJn8w0tjh7YRbLiVUUayRV+zz54WhGm6E2Y7ARRC964', 0, True, '342342', 'hgfhf', 'gfdg', '2026-01-23', None)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2026-01-26 05:58:37,323 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 05:58:37,761 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 05:58:37,761 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 05:58:37,761 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 05:58:37,820 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 05:58:37,820 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:11:09,471 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 08:11:09,877 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 08:11:09,878 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 08:11:09,878 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 08:11:09,954 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 08:11:09,954 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:13:17,605 - web_app.src.core.logger - ERROR - Ошибка отправки email на mix0x@mail.ru: Error connecting to smtp.mail.ru on port 465: [Errno -3] Temporary failure in name resolution
+2026-01-26 08:17:28,930 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-26 08:18:01,938 - web_app.src.core.logger - ERROR - Database error create new user: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $9: '2026-01-26' ('str' object has no attribute 'toordinal')
+[SQL: INSERT INTO users (name, email, password_hash, bonuses, is_active, created_at, updated_at, phone, surname, patronymic, date_of_birth, about) VALUES ($1::VARCHAR, $2::VARCHAR, $3::VARCHAR, $4::INTEGER, $5::BOOLEAN, now(), now(), $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::DATE, $10::VARCHAR) RETURNING users.id, users.created_at, users.updated_at]
+[parameters: ('maks', 'mix0x@mail.ru', '$argon2id$v=19$m=1024,t=2,p=2$PaeUUur9X+s9R8jZG0Mo5Q$oTmDq13gXKJgJ47IzdW8aRmxMdwTdJ4BaX9q2uOnJeI', 0, True, '12432423', 'string', 'string', '2026-01-26', None)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2026-01-26 08:24:16,139 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 08:24:16,501 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 08:24:16,501 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 08:24:16,501 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 08:24:16,559 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 08:24:16,559 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:25:14,335 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-26 08:25:55,703 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-26 08:31:50,134 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 08:31:50,487 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 08:31:50,487 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 08:31:50,487 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 08:31:50,548 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 08:31:50,548 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:32:59,922 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-26 08:34:59,482 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 08:34:59,810 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 08:34:59,811 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 08:34:59,811 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 08:34:59,870 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 08:34:59,870 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:37:00,156 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 08:37:00,490 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 08:37:00,490 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 08:37:00,490 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 08:37:00,549 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 08:37:00,549 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 08:37:10,143 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru

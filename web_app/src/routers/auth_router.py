@@ -1,5 +1,6 @@
 # Внешние зависимости
 from typing import Dict
+from datetime import date
 import random
 import string
 from fastapi import APIRouter, Depends, HTTPException, status, Response, BackgroundTasks
@@ -37,7 +38,7 @@ async def login(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -175,8 +176,6 @@ async def register(
         raise
 
     except:
-        import traceback
-        traceback.print_exc()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Registration failed"
@@ -198,16 +197,19 @@ async def verify_email(request: VerifyRequest):
         if not success:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=message)
 
+        if isinstance(user_data.get("date_of_birth"), str):
+            user_data["date_of_birth"] = date.fromisoformat(user_data["date_of_birth"])
+
         await sql_create_user(**user_data)
 
         return {
             "message": "User registered successfully"
         }
 
-    except ValueError as e:
+    except ValueError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail="Incorrect data"
         )
 
     except HTTPException:
