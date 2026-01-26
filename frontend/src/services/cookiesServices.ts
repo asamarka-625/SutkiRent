@@ -152,6 +152,7 @@ export const updateFavorites = async (id: number | string, dateIn: string | unde
 
 
 
+
 // export const casheNews = (objects) => {
 //     let consent = Cookies.get('cookie_consent');
 //     if (consent != 'true') {

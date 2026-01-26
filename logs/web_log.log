@@ -180,3 +180,21 @@
 2026-01-26 10:02:05,684 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 2026-01-26 10:07:53,823 - web_app.src.core.logger - INFO - User not found by email: fhftgh
 2026-01-26 10:09:23,611 - web_app.src.core.logger - INFO - Код подтверждения отправлен на manuah2024@mail.ru
+2026-01-26 10:22:18,365 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 10:22:18,678 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 10:22:18,679 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 10:22:18,680 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 10:22:18,737 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 10:22:18,739 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 10:29:47,703 - web_app.src.core.logger - INFO - User not found by email: manuah@mail.ru
+2026-01-26 10:31:42,614 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 10:31:42,926 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 10:31:42,927 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 10:31:42,928 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 10:31:42,988 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-26 10:31:42,989 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-26 11:56:45,978 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-26 11:56:46,374 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-26 11:56:46,376 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-26 11:56:46,377 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-26 11:56:46,452 - web_app.src.core.logger - INFO - Инициализируем redis

@@ -33,10 +33,16 @@ export interface ProfileResponse {
   error?: string;
 }
 
+
+
+
 class AuthService {
   private static instance: AuthService;
   private token: string | null = null;
   private user: User | null = null;
+  private accessToken = null;
+  private csrfToken = null;
+  private refreshTimeout = null;
 
   private constructor() {
     // Загружаем данные из localStorage при инициализации
@@ -89,7 +95,7 @@ class AuthService {
   }
 
 
-  public async logInNatural(username: string, password: string): Promise<AuthResponse> {
+  public async logInNatural(username: string, password: string): Promise<any> {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
@@ -99,17 +105,13 @@ class AuthService {
         body: formData,
       });
 
-      const data = await response.json();
 
       if (response.ok) {
-        // this.token = data.token;
-        // this.user = data.user;
-        // localStorage.setItem('token', data.token);
-        // localStorage.setItem('user', JSON.stringify(data.user));
+        
         // Вызываем событие для обновления UI
         window.dispatchEvent(new Event('storage'));
       }
-      return data;
+      return response;
     } catch (error) {
       return {
         success: false,
@@ -228,6 +230,47 @@ class AuthService {
     }
   }
 
+  public async apiRequest(url, options = {}): Promise<any> {
+    if (!this.accessToken) await this.checkAuthNatural();
+     const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' + this.accessToken,
+        'X-CSRF-Token': this.csrfToken,
+        ...options.headers
+    };
+
+      let response = await fetch(url, { ...options, headers });
+
+    if (response.status === 401) {
+        await this.checkAuthNatural();
+        headers['Authorization'] = 'Bearer' + this.accessToken;
+        headers['X-CSRF-Token'] = this.csrfToken;
+        response = await fetch(url, { ...options, headers });
+    }
+
+    return response;
+  }
+
+  
+  public async logoutNatural(): Promise<void> {
+     try {
+        const response = await this.apiRequest('/api/v1/auth/logout', {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            this.accessToken = null;
+            this.csrfToken = null;
+            if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
+
+            window.location.href = data.redirect || "/login";
+        }
+    } catch (error) {
+        console.error("Ошибка выхода из сессии", error);
+    }
+  }
+
   public async checkAuth(): Promise<boolean> {
     if (!this.token) {
       return false;
@@ -253,6 +296,27 @@ class AuthService {
     } catch (error) {
       console.error('Auth check error:', error);
       return false;
+    }
+  }
+
+  
+  public async checkAuthNatural(): Promise<any> {
+   try {
+        const response = await fetch( fetchAddress + '/v1/auth/refresh', { method: 'POST' });
+
+        if (response.ok) {
+            const data = await response.json();
+            this.accessToken = data.access_token;
+            this.csrfToken = data.csrf_token;
+
+            if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
+            this.refreshTimeout = setTimeout(this.checkAuthNatural, 14 * 60 * 1000);
+
+        } else if (window.location.pathname !== '/login') {
+            window.location.href = '/login';
+        }
+    } catch (error) {
+        console.error("Ошибка фонового обновления");
     }
   }
 

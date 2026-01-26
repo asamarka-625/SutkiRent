@@ -44,8 +44,8 @@ export function LoginPageNatural() {
   try {
     const result = await authService.logInNatural(form.values.username, form.values.password);
 
-    if (result.success) {
-      // localStorage.setItem('token', result.token);
+    if (result.ok) {
+      localStorage.setItem('token', result.json());
       // localStorage.setItem('user', JSON.stringify(result.user));
       Cookies.set('cookie_consent', 'true', { expires: 365 });
       // window.dispatchEvent(new Event('storage'));
