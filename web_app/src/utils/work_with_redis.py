@@ -9,7 +9,7 @@ from web_app.src.core import cfg
 
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
-        if isinstance(obj, (datetime, date)):
+        if isinstance(obj, date):
             return obj.isoformat()
         return super().default(obj)
 
