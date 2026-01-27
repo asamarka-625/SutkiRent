@@ -25,14 +25,16 @@ router = APIRouter(
 async def get_apartments(
     filter_params: ApartmentFilter
 ):
+    children_count = sum(1 for child in filter_params.children if child.age <= 3)
+
     apartments = await sql_get_available_apartments(
-        quantity=(filter_params.adults + len(filter_params.children)),
+        quantity=(filter_params.adults + len(filter_params.children) - children_count),
         page=filter_params.page,
         page_size=filter_params.page_size,
         region_id=filter_params.region_id,
         start_date=filter_params.start_date,
         end_date=filter_params.end_date,
-        children_count=len(filter_params.children),
+        children_count=children_count,
         price=filter_params.price,
         sleeping_places=filter_params.sleep,
         floor=filter_params.floor,
