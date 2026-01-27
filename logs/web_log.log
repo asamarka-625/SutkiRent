@@ -206,6 +206,7 @@
 2026-01-27 11:34:01,458 - web_app.src.core.logger - INFO - Инициализируем таблицы
 2026-01-27 11:34:01,519 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-27 11:34:01,520 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+<<<<<<< HEAD
 >>>>>>> master
 2026-01-27 12:30:17,590 - web_app.src.core.logger - INFO - Configuration initialized
 2026-01-27 12:30:18,306 - web_app.src.core.logger - INFO - Запускаем приложение...
@@ -259,3 +260,11 @@ WHERE users.id = $1::VARCHAR]
 2026-01-27 13:30:07,500 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
 2026-01-27 13:30:20,619 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
 2026-01-27 13:30:20,647 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+=======
+2026-01-27 12:35:14,081 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-27 12:35:14,521 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-27 12:35:14,521 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-27 12:35:14,521 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-27 12:35:14,594 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-27 12:35:14,594 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+>>>>>>> master
