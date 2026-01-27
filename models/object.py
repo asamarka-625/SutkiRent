@@ -117,9 +117,9 @@ class Apartment(Base):
     max_children_count: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
 
     # Надбавка от кол-во жильцов
-    increase_capacity = so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
+    increase_capacity: so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
     # Надбавка за жильцов
-    increase_capacity_price = so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
+    increase_capacity_price: so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
 
     availability: so.Mapped[str] = so.mapped_column(sa.String(50), default="available")
 

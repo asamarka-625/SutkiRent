@@ -133,3 +133,9 @@
 2026-01-26 08:37:00,549 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-26 08:37:00,549 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 2026-01-26 08:37:10,143 - web_app.src.core.logger - INFO - Код подтверждения отправлен на mix0x@mail.ru
+2026-01-27 11:34:01,050 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-27 11:34:01,457 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-27 11:34:01,458 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-27 11:34:01,458 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-27 11:34:01,519 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-27 11:34:01,520 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
