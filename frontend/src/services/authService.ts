@@ -341,6 +341,67 @@ class AuthService {
     }
   }
 
+  public async forgotPassword(email: string): Promise<any> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Forgot password API error:', error);
+      return {
+        detail: 'Произошла ошибка при отправке запроса. Проверьте подключение к интернету.'
+      };
+    }
+  }
+
+   public async checkResetToken(token: string): Promise<any> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/check-reset-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token }),
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Check reset token API error:', error);
+      return {
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
+  public async resetPasswordConfirm(token: string, newPassword: string): Promise<any> {
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/password-reset-confirm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          token, 
+          password: newPassword 
+        }),
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Reset password API error:', error);
+      return {
+        error: 'Ошибка соединения с сервером'
+      };
+    }
+  }
+
   public getToken(): string | null {
     return this.token;
   }

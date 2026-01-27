@@ -36,6 +36,8 @@ import { YandexOAuthCallback } from './pages/LoginPage/yandexOAuthCallback';
 import { VKOAuthCallback } from './pages/LoginPage/vkOAuthCallback';
 import { LoginPageNatural } from './pages/LoginPage/loginPageNatural/loginPageNatural';
 import { RegisterNaturalPage } from './pages/LoginPage/registerNaturalPage';
+import { PasswordLostPage } from './pages/LoginPage/passwordLost/passwordLostPage';
+import { ResetPasswordPage } from './pages/LoginPage/passwordReset/passwordResetPage';
 
 export function AppWrapper() {
   // Глобальный обработчик ошибок
@@ -78,6 +80,8 @@ export function AppWrapper() {
           <Route path="login" element={<LoginPageNatural/>} />
           <Route path="register" element={<RegisterNaturalPage />} />
           <Route path="social-complete" element={<SocialCompletePage />} />
+          <Route path="forgot-password" element={<PasswordLostPage />} />
+          <Route path="reset-password" element={<ResetPasswordPage />} />
           <Route path="sms-complete" element={<SmsCompletePage />} />
           <Route path="auth/yandex/callback" element={<YandexOAuthCallback />} />
           <Route path="auth/yandex/callback/" element={<YandexOAuthCallback />} />

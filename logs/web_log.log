@@ -207,3 +207,55 @@
 2026-01-27 11:34:01,519 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-01-27 11:34:01,520 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 >>>>>>> master
+2026-01-27 12:30:17,590 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-27 12:30:18,306 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-27 12:30:18,307 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-27 12:30:18,308 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-27 12:30:18,480 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-27 12:30:18,482 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-27 12:30:45,848 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:45,879 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:51,622 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:51,690 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:53,730 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:53,754 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:55,088 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:30:55,135 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:31:05,452 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:31:05,505 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:12,377 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:12,514 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:19,854 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:36,290 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:36,364 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:47,833 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 12:32:47,928 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:23:41,636 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-27 13:23:42,276 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-27 13:23:42,278 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-27 13:23:42,279 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-27 13:23:42,353 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-27 13:23:42,355 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-27 13:23:56,759 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:23:56,773 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:23:58,369 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:23:58,412 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:25:02,185 - web_app.src.core.logger - INFO - User not found by email: manuah2024@mail.ru
+2026-01-27 13:26:35,264 - web_app.src.core.logger - INFO - Configuration initialized
+2026-01-27 13:26:35,822 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-01-27 13:26:35,823 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-01-27 13:26:35,824 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-01-27 13:26:35,902 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-01-27 13:26:35,903 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-01-27 13:29:29,724 - web_app.src.core.logger - INFO - Код подтверждения отправлен на muuakhina.zlata@gmail.com
+2026-01-27 13:30:06,937 - web_app.src.core.logger - ERROR - Database error get user by id: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedFunctionError'>: operator does not exist: integer = character varying
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+[SQL: SELECT users.id, users.name, users.email, users.password_hash, users.bonuses, users.is_active, users.created_at, users.updated_at, users.phone, users.surname, users.patronymic, users.date_of_birth, users.about 
+FROM users 
+WHERE users.id = $1::VARCHAR]
+[parameters: ('1',)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-01-27 13:30:07,466 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:30:07,500 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:30:20,619 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
+2026-01-27 13:30:20,647 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: unsupported operand type(s) for -: 'int' and 'NoneType'
