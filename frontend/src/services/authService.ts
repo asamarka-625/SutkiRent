@@ -40,13 +40,16 @@ class AuthService {
   private static instance: AuthService;
   private token: string | null = null;
   private user: User | null = null;
-  private accessToken = null;
-  private csrfToken = null;
+  private accessToken: string | null = null;
+  private csrfToken: string | null = null;
   private refreshTimeout = null;
 
   private constructor() {
     // Загружаем данные из localStorage при инициализации
     this.token = localStorage.getItem('token');
+    this.accessToken = localStorage.getItem('access_token');
+    this.csrfToken = localStorage.getItem('csrf_token');
+    console.log(localStorage.getItem('csrf_token'))
     const userStr = localStorage.getItem('user');
     if (userStr) {
       try {
@@ -107,7 +110,15 @@ class AuthService {
 
 
       if (response.ok) {
-        
+        const data = await response.json();
+        this.accessToken = data.access_token;
+        this.csrfToken = data.csrf_token;
+        if (data.access_token) {
+          localStorage.setItem('access_token', data.access_token);
+        }
+        if (data.csrf_token) {
+          localStorage.setItem('csrf_token', data.csrf_token);
+        }
         // Вызываем событие для обновления UI
         window.dispatchEvent(new Event('storage'));
       }
@@ -139,7 +150,7 @@ class AuthService {
     }
   }
 
-  public async verifyEmail(email: string, code: string): Promise<VerifyResponse> {
+  public async verifyEmail(email: string, code: string): Promise<any> {
     try {
       const response = await fetch(fetchAddress + '/v1/auth/verify-email', {
         method: 'POST',
@@ -149,8 +160,8 @@ class AuthService {
         body: JSON.stringify({ email, code }),
       });
 
-      const data = await response.json();
-      return data;
+      // const data = await response.json();
+      return response;
     } catch (error) {
       console.error('Verify email API error:', error);
       return {
@@ -232,42 +243,52 @@ class AuthService {
 
   public async apiRequest(url, options = {}): Promise<any> {
     if (!this.accessToken) await this.checkAuthNatural();
-     const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer' + this.accessToken,
-        'X-CSRF-Token': this.csrfToken,
-        ...options.headers
+    const headers = {
+      'Authorization': 'Bearer ' + this.accessToken,
+      'X-CSRF-Token': this.csrfToken,
+      ...options.headers
     };
 
-      let response = await fetch(url, { ...options, headers });
+    let response = await fetch(url, { ...options, headers });
 
     if (response.status === 401) {
-        await this.checkAuthNatural();
-        headers['Authorization'] = 'Bearer' + this.accessToken;
-        headers['X-CSRF-Token'] = this.csrfToken;
-        response = await fetch(url, { ...options, headers });
+      await this.checkAuthNatural();
+      headers['Authorization'] = 'Bearer ' + this.accessToken;
+      headers['X-CSRF-Token'] = this.csrfToken;
+      response = await fetch(url, { ...options, headers });
     }
 
     return response;
   }
 
-  
+
   public async logoutNatural(): Promise<void> {
-     try {
-        const response = await this.apiRequest('/api/v1/auth/logout', {
-            method: 'POST'
-        });
+    try {
+      const response = await this.apiRequest(fetchAddress + '/v1/auth/logout', {
+        method: 'POST'
+      });
 
-        if (response.ok) {
-            const data = await response.json();
-            this.accessToken = null;
-            this.csrfToken = null;
-            if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
+      console.log('DEBUG localStorage before logout:');
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        console.log(`${key}: ${localStorage.getItem(key)}`);
+      }
 
-            window.location.href = data.redirect || "/login";
-        }
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('csrf_token');
+        localStorage.removeItem('token');
+        this.token = null;
+        this.accessToken = null;
+        this.csrfToken = null;
+        localStorage.clear();
+        if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
+        await new Promise(resolve => setTimeout(resolve, 100));
+        // window.location.href = data.redirect || "/login";
+      }
     } catch (error) {
-        console.error("Ошибка выхода из сессии", error);
+      console.error("Ошибка выхода из сессии", error);
     }
   }
 
@@ -299,24 +320,24 @@ class AuthService {
     }
   }
 
-  
+
   public async checkAuthNatural(): Promise<any> {
-   try {
-        const response = await fetch( fetchAddress + '/v1/auth/refresh', { method: 'POST' });
+    try {
+      const response = await fetch(fetchAddress + '/v1/auth/refresh', { method: 'POST' });
 
-        if (response.ok) {
-            const data = await response.json();
-            this.accessToken = data.access_token;
-            this.csrfToken = data.csrf_token;
+      if (response.ok) {
+        const data = await response.json();
+        this.accessToken = data.access_token;
+        this.csrfToken = data.csrf_token;
 
-            if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
-            this.refreshTimeout = setTimeout(this.checkAuthNatural, 14 * 60 * 1000);
+        if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
+        this.refreshTimeout = setTimeout(this.checkAuthNatural, 14 * 60 * 1000);
 
-        } else if (window.location.pathname !== '/login') {
-            window.location.href = '/login';
-        }
+      // } else if (window.location.pathname !== '/login') {
+      //   window.location.href = '/login';
+      }
     } catch (error) {
-        console.error("Ошибка фонового обновления");
+      console.error("Ошибка фонового обновления");
     }
   }
 
@@ -402,7 +423,8 @@ class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!this.token;
+    // console.log(this.accessToken)
+    return !!this.accessToken;
   }
 
   public isStaff(): boolean {

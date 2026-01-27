@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import type { ReactElement } from "react";
+import authService from "../services/authService";
 
 interface PrivateRouterProps {
   Component: React.ComponentType;
@@ -24,7 +25,8 @@ export const ReRoute = ({ Component, Reroute }: ReRouteProps): ReactElement => {
 export const PrivateRoute = ({
   Component,
 }: PrivateRouterProps): ReactElement => {
-  const isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = authService.isAuthenticated();
+  console.log(isAuthenticated)
   const location = useLocation();
 
   return isAuthenticated ? (

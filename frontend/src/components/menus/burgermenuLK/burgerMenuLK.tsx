@@ -2,6 +2,7 @@ import { AppShell, Button, Divider, Flex, Group } from "@mantine/core";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./burgerMenuLK.module.css";
 import { useMediaQuery } from "@mantine/hooks";
+import authService from "../../../services/authService";
 
 interface Props {
   upperSecondTabsData: Array<{
@@ -69,7 +70,7 @@ export function BurgerMenuLK(props: Props) {
             variant="outline"
             color="gray"
             onClick={async () => {
-              await authService.logout();
+              await authService.logoutNatural();
               props.toggle();
               navigate('/');
             }}

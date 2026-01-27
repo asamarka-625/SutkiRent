@@ -130,7 +130,7 @@ export function LoginPageNatural() {
               <Button 
                 type="submit"
                 loading={loading}
-                disabled={!form.values.username || !form.values.password}
+                // disabled={!form.values.username || !form.values.password}
               >
                 Войти
               </Button>

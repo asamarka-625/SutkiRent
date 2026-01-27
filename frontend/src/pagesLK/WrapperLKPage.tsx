@@ -226,7 +226,7 @@ export function WrapperLKPage() {
                 variant="outline"
                 color="gray"
                 onClick={async () => {
-                  await authService.logout();
+                  await authService.logoutNatural();
                   navigate('/');
                 }}
               >

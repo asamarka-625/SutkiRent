@@ -233,17 +233,17 @@ export function RegisterNaturalPage() {
     setLoading(true);
     setError(null);
 
-    if (!/^\d{6}$/.test(verificationCode)) {
-      setError('Код должен состоять из 6 цифр');
-      setLoading(false);
-      return;
-    }
+    // if (!/^\d{6}$/.test(verificationCode)) {
+    //   setError('Код должен состоять из 6 цифр');
+    //   setLoading(false);
+    //   return;
+    // }
 
     try {
       // Используем метод подтверждения email в стиле AuthService
       const result = await authService.verifyEmail(verificationEmail, verificationCode);
 
-      if (result.token) {
+      if (result.ok) {
         // Регистрация успешно завершена
         sessionStorage.removeItem('registrationData');
         sessionStorage.removeItem('registrationTime');
@@ -294,10 +294,6 @@ export function RegisterNaturalPage() {
     const code = value.replace(/\D/g, '');
     setVerificationCode(code.slice(0, 6));
 
-    // Автоматическая отправка при вводе 6 цифр
-    if (code.length === 6) {
-      handleVerify();
-    }
   };
 
   const navigateBack = () => {
