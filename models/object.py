@@ -112,8 +112,15 @@ class Apartment(Base):
     area: so.Mapped[Optional[sa.Float]] = so.mapped_column(sa.Float)
     latitude: so.Mapped[sa.Float] = so.mapped_column(sa.Float)
     longitude: so.Mapped[sa.Float] = so.mapped_column(sa.Float)
+
     capacity: so.Mapped[int] = so.mapped_column(sa.Integer)
     max_children_count: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
+
+    # Надбавка от кол-во жильцов
+    increase_capacity = so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
+    # Надбавка за жильцов
+    increase_capacity_price = so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, nullable=True)
+
     availability: so.Mapped[str] = so.mapped_column(sa.String(50), default="available")
 
     priority: so.Mapped[int] = so.mapped_column(

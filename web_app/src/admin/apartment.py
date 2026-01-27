@@ -41,7 +41,9 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.region_rel: "Регион",
         Apartment.city_rel: "Город",
         Apartment.metro_stations: "Метро",
-        Apartment.photos: "Фотографии"
+        Apartment.photos: "Фотографии",
+        Apartment.increase_capacity: "Надбавка к цене от ко-во жильцов",
+        Apartment.increase_capacity_price: "Надбавочная цена за ко-во жильцов",
     }
 
     column_searchable_list = [Apartment.external_id] # список столбцов, которые можно искать
@@ -70,6 +72,8 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.sleeps,
         Apartment.capacity,
         Apartment.max_children_count,
+        Apartment.increase_capacity,
+        Apartment.increase_capacity_price,
         Apartment.min_stay,
         Apartment.availability,
         Apartment.latitude,
@@ -84,7 +88,9 @@ class ApartmentAdmin(ModelView, model=Apartment):
     form_edit_rules = [
         "priority",
         "visibility",
-        "region_rel"
+        "region_rel",
+        "increase_capacity",
+        "increase_capacity_price"
     ]
 
     can_create = False # право создавать

@@ -136,10 +136,13 @@ async def sql_get_available_apartments(
             if apt.photos:
                 main_photo = next((p.url for p in apt.photos if p.order == 0), apt.photos[0].url)
 
+            increase_capacity = quantity - apt.increase_capacity
+            increase_cost = increase_capacity * apt.increase_capacity_price if increase_capacity > 0 else 0
+
             apartments_response.append(ApartmentResponse(
                 id=apt.id,
                 title=apt.title,
-                cost=float(t_cost) if t_cost else 0.0,
+                cost=float(t_cost) + increase_cost if t_cost else 0.0,
                 rooms=apt.rooms,
                 sleeps=apt.sleeps,
                 floor=apt.floor,
