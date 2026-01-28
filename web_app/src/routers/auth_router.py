@@ -113,7 +113,7 @@ async def logout(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Token user mismatch")
 
     await redis_service.del_user_refresh_token(
-        user_id=current_user.id,
+        user_id=token_data["user_id"],
         refresh_uuid=token_data["jti"]
     )
 
@@ -293,7 +293,7 @@ async def forgot_password(
         **{
             "email": request.email,
             "reset_token": reset_token,
-            "username": user.name
+            "name": user.name
         }
     )
 
