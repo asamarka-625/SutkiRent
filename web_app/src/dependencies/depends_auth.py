@@ -150,7 +150,7 @@ async def get_current_user_by_access_token(
                 detail="User not found"
             )
 
-        await redis_service.add_user_data(user_id=user_id, data=user)
+        await redis_service.add_user_data(user_id=user_id, data=user.to_dict())
 
     return user
 

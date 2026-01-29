@@ -42,6 +42,8 @@ class Config:
     SMTP_PASSWORD: str = field(default_factory=lambda: os.getenv("SMTP_PASSWORD"))
     FROM_EMAIL: str = field(default_factory=lambda: os.getenv("FROM_EMAIL"))
 
+    FRONTEND_URL: str = field(default_factory=lambda: os.getenv("FRONTEND_URL"))
+
     def __post_init__(self):
         self.logger = setup_logger(
             level=os.getenv("LOG_LEVEL", "INFO"),
