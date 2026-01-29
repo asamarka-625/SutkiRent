@@ -389,7 +389,7 @@ class AuthService {
         },
         body: JSON.stringify({ 
           token, 
-          password: newPassword 
+          new_password: newPassword 
         }),
       });
 

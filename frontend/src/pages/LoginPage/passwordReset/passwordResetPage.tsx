@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { TextInput, Button, Paper, Title, Container, Group, Alert, Text, PasswordInput, Progress } from '@mantine/core';
+import { TextInput, Button, Paper, Title, Container, Group, Alert, Text, PasswordInput, Progress, Divider} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import LogoSVG from "../../../icons/logo2.svg?react";
 import AuthService from '../../../services/authService';
@@ -33,9 +33,10 @@ export function ResetPasswordPage() {
       try {
         const result = await authService.checkResetToken(token);
         
-        if (result.valid && result.email) {
+        if (result.ok) {
           setTokenValid(true);
           setUserEmail(result.email);
+          window.dispatchEvent(new Event('storage'));
         } else {
           setError(result.detail?.toString() || result.error || 'Неверная или устаревшая ссылка для сброса пароля');
         }
