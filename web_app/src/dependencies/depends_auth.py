@@ -14,6 +14,12 @@ from web_app.src.core import cfg
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
+credentials_exception = HTTPException(
+    status_code=status.HTTP_401_UNAUTHORIZED,
+    detail="Could not validate credentials",
+    headers={"WWW-Authenticate": "Bearer"},
+)
+
 
 # Аутентификация пользователя
 async def authenticate_user(email: str, password: str) -> Optional[User]:
@@ -116,12 +122,6 @@ def create_csrf_token(user_id: str) -> str:
 async def get_current_user_by_access_token(
     access_token: Optional[str] = Depends(oauth2_scheme)
 ) -> User:
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-
     if not access_token:
         raise credentials_exception
 
@@ -144,6 +144,7 @@ async def get_current_user_by_access_token(
     user = await redis_service.get_user_data(user_id=user_id)
     if user is None:
         user = await sql_get_user_by_id(user_id=int(user_id))
+        user = user.to_dict()
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -159,12 +160,6 @@ async def get_current_user_by_access_token(
 async def get_data_by_refresh_token(
     refresh_token: Optional[str] = Cookie(None, alias="refresh_token")
 ) -> Dict[str, str]:
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-
     if not refresh_token:
         raise credentials_exception
 
