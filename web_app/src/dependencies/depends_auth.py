@@ -144,14 +144,15 @@ async def get_current_user_by_access_token(
     user = await redis_service.get_user_data(user_id=user_id)
     if user is None:
         user = await sql_get_user_by_id(user_id=int(user_id))
-        user = user.to_dict()
+
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="User not found"
             )
 
-        await redis_service.add_user_data(user_id=user_id, data=user.to_dict())
+        user = user.to_dict()
+        await redis_service.add_user_data(user_id=user_id, data=user)
 
     return user
 
