@@ -72,7 +72,7 @@ export function BurgerMenuLK(props: Props) {
             onClick={async () => {
               await authService.logoutNatural();
               props.toggle();
-              navigate('/');
+              // navigate('/');
             }}
           >
             Выйти

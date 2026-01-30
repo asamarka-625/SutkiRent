@@ -103,7 +103,7 @@ class AuthService {
     formData.append('username', username);
     formData.append('password', password);
     try {
-      const response = await fetch(fetchAddress + '/v1/auth/login/', {
+      const response = await fetch(fetchAddress + '/v1/auth/login', {
         method: 'POST',
         body: formData,
       });
@@ -114,9 +114,11 @@ class AuthService {
         this.accessToken = data.access_token;
         this.csrfToken = data.csrf_token;
         if (data.access_token) {
+          localStorage.removeItem('access_token');
           localStorage.setItem('access_token', data.access_token);
         }
         if (data.csrf_token) {
+          localStorage.removeItem('csrf_token');
           localStorage.setItem('csrf_token', data.csrf_token);
         }
         // Вызываем событие для обновления UI
@@ -267,6 +269,21 @@ class AuthService {
       const response = await this.apiRequest(fetchAddress + '/v1/auth/logout', {
         method: 'POST'
       });
+      const headers = {
+      'Authorization': 'Bearer ' + this.accessToken,
+      'X-CSRF-Token': this.csrfToken,
+    };
+
+    // const response = await fetch( fetchAddress + '/v1/auth/logout', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Authorization': 'Bearer ' + this.accessToken,
+    //       'X-CSRF-Token': this.csrfToken,
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+
+    // let response = await fetch(url, { method: 'POST', headers });
 
       console.log('DEBUG localStorage before logout:');
       for (let i = 0; i < localStorage.length; i++) {
@@ -285,7 +302,7 @@ class AuthService {
         localStorage.clear();
         if (this.refreshTimeout) clearTimeout(this.refreshTimeout);
         await new Promise(resolve => setTimeout(resolve, 100));
-        // window.location.href = data.redirect || "/login";
+        window.location.href = data.redirect || "/login";
       }
     } catch (error) {
       console.error("Ошибка выхода из сессии", error);
