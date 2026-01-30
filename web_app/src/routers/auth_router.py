@@ -108,7 +108,7 @@ async def logout(
     token_data: Dict[str, str] = Depends(get_data_by_refresh_token),
     csrf_user_id: str = Depends(verify_csrf_token)
 ):
-    user_id_str = str(current_user.id)
+    user_id_str = str(current_user["id"])
     if not (user_id_str == token_data["user_id"] == csrf_user_id):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Token user mismatch")
 
