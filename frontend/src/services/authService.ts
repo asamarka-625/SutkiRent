@@ -248,7 +248,6 @@ class AuthService {
     const headers = {
       'Authorization': 'Bearer ' + this.accessToken,
       'X-CSRF-Token': this.csrfToken,
-      ...options.headers
     };
 
     let response = await fetch(url, { ...options, headers });
