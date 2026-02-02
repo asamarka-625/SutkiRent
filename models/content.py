@@ -81,3 +81,6 @@ class PhotoContent(Photo):
 
     def __repr__(self):
         return f"<PhotoContent(id={self.id}, url='{self.url}')>"
+
+    def __str__(self):
+        return self.url

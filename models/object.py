@@ -297,6 +297,9 @@ class Service(Base):
     def __repr__(self):
         return f"<Service(id={self.id}, title='{self.title}')>"
 
+    def __str__(self):
+        return self.title
+
 
 # Таблица избранного
 class Favorite(Base):

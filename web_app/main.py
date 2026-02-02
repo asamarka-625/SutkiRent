@@ -7,7 +7,8 @@ from sqladmin import Admin
 from web_app.src.core import cfg, setup_database, engine
 from web_app.src.routers import router
 from web_app.src.admin import (ContentAdmin, PhotoContentAdmin, CategoryContentAdmin, ApartmentAdmin,
-                               MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin)
+                               MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin,
+                               ServiceAdmin)
 from web_app.src.utils import redis_service
 
 
@@ -75,6 +76,7 @@ admin.add_view(CityAdmin)
 admin.add_view(RegionAdmin)
 admin.add_view(PhotoApartmentAdmin)
 admin.add_view(UserAdmin)
+admin.add_view(ServiceAdmin)
 
 
 if __name__ == '__main__':

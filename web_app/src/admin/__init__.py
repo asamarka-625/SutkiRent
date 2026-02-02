@@ -5,3 +5,4 @@ from web_app.src.admin.metro import MetroStationAdmin
 from web_app.src.admin.city import CityAdmin
 from web_app.src.admin.photo_apartment import PhotoApartmentAdmin
 from web_app.src.admin.user import UserAdmin
+from web_app.src.admin.service import ServiceAdmin

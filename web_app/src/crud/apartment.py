@@ -147,6 +147,7 @@ async def sql_get_available_apartments(
                 id=apt.id,
                 title=apt.title,
                 cost=float(t_cost) + increase_cost if t_cost else 0.0,
+                price=apt.price_without_discount,
                 rooms=apt.rooms,
                 sleeps=apt.sleeps,
                 floor=apt.floor,

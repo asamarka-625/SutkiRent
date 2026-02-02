@@ -113,7 +113,8 @@ class ContentAdmin(ModelView, model= Content):
         Content.short_description: "Краткое описание",
         Content.content: "Содержание",
         Content.created_at: "Дата создания",
-        Content.category: "Категория"
+        Content.category: "Категория",
+        Content.photos: "Изображения"
     }
 
     column_searchable_list = [Content.id] # список столбцов, которые можно искать
@@ -133,7 +134,8 @@ class ContentAdmin(ModelView, model= Content):
         Content.short_description,
         Content.content,
         Content.created_at,
-        Content.category
+        Content.category,
+        Content.photos
     ]
 
     form_edit_rules = [

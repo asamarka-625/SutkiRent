@@ -44,6 +44,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.photos: "Фотографии",
         Apartment.increase_capacity: "Надбавка к цене от ко-во жильцов",
         Apartment.increase_capacity_price: "Надбавочная цена за ко-во жильцов",
+        Apartment.services: "Услуги"
     }
 
     column_searchable_list = [Apartment.external_id] # список столбцов, которые можно искать
@@ -78,6 +79,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.availability,
         Apartment.latitude,
         Apartment.longitude,
+        Apartment.services,
         Apartment.price_without_discount,
         Apartment.price_with_discount,
         Apartment.discount_percent,

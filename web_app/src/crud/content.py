@@ -32,7 +32,7 @@ async def sql_get_contents_by_category(
                 title=c.title,
                 short_description=c.short_description,
                 content=c.content,
-                media=[p.url for p in c.photos]
+                media=[p.url for p in sorted(c.photos, key=lambda p: p.order)]
             )
             for c in result.scalars().all()
         ]
