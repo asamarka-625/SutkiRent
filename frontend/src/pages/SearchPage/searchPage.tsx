@@ -201,7 +201,7 @@ export function SearchPage() {
             out:
                 '',
             // dateout,
-            guest: [2, 1] as [number, number]
+            guest: [1, 1] as [number, number]
         },
         validate: {
         },

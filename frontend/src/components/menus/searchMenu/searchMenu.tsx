@@ -220,78 +220,78 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
 
   async function getFiltersData() {
 
-    const type = await getTypeData()
-    const metros = await getMetrosData()
-    const inventory = await getInventoryData()
-    const service = await getServiceData()
+    // const type = await getTypeData()
+    // const metros = await getMetrosData()
+    // const inventory = await getInventoryData()
+    // const service = await getServiceData()
     // const view = await getViewData()
     // const bathroom = await getBathroomData()
     // const availab = await getAvailData()
 
-    if (metros.ok) {
-      const data = await metros.json();
-      setMetroData(data)
-    }
-    else {
-      setMetroData([])
-      const error = await metros.json();
-      if (errorHandler(metros.status) == 5) {
-        showNotification({
-          title: "Ошибка сервера, обновите страницу",
-          message: error.statusText,
-          // icon: <IconX />
-        })
-      }
-    }
+    // if (metros.ok) {
+    //   const data = await metros.json();
+    //   setMetroData(data)
+    // }
+    // else {
+    //   setMetroData([])
+    //   const error = await metros.json();
+    //   if (errorHandler(metros.status) == 5) {
+    //     showNotification({
+    //       title: "Ошибка сервера, обновите страницу",
+    //       message: error.statusText,
+    //       // icon: <IconX />
+    //     })
+    //   }
+    // }
 
-    if (type.ok) {
-      const data = await type.json();
-      setCategoryData(data)
-    }
-    else {
-      setCategoryData([])
-      const error = await type.json();
-      if (errorHandler(type.status) == 5) {
-        showNotification({
-          title: "Ошибка сервера, обновите страницу",
-          message: error.statusText,
-          // icon: <IconX />
-        })
-      }
-    }
+    // if (type.ok) {
+    //   const data = await type.json();
+    //   setCategoryData(data)
+    // }
+    // else {
+    //   setCategoryData([])
+    //   const error = await type.json();
+    //   if (errorHandler(type.status) == 5) {
+    //     showNotification({
+    //       title: "Ошибка сервера, обновите страницу",
+    //       message: error.statusText,
+    //       // icon: <IconX />
+    //     })
+    //   }
+    // }
 
-    if (inventory.ok) {
-      const data = await inventory.json();
-      setAdditions(data)
-    }
-    else {
-      setAdditions([])
-      const error = await inventory.json();
-      if (errorHandler(inventory.status) == 5) {
-        showNotification({
-          title: "Ошибка сервера, обновите страницу",
-          message: error.statusText,
-          // icon: <IconX />
-        })
-      }
-    }
+    // if (inventory.ok) {
+    //   const data = await inventory.json();
+    //   setAdditions(data)
+    // }
+    // else {
+    //   setAdditions([])
+    //   const error = await inventory.json();
+    //   if (errorHandler(inventory.status) == 5) {
+    //     showNotification({
+    //       title: "Ошибка сервера, обновите страницу",
+    //       message: error.statusText,
+    //       // icon: <IconX />
+    //     })
+    //   }
+    // }
 
 
-    if (service.ok) {
-      const data = await service.json();
-      setDop(data)
-    }
-    else {
-      setDop([])
-      const error = await service.json();
-      if (errorHandler(service.status) == 5) {
-        showNotification({
-          title: "Ошибка сервера, обновите страницу",
-          message: error.statusText,
-          // icon: <IconX />
-        })
-      }
-    }
+    // if (service.ok) {
+    //   const data = await service.json();
+    //   setDop(data)
+    // }
+    // else {
+    //   setDop([])
+    //   const error = await service.json();
+    //   if (errorHandler(service.status) == 5) {
+    //     showNotification({
+    //       title: "Ошибка сервера, обновите страницу",
+    //       message: error.statusText,
+    //       // icon: <IconX />
+    //     })
+    //   }
+    // }
 
 
     // if (view.ok) {
@@ -556,14 +556,14 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
 
         <Divider></Divider> */}
 
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3" style={{ paddingTop: 0 }}>Типы жилья</h4>
           </div>
           <CheckboxGroup  {...filterForm.getInputProps('category')} mt={10}>
             {categoryList}
           </CheckboxGroup>
-        </Flex>
+        </Flex> */}
 
 
         <Divider></Divider>
@@ -629,7 +629,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
             <NumberInput hideControls min={1} placeholder="от" size="xs" style={{ flex: 1, minWidth: 0 }}  {...filterForm.getInputProps('floor_start')}></NumberInput>
             <NumberInput hideControls min={1} placeholder="до" size="xs" style={{ flex: 1, minWidth: 0 }}  {...filterForm.getInputProps('floor_finish')}></NumberInput>
           </Group>
-          {floorsList}
+          {/* {floorsList} Непервый не последний */}
           {/* <Checkbox size="xs" mt={5} onClick={() => setNotFirst(!notFirst)} label={"Не первый"} color="sberGreenColor.9"
             styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} /> */}
 
@@ -656,7 +656,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
         <Divider></Divider>
 
         {/* ВИД ИЗ ОКНА */}
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Вид из окна</h4>
           </div>
@@ -667,28 +667,11 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
           <Button size="xs" onClick={() => filterForm.setFieldValue('view', null)} mt="md" disabled={!filterForm.values.view}>
             Сбросить выбор
           </Button>
-          {/* <Button.Group >
-            {viewData.map((tab) => (
-              <Button
-                key={tab.notation_view}
-                variant={selected === tab.notation_view.toString() ? 'filled' : 'outline'}
-                onClick={() => setSelected(selected === tab.notation_view.toString() ? null : tab.notation_view.toString())}
-              >
-                {tab.notation_view}
-              </Button>
-            ))}
-          </Button.Group> */}
-
-          {/* <Checkbox size="xs" mt={5} onClick={() => setNotFirst(!notFirst)} label={"Не первый"} color="sberGreenColor.9"
-            styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} /> */}
-
-          {/* <Button variant="outline" mt={10} size="compact-xs" fullWidth className={styles["metroButton"]}>Выбрать станции</Button> */}
-
         </Flex>
-        <Divider></Divider>
+        <Divider></Divider> */}
 
         {/* САНУЗЕЛ */}
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Санузел</h4>
           </div>
@@ -698,17 +681,13 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
           <Button size="xs" onClick={() => filterForm.setFieldValue('toilet', null)} mt="md" disabled={!filterForm.values.toilet}>
             Сбросить выбор
           </Button>
-          {/* <Checkbox size="xs" mt={5} onClick={() => setNotFirst(!notFirst)} label={"Не первый"} color="sberGreenColor.9"
-            styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} /> */}
-
-          {/* <Button variant="outline" mt={10} size="compact-xs" fullWidth className={styles["metroButton"]}>Выбрать станции</Button> */}
 
         </Flex>
-        <Divider></Divider>
+        <Divider></Divider> */}
 
 
         {/* В ПОМЕЩЕНИИ */}
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">В помещении</h4>
           </div>
@@ -732,10 +711,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
           </div>
         </Flex>
 
-        <Divider></Divider>
+        <Divider></Divider> */}
 
         {/* ДОСТУПНОСТЬ */}
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3" style={{ paddingTop: 0 }}>Доступность</h4>
           </div>
@@ -745,10 +724,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
         </Flex>
 
 
-        <Divider></Divider>
+        <Divider></Divider> */}
 
         {/* ДОП УСЛУГИ */}
-        <Flex className="papercard" align='' direction="column" >
+        {/* <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Доп. услуги</h4>
           </div>
@@ -770,7 +749,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
             </div>
 
           </div>
-        </Flex>
+        </Flex> */}
         <div className={styles.buttonRowMobile}>
           <Button size="sm" variant={isMD ? "filled" : "subtle"} fullWidth m={0}
             onClick={() => resetForm()} mt="md" >
