@@ -32,11 +32,11 @@ export function ExcursionPage() {
   const OPTIONS: EmblaOptionsType = {}
 
   const slides = (item?.media || []).map((m) => (
-    <Carousel.Slide key={m}>
-      <img src={m} className={styles["carouselImages"]} />
+    <Carousel.Slide key={m.file}>
+      <img src={m.file} className={styles["carouselImages"]} />
     </Carousel.Slide>
   ));
-  const urls = (item?.media || []).map();
+  const urls = (item?.media || []).map((m) => m);
   const SLIDES = urls.slice(1);
 
   async function load() {
