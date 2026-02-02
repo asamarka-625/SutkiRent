@@ -29,6 +29,7 @@ async def sql_get_contents_by_category(
 
         return [
             ContentResponse(
+                id=c.id,
                 title=c.title,
                 short_description=c.short_description,
                 content=c.content,
@@ -63,6 +64,7 @@ async def sql_get_content_by_id(
         content = content_result.scalar_one_or_none()
 
         return ContentResponse(
+            id=content.id,
             title=content.title,
             short_description=content.short_description,
             content=content.content,
