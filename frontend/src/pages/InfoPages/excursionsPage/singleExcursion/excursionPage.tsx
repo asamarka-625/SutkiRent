@@ -11,6 +11,7 @@ import { Loader } from "@mantine/core";
 import DOMPurify from 'dompurify';
 import type { EmblaOptionsType } from "embla-carousel";
 import EmblaCarousel from "../../../../components/caurousel/caorusel.tsx";
+import { getContentById } from "../../../../services/articlesServices.ts";
 
 interface ExcursionDto {
   id: string,
@@ -31,21 +32,21 @@ export function ExcursionPage() {
   const OPTIONS: EmblaOptionsType = {}
 
   const slides = (item?.media || []).map((m) => (
-    <Carousel.Slide key={m.file}>
-      <img src={m.file} className={styles["carouselImages"]} />
+    <Carousel.Slide key={m}>
+      <img src={m} className={styles["carouselImages"]} />
     </Carousel.Slide>
   ));
-  const urls = (item?.media || []).map((m) => m.file);
+  const urls = (item?.media || []).map();
   const SLIDES = urls.slice(1);
 
   async function load() {
     isLoading.current = true;
-    const response = await getExcursionById(id || '')
+    const response = await getContentById(id || '')
     if (response.ok) {
       const data: ExcursionDto = await response.json();
       setItem(data)
       if (data.media && data.media.length > 0) {
-        setBackImage(data.media[0].file)
+        setBackImage(data.media[0])
         setHasMoreMedia(data.media.length > 1)
       }
     }

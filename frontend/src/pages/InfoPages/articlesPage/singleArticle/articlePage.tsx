@@ -1,7 +1,7 @@
 
 import styles from "./articlePage.module.css";
 import { Carousel } from "@mantine/carousel";
-import { getArticleById } from "../../../../services/articlesServices.ts";
+import { getArticleById, getContentById } from "../../../../services/articlesServices.ts";
 import { errorHandler } from "../../../../handlers/errorBasicHandler.ts";
 import { showNotification } from "@mantine/notifications";
 import { IconX } from "@tabler/icons-react";
@@ -46,13 +46,13 @@ export function ArticlePage() {
     ));
 
 
-    const urls = (Array.isArray(objects.media) ? objects.media : []).map((media) => media.file);
+    const urls = (Array.isArray(objects.media) ? objects.media : []).map((media) => media);
     const SLIDES = urls?.slice(1);
 
     {/* <Loader type="dots" ml="30" size="xs" /> */ }
     async function getObjectsDataFunc() {
         isLoading.current = true;
-        const response = await getArticleById(id || '')
+        const response = await getContentById(id || '')
 
         if (response.ok) {
             const data = await response.json();
@@ -65,7 +65,7 @@ export function ArticlePage() {
             });;
 
             setObjects(data)
-            setImage(data.media[0].file)
+            setImage(data.media[0])
             if (data.media && data.media.length > 1) {
             setIsDopMedia(true)
         }

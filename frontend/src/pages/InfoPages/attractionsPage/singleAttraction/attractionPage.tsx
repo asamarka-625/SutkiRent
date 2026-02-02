@@ -11,6 +11,7 @@ import { Divider, Group, Loader } from "@mantine/core";
 import DOMPurify from 'dompurify';
 import type { EmblaOptionsType } from "embla-carousel";
 import EmblaCarousel from "../../../../components/caurousel/caorusel.tsx";
+import { getContentById } from "../../../../services/articlesServices.ts";
 
 interface AttractionDto {
   id: string,
@@ -18,7 +19,7 @@ interface AttractionDto {
   content: string,
   publication_date: string,
   short_description: string,
-  media: { id: string, file: string, attraction: string }[]
+  media: []
 }
 
 export function AttractionPage() {
@@ -31,22 +32,22 @@ export function AttractionPage() {
   const OPTIONS: EmblaOptionsType = {};
 
   const slides = (item?.media || []).map((m) => (
-    <Carousel.Slide key={m.file}>
-      <img src={m.file} className={styles["carouselImages"]} />
+    <Carousel.Slide key={m}>
+      <img src={m} className={styles["carouselImages"]} />
     </Carousel.Slide>
   ));
 
-  const urls = (item?.media || []).map((m) => m.file);
+  const urls = (item?.media || []).map();
   const SLIDES = urls.slice(1);
 
   async function load() {
     isLoading.current = true;
-    const resp = await getAttractionById(id || '');
+    const resp = await getContentById(id || '');
     if (resp.ok) {
       const data = await resp.json();
       setItem(data);
       if (data.media && data.media.length > 0) {
-        setBackImage(data.media[0].file);
+        setBackImage(data.media[0]);
         setHasMoreMedia(data.media.length > 1);
       }
     } else {
