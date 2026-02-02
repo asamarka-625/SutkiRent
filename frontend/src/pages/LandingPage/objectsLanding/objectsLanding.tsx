@@ -560,9 +560,7 @@ export function ObjectsLandingPage() {
                                         {...objectFilterForm.getInputProps('guest')}
                                     /> */}
                                     <GuestPicker
-                                        value={Array.isArray(objectFilterForm.values.guest)
-                                            ? [objectFilterForm.values.guest[0] || 2, objectFilterForm.values.guest[1] || 1]
-                                            : [2, 1]}
+                                        value={objectFilterForm.values.guest}
                                         ref={guestInputRef}
                                         // onBlur={() => guestInputRef.current?.focus()}
                                         onChange={(value) => {

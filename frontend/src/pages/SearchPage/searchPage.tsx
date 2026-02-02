@@ -84,7 +84,7 @@ function transformObjectsToPoints(originalArray: any[]): any[] {
     return originalArray.map(obj => ({
         id: obj.id,
         coordinates: [obj.latitude, obj.longitude],
-        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Не указано',
+        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : obj.price,
         media: { source_type: '', url: obj?.media[0] },
         space: obj.space || null,
         amount_rooms: obj.rooms || null,
@@ -954,9 +954,7 @@ export function SearchPage() {
                                                     </div> */}
                                 <div className="numpInputGroup">
                                     <GuestPicker
-                                        value={Array.isArray(objectFilterForm.values.guest)
-                                            ? [objectFilterForm.values.guest[0] || 2, objectFilterForm.values.guest[1] || 1]
-                                            : [2, 1]}
+                                        value={objectFilterForm.values.guest}
                                         // ref={guestInputRef}
                                         // onBlur={() => guestInputRef.current?.focus()}
                                         onChange={(value) => {

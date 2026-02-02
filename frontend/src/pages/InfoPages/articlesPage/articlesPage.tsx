@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 // import memoize from "lodash.memoize";
 
 import '@mantine/dates/styles.css';
-import { getArticlesData } from "../../../services/articlesServices.ts";
+import { getArticlesData, getContentListByCategory } from "../../../services/articlesServices.ts";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../../../handlers/errorBasicHandler.ts";
 import { showNotification } from "@mantine/notifications";
@@ -50,7 +50,7 @@ export function ArticlesPage() {
     
 const getObjectsDataFunc = async () => {
         setIsLoading(true)
-        const response = await getArticlesData()
+        const response = await getContentListByCategory('3')
 
         if (response.ok) {
             const data = await response.json();

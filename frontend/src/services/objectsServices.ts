@@ -40,7 +40,7 @@ export async function getObjectsDataParallel(requestParams: ObjectsRequestParams
   // Гарантируем page_size = 10 и area.min = 50
   const baseBody = {
     page_size: 10,
-    area: { min: 50, ...baseParams.area },
+
     ...baseParams
   };
   
@@ -93,7 +93,6 @@ export async function getObjectsData(requestParams: ObjectsRequestParams = {}) {
   // Гарантируем page_size = 10 и area.min = 50
   const requestBody = {
     page_size: 10,
-    area: { min: 50, ...requestParams.area },
     ...requestParams
   };
   
@@ -112,7 +111,6 @@ export async function getFeatObjectsData(requestParams: ObjectsRequestParams = {
   // Гарантируем page_size = 10 и area.min = 50
   const requestBody = {
     page_size: 6,
-    area: { min: 50, ...requestParams.area },
     ...requestParams
   };
   
