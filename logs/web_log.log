@@ -1,6 +1,0 @@
-2026-02-02 13:03:39,476 - web_app.src.core.logger - INFO - Configuration initialized
-2026-02-02 13:03:39,878 - web_app.src.core.logger - INFO - Запускаем приложение...
-2026-02-02 13:03:39,878 - web_app.src.core.logger - INFO - Инициализируем базу данных
-2026-02-02 13:03:39,878 - web_app.src.core.logger - INFO - Инициализируем таблицы
-2026-02-02 13:03:39,940 - web_app.src.core.logger - INFO - Инициализируем redis
-2026-02-02 13:03:39,940 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
