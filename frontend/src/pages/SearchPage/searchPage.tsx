@@ -201,7 +201,8 @@ export function SearchPage() {
             out:
                 '',
             // dateout,
-            guest: [1, 1] as [number, number]
+            guest: [1, 1] as [number, number],
+            kids: []
         },
         validate: {
         },
@@ -308,6 +309,8 @@ export function SearchPage() {
             // }
 
             console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
+            console.log('ДЕТИ')
+            console.log(objectFilterForm.getValues().kids)
 
             const objectsParams = {
                 page: pageRef.current,
@@ -318,9 +321,9 @@ export function SearchPage() {
                 }),
 
                 // children - добавляем только если есть значение больше 0
-                // ...(objectFilterForm.getValues().guest?.[1] > 0 && {
-                //     children: Number(objectFilterForm.getValues().guest[1])
-                // }),
+                ...(objectFilterForm.getValues().kids && {
+                    children: objectFilterForm.getValues().kids
+                }),
 
                 ...(objectFilterForm.getValues().region && {
                     region_id: objectFilterForm.getValues().region
@@ -469,6 +472,9 @@ export function SearchPage() {
         }
         else newParams.delete('guest');
 
+        if (formValues.kids?.length) newParams.set('children', JSON.stringify(formValues.kids));
+        else newParams.delete('children');
+
         Array.from(newParams.entries()).forEach(([key, value]) => {
             if (!value || value === '') newParams.delete(key);
         });
@@ -499,7 +505,7 @@ export function SearchPage() {
 
         isLoading.current = false;
         abrupt.current = true;
-        countAll.current = 0; 
+        countAll.current = 0;
         getObjectsDataFunc(searchParams, true);
 
         // const formState = objectFilterForm.values
@@ -605,6 +611,28 @@ export function SearchPage() {
     //При загрузке страницы
     useEffect(() => {
         getFiltersData()
+        let kidsFromParams: { age: string | number }[] = [];
+        const childrenParam = searchParams.get('children');
+
+        if (childrenParam) {
+            try {
+                kidsFromParams = JSON.parse(childrenParam);
+
+                // Проверяем, что это массив и имеет правильную структуру
+                if (!Array.isArray(kidsFromParams)) {
+                    kidsFromParams = [];
+                } else {
+                    // Нормализуем данные: убеждаемся, что каждый элемент имеет поле age
+                    kidsFromParams = kidsFromParams.filter(kid =>
+                        kid && typeof kid === 'object' && 'age' in kid
+                    );
+                }
+            } catch (error) {
+                console.error('Error parsing children from URL:', error);
+                kidsFromParams = [];
+            }
+        }
+
         objectFilterForm.setValues({
             region: searchParams.get('region') || '',
             // category: searchParams.get('category') || '',
@@ -613,8 +641,11 @@ export function SearchPage() {
                 searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : null,
             ],
             // out: searchParams.get('out') || '',
-            guest: [Number(searchParams.get('guest')) || 2, Number(searchParams.get('amount_rooms_min')) || 1],
+            guest: [Number(searchParams.get('guest')) || '1', Number(searchParams.get('amount_rooms_min')) || '1'],
+            kids: kidsFromParams
         });
+
+        console.log('KIDS' + objectFilterForm.values.kids)
 
         // Проверяем, есть ли сохраненное состояние поиска
         const savedState = sessionStorage.getItem('searchState');
@@ -957,6 +988,12 @@ export function SearchPage() {
                                         value={objectFilterForm.values.guest}
                                         // ref={guestInputRef}
                                         // onBlur={() => guestInputRef.current?.focus()}
+                                        kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                         onChange={(value) => {
                                             objectFilterForm.setFieldValue('guest', value);
                                             console.log("заданог значение" + objectFilterForm.values.guest[0] + " " + objectFilterForm.values.guest[1])

@@ -139,7 +139,8 @@ export function ObjectsLandingPage() {
             out:
                 '',
             // dateout,
-            guest: [2, 1] as [number, number]
+            guest: [1, 1] as [number, number],
+            kids: []
         },
         validate: {
         },
@@ -204,6 +205,7 @@ export function ObjectsLandingPage() {
             newParams.set('guest', formValues.guest[0]?.toString() || "2");
             newParams.set('amount_rooms_min', formValues.guest[1]?.toString() || "1");
         }
+        if (formValues.kids && formValues.kids.length > 0) newParams.set('children', JSON.stringify(formValues.kids));
 
         setSearchParams(newParams, { replace: true });
         // if (value) {
@@ -246,7 +248,7 @@ export function ObjectsLandingPage() {
                 searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : null,
             ],
             // out: searchParams.get('out') || '',
-            guest: searchParams.get('guest') || '2',
+            guest: searchParams.get('guest'),
         });
         // const savedData = sessionStorage.getItem('mainPageState');
         // // alert(savedData)
@@ -562,6 +564,12 @@ export function ObjectsLandingPage() {
                                     <GuestPicker
                                         value={objectFilterForm.values.guest}
                                         ref={guestInputRef}
+                                        kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                         // onBlur={() => guestInputRef.current?.focus()}
                                         onChange={(value) => {
                                             objectFilterForm.setFieldValue('guest', value);
