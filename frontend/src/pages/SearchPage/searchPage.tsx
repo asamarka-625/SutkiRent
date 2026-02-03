@@ -542,7 +542,7 @@ export function SearchPage() {
     async function getFiltersData() {
 
         const regions = await getRegionsData()
-        const type = await getTypeData()
+        // const type = await getTypeData()
 
 
         if (regions.ok) {
@@ -561,21 +561,21 @@ export function SearchPage() {
             }
         }
 
-        if (type.ok) {
-            const data = await type.json();
-            setCategoryData(Array.isArray(data) ? data : (data.results || []))
-        }
-        else {
-            setCategoryData([])
-            const error = await type.json();
-            if (errorHandler(type.status) == 5) {
-                showNotification({
-                    title: "Ошибка сервера, обновите страницу",
-                    message: error.statusText,
-                    icon: <IconX />
-                })
-            }
-        }
+        // if (type.ok) {
+        //     const data = await type.json();
+        //     setCategoryData(Array.isArray(data) ? data : (data.results || []))
+        // }
+        // else {
+        //     setCategoryData([])
+        //     const error = await type.json();
+        //     if (errorHandler(type.status) == 5) {
+        //         showNotification({
+        //             title: "Ошибка сервера, обновите страницу",
+        //             message: error.statusText,
+        //             icon: <IconX />
+        //         })
+        //     }
+        // }
 
     }
 
@@ -1045,7 +1045,7 @@ export function SearchPage() {
                         &times;
                     </div>
                     <div className={styles["navbarMobile"]}>
-                        <SearchMenu opened={true} closeApply={handleFormSave}></SearchMenu>
+                        <SearchMenu regionId={objectFilterForm.getValues().region} opened={true} closeApply={handleFormSave}></SearchMenu>
                     </div>
                 </Modal>
 
@@ -1098,7 +1098,7 @@ export function SearchPage() {
                 <div className={styles[`pageLayout`]}>
 
                     <div className={styles["navbar"]}
-                    ><SearchMenu opened={opened} closeApply={handleFormSave}></SearchMenu></div>
+                    ><SearchMenu regionId={objectFilterForm.getValues().region } opened={opened} closeApply={handleFormSave}></SearchMenu></div>
 
                     <div className="papercard" style={{
                         maxWidth: "100%"

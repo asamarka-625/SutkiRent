@@ -2,6 +2,22 @@ import { fetchAddress } from "../globalSettings.ts";
 
 
 
+export async function getFiltersFromBackData(regionId?: string | number) {
+  const response = await fetch(
+    fetchAddress + '/objects/filters' + regionId
+    , {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+        //   'X-CSRFToken': 'csrftoken',
+        //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
+      }
+    })
+  return response
+}
+
+
 
 export async function getMetrosData() {
   const response = await fetch(

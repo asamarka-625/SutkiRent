@@ -316,3 +316,220 @@ WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND a
 2026-02-03 10:51:10,644 - web_app.src.core.logger - INFO - Инициализируем базу данных
 2026-02-03 10:51:10,645 - web_app.src.core.logger - INFO - Инициализируем таблицы
 2026-02-03 10:51:10,817 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:28:24,290 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:28:25,066 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:28:25,068 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:28:25,068 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:28:25,196 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:28:25,197 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:38:30,694 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:38:31,374 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:38:31,375 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:38:31,376 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:38:31,474 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:38:31,475 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:43:36,643 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:43:37,353 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:43:37,354 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:43:37,355 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:43:37,432 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:43:37,433 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:46:58,919 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:46:59,835 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:46:59,837 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:46:59,837 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:46:59,931 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:46:59,932 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:50:49,622 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:50:50,763 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:50:50,764 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:50:50,765 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:50:50,847 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:50:50,848 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:52:23,418 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:52:24,195 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:52:24,197 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:52:24,198 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:52:24,303 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:52:24,304 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:54:51,658 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:54:52,393 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:54:52,402 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:54:52,410 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:54:52,543 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:54:52,544 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 12:58:03,595 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 12:58:04,649 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 12:58:04,656 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 12:58:04,658 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 12:58:05,111 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 12:58:05,164 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:00:14,865 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:00:15,605 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:00:15,607 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:00:15,608 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:00:15,685 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 13:00:15,686 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:00:35,572 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:00:35,575 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:00:41,302 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:00:41,548 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:02:35,398 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:02:36,140 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:02:36,141 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:02:36,142 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:02:36,220 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 13:02:36,221 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:03:11,394 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:03:11,604 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:03:15,388 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 23), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 23), 4, datetime.date(2026, 2, 27), 5, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:04:27,311 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 8, 21), 0, datetime.date(2026, 8, 18), datetime.date(2026, 8, 21), 0, 1, 1, 0, 1.0, datetime.date(2026, 8, 18), 3, datetime.date(2026, 8, 21), 4, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:08:11,881 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 24), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 24), 3, datetime.date(2026, 2, 27), 4, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:08:23,800 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 24), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 24), 3, datetime.date(2026, 2, 27), 4, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:08:23,882 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 24), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 24), 3, datetime.date(2026, 2, 27), 4, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:08:25,095 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.region_id = $7::INTEGER AND apartments.max_children_count >= $8::INTEGER AND apartments.rooms >= $9::FLOAT AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $11::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $12::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $14::INTEGER OFFSET $15::INTEGER]
+[parameters: (datetime.date(2026, 2, 27), 0, datetime.date(2026, 2, 24), datetime.date(2026, 2, 27), 0, 1, 1, 0, 1.0, datetime.date(2026, 2, 24), 3, datetime.date(2026, 2, 27), 4, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:13:37,409 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:13:37,989 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:13:37,991 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:13:37,993 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:13:38,086 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 13:13:38,088 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:13:43,056 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = None: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-03 13:13:43,447 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = None: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-03 13:18:52,028 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:18:52,777 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:18:52,778 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:18:52,779 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:18:52,865 - web_app.src.core.logger - INFO - Инициализируем redis

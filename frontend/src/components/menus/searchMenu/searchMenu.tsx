@@ -7,7 +7,7 @@ import Knob_Start from "..//..//..//icons/Knob_Start.svg?react"
 import ClearFilter from "..//..//..//icons/ClearFilter.svg?react"
 import { useForm } from "@mantine/form";
 import { useDebouncedCallback, useMediaQuery } from "@mantine/hooks";
-import { getAvailData, getBathroomData, getInventoryData, getMetrosData, getServiceData, getTypeData, getViewData } from "../../../services/getEverything.ts";
+import { getAvailData, getBathroomData, getFiltersFromBackData, getInventoryData, getMetrosData, getServiceData, getTypeData, getViewData } from "../../../services/getEverything.ts";
 import { errorHandler } from "../../../handlers/errorBasicHandler.ts";
 import { showNotification } from "@mantine/notifications";
 // import { IconX } from "@tabler/icons-react";
@@ -24,6 +24,7 @@ interface Props {
   opened: boolean
   closeApply: () => void;
   openMetroModal: () => void;
+  regionId: number | string;
 }
 
 interface Metro {
@@ -65,7 +66,7 @@ function getFloorError(floor_finish: string, value: string) {
 
 const mincost = 0; const maxcost = 250000;
 
-export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
+export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Props) {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
   const [costForm, setCostForm] = useState([mincost, maxcost] as [number, number])
@@ -220,6 +221,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
 
   async function getFiltersData() {
 
+    const filters = await getFiltersFromBackData(regionId)
     // const type = await getTypeData()
     // const metros = await getMetrosData()
     // const inventory = await getInventoryData()
@@ -228,21 +230,29 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
     // const bathroom = await getBathroomData()
     // const availab = await getAvailData()
 
-    // if (metros.ok) {
-    //   const data = await metros.json();
-    //   setMetroData(data)
-    // }
-    // else {
-    //   setMetroData([])
-    //   const error = await metros.json();
-    //   if (errorHandler(metros.status) == 5) {
-    //     showNotification({
-    //       title: "Ошибка сервера, обновите страницу",
-    //       message: error.statusText,
-    //       // icon: <IconX />
-    //     })
-    //   }
-    // }
+    if (filters.ok) {
+      const data = await filters.json();
+      // setMetroData(data?.metro || [])
+      // setCategoryData(data?.types || [])
+      // setAdditions(data?.items || [])
+      // setView(data?.windows || [])
+      // setTualet(data?.bathrooms || [])
+    }
+    else {
+      setMetroData([])
+      setCategoryData([])
+      setAdditions([])
+      setView([])
+      setTualet([])
+      const error = await filters.json();
+      if (errorHandler(filters.status) == 5) {
+        showNotification({
+          title: "Ошибка сервера, обновите страницу",
+          message: error.statusText,
+          // icon: <IconX />
+        })
+      }
+    }
 
     // if (type.ok) {
     //   const data = await type.json();
@@ -556,14 +566,14 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
 
         <Divider></Divider> */}
 
-        {/* <Flex className="papercard" align='' direction="column" >
+        <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3" style={{ paddingTop: 0 }}>Типы жилья</h4>
           </div>
           <CheckboxGroup  {...filterForm.getInputProps('category')} mt={10}>
             {categoryList}
           </CheckboxGroup>
-        </Flex> */}
+        </Flex>
 
 
         <Divider></Divider>
@@ -656,7 +666,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
         <Divider></Divider>
 
         {/* ВИД ИЗ ОКНА */}
-        {/* <Flex className="papercard" align='' direction="column" >
+        <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Вид из окна</h4>
           </div>
@@ -668,10 +678,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
             Сбросить выбор
           </Button>
         </Flex>
-        <Divider></Divider> */}
+        <Divider></Divider>
 
         {/* САНУЗЕЛ */}
-        {/* <Flex className="papercard" align='' direction="column" >
+        <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Санузел</h4>
           </div>
@@ -683,11 +693,11 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
           </Button>
 
         </Flex>
-        <Divider></Divider> */}
+        <Divider></Divider>
 
 
         {/* В ПОМЕЩЕНИИ */}
-        {/* <Flex className="papercard" align='' direction="column" >
+        <Flex className="papercard" align='' direction="column" >
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">В помещении</h4>
           </div>
@@ -711,7 +721,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal }: Props) {
           </div>
         </Flex>
 
-        <Divider></Divider> */}
+        <Divider></Divider>
 
         {/* ДОСТУПНОСТЬ */}
         {/* <Flex className="papercard" align='' direction="column" >

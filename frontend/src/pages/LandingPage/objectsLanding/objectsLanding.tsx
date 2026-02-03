@@ -148,15 +148,16 @@ export function ObjectsLandingPage() {
 
 
     async function getFiltersData() {
-
+console.log("regions 1 started")
         const regions = await getRegionsData()
-        const type = await getTypeData()
+        // const type = await getTypeData()
 
-
+        console.log("regions started")
         if (regions.ok) {
             const data = await regions.json();
             // setСityData([newCity, ...data])
-            setСityData(Array.isArray(data) ? data : (data.results || []))
+            console.log("regions data" + data)
+            setСityData(Array.isArray(data) ? data : (data || []))
         }
         else {
             setСityData([])
@@ -170,22 +171,22 @@ export function ObjectsLandingPage() {
             }
         }
 
-        if (type.ok) {
-            const data = await type.json();
-            // setCategoryData([newCategory, ...data])
-            setCategoryData(Array.isArray(data) ? data : (data.results || []))
-        }
-        else {
-            setCategoryData([])
-            const error = await type.json();
-            if (errorHandler(type.status) == 5) {
-                showNotification({
-                    title: "Ошибка сервера, обновите страницу",
-                    message: error.statusText,
-                    icon: <IconX />
-                })
-            }
-        }
+        // if (type.ok) {
+        //     const data = await type.json();
+        //     // setCategoryData([newCategory, ...data])
+        //     setCategoryData(Array.isArray(data) ? data : (data.results || []))
+        // }
+        // else {
+        //     setCategoryData([])
+        //     const error = await type.json();
+        //     if (errorHandler(type.status) == 5) {
+        //         showNotification({
+        //             title: "Ошибка сервера, обновите страницу",
+        //             message: error.statusText,
+        //             icon: <IconX />
+        //         })
+        //     }
+        // }
 
 
 
@@ -240,8 +241,9 @@ export function ObjectsLandingPage() {
     //При загрузке страницы
     useEffect(() => {
         getFiltersData()
+        console.log('getFiltersData')
         objectFilterForm.setValues({
-            region: searchParams.get('region') || '',
+            region: searchParams.get('region'),
             // category: searchParams.get('category') || '',
             in: [
                 searchParams.get('in_start') ? new Date(searchParams.get('in_start')!) : null,
@@ -250,6 +252,7 @@ export function ObjectsLandingPage() {
             // out: searchParams.get('out') || '',
             guest: searchParams.get('guest'),
         });
+        console.log(cityDataRem + ' и ' + cityData)
         // const savedData = sessionStorage.getItem('mainPageState');
         // // alert(savedData)
         // if (savedData) {
