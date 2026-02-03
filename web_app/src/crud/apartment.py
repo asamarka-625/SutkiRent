@@ -141,8 +141,8 @@ async def sql_get_available_apartments(
 
         # 3. Опции загрузки, пагинация и выполнение
         query = query.options(
-            so.joinedload(Apartment.apartment_type),
-            so.joinedload(Apartment.apartment_bathroom),
+            so.selectinload(Apartment.apartment_type),
+            so.selectinload(Apartment.apartment_bathroom),
             so.selectinload(Apartment.photos),
             so.selectinload(Apartment.metro_stations)
         ).limit(page_size + 1).offset((page - 1) * page_size).order_by(Apartment.priority.desc())
