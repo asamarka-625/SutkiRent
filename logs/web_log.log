@@ -239,3 +239,80 @@
 2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 >>>>>>> master
+2026-02-03 10:10:10,044 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:10:10,810 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:10:10,812 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:10:10,813 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:10:10,896 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 10:10:10,898 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 10:17:26,769 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER AND apartments.rooms >= $4::FLOAT ORDER BY apartments.priority DESC 
+ LIMIT $5::INTEGER OFFSET $6::INTEGER]
+[parameters: (0, 4, 2, 1.0, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:17:27,356 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER AND apartments.rooms >= $4::FLOAT ORDER BY apartments.priority DESC 
+ LIMIT $5::INTEGER OFFSET $6::INTEGER]
+[parameters: (0, 4, 2, 1.0, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:17:34,857 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $4::INTEGER OFFSET $5::INTEGER]
+[parameters: (0, 1, 0, 7, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:17:34,862 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $4::INTEGER OFFSET $5::INTEGER]
+[parameters: (0, 1, 0, 7, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:17:40,221 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER AND apartments.rooms >= $4::FLOAT ORDER BY apartments.priority DESC 
+ LIMIT $5::INTEGER OFFSET $6::INTEGER]
+[parameters: (0, 2, 1, 1.0, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:17:40,262 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedColumnError'>: column apartments.apartment_type_id does not exist
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, CAST($1::INTEGER AS FLOAT) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $2::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $3::INTEGER AND apartments.rooms >= $4::FLOAT ORDER BY apartments.priority DESC 
+ LIMIT $5::INTEGER OFFSET $6::INTEGER]
+[parameters: (0, 2, 1, 1.0, 11, 0)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 10:21:05,200 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:21:05,901 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:21:05,903 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:21:05,904 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:21:05,995 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 10:21:05,996 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 10:23:33,667 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:23:34,265 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:23:34,266 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:23:34,267 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:23:34,356 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 10:23:34,357 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 10:32:27,001 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:32:27,638 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:32:27,640 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:32:27,641 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:32:27,719 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 10:32:27,720 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 10:44:07,519 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:44:08,297 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:44:08,299 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:44:08,299 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:44:08,376 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 10:44:08,378 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 10:51:09,868 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 10:51:10,643 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 10:51:10,644 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 10:51:10,645 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 10:51:10,817 - web_app.src.core.logger - INFO - Инициализируем redis

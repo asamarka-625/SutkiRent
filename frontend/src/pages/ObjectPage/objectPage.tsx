@@ -57,6 +57,42 @@ interface Property {
     longitude: number,
 }
 
+function transformPropertyData(originalData: any): Property {
+    return {
+        pk: originalData.id || originalData.external_id || 0,
+        short_name: originalData.title || '',
+        cost: originalData.price || 0,
+        type: originalData.type === 'string' ? 0 : 0, // Нужно маппить на числа
+        amount_rooms: originalData.rooms || 0,
+        floor: originalData.floor || 0,
+        sleeps: originalData.sleeps || '',
+        capacity: originalData.capacity || 0,
+        region: null,
+        city: 'string', // Нужен город из адреса
+        banner: null,
+        space: 0, // Не указано в исходных данных
+        address: originalData.address || '',
+        description: originalData.description || '',
+        conditions_accommodation: '',
+        contacts: '',
+        finding_description: '',
+        helpful_info: '',
+        parking_info: '',
+        object_inventories: [],
+        services: originalData.items ? originalData.items.map((item: string) => ({ name: item })) : [],
+        near_metro: originalData.metro 
+            ? originalData.metro.map((station: string) => ({ name: station }))
+            : [],
+        all_media: Object.values(originalData.media || {})
+            .map((url: any, index: number) => ({
+                source_type: 'image',
+                url: String(url)
+            })),
+        latitude: originalData.latitude || 0,
+        longitude: originalData.longitude || 0
+    };
+}
+
 
 export function ObjectPage() {
     const { id } = useParams();
@@ -111,7 +147,7 @@ export function ObjectPage() {
         const response = await getObjectDataById(id || '')
         if (response.ok) {
             const data = await response.json();
-            setObjects(data)
+            setObjects(transformPropertyData(data))
         }
         else {
             const error = await response.json();

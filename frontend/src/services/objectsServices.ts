@@ -128,10 +128,10 @@ export async function getFeatObjectsData(requestParams: ObjectsRequestParams = {
 export async function getObjectDataById(id: string) {
   const response = await fetch(
     fetchAddress +
-    '/objects/' + id + '/'
+    '/objects/' + id
     // 'http://localhost:8000/api/objects/?cost_min=&cost_max=&type=&amount_rooms=&floor=&category=&region=&city=&space_min=&space_max='
     , {
-      method: 'GET',
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
         //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
