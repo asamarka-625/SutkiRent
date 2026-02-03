@@ -238,6 +238,7 @@
 2026-02-03 09:28:47,681 - web_app.src.core.logger - INFO - Инициализируем таблицы
 2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем redis
 2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+<<<<<<< HEAD
 >>>>>>> master
 2026-02-03 10:10:10,044 - web_app.src.core.logger - INFO - Configuration initialized
 2026-02-03 10:10:10,810 - web_app.src.core.logger - INFO - Запускаем приложение...
@@ -533,3 +534,187 @@ HAVING count(apartment_availability_1.id) = $13::INTEGER ORDER BY apartments.pri
 2026-02-03 13:18:52,778 - web_app.src.core.logger - INFO - Инициализируем базу данных
 2026-02-03 13:18:52,779 - web_app.src.core.logger - INFO - Инициализируем таблицы
 2026-02-03 13:18:52,865 - web_app.src.core.logger - INFO - Инициализируем redis
+=======
+2026-02-03 09:35:20,538 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:35:20,951 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:35:20,951 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:35:20,951 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:35:21,012 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:35:21,013 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:49:10,250 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:49:10,650 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:49:10,651 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:49:10,651 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:49:10,712 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:49:10,712 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:50:50,403 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:50:50,771 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:50:50,771 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:50:50,771 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:50:50,834 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:50:50,834 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:51:00,568 - web_app.src.core.logger - ERROR - Unexpected error get apartment by id = 68: 13 validation errors for ApartmentMedia
+id
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+title
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+type
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+bathroom
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+price
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+rooms
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+sleeps
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+floor
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+capacity
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+address
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+metro
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+latitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+longitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-03 09:52:56,588 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:52:57,043 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:52:57,043 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:52:57,043 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:52:57,114 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:52:57,114 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:53:01,636 - web_app.src.core.logger - ERROR - Unexpected error get apartment by id = 68: 13 validation errors for ApartmentMedia
+id
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+title
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+type
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+bathroom
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+price
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+rooms
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+sleeps
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+floor
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+capacity
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+address
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+metro
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+latitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+longitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-03 09:53:46,471 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:53:46,850 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:53:46,850 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:53:46,850 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:53:46,913 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:53:46,913 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:53:50,011 - web_app.src.core.logger - ERROR - Unexpected error get apartment by id = 68: 13 validation errors for ApartmentMedia
+id
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+title
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+type
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+bathroom
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+price
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+rooms
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+sleeps
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+floor
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+capacity
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+address
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+metro
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+latitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+longitude
+  Field required [type=missing, input_value={'order': 0, 'url': 'http...314366643016691063.jpg'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-03 09:56:33,244 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:56:33,621 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:56:33,621 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:56:33,621 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:56:33,683 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:56:33,683 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:09:54,570 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:09:55,033 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:09:55,033 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:09:55,033 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:09:55,112 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 13:09:55,113 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 13:13:21,193 - web_app.src.core.logger - ERROR - Database error get available apartments: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.GroupingError'>: column "apartment_types_1.id" must appear in the GROUP BY clause or be used in an aggregate function
+[SQL: SELECT apartments.id, apartments.external_id, apartments.address, apartments.rooms, apartments.sleeps, apartments.description, apartments.floor, apartments.title, apartments.area, apartments.latitude, apartments.longitude, apartments.capacity, apartments.max_children_count, apartments.increase_capacity, apartments.increase_capacity_price, apartments.availability, apartments.priority, apartments.visibility, apartments.price_without_discount, apartments.price_with_discount, apartments.discount_percent, apartments.price_details, apartments.min_stay, apartments.last_parsed_at, apartments.created_at, apartments.updated_at, apartments.city_id, apartments.region_id, apartments.apartment_type_id, apartments.apartment_bathroom_id, sum(CASE WHEN (apartment_availability_1.date < $1::DATE) THEN apartment_availability_1.price ELSE $2::INTEGER END) AS total_cost, apartment_types_1.id AS id_1, apartment_types_1.title AS title_1, apartment_types_1.created_at AS created_at_1, apartment_bathrooms_1.id AS id_2, apartment_bathrooms_1.title AS title_2, apartment_bathrooms_1.created_at AS created_at_2 
+FROM apartments JOIN apartment_availability AS apartment_availability_1 ON apartments.id = apartment_availability_1.apartment_id AND apartment_availability_1.date >= $3::DATE AND apartment_availability_1.date <= $4::DATE AND apartment_availability_1.is_available = true AND apartment_availability_1.price IS NOT NULL AND apartment_availability_1.price > $5::INTEGER LEFT OUTER JOIN apartment_types AS apartment_types_1 ON apartment_types_1.id = apartments.apartment_type_id LEFT OUTER JOIN apartment_bathrooms AS apartment_bathrooms_1 ON apartment_bathrooms_1.id = apartments.apartment_bathroom_id 
+WHERE apartments.capacity >= $6::INTEGER AND apartments.visibility IS true AND apartments.max_children_count >= $7::INTEGER AND (EXISTS (SELECT 1 
+FROM metro_stations, apartment_metro 
+WHERE apartments.id = apartment_metro.apartment_id AND metro_stations.id = apartment_metro.metro_station_id AND metro_stations.id IN ($14::INTEGER))) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $8::DATE AND apartment_availability.closed_on_arrival = false AND apartment_availability.min_stay <= $9::INTEGER)) AND (EXISTS (SELECT 1 
+FROM apartment_availability 
+WHERE apartment_availability.apartment_id = apartments.id AND apartment_availability.date = $10::DATE AND apartment_availability.closed_on_departure = false)) GROUP BY apartments.id 
+HAVING count(apartment_availability_1.id) = $11::INTEGER ORDER BY apartments.priority DESC 
+ LIMIT $12::INTEGER OFFSET $13::INTEGER]
+[parameters: (datetime.date(2026, 2, 7), 0, datetime.date(2026, 2, 3), datetime.date(2026, 2, 7), 0, 1, 0, datetime.date(2026, 2, 3), 4, datetime.date(2026, 2, 7), 5, 11, 0, 33)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-02-03 13:16:58,785 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 13:16:59,186 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 13:16:59,187 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 13:16:59,187 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:16:59,278 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 13:16:59,279 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+>>>>>>> master
