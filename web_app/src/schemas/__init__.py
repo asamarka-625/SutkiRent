@@ -1,5 +1,7 @@
 from web_app.src.schemas.apartment import (ApartmentFilter, ApartmentResponse, ObjectsResponse, PriceFilter,
-                                           SleepFilter, FloorFilter, AreaFilter, RoomFilter, FavoriteRequest)
+                                           SleepFilter, FloorFilter, AreaFilter, RoomFilter, FavoriteRequest,
+                                           ApartmentDetailResponse, DataFiltersResponse, ApartmentType,
+                                           ApartmentWindow, ApartmentBathroom, ApartmentItem, ApartmentMetro)
 from web_app.src.schemas.content import ContentResponse
 from web_app.src.schemas.region import RegionResponse
 from web_app.src.schemas.auth import UserCreate, VerifyRequest, EmailBase, PasswordResetConfirmRequest, TokenRequest

@@ -13,6 +13,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.region_rel,
         Apartment.city_rel,
         Apartment.address,
+        Apartment.apartment_type,
         Apartment.priority,
         Apartment.visibility
     ]
@@ -21,10 +22,14 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.id: "Идентификатор",
         Apartment.external_id: "Внутренний ID",
         Apartment.address: "Адрес",
+        Apartment.apartment_type: "Тип жилья",
+        Apartment.windows: "Вид из окна",
+        Apartment.apartment_bathroom: "Тип санузла",
         Apartment.rooms: "Комнаты",
         Apartment.sleeps: "Формат спальных мест",
         Apartment.floor: "Этаж",
         Apartment.title: "Название",
+        Apartment.description: "Описание",
         Apartment.area: "Площадь м2",
         Apartment.latitude: "Локация (широта)",
         Apartment.longitude: "Локация (долгота)",
@@ -44,7 +49,8 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.photos: "Фотографии",
         Apartment.increase_capacity: "Надбавка к цене от ко-во жильцов",
         Apartment.increase_capacity_price: "Надбавочная цена за ко-во жильцов",
-        Apartment.services: "Услуги"
+        Apartment.services: "Услуги",
+        Apartment.items: "Предметы"
     }
 
     column_searchable_list = [Apartment.external_id] # список столбцов, которые можно искать
@@ -60,10 +66,14 @@ class ApartmentAdmin(ModelView, model=Apartment):
     column_details_list = [
         Apartment.id,
         Apartment.external_id,
+        Apartment.apartment_type,
+        Apartment.windows,
+        Apartment.apartment_bathroom,
         Apartment.title,
         Apartment.address,
         Apartment.region_rel,
         Apartment.city_rel,
+        Apartment.description,
         Apartment.metro_stations,
         Apartment.priority,
         Apartment.visibility,
@@ -80,6 +90,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.latitude,
         Apartment.longitude,
         Apartment.services,
+        Apartment.items,
         Apartment.price_without_discount,
         Apartment.price_with_discount,
         Apartment.discount_percent,
@@ -88,11 +99,15 @@ class ApartmentAdmin(ModelView, model=Apartment):
     ]
 
     form_edit_rules = [
+        "apartment_type",
+        "windows",
+        "apartment_bathroom",
         "priority",
         "visibility",
         "region_rel",
         "increase_capacity",
-        "increase_capacity_price"
+        "increase_capacity_price",
+        "items"
     ]
 
     can_create = False # право создавать

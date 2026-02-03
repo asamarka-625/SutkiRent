@@ -235,7 +235,7 @@ async def sql_add_or_update_apartment(data: Apartment, session: AsyncSession) ->
 
             db_stations_result = await session.execute(
                 sa.select(MetroStationModel)
-                .where(MetroStationModel.external_id.in_(
+                .where(MetroStationModel.id.in_(
                     tuple(stations_mapping.values())
                 ))
             )
