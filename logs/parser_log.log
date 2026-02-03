@@ -33702,3 +33702,1773 @@ WHERE apartments.external_id = $1::INTEGER]
 2026-02-03 13:18:21,647 - parser_realty.core.logger - INFO - Update calendar external_id: 51725
 2026-02-03 13:18:21,827 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51726)
 >>>>>>> master
+2026-02-03 13:28:42,170 - parser_realty.core.logger - INFO - Configuration initialized
+2026-02-03 13:28:42,445 - parser_realty.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:28:43,187 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:28:57,086 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:28:57,313 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:28:57,362 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:28:57,382 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:28:57,408 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:28:57,441 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:28:57,482 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:28:57,504 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:28:57,531 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:28:57,558 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:28:57,579 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:28:57,599 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:28:57,625 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:28:57,647 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:28:57,665 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:28:57,683 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:28:57,706 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:28:57,727 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:28:57,745 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:28:57,765 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:28:57,787 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:28:57,809 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:28:57,830 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:28:57,851 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:28:57,867 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:28:57,888 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:28:57,906 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:28:57,927 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:28:57,948 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:28:57,969 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:28:57,991 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:29:02,291 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:29:02,318 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:29:02,342 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:29:02,362 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:29:02,383 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:29:02,405 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:29:02,429 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:29:02,449 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:29:02,466 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:29:02,484 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:29:02,501 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:29:02,516 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:29:02,531 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:29:02,547 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:29:02,562 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:29:02,577 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:29:02,593 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:29:02,612 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:29:02,627 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:29:02,645 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:29:02,659 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:29:02,674 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:29:02,689 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:29:02,704 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:29:02,719 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:29:02,734 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:29:02,748 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:29:02,764 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:29:02,779 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:29:02,794 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:29:02,854 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:29:09,525 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:29:09,546 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:29:09,564 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:29:09,579 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:29:09,596 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:29:09,611 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:29:09,628 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:29:09,649 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:29:09,665 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:29:09,681 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:29:09,702 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:29:09,718 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:29:09,735 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:29:09,750 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:29:09,768 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:29:09,792 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:29:09,813 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:29:09,840 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:29:09,856 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:29:09,875 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:29:09,893 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:29:09,913 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:29:09,935 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:29:09,955 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:29:09,980 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:29:10,011 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:29:10,057 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:29:10,087 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:29:10,106 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:29:10,131 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:29:10,153 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:29:14,206 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:29:14,250 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:29:14,280 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:29:14,309 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:29:14,347 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:29:14,369 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:29:14,390 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:29:14,410 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:29:14,427 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:29:14,442 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:29:14,458 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:29:48,507 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:29:49,871 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:29:50,122 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:29:50,543 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:29:50,746 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 149542)
+2026-02-03 13:29:51,416 - parser_realty.core.logger - INFO - Update calendar external_id: 149542
+2026-02-03 13:29:51,640 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 107487)
+2026-02-03 13:29:52,567 - parser_realty.core.logger - INFO - Update calendar external_id: 107487
+2026-02-03 13:29:52,834 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60756)
+2026-02-03 13:29:53,441 - parser_realty.core.logger - INFO - Update calendar external_id: 60756
+2026-02-03 13:29:53,641 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:29:54,309 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:29:54,515 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:29:55,481 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:29:55,672 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 58096)
+2026-02-03 13:29:56,179 - parser_realty.core.logger - INFO - Update calendar external_id: 58096
+2026-02-03 13:29:56,395 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47421)
+2026-02-03 13:29:57,643 - parser_realty.core.logger - INFO - Update calendar external_id: 47421
+2026-02-03 13:29:57,849 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 170221)
+2026-02-03 13:29:58,487 - parser_realty.core.logger - INFO - Update calendar external_id: 170221
+2026-02-03 13:29:58,739 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66828)
+2026-02-03 13:29:59,522 - parser_realty.core.logger - INFO - Update calendar external_id: 66828
+2026-02-03 13:29:59,713 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127166)
+2026-02-03 13:30:00,281 - parser_realty.core.logger - INFO - Update calendar external_id: 127166
+2026-02-03 13:30:00,554 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124339)
+2026-02-03 13:30:01,430 - parser_realty.core.logger - INFO - Update calendar external_id: 124339
+2026-02-03 13:30:01,652 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93264)
+2026-02-03 13:30:02,487 - parser_realty.core.logger - INFO - Update calendar external_id: 93264
+2026-02-03 13:30:02,698 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:30:03,283 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:30:03,566 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118574)
+2026-02-03 13:30:04,248 - parser_realty.core.logger - INFO - Update calendar external_id: 118574
+2026-02-03 13:30:04,446 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 263864)
+2026-02-03 13:30:04,916 - parser_realty.core.logger - INFO - Update calendar external_id: 263864
+2026-02-03 13:30:05,153 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 52801)
+2026-02-03 13:30:05,769 - parser_realty.core.logger - INFO - Update calendar external_id: 52801
+2026-02-03 13:30:05,973 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89026)
+2026-02-03 13:30:07,160 - parser_realty.core.logger - INFO - Update calendar external_id: 89026
+2026-02-03 13:30:07,392 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118580)
+2026-02-03 13:30:09,761 - parser_realty.core.logger - INFO - Update calendar external_id: 118580
+2026-02-03 13:30:09,989 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146638)
+2026-02-03 13:30:10,760 - parser_realty.core.logger - INFO - Update calendar external_id: 146638
+2026-02-03 13:30:11,234 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133050)
+2026-02-03 13:30:15,202 - parser_realty.core.logger - INFO - Update calendar external_id: 133050
+2026-02-03 13:30:15,579 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 53173)
+2026-02-03 13:30:16,454 - parser_realty.core.logger - INFO - Update calendar external_id: 53173
+2026-02-03 13:30:16,718 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60213)
+2026-02-03 13:30:17,521 - parser_realty.core.logger - INFO - Update calendar external_id: 60213
+2026-02-03 13:30:17,729 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54790)
+2026-02-03 13:30:18,322 - parser_realty.core.logger - INFO - Update calendar external_id: 54790
+2026-02-03 13:30:18,531 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146639)
+2026-02-03 13:30:19,045 - parser_realty.core.logger - INFO - Update calendar external_id: 146639
+2026-02-03 13:30:19,255 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146956)
+2026-02-03 13:30:20,049 - parser_realty.core.logger - INFO - Update calendar external_id: 146956
+2026-02-03 13:30:20,278 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 179428)
+2026-02-03 13:30:21,124 - parser_realty.core.logger - INFO - Update calendar external_id: 179428
+2026-02-03 13:30:21,356 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51725)
+2026-02-03 13:30:22,042 - parser_realty.core.logger - INFO - Update calendar external_id: 51725
+2026-02-03 13:30:22,264 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:30:22,815 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:30:23,041 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:30:23,772 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:30:23,975 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146954)
+2026-02-03 13:30:24,402 - parser_realty.core.logger - INFO - Update calendar external_id: 146954
+2026-02-03 13:30:24,701 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:30:25,412 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:30:26,110 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 176391)
+2026-02-03 13:30:27,211 - parser_realty.core.logger - INFO - Update calendar external_id: 176391
+2026-02-03 13:30:27,491 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62912)
+2026-02-03 13:30:28,162 - parser_realty.core.logger - INFO - Update calendar external_id: 62912
+2026-02-03 13:30:28,369 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 75758)
+2026-02-03 13:30:29,055 - parser_realty.core.logger - INFO - Update calendar external_id: 75758
+2026-02-03 13:30:29,318 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93591)
+2026-02-03 13:30:30,369 - parser_realty.core.logger - INFO - Update calendar external_id: 93591
+2026-02-03 13:30:30,593 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146636)
+2026-02-03 13:30:32,633 - parser_realty.core.logger - INFO - Update calendar external_id: 146636
+2026-02-03 13:30:32,842 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:30:33,488 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:30:33,732 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124338)
+2026-02-03 13:30:34,977 - parser_realty.core.logger - INFO - Update calendar external_id: 124338
+2026-02-03 13:30:35,275 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:30:35,799 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:30:36,004 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146637)
+2026-02-03 13:30:37,159 - parser_realty.core.logger - INFO - Update calendar external_id: 146637
+2026-02-03 13:30:37,412 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:30:40,120 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:30:40,393 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124212)
+2026-02-03 13:30:41,158 - parser_realty.core.logger - INFO - Update calendar external_id: 124212
+2026-02-03 13:30:41,357 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130975)
+2026-02-03 13:30:42,045 - parser_realty.core.logger - INFO - Update calendar external_id: 130975
+2026-02-03 13:30:42,279 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:30:47,169 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:30:47,459 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:30:49,135 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:30:49,340 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 50632)
+2026-02-03 13:30:49,880 - parser_realty.core.logger - INFO - Update calendar external_id: 50632
+2026-02-03 13:30:50,087 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66783)
+2026-02-03 13:30:50,564 - parser_realty.core.logger - INFO - Update calendar external_id: 66783
+2026-02-03 13:30:50,831 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:30:51,643 - parser_realty.core.logger - INFO - Update calendar external_id: 47419
+2026-02-03 13:30:52,018 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122641)
+2026-02-03 13:30:53,281 - parser_realty.core.logger - INFO - Update calendar external_id: 122641
+2026-02-03 13:30:53,533 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:30:55,805 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:30:56,018 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122614)
+2026-02-03 13:30:56,646 - parser_realty.core.logger - INFO - Update calendar external_id: 122614
+2026-02-03 13:30:56,840 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 177923)
+2026-02-03 13:30:57,402 - parser_realty.core.logger - INFO - Update calendar external_id: 177923
+2026-02-03 13:30:57,634 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54702)
+2026-02-03 13:30:58,120 - parser_realty.core.logger - INFO - Update calendar external_id: 54702
+2026-02-03 13:30:58,318 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:30:58,680 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:30:58,877 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 68025)
+2026-02-03 13:31:04,002 - parser_realty.core.logger - INFO - Update calendar external_id: 68025
+2026-02-03 13:31:04,213 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:31:04,881 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:31:05,097 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 108694)
+2026-02-03 13:31:06,328 - parser_realty.core.logger - INFO - Update calendar external_id: 108694
+2026-02-03 13:31:06,541 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133049)
+2026-02-03 13:31:06,971 - parser_realty.core.logger - INFO - Update calendar external_id: 133049
+2026-02-03 13:31:07,190 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:31:08,413 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:31:08,642 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118566)
+2026-02-03 13:31:09,769 - parser_realty.core.logger - INFO - Update calendar external_id: 118566
+2026-02-03 13:31:10,012 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:31:10,687 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:31:10,888 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51726)
+2026-02-03 13:31:11,690 - parser_realty.core.logger - INFO - Update calendar external_id: 51726
+2026-02-03 13:31:11,887 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48896)
+2026-02-03 13:31:12,886 - parser_realty.core.logger - INFO - Update calendar external_id: 48896
+2026-02-03 13:31:13,122 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:31:14,013 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:31:14,238 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 147428)
+2026-02-03 13:31:14,811 - parser_realty.core.logger - INFO - Update calendar external_id: 147428
+2026-02-03 13:31:15,022 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47425)
+2026-02-03 13:31:15,657 - parser_realty.core.logger - INFO - Update calendar external_id: 47425
+2026-02-03 13:31:15,867 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87269)
+2026-02-03 13:31:18,023 - parser_realty.core.logger - INFO - Update calendar external_id: 87269
+2026-02-03 13:31:18,399 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130533)
+2026-02-03 13:31:18,969 - parser_realty.core.logger - INFO - Update calendar external_id: 130533
+2026-02-03 13:31:19,176 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:31:19,944 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:31:20,164 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130831)
+2026-02-03 13:31:21,146 - parser_realty.core.logger - INFO - Update calendar external_id: 130831
+2026-02-03 13:31:21,357 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130526)
+2026-02-03 13:31:21,821 - parser_realty.core.logger - INFO - Update calendar external_id: 130526
+2026-02-03 13:31:22,018 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64958)
+2026-02-03 13:31:23,539 - parser_realty.core.logger - INFO - Update calendar external_id: 64958
+2026-02-03 13:31:23,805 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 85756)
+2026-02-03 13:31:26,764 - parser_realty.core.logger - INFO - Update calendar external_id: 85756
+2026-02-03 13:31:26,973 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65180)
+2026-02-03 13:31:27,889 - parser_realty.core.logger - INFO - Update calendar external_id: 65180
+2026-02-03 13:31:28,092 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65182)
+2026-02-03 13:31:28,781 - parser_realty.core.logger - INFO - Update calendar external_id: 65182
+2026-02-03 13:31:28,981 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65178)
+2026-02-03 13:31:30,404 - parser_realty.core.logger - INFO - Update calendar external_id: 65178
+2026-02-03 13:31:30,741 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76542)
+2026-02-03 13:31:31,487 - parser_realty.core.logger - INFO - Update calendar external_id: 76542
+2026-02-03 13:31:31,698 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76541)
+2026-02-03 13:31:32,363 - parser_realty.core.logger - INFO - Update calendar external_id: 76541
+2026-02-03 13:31:32,580 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76540)
+2026-02-03 13:31:33,234 - parser_realty.core.logger - INFO - Update calendar external_id: 76540
+2026-02-03 13:31:33,428 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 102864)
+2026-02-03 13:31:34,137 - parser_realty.core.logger - INFO - Update calendar external_id: 102864
+2026-02-03 13:31:34,352 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 180582)
+2026-02-03 13:31:35,078 - parser_realty.core.logger - INFO - Update calendar external_id: 180582
+2026-02-03 13:31:35,316 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:31:35,765 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:31:35,974 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 206230)
+2026-02-03 13:31:36,596 - parser_realty.core.logger - INFO - Update calendar external_id: 206230
+2026-02-03 13:31:36,823 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276296)
+2026-02-03 13:31:37,527 - parser_realty.core.logger - INFO - Update calendar external_id: 276296
+2026-02-03 13:31:37,746 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86830)
+2026-02-03 13:31:38,216 - parser_realty.core.logger - INFO - Update calendar external_id: 86830
+2026-02-03 13:31:38,543 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89679)
+2026-02-03 13:31:39,172 - parser_realty.core.logger - INFO - Update calendar external_id: 89679
+2026-02-03 13:31:39,389 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86590)
+2026-02-03 13:31:40,365 - parser_realty.core.logger - INFO - Update calendar external_id: 86590
+2026-02-03 13:31:40,561 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87242)
+2026-02-03 13:31:41,449 - parser_realty.core.logger - INFO - Update calendar external_id: 87242
+2026-02-03 13:31:41,668 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 166376)
+2026-02-03 13:31:42,209 - parser_realty.core.logger - INFO - Update calendar external_id: 166376
+2026-02-03 13:31:42,429 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127561)
+2026-02-03 13:31:42,839 - parser_realty.core.logger - INFO - Update calendar external_id: 127561
+2026-02-03 13:31:43,095 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48447)
+2026-02-03 13:31:43,859 - parser_realty.core.logger - INFO - Update calendar external_id: 48447
+2026-02-03 13:31:44,096 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62915)
+2026-02-03 13:31:44,718 - parser_realty.core.logger - INFO - Update calendar external_id: 62915
+2026-02-03 13:31:44,921 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276357)
+2026-02-03 13:31:45,613 - parser_realty.core.logger - INFO - Update calendar external_id: 276357
+2026-02-03 13:31:45,834 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276324)
+2026-02-03 13:31:46,439 - parser_realty.core.logger - INFO - Update calendar external_id: 276324
+2026-02-03 13:31:46,661 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64812)
+2026-02-03 13:31:47,291 - parser_realty.core.logger - INFO - Update calendar external_id: 64812
+2026-02-03 13:31:47,614 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64803)
+2026-02-03 13:31:48,664 - parser_realty.core.logger - INFO - Update calendar external_id: 64803
+2026-02-03 13:31:48,907 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64804)
+2026-02-03 13:31:49,523 - parser_realty.core.logger - INFO - Update calendar external_id: 64804
+2026-02-03 13:31:49,927 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64810)
+2026-02-03 13:31:50,550 - parser_realty.core.logger - INFO - Update calendar external_id: 64810
+2026-02-03 13:31:50,784 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:32:06,664 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:32:06,822 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:32:06,872 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:32:06,902 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:32:06,922 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:32:06,941 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:32:06,963 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:32:06,980 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:32:07,004 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:32:07,027 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:32:07,043 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:32:07,101 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:32:07,122 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:32:07,139 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:32:07,165 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:32:07,184 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:32:07,202 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:32:07,219 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:32:07,233 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:32:07,255 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:32:07,310 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:32:07,362 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:32:07,402 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:32:07,456 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:32:07,511 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:32:07,553 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:32:07,572 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:32:07,604 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:32:07,654 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:32:07,705 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:32:07,744 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:32:15,761 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:32:15,791 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:32:15,814 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:32:15,841 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:32:15,862 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:32:15,885 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:32:15,901 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:32:15,918 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:32:15,935 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:32:15,952 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:32:15,968 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:32:15,984 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:32:16,008 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:32:16,026 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:32:16,044 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:32:16,064 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:32:16,083 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:32:16,098 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:32:16,118 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:32:16,136 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:32:16,158 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:32:16,182 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:32:16,197 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:32:16,219 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:32:16,237 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:32:16,255 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:32:16,277 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:32:16,297 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:32:16,315 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:32:16,339 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:32:16,356 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:32:22,192 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:32:22,213 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:32:22,236 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:32:22,266 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:32:22,305 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:32:22,341 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:32:22,363 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:32:22,393 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:32:22,415 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:32:22,436 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:32:22,455 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:32:22,483 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:32:22,499 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:32:22,515 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:32:22,531 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:32:22,548 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:32:22,564 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:32:22,580 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:32:22,611 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:32:22,641 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:32:22,664 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:32:22,684 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:32:22,703 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:32:22,720 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:32:22,737 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:32:22,758 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:32:22,783 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:32:22,807 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:32:22,826 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:32:22,844 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:32:22,878 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:32:27,642 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:32:27,664 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:32:27,707 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:32:27,810 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:32:27,905 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:32:29,045 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:32:29,350 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:32:29,435 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:32:29,569 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:32:29,679 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:32:29,856 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:33:04,062 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:33:04,650 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:33:05,415 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:33:10,275 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:33:11,107 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:33:11,849 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:33:12,097 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:33:12,688 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:33:13,018 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:33:15,561 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:33:16,016 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:33:17,128 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:33:17,331 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:33:17,957 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:33:18,393 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:33:20,323 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:33:20,640 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:33:21,645 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:33:21,881 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:33:22,648 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:33:22,976 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:33:24,052 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:33:24,540 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:33:25,076 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:33:25,377 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:33:27,135 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:33:27,533 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:33:28,227 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:33:28,568 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:33:29,047 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:33:29,450 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:33:33,726 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:33:33,975 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:33:36,439 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:33:36,696 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:33:37,219 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:33:37,432 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:33:44,844 - parser_realty.core.logger - INFO - Configuration initialized
+2026-02-03 13:33:45,279 - parser_realty.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:33:45,392 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:33:53,603 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:33:53,927 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:33:53,969 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:33:54,030 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:33:54,092 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:33:54,135 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:33:54,199 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:33:54,254 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:33:54,276 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:33:54,316 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:33:54,396 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:33:54,449 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:33:54,509 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:33:54,550 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:33:54,594 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:33:54,625 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:33:54,656 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:33:54,687 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:33:54,707 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:33:54,733 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:33:54,758 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:33:54,776 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:33:54,795 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:33:54,812 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:33:54,831 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:33:54,856 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:33:54,879 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:33:54,902 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:33:54,925 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:33:54,947 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:33:54,965 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:34:02,103 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:34:02,126 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:34:02,144 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:34:02,160 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:34:02,176 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:34:02,193 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:34:02,210 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:34:02,225 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:34:02,243 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:34:02,261 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:34:02,280 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:34:02,302 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:34:02,320 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:34:02,339 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:34:02,358 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:34:02,378 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:34:02,397 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:34:02,415 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:34:02,433 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:34:02,451 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:34:02,466 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:34:02,482 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:34:02,511 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:34:02,636 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:34:02,661 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:34:02,699 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:34:02,720 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:34:02,736 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:34:02,757 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:34:02,773 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:34:02,789 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:34:07,819 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:34:07,839 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:34:07,856 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:34:07,872 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:34:07,886 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:34:07,901 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:34:07,917 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:34:07,931 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:34:07,945 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:34:07,959 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:34:07,975 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:34:07,991 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:34:08,007 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:34:08,024 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:34:08,041 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:34:08,062 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:34:08,088 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:34:08,107 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:34:08,120 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:34:08,133 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:34:08,145 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:34:08,158 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:34:08,174 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:34:08,190 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:34:08,204 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:34:08,220 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:34:08,239 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:34:08,257 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:34:08,277 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:34:08,301 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:34:08,320 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:34:14,027 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:34:14,044 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:34:14,061 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:34:14,095 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:34:14,117 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:34:14,141 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:34:14,166 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:34:14,192 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:34:14,210 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:34:14,234 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:34:14,267 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:34:52,188 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:34:52,902 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:34:53,248 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:34:54,890 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:34:55,115 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:34:55,525 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:34:55,780 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:34:56,682 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:34:56,892 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:34:57,597 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:34:57,802 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:34:58,194 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:34:58,413 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:34:59,243 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:34:59,445 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:34:59,798 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:35:00,014 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:35:00,598 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:35:00,877 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:35:01,516 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:35:01,724 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:35:02,641 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:35:02,915 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:35:03,601 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:35:03,810 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:35:10,678 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:35:10,938 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:35:11,796 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:35:12,011 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:35:12,494 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:35:12,808 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:35:13,544 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:35:13,762 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:35:14,280 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:35:14,547 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:35:15,095 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:35:15,286 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:35:16,249 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:35:16,451 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:35:16,877 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:35:17,070 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:35:18,201 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:35:18,469 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:35:24,019 - parser_realty.core.logger - INFO - Configuration initialized
+2026-02-03 13:35:24,817 - parser_realty.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:35:25,011 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:35:30,672 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:35:30,766 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:35:30,784 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:35:30,799 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:35:30,814 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:35:30,830 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:35:30,846 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:35:30,862 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:35:30,877 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:35:30,890 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:35:30,905 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:35:30,921 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:35:30,936 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:35:30,952 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:35:30,968 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:35:30,983 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:35:30,998 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:35:31,013 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:35:31,027 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:35:31,041 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:35:31,055 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:35:31,070 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:35:31,085 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:35:31,099 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:35:31,113 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:35:31,128 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:35:31,144 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:35:31,159 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:35:31,173 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:35:31,186 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:35:31,201 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:35:35,368 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:35:35,417 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:35:35,451 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:35:35,488 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:35:35,507 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:35:35,524 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:35:35,545 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:35:35,563 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:35:35,579 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:35:35,597 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:35:35,614 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:35:35,631 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:35:35,656 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:35:35,694 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:35:35,740 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:35:35,774 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:35:35,789 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:35:35,803 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:35:35,816 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:35:35,830 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:35:35,844 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:35:35,858 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:35:35,873 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:35:35,925 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:35:35,939 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:35:35,954 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:35:35,968 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:35:35,982 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:35:35,995 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:35:36,010 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:35:36,024 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:35:45,823 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:35:45,999 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:35:46,114 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:35:46,287 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:35:46,484 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:35:46,533 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:35:46,595 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:35:46,644 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:35:46,710 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:35:46,758 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:35:46,809 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:35:46,856 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:35:46,905 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:35:46,954 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:35:47,005 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:35:47,066 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:35:47,126 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:35:47,199 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:35:47,268 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:35:47,320 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:35:47,395 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:35:47,462 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:35:47,541 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:35:47,601 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:35:47,725 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:35:47,805 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:35:47,866 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:35:47,918 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:35:47,975 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:35:48,024 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:35:48,073 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:35:54,160 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:35:54,183 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:35:54,200 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:35:54,215 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:35:54,229 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:35:54,247 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:35:54,263 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:35:54,279 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:35:54,296 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:35:54,314 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:35:54,336 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:36:27,664 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:36:28,535 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:36:28,776 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:36:31,035 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:36:31,235 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:36:31,706 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:36:31,895 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:36:32,851 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:36:33,046 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:36:33,601 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:36:33,807 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:36:37,409 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:36:37,606 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:36:38,402 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:36:38,627 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:36:39,318 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:36:39,514 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:36:40,152 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:36:40,403 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:36:41,172 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:36:41,362 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:36:42,082 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:36:42,284 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:36:43,590 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:36:43,793 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:36:45,852 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:36:46,068 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:36:46,843 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:36:47,033 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:36:48,254 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:36:48,524 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:36:49,169 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:36:49,379 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:36:50,394 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:36:50,609 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:36:57,365 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:36:57,597 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:36:58,045 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:36:58,283 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:36:59,098 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:36:59,321 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:37:00,325 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:37:00,531 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:37:02,249 - parser_realty.core.logger - INFO - Update calendar external_id: 47419
+2026-02-03 13:37:02,512 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47421)
+2026-02-03 13:37:02,972 - parser_realty.core.logger - INFO - Update calendar external_id: 47421
+2026-02-03 13:37:03,185 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47425)
+2026-02-03 13:37:03,642 - parser_realty.core.logger - INFO - Update calendar external_id: 47425
+2026-02-03 13:37:03,854 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48447)
+2026-02-03 13:37:04,372 - parser_realty.core.logger - INFO - Update calendar external_id: 48447
+2026-02-03 13:37:04,593 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48896)
+2026-02-03 13:37:09,496 - parser_realty.core.logger - INFO - Configuration initialized
+2026-02-03 13:37:09,773 - parser_realty.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:37:09,849 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:37:15,383 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:37:15,491 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:37:15,507 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:37:15,521 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:37:15,536 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:37:15,551 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:37:15,567 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:37:15,581 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:37:15,595 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:37:15,608 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:37:15,622 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:37:15,638 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:37:15,652 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:37:15,667 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:37:15,682 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:37:15,695 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:37:15,708 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:37:15,722 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:37:15,735 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:37:15,749 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:37:15,763 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:37:15,776 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:37:15,789 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:37:15,802 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:37:15,816 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:37:15,831 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:37:15,844 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:37:15,859 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:37:15,873 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:37:15,886 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:37:15,900 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:37:19,455 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:37:19,478 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:37:19,494 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:37:19,507 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:37:19,521 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:37:19,534 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:37:19,549 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:37:19,563 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:37:19,576 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:37:19,589 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:37:19,603 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:37:19,616 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:37:19,629 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:37:19,645 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:37:19,660 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:37:19,676 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:37:19,690 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:37:19,703 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:37:19,716 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:37:19,730 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:37:19,743 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:37:19,756 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:37:19,770 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:37:19,823 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:37:19,836 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:37:19,850 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:37:19,863 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:37:19,876 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:37:19,889 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:37:19,902 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:37:19,916 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:37:26,583 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:37:26,613 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:37:26,630 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:37:26,646 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:37:26,678 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:37:26,692 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:37:26,706 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:37:26,723 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:37:26,754 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:37:26,776 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:37:26,798 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:37:26,820 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:37:26,849 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:37:26,866 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:37:26,905 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:37:26,926 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:37:26,947 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:37:26,969 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:37:26,995 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:37:27,021 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:37:27,043 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:37:27,067 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:37:27,100 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:37:27,121 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:37:27,143 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:37:27,164 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:37:27,189 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:37:27,216 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:37:27,238 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:37:27,260 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:37:27,281 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:37:32,328 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:37:32,365 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:37:32,414 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:37:32,460 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:37:32,512 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:37:32,562 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:37:32,609 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:37:32,668 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:37:32,719 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:37:32,767 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:37:32,827 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:38:05,720 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:38:06,528 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:38:06,735 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:38:08,042 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:38:08,322 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:38:09,036 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:38:09,246 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:38:10,074 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:38:10,283 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:38:10,769 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:38:11,000 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:38:11,644 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:38:11,863 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:38:12,563 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:38:12,768 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:38:13,161 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:38:13,354 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:38:15,754 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:38:16,013 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:38:16,446 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:38:16,652 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:38:17,495 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:38:17,708 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:38:18,155 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:38:18,367 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:38:18,993 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:38:19,196 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:38:19,888 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:38:20,089 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:38:20,760 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:38:20,966 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:38:21,845 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:38:22,072 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:38:22,772 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:38:22,973 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:38:23,553 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:38:23,743 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:38:24,250 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:38:24,470 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:38:24,955 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:38:25,161 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:38:25,655 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:38:25,880 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:38:26,833 - parser_realty.core.logger - INFO - Update calendar external_id: 47419
+2026-02-03 13:38:27,078 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47421)
+2026-02-03 13:38:28,524 - parser_realty.core.logger - INFO - Update calendar external_id: 47421
+2026-02-03 13:38:28,740 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47425)
+2026-02-03 13:38:29,125 - parser_realty.core.logger - INFO - Update calendar external_id: 47425
+2026-02-03 13:38:29,356 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48447)
+2026-02-03 13:38:30,512 - parser_realty.core.logger - INFO - Update calendar external_id: 48447
+2026-02-03 13:38:30,762 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48896)
+2026-02-03 13:38:31,615 - parser_realty.core.logger - INFO - Update calendar external_id: 48896
+2026-02-03 13:38:31,824 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 50632)
+2026-02-03 13:38:32,361 - parser_realty.core.logger - INFO - Update calendar external_id: 50632
+2026-02-03 13:38:32,574 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51725)
+2026-02-03 13:38:33,412 - parser_realty.core.logger - INFO - Update calendar external_id: 51725
+2026-02-03 13:38:33,622 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51726)
+2026-02-03 13:38:34,259 - parser_realty.core.logger - INFO - Update calendar external_id: 51726
+2026-02-03 13:38:34,461 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 52801)
+2026-02-03 13:38:35,120 - parser_realty.core.logger - INFO - Update calendar external_id: 52801
+2026-02-03 13:38:35,339 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 53173)
+2026-02-03 13:38:36,174 - parser_realty.core.logger - INFO - Update calendar external_id: 53173
+2026-02-03 13:38:36,387 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54702)
+2026-02-03 13:38:37,125 - parser_realty.core.logger - INFO - Update calendar external_id: 54702
+2026-02-03 13:38:37,334 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54790)
+2026-02-03 13:38:37,919 - parser_realty.core.logger - INFO - Update calendar external_id: 54790
+2026-02-03 13:38:38,156 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 58096)
+2026-02-03 13:38:38,816 - parser_realty.core.logger - INFO - Update calendar external_id: 58096
+2026-02-03 13:38:39,024 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60213)
+2026-02-03 13:38:39,809 - parser_realty.core.logger - INFO - Update calendar external_id: 60213
+2026-02-03 13:38:40,151 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60756)
+2026-02-03 13:38:43,202 - parser_realty.core.logger - INFO - Update calendar external_id: 60756
+2026-02-03 13:38:43,435 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62912)
+2026-02-03 13:38:44,777 - parser_realty.core.logger - INFO - Update calendar external_id: 62912
+2026-02-03 13:38:44,998 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62915)
+2026-02-03 13:38:45,968 - parser_realty.core.logger - INFO - Update calendar external_id: 62915
+2026-02-03 13:38:46,198 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64803)
+2026-02-03 13:38:46,885 - parser_realty.core.logger - INFO - Update calendar external_id: 64803
+2026-02-03 13:38:47,094 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64804)
+2026-02-03 13:38:47,625 - parser_realty.core.logger - INFO - Update calendar external_id: 64804
+2026-02-03 13:38:47,835 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64810)
+2026-02-03 13:38:49,088 - parser_realty.core.logger - INFO - Update calendar external_id: 64810
+2026-02-03 13:38:49,287 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64812)
+2026-02-03 13:38:53,569 - parser_realty.core.logger - INFO - Update calendar external_id: 64812
+2026-02-03 13:38:53,777 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64958)
+2026-02-03 13:38:54,565 - parser_realty.core.logger - INFO - Update calendar external_id: 64958
+2026-02-03 13:38:54,785 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65178)
+2026-02-03 13:38:55,450 - parser_realty.core.logger - INFO - Update calendar external_id: 65178
+2026-02-03 13:38:55,661 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65180)
+2026-02-03 13:38:56,607 - parser_realty.core.logger - INFO - Update calendar external_id: 65180
+2026-02-03 13:38:56,823 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65182)
+2026-02-03 13:38:57,533 - parser_realty.core.logger - INFO - Update calendar external_id: 65182
+2026-02-03 13:38:57,748 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66783)
+2026-02-03 13:38:58,496 - parser_realty.core.logger - INFO - Update calendar external_id: 66783
+2026-02-03 13:38:58,709 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66828)
+2026-02-03 13:38:59,365 - parser_realty.core.logger - INFO - Update calendar external_id: 66828
+2026-02-03 13:38:59,616 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 68025)
+2026-02-03 13:39:00,046 - parser_realty.core.logger - INFO - Update calendar external_id: 68025
+2026-02-03 13:39:00,235 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 75758)
+2026-02-03 13:39:00,681 - parser_realty.core.logger - INFO - Update calendar external_id: 75758
+2026-02-03 13:39:00,916 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76540)
+2026-02-03 13:39:01,451 - parser_realty.core.logger - INFO - Update calendar external_id: 76540
+2026-02-03 13:39:01,666 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76541)
+2026-02-03 13:39:02,354 - parser_realty.core.logger - INFO - Update calendar external_id: 76541
+2026-02-03 13:39:02,568 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76542)
+2026-02-03 13:39:03,602 - parser_realty.core.logger - INFO - Update calendar external_id: 76542
+2026-02-03 13:39:03,813 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 85756)
+2026-02-03 13:39:04,522 - parser_realty.core.logger - INFO - Update calendar external_id: 85756
+2026-02-03 13:39:04,735 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86590)
+2026-02-03 13:39:05,370 - parser_realty.core.logger - INFO - Update calendar external_id: 86590
+2026-02-03 13:39:05,598 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86830)
+2026-02-03 13:39:06,025 - parser_realty.core.logger - INFO - Update calendar external_id: 86830
+2026-02-03 13:39:06,221 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87242)
+2026-02-03 13:39:06,892 - parser_realty.core.logger - INFO - Update calendar external_id: 87242
+2026-02-03 13:39:07,094 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87269)
+2026-02-03 13:39:07,643 - parser_realty.core.logger - INFO - Update calendar external_id: 87269
+2026-02-03 13:39:07,836 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89026)
+2026-02-03 13:39:08,255 - parser_realty.core.logger - INFO - Update calendar external_id: 89026
+2026-02-03 13:39:08,479 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89679)
+2026-02-03 13:39:08,891 - parser_realty.core.logger - INFO - Update calendar external_id: 89679
+2026-02-03 13:39:09,182 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93264)
+2026-02-03 13:39:09,698 - parser_realty.core.logger - INFO - Update calendar external_id: 93264
+2026-02-03 13:39:09,960 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93591)
+2026-02-03 13:39:11,353 - parser_realty.core.logger - INFO - Update calendar external_id: 93591
+2026-02-03 13:39:11,555 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 102864)
+2026-02-03 13:39:11,978 - parser_realty.core.logger - INFO - Update calendar external_id: 102864
+2026-02-03 13:39:12,200 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 107487)
+2026-02-03 13:39:12,881 - parser_realty.core.logger - INFO - Update calendar external_id: 107487
+2026-02-03 13:39:13,076 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 108694)
+2026-02-03 13:39:13,783 - parser_realty.core.logger - INFO - Update calendar external_id: 108694
+2026-02-03 13:39:13,999 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118566)
+2026-02-03 13:39:14,710 - parser_realty.core.logger - INFO - Update calendar external_id: 118566
+2026-02-03 13:39:14,905 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118574)
+2026-02-03 13:39:15,585 - parser_realty.core.logger - INFO - Update calendar external_id: 118574
+2026-02-03 13:39:15,779 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118580)
+2026-02-03 13:39:16,738 - parser_realty.core.logger - INFO - Update calendar external_id: 118580
+2026-02-03 13:39:16,941 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122614)
+2026-02-03 13:39:17,758 - parser_realty.core.logger - INFO - Update calendar external_id: 122614
+2026-02-03 13:39:17,955 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122641)
+2026-02-03 13:39:18,375 - parser_realty.core.logger - INFO - Update calendar external_id: 122641
+2026-02-03 13:39:18,573 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124212)
+2026-02-03 13:39:19,264 - parser_realty.core.logger - INFO - Update calendar external_id: 124212
+2026-02-03 13:39:19,458 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124338)
+2026-02-03 13:39:19,931 - parser_realty.core.logger - INFO - Update calendar external_id: 124338
+2026-02-03 13:39:20,149 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124339)
+2026-02-03 13:39:20,638 - parser_realty.core.logger - INFO - Update calendar external_id: 124339
+2026-02-03 13:39:20,901 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127166)
+2026-02-03 13:39:21,366 - parser_realty.core.logger - INFO - Update calendar external_id: 127166
+2026-02-03 13:39:21,583 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127561)
+2026-02-03 13:39:22,187 - parser_realty.core.logger - INFO - Update calendar external_id: 127561
+2026-02-03 13:39:22,398 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130526)
+2026-02-03 13:39:22,826 - parser_realty.core.logger - INFO - Update calendar external_id: 130526
+2026-02-03 13:39:23,026 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130533)
+2026-02-03 13:39:23,603 - parser_realty.core.logger - INFO - Update calendar external_id: 130533
+2026-02-03 13:39:23,848 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130831)
+2026-02-03 13:39:24,682 - parser_realty.core.logger - INFO - Update calendar external_id: 130831
+2026-02-03 13:39:24,880 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130975)
+2026-02-03 13:39:25,573 - parser_realty.core.logger - INFO - Update calendar external_id: 130975
+2026-02-03 13:39:25,792 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133049)
+2026-02-03 13:39:26,145 - parser_realty.core.logger - INFO - Update calendar external_id: 133049
+2026-02-03 13:39:26,351 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133050)
+2026-02-03 13:39:27,085 - parser_realty.core.logger - INFO - Update calendar external_id: 133050
+2026-02-03 13:39:27,286 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146636)
+2026-02-03 13:39:28,322 - parser_realty.core.logger - INFO - Update calendar external_id: 146636
+2026-02-03 13:39:28,523 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146637)
+2026-02-03 13:39:29,120 - parser_realty.core.logger - INFO - Update calendar external_id: 146637
+2026-02-03 13:39:29,332 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146638)
+2026-02-03 13:39:30,402 - parser_realty.core.logger - INFO - Update calendar external_id: 146638
+2026-02-03 13:39:30,616 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146639)
+2026-02-03 13:39:31,130 - parser_realty.core.logger - INFO - Update calendar external_id: 146639
+2026-02-03 13:39:31,337 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146954)
+2026-02-03 13:39:31,840 - parser_realty.core.logger - INFO - Update calendar external_id: 146954
+2026-02-03 13:39:32,077 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146956)
+2026-02-03 13:39:32,619 - parser_realty.core.logger - INFO - Update calendar external_id: 146956
+2026-02-03 13:39:32,846 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 147428)
+2026-02-03 13:39:33,772 - parser_realty.core.logger - INFO - Update calendar external_id: 147428
+2026-02-03 13:39:33,993 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 149542)
+2026-02-03 13:39:34,767 - parser_realty.core.logger - INFO - Update calendar external_id: 149542
+2026-02-03 13:39:35,094 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 166376)
+2026-02-03 13:39:35,538 - parser_realty.core.logger - INFO - Update calendar external_id: 166376
+2026-02-03 13:39:35,767 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 170221)
+2026-02-03 13:39:36,441 - parser_realty.core.logger - INFO - Update calendar external_id: 170221
+2026-02-03 13:39:36,634 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 176391)
+2026-02-03 13:39:37,345 - parser_realty.core.logger - INFO - Update calendar external_id: 176391
+2026-02-03 13:39:37,538 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 177923)
+2026-02-03 13:39:38,286 - parser_realty.core.logger - INFO - Update calendar external_id: 177923
+2026-02-03 13:39:38,553 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 179428)
+2026-02-03 13:39:39,067 - parser_realty.core.logger - INFO - Update calendar external_id: 179428
+2026-02-03 13:39:39,271 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 180582)
+2026-02-03 13:39:39,736 - parser_realty.core.logger - INFO - Update calendar external_id: 180582
+2026-02-03 13:39:39,928 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 206230)
+2026-02-03 13:39:40,593 - parser_realty.core.logger - INFO - Update calendar external_id: 206230
+2026-02-03 13:39:40,801 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 263864)
+2026-02-03 13:39:41,425 - parser_realty.core.logger - INFO - Update calendar external_id: 263864
+2026-02-03 13:39:41,628 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276296)
+2026-02-03 13:39:42,324 - parser_realty.core.logger - INFO - Update calendar external_id: 276296
+2026-02-03 13:39:42,520 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276324)
+2026-02-03 13:39:43,392 - parser_realty.core.logger - INFO - Update calendar external_id: 276324
+2026-02-03 13:39:43,607 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276357)
+2026-02-03 13:39:44,608 - parser_realty.core.logger - INFO - Update calendar external_id: 276357
+2026-02-03 13:39:44,828 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:40:02,968 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:40:02,987 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:40:03,003 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:40:03,018 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:40:03,032 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:40:03,045 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:40:03,059 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:40:03,072 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:40:03,087 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:40:03,100 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:40:03,113 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:40:03,126 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:40:03,140 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:40:03,155 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:40:03,170 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:40:03,185 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:40:03,201 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:40:03,216 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:40:03,231 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:40:03,246 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:40:03,261 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:40:03,275 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:40:03,288 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:40:03,301 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:40:03,315 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:40:03,328 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:40:03,344 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:40:03,359 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:40:03,374 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:40:03,388 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:40:03,404 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:40:13,336 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:40:13,354 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:40:13,368 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:40:13,381 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:40:13,395 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:40:13,410 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:40:13,423 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:40:13,437 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:40:13,451 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:40:13,463 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:40:13,477 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:40:13,490 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:40:13,502 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:40:13,515 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:40:13,528 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:40:13,541 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:40:13,554 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:40:13,567 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:40:13,580 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:40:13,593 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:40:13,605 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:40:13,621 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:40:13,634 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:40:13,648 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:40:13,662 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:40:13,676 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:40:13,690 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:40:13,703 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:40:13,716 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:40:13,729 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:40:13,746 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:40:17,317 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:40:17,335 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:40:17,350 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:40:17,365 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:40:17,378 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:40:17,393 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:40:17,413 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:40:17,426 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:40:17,441 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:40:17,455 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:40:17,469 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:40:17,482 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:40:17,495 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:40:17,507 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:40:17,520 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:40:17,533 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:40:17,545 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:40:17,558 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:40:17,570 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:40:17,584 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:40:17,596 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:40:17,610 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:40:17,624 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:40:17,639 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:40:17,654 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:40:17,668 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:40:17,683 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:40:17,699 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:40:17,711 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:40:17,725 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:40:17,740 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:40:22,723 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:40:22,749 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:40:22,768 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:40:22,781 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:40:22,793 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:40:22,806 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:40:22,819 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:40:22,832 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:40:22,845 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:40:22,858 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:40:22,872 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:40:55,826 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:40:56,744 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:40:56,954 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:40:57,544 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:40:57,775 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:40:58,786 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:40:59,043 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:40:59,849 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:41:00,061 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:41:01,042 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:41:01,244 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:41:01,919 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:41:02,131 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:41:02,834 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:41:03,043 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:41:05,232 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:41:05,455 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:41:05,859 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:41:06,079 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:41:06,786 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:41:07,069 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:41:09,207 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:41:09,426 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:41:10,073 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:41:10,282 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:41:10,909 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:41:11,106 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:41:11,671 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:41:11,928 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:41:12,693 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:41:12,914 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:41:13,963 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:41:14,175 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:41:14,598 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:41:14,790 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:41:15,632 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:41:15,838 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:41:16,451 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:41:16,661 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:41:17,075 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:41:17,275 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:41:17,988 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:41:18,208 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:41:20,832 - parser_realty.core.logger - INFO - Update calendar external_id: 47419
+2026-02-03 13:41:21,062 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47421)
+2026-02-03 13:41:21,714 - parser_realty.core.logger - INFO - Update calendar external_id: 47421
+2026-02-03 13:41:21,922 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47425)
+2026-02-03 13:41:22,259 - parser_realty.core.logger - INFO - Update calendar external_id: 47425
+2026-02-03 13:41:22,478 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48447)
+2026-02-03 13:41:23,016 - parser_realty.core.logger - INFO - Update calendar external_id: 48447
+2026-02-03 13:41:23,221 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48896)
+2026-02-03 13:41:24,361 - parser_realty.core.logger - INFO - Update calendar external_id: 48896
+2026-02-03 13:41:24,577 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 50632)
+2026-02-03 13:41:25,078 - parser_realty.core.logger - INFO - Update calendar external_id: 50632
+2026-02-03 13:41:25,332 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51725)
+2026-02-03 13:41:26,051 - parser_realty.core.logger - INFO - Update calendar external_id: 51725
+2026-02-03 13:41:26,257 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51726)
+2026-02-03 13:41:26,688 - parser_realty.core.logger - INFO - Update calendar external_id: 51726
+2026-02-03 13:41:26,908 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 52801)
+2026-02-03 13:41:27,639 - parser_realty.core.logger - INFO - Update calendar external_id: 52801
+2026-02-03 13:41:27,837 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 53173)
+2026-02-03 13:41:28,252 - parser_realty.core.logger - INFO - Update calendar external_id: 53173
+2026-02-03 13:41:28,484 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54702)
+2026-02-03 13:41:29,201 - parser_realty.core.logger - INFO - Update calendar external_id: 54702
+2026-02-03 13:41:29,458 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54790)
+2026-02-03 13:41:30,114 - parser_realty.core.logger - INFO - Update calendar external_id: 54790
+2026-02-03 13:41:30,303 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 58096)
+2026-02-03 13:41:30,755 - parser_realty.core.logger - INFO - Update calendar external_id: 58096
+2026-02-03 13:41:30,989 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60213)
+2026-02-03 13:41:31,668 - parser_realty.core.logger - INFO - Update calendar external_id: 60213
+2026-02-03 13:41:31,884 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60756)
+2026-02-03 13:41:32,352 - parser_realty.core.logger - INFO - Update calendar external_id: 60756
+2026-02-03 13:41:32,556 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62912)
+2026-02-03 13:41:33,237 - parser_realty.core.logger - INFO - Update calendar external_id: 62912
+2026-02-03 13:41:33,434 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62915)
+2026-02-03 13:41:33,990 - parser_realty.core.logger - INFO - Update calendar external_id: 62915
+2026-02-03 13:41:34,187 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64803)
+2026-02-03 13:41:34,880 - parser_realty.core.logger - INFO - Update calendar external_id: 64803
+2026-02-03 13:41:35,079 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64804)
+2026-02-03 13:41:35,612 - parser_realty.core.logger - INFO - Update calendar external_id: 64804
+2026-02-03 13:41:35,804 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64810)
+2026-02-03 13:41:36,488 - parser_realty.core.logger - INFO - Update calendar external_id: 64810
+2026-02-03 13:41:36,707 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64812)
+2026-02-03 13:41:37,289 - parser_realty.core.logger - INFO - Update calendar external_id: 64812
+2026-02-03 13:41:37,501 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64958)
+2026-02-03 13:41:38,114 - parser_realty.core.logger - INFO - Update calendar external_id: 64958
+2026-02-03 13:41:38,338 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65178)
+2026-02-03 13:41:39,442 - parser_realty.core.logger - INFO - Update calendar external_id: 65178
+2026-02-03 13:41:39,670 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65180)
+2026-02-03 13:41:40,348 - parser_realty.core.logger - INFO - Update calendar external_id: 65180
+2026-02-03 13:41:40,557 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65182)
+2026-02-03 13:41:41,040 - parser_realty.core.logger - INFO - Update calendar external_id: 65182
+2026-02-03 13:41:41,261 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66783)
+2026-02-03 13:41:42,011 - parser_realty.core.logger - INFO - Update calendar external_id: 66783
+2026-02-03 13:41:42,223 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66828)
+2026-02-03 13:41:42,876 - parser_realty.core.logger - INFO - Update calendar external_id: 66828
+2026-02-03 13:41:43,072 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 68025)
+2026-02-03 13:41:43,648 - parser_realty.core.logger - INFO - Update calendar external_id: 68025
+2026-02-03 13:41:43,868 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 75758)
+2026-02-03 13:41:44,531 - parser_realty.core.logger - INFO - Update calendar external_id: 75758
+2026-02-03 13:41:44,744 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76540)
+2026-02-03 13:41:45,497 - parser_realty.core.logger - INFO - Update calendar external_id: 76540
+2026-02-03 13:41:45,715 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76541)
+2026-02-03 13:41:46,273 - parser_realty.core.logger - INFO - Update calendar external_id: 76541
+2026-02-03 13:41:46,541 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76542)
+2026-02-03 13:41:47,526 - parser_realty.core.logger - INFO - Update calendar external_id: 76542
+2026-02-03 13:41:47,734 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 85756)
+2026-02-03 13:41:48,731 - parser_realty.core.logger - INFO - Update calendar external_id: 85756
+2026-02-03 13:41:48,939 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86590)
+2026-02-03 13:41:51,565 - parser_realty.core.logger - INFO - Update calendar external_id: 86590
+2026-02-03 13:41:51,782 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86830)
+2026-02-03 13:41:55,409 - parser_realty.core.logger - INFO - Update calendar external_id: 86830
+2026-02-03 13:41:55,628 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87242)
+2026-02-03 13:41:56,439 - parser_realty.core.logger - INFO - Update calendar external_id: 87242
+2026-02-03 13:41:56,645 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87269)
+2026-02-03 13:41:57,251 - parser_realty.core.logger - INFO - Update calendar external_id: 87269
+2026-02-03 13:41:57,462 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89026)
+2026-02-03 13:41:58,376 - parser_realty.core.logger - INFO - Update calendar external_id: 89026
+2026-02-03 13:41:58,600 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89679)
+2026-02-03 13:41:59,045 - parser_realty.core.logger - INFO - Update calendar external_id: 89679
+2026-02-03 13:41:59,275 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93264)
+2026-02-03 13:42:01,086 - parser_realty.core.logger - INFO - Update calendar external_id: 93264
+2026-02-03 13:42:01,282 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93591)
+2026-02-03 13:42:01,953 - parser_realty.core.logger - INFO - Update calendar external_id: 93591
+2026-02-03 13:42:02,175 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 102864)
+2026-02-03 13:42:03,438 - parser_realty.core.logger - INFO - Update calendar external_id: 102864
+2026-02-03 13:42:03,650 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 107487)
+2026-02-03 13:42:04,171 - parser_realty.core.logger - INFO - Update calendar external_id: 107487
+2026-02-03 13:42:04,386 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 108694)
+2026-02-03 13:42:05,361 - parser_realty.core.logger - INFO - Update calendar external_id: 108694
+2026-02-03 13:42:05,623 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118566)
+2026-02-03 13:42:06,565 - parser_realty.core.logger - INFO - Update calendar external_id: 118566
+2026-02-03 13:42:06,795 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118574)
+2026-02-03 13:42:08,208 - parser_realty.core.logger - INFO - Update calendar external_id: 118574
+2026-02-03 13:42:08,451 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118580)
+2026-02-03 13:42:09,113 - parser_realty.core.logger - INFO - Update calendar external_id: 118580
+2026-02-03 13:42:09,342 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122614)
+2026-02-03 13:42:10,209 - parser_realty.core.logger - INFO - Update calendar external_id: 122614
+2026-02-03 13:42:10,404 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122641)
+2026-02-03 13:42:11,277 - parser_realty.core.logger - INFO - Update calendar external_id: 122641
+2026-02-03 13:42:11,496 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124212)
+2026-02-03 13:42:12,008 - parser_realty.core.logger - INFO - Update calendar external_id: 124212
+2026-02-03 13:42:12,216 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124338)
+2026-02-03 13:42:13,693 - parser_realty.core.logger - INFO - Update calendar external_id: 124338
+2026-02-03 13:42:13,917 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124339)
+2026-02-03 13:42:14,586 - parser_realty.core.logger - INFO - Update calendar external_id: 124339
+2026-02-03 13:42:14,797 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127166)
+2026-02-03 13:42:15,649 - parser_realty.core.logger - INFO - Update calendar external_id: 127166
+2026-02-03 13:42:15,875 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127561)
+2026-02-03 13:42:16,753 - parser_realty.core.logger - INFO - Update calendar external_id: 127561
+2026-02-03 13:42:16,951 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130526)
+2026-02-03 13:42:18,297 - parser_realty.core.logger - INFO - Update calendar external_id: 130526
+2026-02-03 13:42:18,520 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130533)
+2026-02-03 13:42:20,321 - parser_realty.core.logger - INFO - Update calendar external_id: 130533
+2026-02-03 13:42:20,570 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130831)
+2026-02-03 13:42:21,148 - parser_realty.core.logger - INFO - Update calendar external_id: 130831
+2026-02-03 13:42:21,387 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130975)
+2026-02-03 13:42:22,090 - parser_realty.core.logger - INFO - Update calendar external_id: 130975
+2026-02-03 13:42:22,320 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133049)
+2026-02-03 13:42:22,895 - parser_realty.core.logger - INFO - Update calendar external_id: 133049
+2026-02-03 13:42:23,104 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133050)
+2026-02-03 13:42:23,812 - parser_realty.core.logger - INFO - Update calendar external_id: 133050
+2026-02-03 13:42:24,043 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146636)
+2026-02-03 13:42:24,766 - parser_realty.core.logger - INFO - Update calendar external_id: 146636
+2026-02-03 13:42:24,963 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146637)
+2026-02-03 13:42:25,879 - parser_realty.core.logger - INFO - Update calendar external_id: 146637
+2026-02-03 13:42:26,095 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146638)
+2026-02-03 13:42:26,797 - parser_realty.core.logger - INFO - Update calendar external_id: 146638
+2026-02-03 13:42:26,991 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146639)
+2026-02-03 13:42:27,838 - parser_realty.core.logger - INFO - Update calendar external_id: 146639
+2026-02-03 13:42:28,033 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146954)
+2026-02-03 13:42:28,960 - parser_realty.core.logger - INFO - Update calendar external_id: 146954
+2026-02-03 13:42:29,266 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146956)
+2026-02-03 13:42:29,994 - parser_realty.core.logger - INFO - Update calendar external_id: 146956
+2026-02-03 13:42:30,213 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 147428)
+2026-02-03 13:42:31,831 - parser_realty.core.logger - INFO - Update calendar external_id: 147428
+2026-02-03 13:42:32,033 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 149542)
+2026-02-03 13:42:32,669 - parser_realty.core.logger - INFO - Update calendar external_id: 149542
+2026-02-03 13:42:32,872 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 166376)
+2026-02-03 13:42:34,068 - parser_realty.core.logger - INFO - Update calendar external_id: 166376
+2026-02-03 13:42:34,258 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 170221)
+2026-02-03 13:42:35,899 - parser_realty.core.logger - INFO - Update calendar external_id: 170221
+2026-02-03 13:42:36,109 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 176391)
+2026-02-03 13:42:37,099 - parser_realty.core.logger - INFO - Update calendar external_id: 176391
+2026-02-03 13:42:37,290 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 177923)
+2026-02-03 13:42:38,270 - parser_realty.core.logger - INFO - Update calendar external_id: 177923
+2026-02-03 13:42:38,504 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 179428)
+2026-02-03 13:42:39,559 - parser_realty.core.logger - INFO - Update calendar external_id: 179428
+2026-02-03 13:42:39,768 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 180582)
+2026-02-03 13:42:40,386 - parser_realty.core.logger - INFO - Update calendar external_id: 180582
+2026-02-03 13:42:40,585 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 206230)
+2026-02-03 13:42:40,995 - parser_realty.core.logger - INFO - Update calendar external_id: 206230
+2026-02-03 13:42:41,212 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 263864)
+2026-02-03 13:42:47,875 - parser_realty.core.logger - INFO - Update calendar external_id: 263864
+2026-02-03 13:42:48,080 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276296)
+2026-02-03 13:42:48,661 - parser_realty.core.logger - INFO - Update calendar external_id: 276296
+2026-02-03 13:42:48,881 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276324)
+2026-02-03 13:42:49,354 - parser_realty.core.logger - INFO - Update calendar external_id: 276324
+2026-02-03 13:42:49,601 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 276357)
+2026-02-03 13:42:50,185 - parser_realty.core.logger - INFO - Update calendar external_id: 276357
+2026-02-03 13:42:50,397 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:43:03,936 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:43:03,954 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:43:03,969 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:43:03,983 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:43:03,995 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:43:04,008 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:43:04,022 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:43:04,035 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:43:04,049 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:43:04,062 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:43:04,117 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:43:04,131 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:43:04,147 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:43:04,162 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:43:04,177 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:43:04,192 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:43:04,207 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:43:04,222 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:43:04,238 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:43:04,253 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:43:04,267 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:43:04,280 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:43:04,293 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:43:04,306 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:43:04,321 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:43:04,336 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:43:04,351 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:43:04,367 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:43:04,382 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:43:04,399 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:43:04,419 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:43:09,773 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:43:09,788 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:43:09,804 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:43:09,818 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:43:09,841 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:43:09,925 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:43:09,943 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:43:09,966 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:43:09,990 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:43:10,008 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:43:10,037 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:43:10,049 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:43:10,063 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:43:10,077 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:43:10,091 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:43:10,107 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:43:10,123 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:43:10,139 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:43:10,156 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:43:10,170 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:43:10,183 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:43:10,210 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:43:10,239 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:43:10,259 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:43:10,279 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:43:10,294 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:43:10,311 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:43:10,328 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:43:10,344 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:43:10,381 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:43:10,423 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:43:15,636 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:43:15,650 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:43:15,664 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:43:15,684 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:43:15,703 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:43:15,717 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:43:15,733 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:43:15,746 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:43:15,759 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:43:15,775 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:43:15,788 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:43:15,802 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:43:15,815 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:43:15,829 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:43:15,843 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:43:15,858 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:43:15,871 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:43:15,884 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:43:15,897 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:43:15,912 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:43:15,927 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:43:15,942 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:43:15,958 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:43:15,974 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:43:15,990 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:43:16,004 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:43:16,017 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:43:16,033 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:43:16,045 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:43:16,060 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:43:16,075 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:43:21,277 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:43:21,292 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:43:21,305 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:43:21,320 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:43:21,334 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:43:21,347 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:43:21,361 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:43:21,374 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:43:21,386 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:43:21,399 - parser_realty.core.logger - INFO - Processing apartment: 64810
+2026-02-03 13:43:21,413 - parser_realty.core.logger - INFO - Request by /apartments (page: 5)
+2026-02-03 13:43:54,467 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6117)
+2026-02-03 13:43:54,957 - parser_realty.core.logger - INFO - Update calendar external_id: 6117
+2026-02-03 13:43:55,165 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6119)
+2026-02-03 13:43:56,621 - parser_realty.core.logger - INFO - Update calendar external_id: 6119
+2026-02-03 13:43:56,843 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 6127)
+2026-02-03 13:43:57,508 - parser_realty.core.logger - INFO - Update calendar external_id: 6127
+2026-02-03 13:43:57,732 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 46946)
+2026-02-03 13:43:58,275 - parser_realty.core.logger - INFO - Update calendar external_id: 46946
+2026-02-03 13:43:58,600 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47089)
+2026-02-03 13:43:59,193 - parser_realty.core.logger - INFO - Update calendar external_id: 47089
+2026-02-03 13:43:59,435 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47093)
+2026-02-03 13:43:59,976 - parser_realty.core.logger - INFO - Update calendar external_id: 47093
+2026-02-03 13:44:00,178 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47094)
+2026-02-03 13:44:01,035 - parser_realty.core.logger - INFO - Update calendar external_id: 47094
+2026-02-03 13:44:01,245 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47098)
+2026-02-03 13:44:01,695 - parser_realty.core.logger - INFO - Update calendar external_id: 47098
+2026-02-03 13:44:01,950 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47100)
+2026-02-03 13:44:02,558 - parser_realty.core.logger - INFO - Update calendar external_id: 47100
+2026-02-03 13:44:02,751 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47102)
+2026-02-03 13:44:03,156 - parser_realty.core.logger - INFO - Update calendar external_id: 47102
+2026-02-03 13:44:03,347 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47105)
+2026-02-03 13:44:04,040 - parser_realty.core.logger - INFO - Update calendar external_id: 47105
+2026-02-03 13:44:04,252 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47107)
+2026-02-03 13:44:04,951 - parser_realty.core.logger - INFO - Update calendar external_id: 47107
+2026-02-03 13:44:05,151 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47109)
+2026-02-03 13:44:06,240 - parser_realty.core.logger - INFO - Update calendar external_id: 47109
+2026-02-03 13:44:06,449 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47125)
+2026-02-03 13:44:07,135 - parser_realty.core.logger - INFO - Update calendar external_id: 47125
+2026-02-03 13:44:07,346 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47128)
+2026-02-03 13:44:09,393 - parser_realty.core.logger - INFO - Update calendar external_id: 47128
+2026-02-03 13:44:09,596 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47129)
+2026-02-03 13:44:10,493 - parser_realty.core.logger - INFO - Update calendar external_id: 47129
+2026-02-03 13:44:10,704 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47130)
+2026-02-03 13:44:11,396 - parser_realty.core.logger - INFO - Update calendar external_id: 47130
+2026-02-03 13:44:11,607 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47131)
+2026-02-03 13:44:12,272 - parser_realty.core.logger - INFO - Update calendar external_id: 47131
+2026-02-03 13:44:12,506 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47134)
+2026-02-03 13:44:13,390 - parser_realty.core.logger - INFO - Update calendar external_id: 47134
+2026-02-03 13:44:13,584 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47135)
+2026-02-03 13:44:14,442 - parser_realty.core.logger - INFO - Update calendar external_id: 47135
+2026-02-03 13:44:14,655 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47137)
+2026-02-03 13:44:15,375 - parser_realty.core.logger - INFO - Update calendar external_id: 47137
+2026-02-03 13:44:15,595 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47419)
+2026-02-03 13:44:17,087 - parser_realty.core.logger - INFO - Update calendar external_id: 47419
+2026-02-03 13:44:17,290 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47421)
+2026-02-03 13:44:18,011 - parser_realty.core.logger - INFO - Update calendar external_id: 47421
+2026-02-03 13:44:18,227 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 47425)
+2026-02-03 13:44:19,551 - parser_realty.core.logger - INFO - Update calendar external_id: 47425
+2026-02-03 13:44:19,752 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48447)
+2026-02-03 13:44:20,395 - parser_realty.core.logger - INFO - Update calendar external_id: 48447
+2026-02-03 13:44:20,603 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 48896)
+2026-02-03 13:44:21,181 - parser_realty.core.logger - INFO - Update calendar external_id: 48896
+2026-02-03 13:44:21,387 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 50632)
+2026-02-03 13:44:22,003 - parser_realty.core.logger - INFO - Update calendar external_id: 50632
+2026-02-03 13:44:22,239 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51725)
+2026-02-03 13:44:22,759 - parser_realty.core.logger - INFO - Update calendar external_id: 51725
+2026-02-03 13:44:22,959 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 51726)
+2026-02-03 13:44:23,754 - parser_realty.core.logger - INFO - Update calendar external_id: 51726
+2026-02-03 13:44:23,955 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 52801)
+2026-02-03 13:44:24,501 - parser_realty.core.logger - INFO - Update calendar external_id: 52801
+2026-02-03 13:44:24,765 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 53173)
+2026-02-03 13:44:25,541 - parser_realty.core.logger - INFO - Update calendar external_id: 53173
+2026-02-03 13:44:25,765 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54702)
+2026-02-03 13:44:26,550 - parser_realty.core.logger - INFO - Update calendar external_id: 54702
+2026-02-03 13:44:26,742 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 54790)
+2026-02-03 13:44:27,631 - parser_realty.core.logger - INFO - Update calendar external_id: 54790
+2026-02-03 13:44:27,838 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 58096)
+2026-02-03 13:44:29,301 - parser_realty.core.logger - INFO - Update calendar external_id: 58096
+2026-02-03 13:44:29,590 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60213)
+2026-02-03 13:44:30,375 - parser_realty.core.logger - INFO - Update calendar external_id: 60213
+2026-02-03 13:44:30,598 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 60756)
+2026-02-03 13:44:31,238 - parser_realty.core.logger - INFO - Update calendar external_id: 60756
+2026-02-03 13:44:31,616 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62912)
+2026-02-03 13:44:32,580 - parser_realty.core.logger - INFO - Update calendar external_id: 62912
+2026-02-03 13:44:32,807 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 62915)
+2026-02-03 13:44:33,234 - parser_realty.core.logger - INFO - Update calendar external_id: 62915
+2026-02-03 13:44:33,423 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64803)
+2026-02-03 13:44:37,052 - parser_realty.core.logger - INFO - Update calendar external_id: 64803
+2026-02-03 13:44:37,259 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64804)
+2026-02-03 13:44:38,227 - parser_realty.core.logger - INFO - Update calendar external_id: 64804
+2026-02-03 13:44:38,473 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64810)
+2026-02-03 13:44:39,003 - parser_realty.core.logger - INFO - Update calendar external_id: 64810
+2026-02-03 13:44:39,201 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64812)
+2026-02-03 13:44:39,923 - parser_realty.core.logger - INFO - Update calendar external_id: 64812
+2026-02-03 13:44:40,140 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 64958)
+2026-02-03 13:44:40,679 - parser_realty.core.logger - INFO - Update calendar external_id: 64958
+2026-02-03 13:44:40,970 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65178)
+2026-02-03 13:44:41,985 - parser_realty.core.logger - INFO - Update calendar external_id: 65178
+2026-02-03 13:44:42,191 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65180)
+2026-02-03 13:44:43,186 - parser_realty.core.logger - INFO - Update calendar external_id: 65180
+2026-02-03 13:44:43,396 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 65182)
+2026-02-03 13:44:44,055 - parser_realty.core.logger - INFO - Update calendar external_id: 65182
+2026-02-03 13:44:44,282 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66783)
+2026-02-03 13:44:44,906 - parser_realty.core.logger - INFO - Update calendar external_id: 66783
+2026-02-03 13:44:45,099 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 66828)
+2026-02-03 13:44:45,920 - parser_realty.core.logger - INFO - Update calendar external_id: 66828
+2026-02-03 13:44:46,119 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 68025)
+2026-02-03 13:44:46,516 - parser_realty.core.logger - INFO - Update calendar external_id: 68025
+2026-02-03 13:44:46,830 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 75758)
+2026-02-03 13:44:48,357 - parser_realty.core.logger - INFO - Update calendar external_id: 75758
+2026-02-03 13:44:48,737 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76540)
+2026-02-03 13:44:49,145 - parser_realty.core.logger - INFO - Update calendar external_id: 76540
+2026-02-03 13:44:49,348 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76541)
+2026-02-03 13:44:50,038 - parser_realty.core.logger - INFO - Update calendar external_id: 76541
+2026-02-03 13:44:50,260 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 76542)
+2026-02-03 13:44:50,706 - parser_realty.core.logger - INFO - Update calendar external_id: 76542
+2026-02-03 13:44:50,946 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 85756)
+2026-02-03 13:44:51,745 - parser_realty.core.logger - INFO - Update calendar external_id: 85756
+2026-02-03 13:44:51,949 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86590)
+2026-02-03 13:44:52,517 - parser_realty.core.logger - INFO - Update calendar external_id: 86590
+2026-02-03 13:44:52,844 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 86830)
+2026-02-03 13:44:53,268 - parser_realty.core.logger - INFO - Update calendar external_id: 86830
+2026-02-03 13:44:53,598 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87242)
+2026-02-03 13:44:54,415 - parser_realty.core.logger - INFO - Update calendar external_id: 87242
+2026-02-03 13:44:54,747 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 87269)
+2026-02-03 13:44:55,228 - parser_realty.core.logger - INFO - Update calendar external_id: 87269
+2026-02-03 13:44:55,577 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89026)
+2026-02-03 13:44:56,181 - parser_realty.core.logger - INFO - Update calendar external_id: 89026
+2026-02-03 13:44:56,558 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 89679)
+2026-02-03 13:44:56,956 - parser_realty.core.logger - INFO - Update calendar external_id: 89679
+2026-02-03 13:44:57,179 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93264)
+2026-02-03 13:44:57,910 - parser_realty.core.logger - INFO - Update calendar external_id: 93264
+2026-02-03 13:44:58,131 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 93591)
+2026-02-03 13:44:59,031 - parser_realty.core.logger - INFO - Update calendar external_id: 93591
+2026-02-03 13:44:59,560 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 102864)
+2026-02-03 13:45:00,838 - parser_realty.core.logger - INFO - Update calendar external_id: 102864
+2026-02-03 13:45:01,032 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 107487)
+2026-02-03 13:45:01,759 - parser_realty.core.logger - INFO - Update calendar external_id: 107487
+2026-02-03 13:45:02,038 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 108694)
+2026-02-03 13:45:02,791 - parser_realty.core.logger - INFO - Update calendar external_id: 108694
+2026-02-03 13:45:02,997 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118566)
+2026-02-03 13:45:03,664 - parser_realty.core.logger - INFO - Update calendar external_id: 118566
+2026-02-03 13:45:03,864 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118574)
+2026-02-03 13:45:04,391 - parser_realty.core.logger - INFO - Update calendar external_id: 118574
+2026-02-03 13:45:04,591 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 118580)
+2026-02-03 13:45:05,108 - parser_realty.core.logger - INFO - Update calendar external_id: 118580
+2026-02-03 13:45:05,305 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122614)
+2026-02-03 13:45:05,950 - parser_realty.core.logger - INFO - Update calendar external_id: 122614
+2026-02-03 13:45:06,234 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 122641)
+2026-02-03 13:45:06,764 - parser_realty.core.logger - INFO - Update calendar external_id: 122641
+2026-02-03 13:45:07,306 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124212)
+2026-02-03 13:45:07,794 - parser_realty.core.logger - INFO - Update calendar external_id: 124212
+2026-02-03 13:45:08,055 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124338)
+2026-02-03 13:45:09,150 - parser_realty.core.logger - INFO - Update calendar external_id: 124338
+2026-02-03 13:45:09,384 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 124339)
+2026-02-03 13:45:10,032 - parser_realty.core.logger - INFO - Update calendar external_id: 124339
+2026-02-03 13:45:10,246 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127166)
+2026-02-03 13:45:10,745 - parser_realty.core.logger - INFO - Update calendar external_id: 127166
+2026-02-03 13:45:10,978 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 127561)
+2026-02-03 13:45:12,143 - parser_realty.core.logger - INFO - Update calendar external_id: 127561
+2026-02-03 13:45:12,351 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130526)
+2026-02-03 13:45:12,862 - parser_realty.core.logger - INFO - Update calendar external_id: 130526
+2026-02-03 13:45:13,063 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130533)
+2026-02-03 13:45:13,868 - parser_realty.core.logger - INFO - Update calendar external_id: 130533
+2026-02-03 13:45:14,088 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130831)
+2026-02-03 13:45:15,231 - parser_realty.core.logger - INFO - Update calendar external_id: 130831
+2026-02-03 13:45:15,440 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 130975)
+2026-02-03 13:45:15,893 - parser_realty.core.logger - INFO - Update calendar external_id: 130975
+2026-02-03 13:45:16,093 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133049)
+2026-02-03 13:45:16,545 - parser_realty.core.logger - INFO - Update calendar external_id: 133049
+2026-02-03 13:45:16,746 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 133050)
+2026-02-03 13:45:17,343 - parser_realty.core.logger - INFO - Update calendar external_id: 133050
+2026-02-03 13:45:17,599 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146636)
+2026-02-03 13:45:18,297 - parser_realty.core.logger - INFO - Update calendar external_id: 146636
+2026-02-03 13:45:18,566 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146637)
+2026-02-03 13:45:19,072 - parser_realty.core.logger - INFO - Update calendar external_id: 146637
+2026-02-03 13:45:19,276 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146638)
+2026-02-03 13:45:19,981 - parser_realty.core.logger - INFO - Update calendar external_id: 146638
+2026-02-03 13:45:20,201 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146639)
+2026-02-03 13:45:20,783 - parser_realty.core.logger - INFO - Update calendar external_id: 146639
+2026-02-03 13:45:21,005 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146954)
+2026-02-03 13:45:21,704 - parser_realty.core.logger - INFO - Update calendar external_id: 146954
+2026-02-03 13:45:21,925 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 146956)
+2026-02-03 13:45:22,827 - parser_realty.core.logger - INFO - Update calendar external_id: 146956
+2026-02-03 13:45:23,068 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 147428)
+2026-02-03 13:45:23,744 - parser_realty.core.logger - INFO - Update calendar external_id: 147428
+2026-02-03 13:45:23,953 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 149542)
+2026-02-03 13:45:24,643 - parser_realty.core.logger - INFO - Update calendar external_id: 149542
+2026-02-03 13:45:24,853 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 166376)
+2026-02-03 13:45:26,092 - parser_realty.core.logger - INFO - Update calendar external_id: 166376
+2026-02-03 13:45:26,306 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 170221)
+2026-02-03 13:45:26,920 - parser_realty.core.logger - INFO - Update calendar external_id: 170221
+2026-02-03 13:45:27,142 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 176391)
+2026-02-03 13:45:27,922 - parser_realty.core.logger - INFO - Update calendar external_id: 176391
+2026-02-03 13:45:28,131 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 177923)
+2026-02-03 13:45:29,334 - parser_realty.core.logger - INFO - Update calendar external_id: 177923
+2026-02-03 13:45:29,580 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 179428)
+2026-02-03 13:45:30,266 - parser_realty.core.logger - INFO - Update calendar external_id: 179428
+2026-02-03 13:45:30,474 - parser_realty.core.logger - INFO - Request by /calendar (apartment_id: 180582)
+2026-02-03 13:45:31,211 - parser_realty.core.logger - INFO - Update calendar external_id: 180582
+2026-02-03 13:45:36,500 - parser_realty.core.logger - INFO - Configuration initialized
+2026-02-03 13:45:36,784 - parser_realty.core.logger - INFO - Инициализируем таблицы
+2026-02-03 13:45:36,874 - parser_realty.core.logger - INFO - Request by /apartments (page: 1)
+2026-02-03 13:45:47,905 - parser_realty.core.logger - INFO - Processing apartment: 47128
+2026-02-03 13:45:48,692 - parser_realty.core.logger - INFO - Processing apartment: 47130
+2026-02-03 13:45:49,219 - parser_realty.core.logger - INFO - Processing apartment: 149542
+2026-02-03 13:45:49,360 - parser_realty.core.logger - INFO - Processing apartment: 107487
+2026-02-03 13:45:49,635 - parser_realty.core.logger - INFO - Processing apartment: 60756
+2026-02-03 13:45:49,851 - parser_realty.core.logger - INFO - Processing apartment: 47094
+2026-02-03 13:45:50,844 - parser_realty.core.logger - INFO - Processing apartment: 47105
+2026-02-03 13:45:51,089 - parser_realty.core.logger - INFO - Processing apartment: 58096
+2026-02-03 13:45:51,169 - parser_realty.core.logger - INFO - Processing apartment: 170221
+2026-02-03 13:45:51,312 - parser_realty.core.logger - INFO - Processing apartment: 66828
+2026-02-03 13:45:51,485 - parser_realty.core.logger - INFO - Processing apartment: 127166
+2026-02-03 13:45:51,656 - parser_realty.core.logger - INFO - Processing apartment: 124339
+2026-02-03 13:45:51,742 - parser_realty.core.logger - INFO - Processing apartment: 93264
+2026-02-03 13:45:51,926 - parser_realty.core.logger - INFO - Processing apartment: 118574
+2026-02-03 13:45:52,066 - parser_realty.core.logger - INFO - Processing apartment: 263864
+2026-02-03 13:45:52,144 - parser_realty.core.logger - INFO - Processing apartment: 52801
+2026-02-03 13:45:52,240 - parser_realty.core.logger - INFO - Processing apartment: 89026
+2026-02-03 13:45:52,305 - parser_realty.core.logger - INFO - Processing apartment: 118580
+2026-02-03 13:45:52,418 - parser_realty.core.logger - INFO - Processing apartment: 133050
+2026-02-03 13:45:52,496 - parser_realty.core.logger - INFO - Processing apartment: 53173
+2026-02-03 13:45:52,563 - parser_realty.core.logger - INFO - Processing apartment: 60213
+2026-02-03 13:45:52,710 - parser_realty.core.logger - INFO - Processing apartment: 54790
+2026-02-03 13:45:53,190 - parser_realty.core.logger - INFO - Processing apartment: 146639
+2026-02-03 13:45:53,257 - parser_realty.core.logger - INFO - Processing apartment: 146956
+2026-02-03 13:45:53,312 - parser_realty.core.logger - INFO - Processing apartment: 51725
+2026-02-03 13:45:53,374 - parser_realty.core.logger - INFO - Processing apartment: 47102
+2026-02-03 13:45:53,457 - parser_realty.core.logger - INFO - Processing apartment: 47089
+2026-02-03 13:45:53,522 - parser_realty.core.logger - INFO - Processing apartment: 146954
+2026-02-03 13:45:53,584 - parser_realty.core.logger - INFO - Processing apartment: 176391
+2026-02-03 13:45:53,633 - parser_realty.core.logger - INFO - Processing apartment: 62912
+2026-02-03 13:45:53,681 - parser_realty.core.logger - INFO - Request by /apartments (page: 2)
+2026-02-03 13:45:58,379 - parser_realty.core.logger - INFO - Processing apartment: 75758
+2026-02-03 13:45:58,396 - parser_realty.core.logger - INFO - Processing apartment: 93591
+2026-02-03 13:45:58,417 - parser_realty.core.logger - INFO - Processing apartment: 146638
+2026-02-03 13:45:58,435 - parser_realty.core.logger - INFO - Processing apartment: 6127
+2026-02-03 13:45:58,459 - parser_realty.core.logger - INFO - Processing apartment: 124338
+2026-02-03 13:45:58,481 - parser_realty.core.logger - INFO - Processing apartment: 47129
+2026-02-03 13:45:58,502 - parser_realty.core.logger - INFO - Processing apartment: 146637
+2026-02-03 13:45:58,527 - parser_realty.core.logger - INFO - Processing apartment: 47109
+2026-02-03 13:45:58,543 - parser_realty.core.logger - INFO - Processing apartment: 124212
+2026-02-03 13:45:58,558 - parser_realty.core.logger - INFO - Processing apartment: 130975
+2026-02-03 13:45:58,572 - parser_realty.core.logger - INFO - Processing apartment: 6119
+2026-02-03 13:45:58,585 - parser_realty.core.logger - INFO - Processing apartment: 47125
+2026-02-03 13:45:58,602 - parser_realty.core.logger - INFO - Processing apartment: 50632
+2026-02-03 13:45:58,619 - parser_realty.core.logger - INFO - Processing apartment: 146636
+2026-02-03 13:45:58,638 - parser_realty.core.logger - INFO - Processing apartment: 66783
+2026-02-03 13:45:58,656 - parser_realty.core.logger - INFO - Processing apartment: 47419
+2026-02-03 13:45:58,673 - parser_realty.core.logger - INFO - Processing apartment: 122641
+2026-02-03 13:45:58,688 - parser_realty.core.logger - INFO - Processing apartment: 47107
+2026-02-03 13:45:58,706 - parser_realty.core.logger - INFO - Processing apartment: 122614
+2026-02-03 13:45:58,723 - parser_realty.core.logger - INFO - Processing apartment: 177923
+2026-02-03 13:45:58,739 - parser_realty.core.logger - INFO - Processing apartment: 54702
+2026-02-03 13:45:58,755 - parser_realty.core.logger - INFO - Processing apartment: 47093
+2026-02-03 13:45:58,773 - parser_realty.core.logger - INFO - Processing apartment: 68025
+2026-02-03 13:45:58,834 - parser_realty.core.logger - INFO - Processing apartment: 47137
+2026-02-03 13:45:58,848 - parser_realty.core.logger - INFO - Processing apartment: 108694
+2026-02-03 13:45:58,864 - parser_realty.core.logger - INFO - Processing apartment: 47421
+2026-02-03 13:45:58,881 - parser_realty.core.logger - INFO - Processing apartment: 47131
+2026-02-03 13:45:58,896 - parser_realty.core.logger - INFO - Processing apartment: 118566
+2026-02-03 13:45:58,912 - parser_realty.core.logger - INFO - Processing apartment: 6117
+2026-02-03 13:45:58,930 - parser_realty.core.logger - INFO - Processing apartment: 51726
+2026-02-03 13:45:58,947 - parser_realty.core.logger - INFO - Request by /apartments (page: 3)
+2026-02-03 13:46:04,056 - parser_realty.core.logger - INFO - Processing apartment: 48896
+2026-02-03 13:46:04,073 - parser_realty.core.logger - INFO - Processing apartment: 46946
+2026-02-03 13:46:04,090 - parser_realty.core.logger - INFO - Processing apartment: 147428
+2026-02-03 13:46:04,104 - parser_realty.core.logger - INFO - Processing apartment: 47425
+2026-02-03 13:46:04,121 - parser_realty.core.logger - INFO - Processing apartment: 87269
+2026-02-03 13:46:04,136 - parser_realty.core.logger - INFO - Processing apartment: 130533
+2026-02-03 13:46:04,151 - parser_realty.core.logger - INFO - Processing apartment: 47135
+2026-02-03 13:46:04,165 - parser_realty.core.logger - INFO - Processing apartment: 47098
+2026-02-03 13:46:04,180 - parser_realty.core.logger - INFO - Processing apartment: 179428
+2026-02-03 13:46:04,195 - parser_realty.core.logger - INFO - Processing apartment: 47134
+2026-02-03 13:46:04,210 - parser_realty.core.logger - INFO - Processing apartment: 133049
+2026-02-03 13:46:04,224 - parser_realty.core.logger - INFO - Processing apartment: 130831
+2026-02-03 13:46:04,238 - parser_realty.core.logger - INFO - Processing apartment: 130526
+2026-02-03 13:46:04,252 - parser_realty.core.logger - INFO - Processing apartment: 64958
+2026-02-03 13:46:04,267 - parser_realty.core.logger - INFO - Processing apartment: 85756
+2026-02-03 13:46:04,283 - parser_realty.core.logger - INFO - Processing apartment: 65180
+2026-02-03 13:46:04,298 - parser_realty.core.logger - INFO - Processing apartment: 65182
+2026-02-03 13:46:04,313 - parser_realty.core.logger - INFO - Processing apartment: 65178
+2026-02-03 13:46:04,329 - parser_realty.core.logger - INFO - Processing apartment: 76542
+2026-02-03 13:46:04,346 - parser_realty.core.logger - INFO - Processing apartment: 76541
+2026-02-03 13:46:04,362 - parser_realty.core.logger - INFO - Processing apartment: 76540
+2026-02-03 13:46:04,378 - parser_realty.core.logger - INFO - Processing apartment: 102864
+2026-02-03 13:46:04,396 - parser_realty.core.logger - INFO - Processing apartment: 180582
+2026-02-03 13:46:04,414 - parser_realty.core.logger - INFO - Processing apartment: 47100
+2026-02-03 13:46:04,434 - parser_realty.core.logger - INFO - Processing apartment: 206230
+2026-02-03 13:46:04,452 - parser_realty.core.logger - INFO - Processing apartment: 276296
+2026-02-03 13:46:04,470 - parser_realty.core.logger - INFO - Processing apartment: 86830
+2026-02-03 13:46:04,488 - parser_realty.core.logger - INFO - Processing apartment: 89679
+2026-02-03 13:46:04,503 - parser_realty.core.logger - INFO - Processing apartment: 86590
+2026-02-03 13:46:04,537 - parser_realty.core.logger - INFO - Processing apartment: 87242
+2026-02-03 13:46:04,567 - parser_realty.core.logger - INFO - Request by /apartments (page: 4)
+2026-02-03 13:46:08,547 - parser_realty.core.logger - INFO - Processing apartment: 166376
+2026-02-03 13:46:08,565 - parser_realty.core.logger - INFO - Processing apartment: 127561
+2026-02-03 13:46:08,585 - parser_realty.core.logger - INFO - Processing apartment: 48447
+2026-02-03 13:46:08,600 - parser_realty.core.logger - INFO - Processing apartment: 62915
+2026-02-03 13:46:08,616 - parser_realty.core.logger - INFO - Processing apartment: 276357
+2026-02-03 13:46:08,634 - parser_realty.core.logger - INFO - Processing apartment: 276324
+2026-02-03 13:46:08,651 - parser_realty.core.logger - INFO - Processing apartment: 64812
+2026-02-03 13:46:08,666 - parser_realty.core.logger - INFO - Processing apartment: 64803
+2026-02-03 13:46:08,683 - parser_realty.core.logger - INFO - Processing apartment: 64804
+2026-02-03 13:46:08,697 - parser_realty.core.logger - INFO - Processing apartment: 64810

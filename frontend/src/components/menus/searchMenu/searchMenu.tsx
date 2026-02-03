@@ -27,6 +27,22 @@ interface Props {
   regionId: number | string;
 }
 
+
+interface FilterItem {
+  id: number;
+  title: string;
+}
+
+// Основной интерфейс ответа от API
+interface FiltersResponse {
+  types: FilterItem[];           // Типы недвижимости
+  metro: FilterItem[];           // Станции метро
+  windows: FilterItem[];         // Виды из окон
+  bathrooms: FilterItem[];       // Типы ванных комнат
+  items: FilterItem[];           // Дополнительные элементы (возможно, удобства/услуги)
+}
+
+
 interface Metro {
   // catagoryData: string[],
   name: string
@@ -175,7 +191,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   const isMD = useMediaQuery('(max-width: 64em)');
   // Получаем выбранные категории и объединяем в строку
   const selectedCategoriesString = filterForm.values.category.join(', ');
-  const [metroData, setMetroData] = useState<Metro[]>([])
+  const [metroData, setMetroData] = useState<FilterItem[]>([])
   // const [notFirst, setNotFirst] = useState(false)
   const [showAll, setShowAll] = useState(false);
   const [radioCh, setRadioCh] = useState(false);
@@ -220,7 +236,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   // }
 
   async function getFiltersData() {
-
+    console.log('getFiltersData')
     const filters = await getFiltersFromBackData(regionId)
     // const type = await getTypeData()
     // const metros = await getMetrosData()
@@ -232,11 +248,11 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
 
     if (filters.ok) {
       const data = await filters.json();
-      // setMetroData(data?.metro || [])
-      // setCategoryData(data?.types || [])
-      // setAdditions(data?.items || [])
-      // setView(data?.windows || [])
-      // setTualet(data?.bathrooms || [])
+      setMetroData(data?.metro || [])
+      setCategoryData(data?.types || [])
+      setAdditions(data?.items || [])
+      setView(data?.windows || [])
+      setTualet(data?.bathrooms || [])
     }
     else {
       setMetroData([])
@@ -433,22 +449,22 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   const [dopsData, setDopsData] = useState(['Парковка', 'Бесконтакт. заселение', 'Отчетные документы'])
   const [availaBData, setAvailaBData] = useState<AvailbType[]>([])
 
-  const [categoryData, setCategoryData] = useState<Type[]>([])
-  const [viewData, setView] = useState<ViewType[]>([])
-  const [tualetData, setTualet] = useState<Bathtype[]>([])
+  const [categoryData, setCategoryData] = useState<FilterItem[]>([])
+  const [viewData, setView] = useState<FilterItem[]>([])
+  const [tualetData, setTualet] = useState<FilterItem[]>([])
 
   const floorsData = ['Не первый', 'Не последний']
 
   const [additions, setAdditions] = useState<Type[]>([])
   const additionsList = (Array.isArray(additions) ? additions : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.name[0].toUpperCase() + tab.name.slice(1)} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title[0].toUpperCase() + tab.title.slice(1)} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
   const visibleAdditionsList = showAll ? additionsList : additionsList.slice(0, 3);
 
   const [dop, setDop] = useState<Type[]>([])
   const dopList = (Array.isArray(dop) ? dop : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.name[0].toUpperCase() + tab.name.slice(1)} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title[0].toUpperCase() + tab.title.slice(1)} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
   const visibleDopList = showAllDop ? dopList : dopList.slice(0, 3);
@@ -459,34 +475,34 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   ));
 
   const availList = (Array.isArray(availaBData) ? availaBData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.accessibility_type} key={tab.accessibility_type} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.title} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const categoryList = (Array.isArray(categoryData) ? categoryData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.name} key={tab.id} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const viewList = (Array.isArray(viewData) ? viewData : []).map((tab, index) => (
-    <Radio size="xs" mt={5} value={tab.notation_view} label={tab.notation_view} key={tab.notation_view} iconColor="sberGreenColor.9" color="grayColor.0"
+    <Radio size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0"
       styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }}
     // checked={filterForm.getInputProps('view') === tab.notation_view.toString()}
     />
   ));
 
   const tyaletList = (Array.isArray(tualetData) ? tualetData : []).map((tab, index) => (
-    <Radio size="xs" mt={5} value={tab.bathroom_type} label={tab.bathroom_type} key={tab.bathroom_type} iconColor="sberGreenColor.9" color="grayColor.0"
+    <Radio size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0"
       styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const metroList = (Array.isArray(metroData) ? metroData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.name} label={tab.name} key={tab.name} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const floorsList = floorsData.map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab} label={tab} key={tab} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} color="sberGreenColor.9"
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
