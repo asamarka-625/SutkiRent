@@ -1,12 +1,14 @@
 # Внешние зависимости
-from typing import List, Dict
+from typing import List, Dict, Annotated, Optional
+from pydantic import Field
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 # Внутренние модули
 from models import User
 from web_app.src.crud import (sql_get_available_apartments, sql_get_regions, sql_add_favorite_for_user,
-                              sql_remove_favorite_for_user)
-from web_app.src.schemas import ApartmentFilter, ObjectsResponse, RegionResponse, FavoriteRequest
+                              sql_remove_favorite_for_user, sql_get_apartment_by_id, sql_get_data_for_filters)
+from web_app.src.schemas import (ApartmentFilter, ObjectsResponse, RegionResponse, FavoriteRequest,
+                                 ApartmentDetailResponse, DataFiltersResponse)
 from web_app.src.dependencies import (get_current_user_by_access_token, get_data_by_refresh_token,
                                       verify_csrf_token)
 
@@ -39,10 +41,30 @@ async def get_apartments(
         sleeping_places=filter_params.sleep,
         floor=filter_params.floor,
         area=filter_params.area,
-        room=filter_params.room
+        room=filter_params.room,
+        type_apartment_ids=filter_params.type_apartment,
+        bathroom_ids=filter_params.bathrooms,
+        metro_ids=filter_params.metro,
+        window_ids=filter_params.windows,
+        item_ids=filter_params.items
     )
 
     return apartments
+
+
+@router.post(
+    "/{apartment_id}",
+    response_model=ApartmentDetailResponse,
+    summary="Получаем объект по ID"
+)
+async def get_apartment_by_id(
+    apartment_id: Annotated[int, Field(ge=1)]
+):
+    apartment = await sql_get_apartment_by_id(
+        apartment_id=apartment_id
+    )
+
+    return apartment
 
 
 @router.get(
@@ -53,6 +75,21 @@ async def get_apartments(
 async def get_regions():
     regions = await sql_get_regions()
     return regions
+
+
+@router.get(
+    "/filters",
+    response_model=DataFiltersResponse,
+    summary="Получаем данные для фильтров"
+)
+async def get_data_filters(
+    region_id: Optional[Annotated[int, Field(ge=1)]] = None
+):
+    data = await sql_get_data_for_filters(
+        region_id=region_id
+    )
+
+    return data
 
 
 @router.post(

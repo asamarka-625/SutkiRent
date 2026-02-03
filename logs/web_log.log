@@ -1,0 +1,119 @@
+2026-02-03 06:16:09,162 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:16:09,652 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 06:16:09,652 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 06:16:09,652 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 06:16:09,714 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 06:16:09,714 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 06:39:42,008 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:43,096 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:44,301 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:45,697 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:47,509 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:50,091 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:39:54,286 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:01,780 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:20,340 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:21,709 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:23,117 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:24,703 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:26,717 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:29,554 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:33,985 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:41,630 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:40:55,711 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:41:14,795 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:41:15,127 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 06:41:15,127 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 06:41:15,128 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 06:41:15,185 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 06:41:15,185 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 06:51:09,684 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:51:10,081 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 06:51:10,081 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 06:51:10,081 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 06:51:10,140 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 06:51:10,140 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 06:54:23,318 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 06:54:23,696 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 06:54:23,696 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 06:54:23,696 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 06:54:23,755 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 06:54:23,755 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 08:46:50,186 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:46:51,669 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:46:53,077 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:46:54,650 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:46:56,635 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:46:59,442 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:23,288 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:24,791 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:26,264 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:27,989 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:30,020 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:50:32,890 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:51:02,650 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:51:03,056 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 08:51:03,056 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 08:51:03,056 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 08:51:03,119 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 08:51:03,119 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 08:54:21,392 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:54:21,774 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 08:54:21,774 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 08:54:21,774 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 08:54:21,838 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 08:54:21,838 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 08:57:43,068 - web_app.src.core.logger - ERROR - Unexpected error get data for filters by region_id = 1: BaseModel.__init__() takes 1 positional argument but 3 were given
+2026-02-03 08:59:06,307 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 08:59:06,766 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 08:59:06,766 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 08:59:06,766 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 08:59:06,847 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 08:59:06,847 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 08:59:11,878 - web_app.src.core.logger - ERROR - Unexpected error get data for filters by region_id = 1: BaseModel.__init__() takes 1 positional argument but 3 were given
+2026-02-03 09:00:31,009 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:00:31,390 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:00:31,390 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:00:31,390 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:00:31,489 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:00:31,490 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:00:59,552 - web_app.src.core.logger - ERROR - Unexpected error get data for filters by region_id = 1: BaseModel.__init__() takes 1 positional argument but 3 were given
+2026-02-03 09:01:59,158 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:01:59,534 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:01:59,535 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:01:59,535 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:01:59,595 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:01:59,595 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:02:01,738 - web_app.src.core.logger - ERROR - Unexpected error get data for filters by region_id = 1: BaseModel.__init__() takes 1 positional argument but 3 were given
+2026-02-03 09:03:23,946 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:03:24,301 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:03:24,301 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:03:24,302 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:03:24,377 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:03:24,377 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:04:10,542 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:04:10,908 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:04:10,908 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:04:10,908 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:04:10,969 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:04:10,970 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:08:38,955 - web_app.src.core.logger - ERROR - Unexpected error get apartment by id = 68: 'NoneType' object has no attribute 'title'
+2026-02-03 09:10:19,961 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:10:20,370 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:10:20,370 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:10:20,370 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:10:20,445 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:10:20,445 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:25:24,052 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:25:24,423 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:25:24,424 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:25:24,424 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:25:24,492 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:25:24,492 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-03 09:27:57,564 - web_app.src.core.logger - ERROR - Unexpected error get available apartments: 'NoneType' object has no attribute 'title'
+2026-02-03 09:28:47,311 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-03 09:28:47,681 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-03 09:28:47,681 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-03 09:28:47,681 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-03 09:28:47,742 - web_app.src.core.logger - INFO - Инициализируем соединение Redis

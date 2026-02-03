@@ -1,50 +1,49 @@
 # Внешние зависимости
 from sqladmin import ModelView
 # Внутренние модули
-from models import Region
+from models import Item
 
 
-# Админка для Region
-class RegionAdmin(ModelView, model=Region):
+# Админка для Item
+class ItemAdmin(ModelView, model=Item):
     column_list = [
-        Region.id,
-        Region.title,
-        Region.order
+        Item.id,
+        Item.title,
+        Item.importance
     ]
 
     column_labels = {
-        Region.id: "Идентификатор",
-        Region.title: "Название",
-        Region.order: "Приоритет выдачи",
-        Region.cities: "Города",
-        Region.metro_stations: "Станции метро",
-        Region.apartments: "Объекты"
+        Item.id: "Идентификатор",
+        Item.title: "Название",
+        Item.importance: "Важность",
+        Item.created_at: "Дата создания",
+        Item.apartments: "Объекты"
     }
 
-    column_searchable_list = [Region.id] # список столбцов, которые можно искать
+    column_searchable_list = [Item.id, Item.title] # список столбцов, которые можно искать
     column_sortable_list = [
-        Region.id,
-        Region.order
+        Item.id,
+        Item.importance
     ]  # список столбцов, которые можно сортировать
 
-    column_default_sort = [(Region.id, True)]
+    column_default_sort = [(Item.id, True)]
 
     form_create_rules = [
         "title",
-        "order"
+        "importance"
     ]
 
     column_details_list = [
-        Region.id,
-        Region.title,
-        Region.cities,
-        Region.metro_stations,
-        Region.apartments
+        Item.id,
+        Item.title,
+        Item.importance,
+        Item.created_at,
+        Item.apartments
     ]
 
     form_edit_rules = [
         "title",
-        "order"
+        "importance"
     ]
 
     can_create = True # право создавать
@@ -53,8 +52,8 @@ class RegionAdmin(ModelView, model=Region):
     can_view_details = True # право смотреть всю информацию
     can_export = True # право экспортировать
 
-    name = "Регион" # название
-    name_plural = "Регионы" # множественное название
+    name = "Предмет" # название
+    name_plural = "Предметы" # множественное название
     icon = "fa-solid fa-layer-group" # иконка
     category = "Объекты" # категория
     category_icon = "fa-solid fa-list" # иконка категории

@@ -9,17 +9,20 @@ class MetroStationAdmin(ModelView, model=MetroStation):
     column_list = [
         MetroStation.id,
         MetroStation.external_id,
-        MetroStation.title
+        MetroStation.title,
+        MetroStation.region
     ]
 
     column_labels = {
         MetroStation.id: "Идентификатор",
         MetroStation.external_id: "Внутренний ID",
         MetroStation.title: "Название",
-        MetroStation.created_at: "Дата создания"
+        MetroStation.region: "Регион",
+        MetroStation.created_at: "Дата создания",
+        MetroStation.apartments: "Объекты"
     }
 
-    column_searchable_list = [MetroStation.external_id] # список столбцов, которые можно искать
+    column_searchable_list = [MetroStation.id, MetroStation.external_id] # список столбцов, которые можно искать
     column_sortable_list = [
         MetroStation.id,
         MetroStation.external_id
@@ -31,11 +34,17 @@ class MetroStationAdmin(ModelView, model=MetroStation):
         MetroStation.id,
         MetroStation.external_id,
         MetroStation.title,
-        MetroStation.created_at
+        MetroStation.region,
+        MetroStation.created_at,
+        MetroStation.apartments
+    ]
+
+    form_edit_rules = [
+        "region"
     ]
 
     can_create = False # право создавать
-    can_edit = False # право редактировать
+    can_edit = True # право редактировать
     can_delete = False # право удалять
     can_view_details = True # право смотреть всю информацию
     can_export = True # право экспортировать

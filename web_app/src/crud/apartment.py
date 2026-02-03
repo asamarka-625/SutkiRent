@@ -1,16 +1,20 @@
 # Внешние зависимости
-from typing import Optional
+import asyncio
+from typing import Optional, List
 from datetime import date
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from sqlalchemy.exc import SQLAlchemyError, IntegrityError, NoResultFound
 from fastapi import HTTPException, status
 # Внутренние модули
-from models import Apartment, ApartmentAvailability, Favorite
+from models import (Apartment, ApartmentAvailability, Favorite, TypeApartment, MetroStation, Window,
+                    BathroomApartment, Item)
 from web_app.src.core import cfg, connection
 from web_app.src.schemas import (ApartmentResponse, ObjectsResponse, PriceFilter, SleepFilter,
-                                 FloorFilter, AreaFilter, RoomFilter)
+                                 FloorFilter, AreaFilter, RoomFilter, ApartmentDetailResponse,
+                                 DataFiltersResponse, ApartmentType, ApartmentMetro, ApartmentWindow,
+                                 ApartmentBathroom, ApartmentItem)
 
 
 # Поиск объектов по фильтрам
@@ -28,7 +32,12 @@ async def sql_get_available_apartments(
     sleeping_places: Optional[SleepFilter] = None,
     floor: Optional[FloorFilter] = None,
     area: Optional[AreaFilter] = None,
-    room: Optional[RoomFilter] = None
+    room: Optional[RoomFilter] = None,
+    type_apartment_ids: Optional[List[int]] = None,
+    bathroom_ids: Optional[List[int]] = None,
+    metro_ids: Optional[List[int]] = None,
+    window_ids: Optional[List[int]] = None,
+    item_ids: Optional[List[int]] = None
 ) -> ObjectsResponse:
     try:
         nights_count = (end_date - start_date).days if (start_date and end_date) else 0
@@ -58,6 +67,21 @@ async def sql_get_available_apartments(
         if room:
             if room.min: filters.append(Apartment.rooms >= room.min)
             if room.max: filters.append(Apartment.rooms <= room.max)
+
+        if type_apartment_ids:
+            filters.append(Apartment.apartment_type_id.in_(type_apartment_ids))
+
+        if bathroom_ids:
+            filters.append(Apartment.apartment_bathroom_id.in_(bathroom_ids))
+
+        if window_ids:
+            filters.append(Apartment.windows.any(Window.id.in_(window_ids)))
+
+        if metro_ids:
+            filters.append(Apartment.metro_stations.any(MetroStation.id.in_(metro_ids)))
+
+        if item_ids:
+            filters.append(Apartment.items.any(Item.id.in_(item_ids)))
 
         # 2. Формируем запрос
         if nights_count > 0:
@@ -117,6 +141,8 @@ async def sql_get_available_apartments(
 
         # 3. Опции загрузки, пагинация и выполнение
         query = query.options(
+            so.joinedload(Apartment.apartment_type),
+            so.joinedload(Apartment.apartment_bathroom),
             so.selectinload(Apartment.photos),
             so.selectinload(Apartment.metro_stations)
         ).limit(page_size + 1).offset((page - 1) * page_size).order_by(Apartment.priority.desc())
@@ -146,6 +172,8 @@ async def sql_get_available_apartments(
             apartments_response.append(ApartmentResponse(
                 id=apt.id,
                 title=apt.title,
+                type=apt.apartment_type.title if apt.apartment_type else None,
+                bathroom=apt.apartment_bathroom.title if apt.apartment_bathroom else None,
                 cost=float(t_cost) + increase_cost if t_cost else 0.0,
                 price=apt.price_without_discount,
                 rooms=apt.rooms,
@@ -273,4 +301,102 @@ async def sql_remove_favorite_for_user(
 
     except Exception as e:
         cfg.logger.error(f"Unexpected error remove apartment ({apartment_id}) in favorite for user ({user_id}): {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Получаем объект по ID
+@connection
+async def sql_get_apartment_by_id(
+    apartment_id: int,
+    session: AsyncSession
+) -> ApartmentDetailResponse:
+    try:
+        apartment_result = await session.execute(
+            sa.select(Apartment)
+            .options(
+                so.joinedload(Apartment.apartment_type),
+                so.joinedload(Apartment.apartment_bathroom),
+                so.selectinload(Apartment.photos),
+                so.selectinload(Apartment.metro_stations),
+                so.selectinload(Apartment.windows),
+                so.selectinload(Apartment.items)
+            )
+            .where(Apartment.id == apartment_id)
+        )
+        apartment = apartment_result.scalar_one_or_none()
+
+        return ApartmentDetailResponse(
+            id=apartment.id,
+            external_id=apartment.external_id,
+            title=apartment.title,
+            type=apartment.apartment_type.title if apartment.apartment_type else None,
+            bathroom=apartment.apartment_bathroom.title if apartment.apartment_bathroom else None,
+            description=apartment.description,
+            price=apartment.price_without_discount,
+            rooms=apartment.rooms,
+            sleeps=apartment.sleeps,
+            floor=apartment.floor,
+            capacity=apartment.capacity,
+            address=apartment.address,
+            metro=[m.title for m in apartment.metro_stations],
+            media={p.order: p.url for p in apartment.photos},
+            latitude=apartment.latitude,
+            longitude=apartment.longitude,
+            windows=[window.title for window in apartment.windows],
+            items=[item.title for item in apartment.items]
+        )
+
+    except NoResultFound:
+        cfg.logger.info(f"Apartment not found by id: {apartment_id}")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Apartment not found")
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error get apartment by id = {apartment_id}: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error get apartment by id = {apartment_id}: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Получаем данные для фильтров
+@connection
+async def sql_get_data_for_filters(
+    session: AsyncSession,
+    region_id: Optional[int] = None
+) -> DataFiltersResponse:
+    try:
+        queries = {
+            "types": sa.select(TypeApartment.id, TypeApartment.title),
+            "windows": sa.select(Window.id, Window.title),
+            "bathrooms": sa.select(BathroomApartment.id, BathroomApartment.title),
+            "items": sa.select(Item.id, Item.title).where(Item.importance == True)
+        }
+
+        if region_id is not None:
+            queries["metro"] = (sa.select(MetroStation.id, MetroStation.title)
+                                .where(MetroStation.region_id == region_id))
+
+        # Выполняем все запросы параллельно (I/O bound задачи)
+        keys = list(queries.keys())
+        results = await asyncio.gather(*(session.execute(queries[k]) for k in keys))
+
+        # Собираем словарь результатов
+        data = {keys[i]: results[i].all() for i in range(len(keys))}
+
+        return DataFiltersResponse(
+            types=[ApartmentType(id=row[0], title=row[1]) for row in data["types"]],
+            metro= [ApartmentMetro(id=row[0], title=row[1]) for row in data["metro"]] \
+                if data.get("metro", False) else [],
+            windows=[ApartmentWindow(id=row[0], title=row[1]) for row in data["windows"]],
+            bathrooms=[ApartmentBathroom(id=row[0], title=row[1]) for row in data["bathrooms"]],
+            items=[ApartmentItem(id=row[0], title=row[1]) for row in data["items"]]
+        )
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error get data for filters by region_id = {region_id}: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error get data for filters by region_id = {region_id}: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")

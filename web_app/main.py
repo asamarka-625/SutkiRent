@@ -8,7 +8,8 @@ from web_app.src.core import cfg, setup_database, engine
 from web_app.src.routers import router
 from web_app.src.admin import (ContentAdmin, PhotoContentAdmin, CategoryContentAdmin, ApartmentAdmin,
                                MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin,
-                               ServiceAdmin)
+                               ServiceAdmin, TypeApartmentAdmin, BathroomApartmentAdmin,
+                               ItemAdmin, WindowAdmin)
 from web_app.src.utils import redis_service
 
 
@@ -44,7 +45,6 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(router)
 
 # Настройка CORS
-# Настройка CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins="*", # cfg.ALLOWED_ORIGINS,
@@ -77,6 +77,10 @@ admin.add_view(RegionAdmin)
 admin.add_view(PhotoApartmentAdmin)
 admin.add_view(UserAdmin)
 admin.add_view(ServiceAdmin)
+admin.add_view(TypeApartmentAdmin)
+admin.add_view(BathroomApartmentAdmin)
+admin.add_view(ItemAdmin)
+admin.add_view(WindowAdmin)
 
 
 if __name__ == '__main__':
