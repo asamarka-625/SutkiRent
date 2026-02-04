@@ -75,7 +75,7 @@ services:
       - frontend
     volumes:
       - ./nginx/nginx.local.conf:/etc/nginx/nginx.conf
-    # - ./nginx/promapp:/etc/nginx/sites-available/promapp
+    # - - ./nginx/promapp:/etc/nginx/conf.d/promapp.conf
       - ./media:/var/www/media
     #  - ./backend/staticfiles:/var/www/staticfiles
     #  - /etc/letsencrypt:/etc/letsencrypt:ro
