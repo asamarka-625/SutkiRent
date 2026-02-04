@@ -17,26 +17,11 @@ upstream frontend {
 server {
     server_name sutki.rent www.sutki.rent;
 
-    # Security headers (ДОБАВЬТЕ!)
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'self';" always;
-
-    # Безопасность для cookies
-    add_header Set-Cookie "Path=/; HttpOnly; Secure; SameSite=Strict" always;
-
-    # Кэширование SPA (ДОБАВЬТЕ!)
+    # Кэширование SPA
     expires -1;
     add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
     if_modified_since off;
     etag off;
-
-    # Rate limiting для разных зон
-    limit_conn addr 10;
-    limit_req zone=frontend burst=20 nodelay;
 
     # Backend API
     location /api/ {
