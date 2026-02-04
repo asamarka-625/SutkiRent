@@ -103,12 +103,22 @@
   transition: all 0.3s ease;
   position: relative; */
    cursor: pointer;
+   width: 100%;
    &[data-checked] {
         background-color: var(--mantine-color-sberGreenColor-9);
         /* border-color: var(--mantine-color-blue-filled); */
         color: var(--mantine-color-white);
     }
 
+}
+
+.labelWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.inner {
+  display: none;
 }
 
 .label:hover {

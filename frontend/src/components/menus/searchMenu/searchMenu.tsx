@@ -10,6 +10,7 @@ import { useDebouncedCallback, useMediaQuery } from "@mantine/hooks";
 import { getAvailData, getBathroomData, getFiltersFromBackData, getInventoryData, getMetrosData, getServiceData, getTypeData, getViewData } from "../../../services/getEverything.ts";
 import { errorHandler } from "../../../handlers/errorBasicHandler.ts";
 import { showNotification } from "@mantine/notifications";
+// import stylescheckbox from "./CheckboxStyles.module.css";
 // import { IconX } from "@tabler/icons-react";
 // export function logOut() {
 //   const navigate = useNavigate();
@@ -24,9 +25,8 @@ interface Props {
   opened: boolean
   closeApply: () => void;
   openMetroModal: () => void;
-  regionId: number | string;
+  filtersSearch: any
 }
-
 
 interface FilterItem {
   id: number;
@@ -82,12 +82,24 @@ function getFloorError(floor_finish: string, value: string) {
 
 const mincost = 0; const maxcost = 250000;
 
-export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Props) {
+export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch}: Props) {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
   const [costForm, setCostForm] = useState([mincost, maxcost] as [number, number])
   const [selected, setSelected] = useState('')
 
+
+  // const regionIdForm = regionId.values.region;
+  
+  // useEffect(() => {
+  //   if (regionIdForm) {
+  //     const fetchFilters = async () => {
+  //       const filters = await getFiltersFromBackData(regionIdForm);
+  //       // Обработка filters
+  //     };
+  //     fetchFilters();
+  //   }
+  // }, [regionId]); // ✅ Будет срабатывать при изменении regionId
 
   const debouncedUpdate = (formValues) => {
     // console.log("меняем валью")
@@ -100,7 +112,8 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
     else newParams.delete('cost_max');
 
     // Обработка массивов
-    const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService'];
+    console.log(formValues['near_metros'])
+    const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService', 'toilet', 'view'];
     arrayFields.forEach(field => {
       if (formValues[field]?.length) {
         newParams.set(field, formValues[field].join(','));
@@ -121,10 +134,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
     });
 
     // Обработка строковых значений
-    if (formValues.view) newParams.set('view', formValues.view);
-    else newParams.delete('view');
-    if (formValues.toilet) newParams.set('toilet', formValues.toilet);
-    else newParams.delete('toilet');
+    // if (formValues.view) newParams.set('view', formValues.view);
+    // else newParams.delete('view');
+    // if (formValues.toilet) newParams.set('toilet', formValues.toilet);
+    // else newParams.delete('toilet');
 
     // Удаляем пустые параметры
     Array.from(newParams.entries()).forEach(([key, value]) => {
@@ -148,8 +161,8 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
       floor_finish: '',
       space_min: '',
       space_max: '',
-      view: '',
-      toilet: '',
+      view: [],
+      toilet: [],
       inRoom: [],
       availability: [],
       dopService: [],
@@ -237,7 +250,11 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
 
   async function getFiltersData() {
     console.log('getFiltersData')
-    const filters = await getFiltersFromBackData(regionId)
+
+    console.log(filtersSearch); // Для отладки
+    
+    const filters = filtersSearch;
+    // const filters = await getFiltersFromBackData(regionId)
     // const type = await getTypeData()
     // const metros = await getMetrosData()
     // const inventory = await getInventoryData()
@@ -398,7 +415,6 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
 
   useEffect(() => {
     debouncedUpdate(filterForm.values)
-
   }, [costForm]);
 
 
@@ -420,8 +436,8 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
       floor_finish: searchParams.get('floor_finish') || '',
       space_min: searchParams.get('space_min') || '',
       space_max: searchParams.get('space_max') || '',
-      view: searchParams.get('view') || '',
-      toilet: searchParams.get('toilet') || '',
+      view: searchParams.get('view')?.split(',').filter(Boolean) || [],
+      toilet: searchParams.get('toilet')?.split(',').filter(Boolean) || [],
       inRoom: searchParams.get('inRoom')?.split(',').filter(Boolean) || [],
       availability: searchParams.get('availability')?.split(',').filter(Boolean) || [],
       dopService: searchParams.get('dopService')?.split(',').filter(Boolean) || []
@@ -444,7 +460,18 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   }, []);
 
 
+useEffect(() => {
+    getFiltersData();
+    console.log('useEffect getFiltersData near_metros: []')
+    
+    filterForm.setValues({
+      near_metros: []
+    });
+    console.log(filterForm.getValues().near_metros)
 
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('near_metros');
+  }, [filtersSearch]);
 
   const [dopsData, setDopsData] = useState(['Парковка', 'Бесконтакт. заселение', 'Отчетные документы'])
   const [availaBData, setAvailaBData] = useState<AvailbType[]>([])
@@ -465,44 +492,51 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
   const [dop, setDop] = useState<Type[]>([])
   const dopList = (Array.isArray(dop) ? dop : []).map((tab, index) => (
     <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title[0].toUpperCase() + tab.title.slice(1)} color="sberGreenColor.9"
+    classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
   const visibleDopList = showAllDop ? dopList : dopList.slice(0, 3);
 
   const dopsList = (Array.isArray(dopsData) ? dopsData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab} label={tab} key={tab} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab} label={tab} key={tab} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const availList = (Array.isArray(availaBData) ? availaBData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.title} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.title} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const categoryList = (Array.isArray(categoryData) ? categoryData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const viewList = (Array.isArray(viewData) ? viewData : []).map((tab, index) => (
-    <Radio size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0"
-      styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }}
-    // checked={filterForm.getInputProps('view') === tab.notation_view.toString()}
-    />
+    // <Radio size="xs" mt={5} value={tab.title} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0" 
+    //   styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }}
+    // // checked={filterForm.getInputProps('view') === tab.notation_view.toString()}
+    // />
+
+      <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
+      styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const tyaletList = (Array.isArray(tualetData) ? tualetData : []).map((tab, index) => (
-    <Radio size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0"
-      styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }} />
+    // <Radio size="xs" mt={5} value={tab.title} label={tab.title} key={tab.title} iconColor="sberGreenColor.9" color="grayColor.0"
+    //   styles={{ radio: { boxShadow: "inset 1px 1px lightGray" } }} />
+
+      <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
+      styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const metroList = (Array.isArray(metroData) ? metroData : []).map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
   const floorsList = floorsData.map((tab, index) => (
-    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} color="sberGreenColor.9"
+    <Checkbox size="xs" mt={5} value={tab.id} label={tab.title} key={tab.title} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
@@ -600,7 +634,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
             <h4 className="HeadingStyle3">Метро рядом</h4>
           </div>
           <div>
-            {/* <Popover width={200} position="bottom" withArrow shadow="md" keepMounted>
+            <Popover width={200} position="bottom" withArrow shadow="md" keepMounted>
               <Popover.Target>
                 <Button variant="outline" mt={10} size="xs" fullWidth
                   className={styles["metroButton"]}>
@@ -612,7 +646,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
                   {metroList}
                 </CheckboxGroup>
               </Popover.Dropdown>
-            </Popover> */}
+            </Popover>
 
             <Button variant="outline" mt={10} size="xs" fullWidth onClick={openMetroModal}
               className={styles["metroButton"]}>
@@ -686,10 +720,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Вид из окна</h4>
           </div>
-          <Radio.Group value={filterForm.values.view}
+          <CheckboxGroup value={filterForm.values.view}
             onChange={handleRadioChange} mt={10}>
             {viewList}
-          </Radio.Group>
+          </CheckboxGroup>
           <Button size="xs" onClick={() => filterForm.setFieldValue('view', null)} mt="md" disabled={!filterForm.values.view}>
             Сбросить выбор
           </Button>
@@ -701,9 +735,9 @@ export function SearchMenu({ opened, closeApply, openMetroModal, regionId}: Prop
           <div style={{ marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Санузел</h4>
           </div>
-          <Radio.Group  {...filterForm.getInputProps('toilet')} mt={10}>
+          <CheckboxGroup  {...filterForm.getInputProps('toilet')} mt={10}>
             {tyaletList}
-          </Radio.Group>
+          </CheckboxGroup>
           <Button size="xs" onClick={() => filterForm.setFieldValue('toilet', null)} mt="md" disabled={!filterForm.values.toilet}>
             Сбросить выбор
           </Button>

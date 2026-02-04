@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { showNotification } from "@mantine/notifications";
 import { IconX } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
-
+// import { useWatch } from 'react-hook-form';
 
 import { saveCurrentUrl } from '../../handlers/urlSaveHandler.ts'
 import '@mantine/dates/styles.css';
@@ -17,7 +17,7 @@ import { SearchMenu } from "../../components/menus/searchMenu/searchMenu.tsx";
 import { SearchPageCard } from "./searchPageCard/searchPageCard.tsx";
 import { getObjectsData, getObjectsDataParallel } from "../../services/objectsServices.ts";
 import { errorHandler } from "../../handlers/errorBasicHandler.ts";
-import { getRegionsData, getTypeData } from "../../services/getEverything.ts";
+import { getFiltersFromBackData, getRegionsData, getTypeData } from "../../services/getEverything.ts";
 import { DoubleDateRangePicker } from "../../components/buttons/dateRange_copy.tsx";
 import YMap from "../../components/map/YMapOnSearch.tsx";
 import { GuestPicker } from "../../components/buttons/guestButton/guestButton.tsx";
@@ -156,6 +156,7 @@ export function SearchPage() {
     // const newCity = { id: -1, name: "Все регионы" };
     // const newCategory = { id: -1, name: "Все категории" };
     const [cityData, setСityData] = useState<Filters[]>([])
+    const [filtersSearch, setFiltersSearch] = useState()
 
     const cityDataRem = (Array.isArray(cityData) ? cityData : []).map(item => ({
         value: item.id?.toString(), // Select обычно ожидает string
@@ -190,7 +191,6 @@ export function SearchPage() {
 
     ])
 
-
     const objectFilterForm = useForm({
         mode: 'controlled',
         initialValues: {
@@ -219,7 +219,7 @@ export function SearchPage() {
     const getSideParamsFromURL = (searchParams: URLSearchParams) => {
         if (!searchParams) return {};
         // Обработка массивов
-        const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService'];
+        const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService', 'view', 'toilet'];
         const arrayParams: Record<string, string[]> = {};
 
         // Получаем все параметры как entries [key, value][]
@@ -251,20 +251,20 @@ export function SearchPage() {
         });
 
         // Обработка строковых значений
-        const stringParams: Record<string, string> = {};
-        const stringFields = ['view', 'toilet'];
+        // const stringParams: Record<string, string> = {};
+        // const stringFields = ['view', 'toilet'];
 
-        stringFields.forEach(field => {
-            const param = searchParams.get(field);
-            if (param) {
-                stringParams[field] = param;
-            }
-        });
+        // stringFields.forEach(field => {
+        //     const param = searchParams.get(field);
+        //     if (param) {
+        //         stringParams[field] = param;
+        //     }
+        // });
 
         return {
             ...arrayParams,
             ...numberParams,
-            ...stringParams
+            // ...stringParams
         };
     };
 
@@ -309,8 +309,8 @@ export function SearchPage() {
             // }
 
             console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
-            console.log('ДЕТИ')
-            console.log(objectFilterForm.getValues().kids)
+            // console.log('ДЕТИ')
+            // console.log(objectFilterForm.getValues().kids)
 
             const objectsParams = {
                 page: pageRef.current,
@@ -346,6 +346,22 @@ export function SearchPage() {
                         month: '2-digit',
                         day: '2-digit'
                     }).format(inDate2)
+                }),
+
+                ...(params.category && {
+                    type_apartment: params.category
+                }),
+                ...(params.near_metros && {
+                    metro: params.near_metros
+                }),
+                ...(params.view && {
+                    windows: params.view
+                }),
+                ...(params.toilet && {
+                    bathrooms: params.toilet
+                }),
+                ...(params.inRoom && {
+                    items: params.inRoom
                 }),
 
                 ...(() => {
@@ -542,7 +558,7 @@ export function SearchPage() {
     async function getFiltersData() {
 
         const regions = await getRegionsData()
-        // const type = await getTypeData()
+
 
 
         if (regions.ok) {
@@ -579,6 +595,28 @@ export function SearchPage() {
 
     }
 
+    async function getFiltersSearchData(regionId: string) {
+
+        const regions = await getFiltersFromBackData(regionId)
+
+        if (regions.ok) {
+            console.log('rfrlt;fptmsk')
+            console.log(regions)
+            setFiltersSearch(regions)
+        }
+        else {
+            setFiltersSearch(null)
+            const error = await regions.json();
+            if (errorHandler(regions.status) == 5) {
+                showNotification({
+                    title: "Ошибка сервера, обновите страницу",
+                    message: error.statusText,
+                    icon: <IconX />
+                })
+            }
+        }
+    }
+
     const inputs = useRef<HTMLInputElement[]>([]);
 
     // Add input to ref array
@@ -607,6 +645,7 @@ export function SearchPage() {
     //             console.error = originalConsoleError;
     //         };
     //     }, []);
+
 
     //При загрузке страницы
     useEffect(() => {
@@ -702,6 +741,14 @@ export function SearchPage() {
     }, [isLoadingMore, hasMore, pageRef, visibleObjects]);
 
     useEffect(() => {
+        console.log('useEffect for regions ' + objectFilterForm.getValues().region)
+        getFiltersSearchData(objectFilterForm.getValues().region)
+    }, [objectFilterForm.values.region]);
+
+
+
+
+    useEffect(() => {
 
         const checkArrays = () => {
             console.group('Array checks:');
@@ -715,6 +762,12 @@ export function SearchPage() {
 
         checkArrays();
     }, [points, visibleObjects, cityData, categoryData, objects]);
+
+
+    // const regionValue = useWatch({
+    //     control: objectFilterForm.control,
+    //     name: 'region'
+    // });
 
     const [opened, { toggle }] = useDisclosure();
     const [openedModalFilter, { open: openFilter, close: closeFilter }] = useDisclosure(false);
@@ -1045,7 +1098,7 @@ export function SearchPage() {
                         &times;
                     </div>
                     <div className={styles["navbarMobile"]}>
-                        <SearchMenu regionId={objectFilterForm.getValues().region} opened={true} closeApply={handleFormSave}></SearchMenu>
+                        <SearchMenu filtersSearch={filtersSearch} opened={true} closeApply={handleFormSave}></SearchMenu>
                     </div>
                 </Modal>
 
@@ -1098,7 +1151,7 @@ export function SearchPage() {
                 <div className={styles[`pageLayout`]}>
 
                     <div className={styles["navbar"]}
-                    ><SearchMenu regionId={objectFilterForm.getValues().region } opened={opened} closeApply={handleFormSave}></SearchMenu></div>
+                    ><SearchMenu filtersSearch={filtersSearch} opened={opened} closeApply={handleFormSave}></SearchMenu></div>
 
                     <div className="papercard" style={{
                         maxWidth: "100%"
