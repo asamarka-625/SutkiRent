@@ -1,5 +1,4 @@
 # Внешние зависимости
-import asyncio
 from typing import Optional, List
 from datetime import date
 import sqlalchemy as sa
@@ -374,15 +373,16 @@ async def sql_get_data_for_filters(
         }
 
         if region_id is not None:
-            queries["metro"] = (sa.select(MetroStation.id, MetroStation.title)
-                                .where(MetroStation.region_id == region_id))
-
-        # Выполняем все запросы параллельно (I/O bound задачи)
-        keys = list(queries.keys())
-        results = await asyncio.gather(*(session.execute(queries[k]) for k in keys))
+            queries["metro"] = (
+                sa.select(MetroStation.id, MetroStation.title)
+                .where(MetroStation.region_id == region_id)
+        )
 
         # Собираем словарь результатов
-        data = {keys[i]: results[i].all() for i in range(len(keys))}
+        data = {}
+        for key, query in queries.items():
+            result = await session.execute(query)
+            data[key] = result.all()
 
         return DataFiltersResponse(
             types=[ApartmentType(id=row[0], title=row[1]) for row in data["types"]],
