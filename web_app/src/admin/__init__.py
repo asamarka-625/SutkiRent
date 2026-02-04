@@ -10,3 +10,9 @@ from web_app.src.admin.type_apartment import TypeApartmentAdmin
 from web_app.src.admin.window import WindowAdmin
 from web_app.src.admin.bathroom_apartment import BathroomApartmentAdmin
 from web_app.src.admin.item import ItemAdmin
+from web_app.src.admin.authentication import BasicAuthBackend
+
+from web_app.src.core import cfg
+
+
+authentication_backend = BasicAuthBackend(secret_key=cfg.SECRET_REFRESH_KEY)

@@ -3,13 +3,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqladmin import Admin
+from prometheus_fastapi_instrumentator import Instrumentator
 # Внутренние модули
 from web_app.src.core import cfg, setup_database, engine
 from web_app.src.routers import router
 from web_app.src.admin import (ContentAdmin, PhotoContentAdmin, CategoryContentAdmin, ApartmentAdmin,
                                MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin,
                                ServiceAdmin, TypeApartmentAdmin, BathroomApartmentAdmin,
-                               ItemAdmin, WindowAdmin)
+                               ItemAdmin, WindowAdmin, authentication_backend)
 from web_app.src.utils import redis_service
 
 
@@ -47,7 +48,7 @@ app.include_router(router)
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="*", # cfg.ALLOWED_ORIGINS,
+    allow_origins=cfg.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "OPTIONS"],
     allow_headers=[
@@ -65,8 +66,12 @@ app.add_middleware(
     max_age=600
 )
 
+# Метрики /metrics
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
+
 # Админка
-admin = Admin(app, engine)
+admin = Admin(app, engine, authentication_backend=authentication_backend)
 admin.add_view(CategoryContentAdmin)
 admin.add_view(PhotoContentAdmin)
 admin.add_view(ContentAdmin)

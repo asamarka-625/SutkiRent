@@ -25,15 +25,14 @@ Dockerfile.web.dockerignore
 .gitignore
 
 # Other
+old-version/
 backend
 frontend
 frontend-old
-nginx
 postgresql
 parser_realty
 nginx.conf
 pg_hba.conf
 postgresql.conf
-google1d57d613b149a8b2.html
 parser.env
 run_parser.py

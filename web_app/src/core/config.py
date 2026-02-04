@@ -17,6 +17,9 @@ class Config:
     _redis_url: str = field(default_factory=lambda: os.getenv("REDIS_URL"))
     logger: logging.Logger = field(init=False)
 
+    ADMIN_LOGIN: str = field(default_factory=lambda: os.getenv("ADMIN_LOGIN"))
+    ADMIN_PASSWORD: str = field(default_factory=lambda: os.getenv("ADMIN_PASSWORD"))
+
     # Security
     ALGORITHM: str = field(default_factory=lambda: os.getenv("ALGORITHM"))
 
@@ -29,7 +32,7 @@ class Config:
     CSRF_TOKEN_EXPIRE_MINUTES: int = field(default_factory=lambda: int(os.getenv("CSRF_TOKEN_EXPIRE_MINUTES")))
     SECRET_CSRF_KEY: str = field(default_factory=lambda: os.getenv("SECRET_CSRF_KEY"))
 
-    USER_CACHE_MINUTES: int = field(default_factory=lambda: int(os.getenv("USER_CACHE_MINUTES")))
+    USER_CACHE_SECONDS: int = field(default_factory=lambda: int(os.getenv("USER_CACHE_SECONDS")))
     VERIFICATION_CODE_TTL: int = field(default_factory=lambda: int(os.getenv("VERIFICATION_CODE_TTL")))
 
     # RealtyCalendar
@@ -43,6 +46,8 @@ class Config:
     FROM_EMAIL: str = field(default_factory=lambda: os.getenv("FROM_EMAIL"))
 
     FRONTEND_URL: str = field(default_factory=lambda: os.getenv("FRONTEND_URL"))
+
+    _allowed_origins_env: str = field(default_factory=lambda: os.getenv("ALLOWED_ORIGINS"))
 
     def __post_init__(self):
         self.logger = setup_logger(
