@@ -169,6 +169,13 @@ export function SearchPage() {
     }));
 
 
+    
+    const [opened, { toggle }] = useDisclosure();
+    const [openedModalFilter, { open: openFilter, close: closeFilter }] = useDisclosure(false);
+    const [openedModalMap, { open: openMap, close: closeMap }] = useDisclosure(false);
+
+
+    
     const selectInputRef = useRef<HTMLInputElement>();
     const dateInputRef = useRef<HTMLInputElement>();
     const guestInputRef = useRef<HTMLInputElement>();
@@ -745,6 +752,11 @@ export function SearchPage() {
         getFiltersSearchData(objectFilterForm.getValues().region)
     }, [objectFilterForm.values.region]);
 
+    useEffect(() => {
+        console.log('useEffect for Modal ')
+        getFiltersSearchData(objectFilterForm.getValues().region)
+    }, [openedModalFilter]);
+
 
 
 
@@ -769,9 +781,6 @@ export function SearchPage() {
     //     name: 'region'
     // });
 
-    const [opened, { toggle }] = useDisclosure();
-    const [openedModalFilter, { open: openFilter, close: closeFilter }] = useDisclosure(false);
-    const [openedModalMap, { open: openMap, close: closeMap }] = useDisclosure(false);
     return (
         <div className={styles.pageLayoutLarge}>
             <div style={{ backgroundColor: isMobile ? "" : "var(--mantine-color-grayColor-0" }}>
@@ -832,6 +841,12 @@ export function SearchPage() {
                         <div className="numpInputGroup">
                             <GuestPickerMobile
                                 value={objectFilterForm.values.guest}
+                                 kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                 // onBlur={() => guestInputRef.current?.focus()}
                                 onChange={(value) => {
                                     objectFilterForm.setFieldValue('guest', value);
@@ -1098,7 +1113,7 @@ export function SearchPage() {
                         &times;
                     </div>
                     <div className={styles["navbarMobile"]}>
-                        <SearchMenu filtersSearch={filtersSearch} opened={true} closeApply={handleFormSave}></SearchMenu>
+                        <SearchMenu filtersSearch={filtersSearch} opened={openedModalFilter} closeApply={handleFormSave}></SearchMenu>
                     </div>
                 </Modal>
 

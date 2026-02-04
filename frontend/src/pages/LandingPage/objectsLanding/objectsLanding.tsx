@@ -342,6 +342,12 @@ console.log("regions 1 started")
                             <GuestPickerMobile
                                 value={objectFilterForm.values.guest}
                                 ref={guestMobileInputRef}
+                                 kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                 // onBlur={() => guestInputRef.current?.focus()}
                                 onChange={(value) => {
                                     objectFilterForm.setFieldValue('guest', value);
