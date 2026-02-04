@@ -22,7 +22,6 @@ interface Kid {
 
 // Формируем данные для Select в правильном формате
 const kidsToChoose = [
-  { value: '0', label: 'до 1 года' },
   { value: '1', label: '1 год' },
   ...[2, 3, 4].map(n => ({
     value: n.toString(),
@@ -77,7 +76,7 @@ export const GuestPickerMobile = forwardRef<HTMLButtonElement, GuestProps>(
 
     // Обработчик добавления ребенка
     const handleAddKid = () => {
-      const newKids = [...kids, { age: '0' }]; // Добавляем "до 1 года" по умолчанию
+      const newKids = [...kids, { age: '1' }]; // Добавляем "до 1 года" по умолчанию
       if (onKidsChange) {
         onKidsChange(newKids);
       }

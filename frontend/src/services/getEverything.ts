@@ -5,7 +5,7 @@ import { fetchAddress } from "../globalSettings.ts";
 export async function getFiltersFromBackData(regionId?: string | number) {
   console.log('getFiltersFromBackData')
   const response = await fetch(
-    fetchAddress + '/objects/filters?region_id=' + regionId
+     regionId ? fetchAddress + '/objects/filters?region_id=' + regionId : fetchAddress + '/objects/filters'
     , {
       method: 'GET',
       headers: {

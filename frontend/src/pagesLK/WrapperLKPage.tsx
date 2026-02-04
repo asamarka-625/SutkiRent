@@ -221,7 +221,7 @@ export function WrapperLKPage() {
               {upperlikes}
               {upperTabs}
               <ProfileButton name={userName} gender={gender}></ProfileButton>
-              <Button
+              {/* <Button
                 size="xs"
                 variant="outline"
                 color="gray"
@@ -231,7 +231,7 @@ export function WrapperLKPage() {
                 }}
               >
                 Выйти
-              </Button>
+              </Button> */}
             </Group>
           </Flex>
         </div>

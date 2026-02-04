@@ -472,6 +472,16 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
     getFiltersData();
     console.log('useEffect getFiltersData near_metros: []')
 
+    // filterForm.setValues({
+    //   near_metros: []
+    // });
+    // console.log(filterForm.getValues().near_metros)
+
+    // const newParams = new URLSearchParams(searchParams);
+    // newParams.delete('near_metros');
+  }, [filtersSearch]);
+
+  useEffect(() => {
     filterForm.setValues({
       near_metros: []
     });
@@ -479,7 +489,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
 
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('near_metros');
-  }, [filtersSearch]);
+  }, [IsRegionChangedRef]);
 
   const [dopsData, setDopsData] = useState(['Парковка', 'Бесконтакт. заселение', 'Отчетные документы'])
   const [availaBData, setAvailaBData] = useState<AvailbType[]>([])
@@ -647,7 +657,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
             <h4 className="HeadingStyle3">Метро рядом</h4>
           </div>
           <div>
-            <Popover width={200} position="bottom" withArrow shadow="md" keepMounted>
+            <Popover width={200} position="bottom" withArrow shadow="md" keepMounted  withinPortal zIndex={20000} >
               <Popover.Target>
                 <Button variant="outline" mt={10} size="xs" fullWidth
                   className={styles["metroButton"]}
