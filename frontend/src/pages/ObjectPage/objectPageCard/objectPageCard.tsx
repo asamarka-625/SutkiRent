@@ -366,7 +366,7 @@ export function ObjectPageCard(props: Property) {
                             gap: '1rem',
                             marginBottom: '1.5rem'
                         }}>
-                            <div style={{
+                            {/* <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
                                 backgroundColor: '#e5e7eb',
@@ -376,7 +376,7 @@ export function ObjectPageCard(props: Property) {
                             }}>
                                 <i className="fas fa-home" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
                                 {props.space}м²
-                            </div>
+                            </div> */}
 
                             <div style={{
                                 display: 'flex',
@@ -474,7 +474,7 @@ export function ObjectPageCard(props: Property) {
                                 {/* Контент */}
                                 <div className={`tab-content ${activeTab === 'amenities' ? 'active' : ''}`} id="amenities-content">
                                     <ul className="amenities-list">
-                                        {props.services.length != 0 ? services2List : "Дополнительных услуг нет"}
+                                        {props.services?.length != 0 ? services2List : "Дополнительных услуг нет"}
                                     </ul>
                                 </div>
 
@@ -487,7 +487,7 @@ export function ObjectPageCard(props: Property) {
 
                                 <div className={`tab-content ${activeTab === 'inventory' ? 'active' : ''}`} id="inv-content">
                                     <ul className="inv-list">
-                                        {props.object_inventories.length != 0 ? inventoryList : "Инвентарь не перечислен"}
+                                        {props.object_inventories?.length != 0 ? inventoryList : "Инвентарь не перечислен"}
                                     </ul>
                                 </div>
                             </div>
@@ -613,11 +613,11 @@ export function ObjectPageCard(props: Property) {
                                 <h3 className={styles["HeadingStyle3"]}>Инвентарь</h3>
                             </Accordion.Control>
                             <Accordion.Panel>
-                                {props.object_inventories.length != 0 ? <Divider mb={18} mt={10}></Divider> : ""}
+                                {props.object_inventories?.length != 0 ? <Divider mb={18} mt={10}></Divider> : ""}
 
                                 <div>
                                     <ul className="inv-list">
-                                        {props.object_inventories.length != 0 ? inventoryList : "Инвентарь не перечислен"}
+                                        {props.object_inventories?.length != 0 ? inventoryList : "Инвентарь не перечислен"}
                                         {/* <li><i className="fas fa-tv"></i>Телевизор</li>
                                         <li><i className="fas fa-wifi"></i> Wi-Fi</li>
                                         <li><i className="fas fa-soap"></i> Стиральная машина</li>
@@ -647,7 +647,7 @@ export function ObjectPageCard(props: Property) {
             >
                 <div className={styles["papercardItem"]}>
                     <Group>
-                        <h3 className={styles["HeadingStyle3"]} style={{marginBottom: "15px"}}>{props.address}, {regionName}</h3>
+                        <h3 className={styles["HeadingStyle3"]} style={{marginBottom: "15px"}}>{props.address}, {props.region}</h3>
                     </Group>
                     <YandexMap
                         // lat={55.751574} lon={37.573856} 

@@ -5,7 +5,7 @@ import classes from './articlesLanding.module.css';
 import { useEffect, useState } from 'react';
 import { errorHandler } from '../../../handlers/errorBasicHandler.ts';
 import { showNotification } from '@mantine/notifications';
-import { getArticlesData } from '../../../services/articlesServices.ts';
+import { getArticlesData, getContentListByCategory } from '../../../services/articlesServices.ts';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -15,13 +15,7 @@ interface CardProps {
     content: string,
     publication_date: string,
     short_description: string,
-    media: [
-        {
-            id: string,
-            file: string,
-            article: string
-        }
-    ]
+    media: []
 }
 
 // const formattedDate = dateObject.toLocaleString("ru-RU", {
@@ -56,20 +50,20 @@ function Card({ media, title, publication_date, short_description, id }: CardPro
             // style={media.length > 0 ? { backgroundImage: `url(${media[0].file})` } : {}}
             className={classes.card}
         >
-            {media.length > 0 && (
+            
                 <div style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 20,
                     bottom: 0,
-                    backgroundImage: `url(${media[0].file})`,
+                    backgroundImage: media[0] ? `url(${media[0]})` : `url(/blur_404.jpg)`,
                     backgroundSize: 'cover',
                     filter: 'brightness(50%)',
                     backgroundPosition: "center",
                     zIndex: 0
                 }} />
-            )}
+            
             {/* <div className={classes.customOverlay}></div> */}
             <div>
                 <Text className={classes.category} size="xs">
@@ -100,7 +94,7 @@ export function ArticlesLandingPage() {
 
 
     async function getObjectsDataFunc() {
-        const response = await getArticlesData()
+        const response = await getContentListByCategory('3')
 
         if (response.ok) {
             const data = await response.json();

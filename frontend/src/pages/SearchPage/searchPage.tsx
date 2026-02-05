@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { showNotification } from "@mantine/notifications";
 import { IconX } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
-
+// import { useWatch } from 'react-hook-form';
 
 import { saveCurrentUrl } from '../../handlers/urlSaveHandler.ts'
 import '@mantine/dates/styles.css';
@@ -17,7 +17,7 @@ import { SearchMenu } from "../../components/menus/searchMenu/searchMenu.tsx";
 import { SearchPageCard } from "./searchPageCard/searchPageCard.tsx";
 import { getObjectsData, getObjectsDataParallel } from "../../services/objectsServices.ts";
 import { errorHandler } from "../../handlers/errorBasicHandler.ts";
-import { getRegionsData, getTypeData } from "../../services/getEverything.ts";
+import { getFiltersFromBackData, getRegionsData, getTypeData } from "../../services/getEverything.ts";
 import { DoubleDateRangePicker } from "../../components/buttons/dateRange_copy.tsx";
 import YMap from "../../components/map/YMapOnSearch.tsx";
 import { GuestPicker } from "../../components/buttons/guestButton/guestButton.tsx";
@@ -84,7 +84,7 @@ function transformObjectsToPoints(originalArray: any[]): any[] {
     return originalArray.map(obj => ({
         id: obj.id,
         coordinates: [obj.latitude, obj.longitude],
-        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : 'Не указано',
+        cost: obj.cost ? `${obj.cost.toLocaleString('ru-RU')}` : obj.price,
         media: { source_type: '', url: obj?.media[0] },
         space: obj.space || null,
         amount_rooms: obj.rooms || null,
@@ -156,6 +156,7 @@ export function SearchPage() {
     // const newCity = { id: -1, name: "Все регионы" };
     // const newCategory = { id: -1, name: "Все категории" };
     const [cityData, setСityData] = useState<Filters[]>([])
+    const [filtersSearch, setFiltersSearch] = useState()
 
     const cityDataRem = (Array.isArray(cityData) ? cityData : []).map(item => ({
         value: item.id?.toString(), // Select обычно ожидает string
@@ -168,6 +169,13 @@ export function SearchPage() {
     }));
 
 
+    
+    const [opened, { toggle }] = useDisclosure();
+    const [openedModalFilter, { open: openFilter, close: closeFilter }] = useDisclosure(false);
+    const [openedModalMap, { open: openMap, close: closeMap }] = useDisclosure(false);
+
+
+    
     const selectInputRef = useRef<HTMLInputElement>();
     const dateInputRef = useRef<HTMLInputElement>();
     const guestInputRef = useRef<HTMLInputElement>();
@@ -190,7 +198,6 @@ export function SearchPage() {
 
     ])
 
-
     const objectFilterForm = useForm({
         mode: 'controlled',
         initialValues: {
@@ -201,7 +208,8 @@ export function SearchPage() {
             out:
                 '',
             // dateout,
-            guest: [2, 1] as [number, number]
+            guest: [1, 1] as [number, number],
+            kids: []
         },
         validate: {
         },
@@ -218,7 +226,7 @@ export function SearchPage() {
     const getSideParamsFromURL = (searchParams: URLSearchParams) => {
         if (!searchParams) return {};
         // Обработка массивов
-        const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService'];
+        const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService', 'view', 'toilet'];
         const arrayParams: Record<string, string[]> = {};
 
         // Получаем все параметры как entries [key, value][]
@@ -250,20 +258,20 @@ export function SearchPage() {
         });
 
         // Обработка строковых значений
-        const stringParams: Record<string, string> = {};
-        const stringFields = ['view', 'toilet'];
+        // const stringParams: Record<string, string> = {};
+        // const stringFields = ['view', 'toilet'];
 
-        stringFields.forEach(field => {
-            const param = searchParams.get(field);
-            if (param) {
-                stringParams[field] = param;
-            }
-        });
+        // stringFields.forEach(field => {
+        //     const param = searchParams.get(field);
+        //     if (param) {
+        //         stringParams[field] = param;
+        //     }
+        // });
 
         return {
             ...arrayParams,
             ...numberParams,
-            ...stringParams
+            // ...stringParams
         };
     };
 
@@ -308,6 +316,8 @@ export function SearchPage() {
             // }
 
             console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
+            // console.log('ДЕТИ')
+            // console.log(objectFilterForm.getValues().kids)
 
             const objectsParams = {
                 page: pageRef.current,
@@ -318,9 +328,9 @@ export function SearchPage() {
                 }),
 
                 // children - добавляем только если есть значение больше 0
-                // ...(objectFilterForm.getValues().guest?.[1] > 0 && {
-                //     children: Number(objectFilterForm.getValues().guest[1])
-                // }),
+                ...(objectFilterForm.getValues().kids && {
+                    children: objectFilterForm.getValues().kids
+                }),
 
                 ...(objectFilterForm.getValues().region && {
                     region_id: objectFilterForm.getValues().region
@@ -343,6 +353,22 @@ export function SearchPage() {
                         month: '2-digit',
                         day: '2-digit'
                     }).format(inDate2)
+                }),
+
+                ...(params.category && {
+                    type_apartment: params.category
+                }),
+                ...(params.near_metros && {
+                    metro: params.near_metros
+                }),
+                ...(params.view && {
+                    windows: params.view
+                }),
+                ...(params.toilet && {
+                    bathrooms: params.toilet
+                }),
+                ...(params.inRoom && {
+                    items: params.inRoom
                 }),
 
                 ...(() => {
@@ -469,6 +495,9 @@ export function SearchPage() {
         }
         else newParams.delete('guest');
 
+        if (formValues.kids?.length) newParams.set('children', JSON.stringify(formValues.kids));
+        else newParams.delete('children');
+
         Array.from(newParams.entries()).forEach(([key, value]) => {
             if (!value || value === '') newParams.delete(key);
         });
@@ -499,7 +528,7 @@ export function SearchPage() {
 
         isLoading.current = false;
         abrupt.current = true;
-        countAll.current = 0; 
+        countAll.current = 0;
         getObjectsDataFunc(searchParams, true);
 
         // const formState = objectFilterForm.values
@@ -536,7 +565,7 @@ export function SearchPage() {
     async function getFiltersData() {
 
         const regions = await getRegionsData()
-        const type = await getTypeData()
+
 
 
         if (regions.ok) {
@@ -555,14 +584,37 @@ export function SearchPage() {
             }
         }
 
-        if (type.ok) {
-            const data = await type.json();
-            setCategoryData(Array.isArray(data) ? data : (data.results || []))
+        // if (type.ok) {
+        //     const data = await type.json();
+        //     setCategoryData(Array.isArray(data) ? data : (data.results || []))
+        // }
+        // else {
+        //     setCategoryData([])
+        //     const error = await type.json();
+        //     if (errorHandler(type.status) == 5) {
+        //         showNotification({
+        //             title: "Ошибка сервера, обновите страницу",
+        //             message: error.statusText,
+        //             icon: <IconX />
+        //         })
+        //     }
+        // }
+
+    }
+
+    async function getFiltersSearchData(regionId: string) {
+
+        const regions = await getFiltersFromBackData(regionId)
+
+        if (regions.ok) {
+            console.log('rfrlt;fptmsk')
+            console.log(regions)
+            setFiltersSearch(regions)
         }
         else {
-            setCategoryData([])
-            const error = await type.json();
-            if (errorHandler(type.status) == 5) {
+            setFiltersSearch(null)
+            const error = await regions.json();
+            if (errorHandler(regions.status) == 5) {
                 showNotification({
                     title: "Ошибка сервера, обновите страницу",
                     message: error.statusText,
@@ -570,7 +622,6 @@ export function SearchPage() {
                 })
             }
         }
-
     }
 
     const inputs = useRef<HTMLInputElement[]>([]);
@@ -602,9 +653,32 @@ export function SearchPage() {
     //         };
     //     }, []);
 
+
     //При загрузке страницы
     useEffect(() => {
         getFiltersData()
+        let kidsFromParams: { age: string | number }[] = [];
+        const childrenParam = searchParams.get('children');
+
+        if (childrenParam) {
+            try {
+                kidsFromParams = JSON.parse(childrenParam);
+
+                // Проверяем, что это массив и имеет правильную структуру
+                if (!Array.isArray(kidsFromParams)) {
+                    kidsFromParams = [];
+                } else {
+                    // Нормализуем данные: убеждаемся, что каждый элемент имеет поле age
+                    kidsFromParams = kidsFromParams.filter(kid =>
+                        kid && typeof kid === 'object' && 'age' in kid
+                    );
+                }
+            } catch (error) {
+                console.error('Error parsing children from URL:', error);
+                kidsFromParams = [];
+            }
+        }
+
         objectFilterForm.setValues({
             region: searchParams.get('region') || '',
             // category: searchParams.get('category') || '',
@@ -613,8 +687,11 @@ export function SearchPage() {
                 searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : null,
             ],
             // out: searchParams.get('out') || '',
-            guest: [Number(searchParams.get('guest')) || 2, Number(searchParams.get('amount_rooms_min')) || 1],
+            guest: [Number(searchParams.get('guest')) || '1', Number(searchParams.get('amount_rooms_min')) || '1'],
+            kids: kidsFromParams
         });
+
+        console.log('KIDS' + objectFilterForm.values.kids)
 
         // Проверяем, есть ли сохраненное состояние поиска
         const savedState = sessionStorage.getItem('searchState');
@@ -671,6 +748,19 @@ export function SearchPage() {
     }, [isLoadingMore, hasMore, pageRef, visibleObjects]);
 
     useEffect(() => {
+        console.log('useEffect for regions ' + objectFilterForm.getValues().region)
+        getFiltersSearchData(objectFilterForm.getValues().region)
+    }, [objectFilterForm.values.region]);
+
+    useEffect(() => {
+        console.log('useEffect for Modal ')
+        getFiltersSearchData(objectFilterForm.getValues().region)
+    }, [openedModalFilter]);
+
+
+
+
+    useEffect(() => {
 
         const checkArrays = () => {
             console.group('Array checks:');
@@ -685,9 +775,12 @@ export function SearchPage() {
         checkArrays();
     }, [points, visibleObjects, cityData, categoryData, objects]);
 
-    const [opened, { toggle }] = useDisclosure();
-    const [openedModalFilter, { open: openFilter, close: closeFilter }] = useDisclosure(false);
-    const [openedModalMap, { open: openMap, close: closeMap }] = useDisclosure(false);
+
+    // const regionValue = useWatch({
+    //     control: objectFilterForm.control,
+    //     name: 'region'
+    // });
+
     return (
         <div className={styles.pageLayoutLarge}>
             <div style={{ backgroundColor: isMobile ? "" : "var(--mantine-color-grayColor-0" }}>
@@ -748,6 +841,12 @@ export function SearchPage() {
                         <div className="numpInputGroup">
                             <GuestPickerMobile
                                 value={objectFilterForm.values.guest}
+                                 kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                 // onBlur={() => guestInputRef.current?.focus()}
                                 onChange={(value) => {
                                     objectFilterForm.setFieldValue('guest', value);
@@ -954,11 +1053,15 @@ export function SearchPage() {
                                                     </div> */}
                                 <div className="numpInputGroup">
                                     <GuestPicker
-                                        value={Array.isArray(objectFilterForm.values.guest)
-                                            ? [objectFilterForm.values.guest[0] || 2, objectFilterForm.values.guest[1] || 1]
-                                            : [2, 1]}
+                                        value={objectFilterForm.values.guest}
                                         // ref={guestInputRef}
                                         // onBlur={() => guestInputRef.current?.focus()}
+                                        kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                         onChange={(value) => {
                                             objectFilterForm.setFieldValue('guest', value);
                                             console.log("заданог значение" + objectFilterForm.values.guest[0] + " " + objectFilterForm.values.guest[1])
@@ -1010,7 +1113,7 @@ export function SearchPage() {
                         &times;
                     </div>
                     <div className={styles["navbarMobile"]}>
-                        <SearchMenu opened={true} closeApply={handleFormSave}></SearchMenu>
+                        <SearchMenu filtersSearch={filtersSearch} opened={openedModalFilter} closeApply={handleFormSave}></SearchMenu>
                     </div>
                 </Modal>
 
@@ -1063,7 +1166,7 @@ export function SearchPage() {
                 <div className={styles[`pageLayout`]}>
 
                     <div className={styles["navbar"]}
-                    ><SearchMenu opened={opened} closeApply={handleFormSave}></SearchMenu></div>
+                    ><SearchMenu filtersSearch={filtersSearch} opened={opened} closeApply={handleFormSave}></SearchMenu></div>
 
                     <div className="papercard" style={{
                         maxWidth: "100%"

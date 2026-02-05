@@ -17,6 +17,8 @@ old-version/docker-compose-main.yml
 
 # Logs
 .log
+parser_log.log
+web_log.log
 
 # Файлы IDE
 .idea/

@@ -40,7 +40,7 @@ export async function getObjectsDataParallel(requestParams: ObjectsRequestParams
   // Гарантируем page_size = 10 и area.min = 50
   const baseBody = {
     page_size: 10,
-    area: { min: 50, ...baseParams.area },
+
     ...baseParams
   };
   
@@ -93,7 +93,6 @@ export async function getObjectsData(requestParams: ObjectsRequestParams = {}) {
   // Гарантируем page_size = 10 и area.min = 50
   const requestBody = {
     page_size: 10,
-    area: { min: 50, ...requestParams.area },
     ...requestParams
   };
   
@@ -112,7 +111,6 @@ export async function getFeatObjectsData(requestParams: ObjectsRequestParams = {
   // Гарантируем page_size = 10 и area.min = 50
   const requestBody = {
     page_size: 6,
-    area: { min: 50, ...requestParams.area },
     ...requestParams
   };
   
@@ -130,10 +128,10 @@ export async function getFeatObjectsData(requestParams: ObjectsRequestParams = {
 export async function getObjectDataById(id: string) {
   const response = await fetch(
     fetchAddress +
-    '/objects/' + id + '/'
+    '/objects/' + id
     // 'http://localhost:8000/api/objects/?cost_min=&cost_max=&type=&amount_rooms=&floor=&category=&region=&city=&space_min=&space_max='
     , {
-      method: 'GET',
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
         //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()

@@ -139,7 +139,8 @@ export function ObjectsLandingPage() {
             out:
                 '',
             // dateout,
-            guest: [2, 1] as [number, number]
+            guest: [1, 1] as [number, number],
+            kids: []
         },
         validate: {
         },
@@ -147,15 +148,16 @@ export function ObjectsLandingPage() {
 
 
     async function getFiltersData() {
-
+console.log("regions 1 started")
         const regions = await getRegionsData()
-        const type = await getTypeData()
+        // const type = await getTypeData()
 
-
+        console.log("regions started")
         if (regions.ok) {
             const data = await regions.json();
             // setСityData([newCity, ...data])
-            setСityData(Array.isArray(data) ? data : (data.results || []))
+            console.log("regions data" + data)
+            setСityData(Array.isArray(data) ? data : (data || []))
         }
         else {
             setСityData([])
@@ -169,22 +171,22 @@ export function ObjectsLandingPage() {
             }
         }
 
-        if (type.ok) {
-            const data = await type.json();
-            // setCategoryData([newCategory, ...data])
-            setCategoryData(Array.isArray(data) ? data : (data.results || []))
-        }
-        else {
-            setCategoryData([])
-            const error = await type.json();
-            if (errorHandler(type.status) == 5) {
-                showNotification({
-                    title: "Ошибка сервера, обновите страницу",
-                    message: error.statusText,
-                    icon: <IconX />
-                })
-            }
-        }
+        // if (type.ok) {
+        //     const data = await type.json();
+        //     // setCategoryData([newCategory, ...data])
+        //     setCategoryData(Array.isArray(data) ? data : (data.results || []))
+        // }
+        // else {
+        //     setCategoryData([])
+        //     const error = await type.json();
+        //     if (errorHandler(type.status) == 5) {
+        //         showNotification({
+        //             title: "Ошибка сервера, обновите страницу",
+        //             message: error.statusText,
+        //             icon: <IconX />
+        //         })
+        //     }
+        // }
 
 
 
@@ -204,6 +206,7 @@ export function ObjectsLandingPage() {
             newParams.set('guest', formValues.guest[0]?.toString() || "2");
             newParams.set('amount_rooms_min', formValues.guest[1]?.toString() || "1");
         }
+        if (formValues.kids && formValues.kids.length > 0) newParams.set('children', JSON.stringify(formValues.kids));
 
         setSearchParams(newParams, { replace: true });
         // if (value) {
@@ -238,16 +241,18 @@ export function ObjectsLandingPage() {
     //При загрузке страницы
     useEffect(() => {
         getFiltersData()
+        console.log('getFiltersData')
         objectFilterForm.setValues({
-            region: searchParams.get('region') || '',
+            region: searchParams.get('region'),
             // category: searchParams.get('category') || '',
             in: [
                 searchParams.get('in_start') ? new Date(searchParams.get('in_start')!) : null,
                 searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : null,
             ],
             // out: searchParams.get('out') || '',
-            guest: searchParams.get('guest') || '2',
+            guest: searchParams.get('guest'),
         });
+        console.log(cityDataRem + ' и ' + cityData)
         // const savedData = sessionStorage.getItem('mainPageState');
         // // alert(savedData)
         // if (savedData) {
@@ -337,6 +342,12 @@ export function ObjectsLandingPage() {
                             <GuestPickerMobile
                                 value={objectFilterForm.values.guest}
                                 ref={guestMobileInputRef}
+                                 kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                 // onBlur={() => guestInputRef.current?.focus()}
                                 onChange={(value) => {
                                     objectFilterForm.setFieldValue('guest', value);
@@ -560,10 +571,14 @@ export function ObjectsLandingPage() {
                                         {...objectFilterForm.getInputProps('guest')}
                                     /> */}
                                     <GuestPicker
-                                        value={Array.isArray(objectFilterForm.values.guest)
-                                            ? [objectFilterForm.values.guest[0] || 2, objectFilterForm.values.guest[1] || 1]
-                                            : [2, 1]}
+                                        value={objectFilterForm.values.guest}
                                         ref={guestInputRef}
+                                        kids={objectFilterForm.values.kids}
+                                        onKidsChange={(value) => {
+                                            objectFilterForm.setFieldValue('kids', value);
+                                            console.log(objectFilterForm.values.kids)
+                                            // guestInputRef.current?.focus()
+                                        }}
                                         // onBlur={() => guestInputRef.current?.focus()}
                                         onChange={(value) => {
                                             objectFilterForm.setFieldValue('guest', value);

@@ -25,23 +25,23 @@ export async function showFavorites(): Promise<FavoriteItem[]> {
     // Если пользователь авторизован, используем API
     if (token) {
         try {
-            const response = await fetch('/api/favorites/my/', {
-                headers: {
-                    'Authorization': `Token ${token}`,
-                },
-            });
+            // const response = await fetch('/api/favorites/my/', {
+            //     headers: {
+            //         'Authorization': `Token ${token}`,
+            //     },
+            // });
             
-            if (response.ok) {
-                const data = await response.json();
-                if (data.success && data.favorites) {
-                    // Преобразуем данные API в формат FavoriteItem
-                    return data.favorites.map((fav: any) => ({
-                        id: fav.object_id,
-                        dateIn: fav.date_in || undefined,
-                        dateOut: fav.date_out || undefined,
-                    }));
-                }
-            }
+            // if (response.ok) {
+            //     const data = await response.json();
+            //     if (data.success && data.favorites) {
+            //         // Преобразуем данные API в формат FavoriteItem
+            //         return data.favorites.map((fav: any) => ({
+            //             id: fav.object_id,
+            //             dateIn: fav.date_in || undefined,
+            //             dateOut: fav.date_out || undefined,
+            //         }));
+            //     }
+            // }
         } catch (error) {
             console.error('Error loading favorites from API:', error);
         }

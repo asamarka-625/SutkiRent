@@ -2,6 +2,23 @@ import { fetchAddress } from "../globalSettings.ts";
 
 
 
+export async function getFiltersFromBackData(regionId?: string | number) {
+  console.log('getFiltersFromBackData')
+  const response = await fetch(
+     regionId ? fetchAddress + '/objects/filters?region_id=' + regionId : fetchAddress + '/objects/filters'
+    , {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+        //   'X-CSRFToken': 'csrftoken',
+        //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
+      }
+    })
+  return response
+}
+
+
 
 export async function getMetrosData() {
   const response = await fetch(
@@ -110,24 +127,24 @@ export async function getRegionsData() {
 }
 
 export async function getRegionNameById(id: string) {
-  const response = await fetch(
-    fetchAddress + '/objects/region/' + id
-    , {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
-        //   'X-CSRFToken': 'csrftoken',
-        //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
-      }
-    })
-  if (response.ok) {
-    const data = await response.json();
-    return data.name
-  }
-  else {
-    return undefined
-  }
+  // const response = await fetch(
+  //   fetchAddress + '/objects/region/' + id
+  //   , {
+  //     method: 'GET',
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+  //       //   'X-CSRFToken': 'csrftoken',
+  //       //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
+  //     }
+  //   })
+  // if (response.ok) {
+  //   const data = await response.json();
+  //   return data.name
+  // }
+  // else {
+  //   return undefined
+  // }
 
 }
 

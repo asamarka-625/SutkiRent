@@ -4,6 +4,7 @@ import classes from './whereLanding.module.css';
 import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 import { getAttractions } from '../../../services/attractionsServices.ts';
+import { getContentListByCategory } from '../../../services/articlesServices.ts';
 
 interface CardProps {
   id?: number;
@@ -18,12 +19,12 @@ function CardComponent({ image, title, description }: CardProps) {
       p="lg"
       shadow="lg"
       className={classes.card}
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: image ? `url(${image})` : 'url(/blur_404.jpg)' }}
     >
       <div className={classes.gradientOverlay} />
       <div className={classes.content}>
         {/* <Text className={classes.title}>{title}</Text> */}
-        <Text className={classes.description}>{description}</Text>
+        <Text className={classes.description}>{title}</Text>
       </div>
     </Card>
   );
@@ -33,7 +34,7 @@ type Attraction = {
   id: number;
   title: string;
   short_description: string;
-  media: { file: string | null }[];
+  media: [];
 }
    
 export function WhereGoLanding() {
@@ -49,16 +50,17 @@ export function WhereGoLanding() {
   useEffect(() => {
     (async () => {
       try {
-        const resp = await getAttractions();
+        const resp = await getContentListByCategory('2');
         if (!resp.ok) return;
         const responseData = await resp.json();
         const data: Attraction[] = Array.isArray(responseData) ? responseData : (responseData.results || []);
         const mapped: CardProps[] = data.map(a => ({
           id: a.id,
-          image: a.media && a.media.length > 0 && a.media[0].file ? a.media[0].file : '',
+          image: a.media && a.media.length > 0 && a.media[0] ? a.media[0] : '',
           title: a.title,
           description: a.short_description || a.title,
         }));
+        console.log(mapped)
         setItems(mapped);
       } catch {}
     })();
