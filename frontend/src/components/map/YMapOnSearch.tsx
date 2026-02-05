@@ -67,6 +67,33 @@ const YMap: React.FC<YMapProps> = ({
     const objectManager = useRef<ymaps.ObjectManager | null>(null);
 
 
+    const isMounted = useRef(true);
+    const abortControllerRef = useRef<AbortController | null>(null);
+
+    useEffect(() => {
+        return () => {
+            isMounted.current = false;
+
+            // Отменяем все запросы
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+
+            // Уничтожаем карту
+            if (mapInstance.current) {
+                try {
+                    mapInstance.current.destroy();
+                    mapInstance.current = null;
+                } catch (e) { }
+            }
+
+            // Очищаем objectManager
+            if (objectManager.current) {
+                objectManager.current = null;
+            }
+        };
+    }, []);
+
     useEffect(() => {
         (window as any).yourComponentRef = {
             handleDetailsClick: (id: number) => {
@@ -127,7 +154,7 @@ const YMap: React.FC<YMapProps> = ({
 
     // Инициализация карты
     useEffect(() => {
-        if (!ymapsLoaded || !mapRef.current) return;
+        if (!ymapsLoaded || !mapRef.current || !isMounted.current) return;
         try {
             // Инициализируем карту с временным центром
             mapInstance.current = new window.ymaps.Map(mapRef.current, {
@@ -310,7 +337,7 @@ const YMap: React.FC<YMapProps> = ({
 
     // Обновление точек
     useEffect(() => {
-        if (!ymapsLoaded || !objectManager.current) return;
+        if (!ymapsLoaded || !objectManager.current || !isMounted.current) return;
         try {
             const updatePoints = () => {
                 const objectsData = {
@@ -385,7 +412,9 @@ const YMap: React.FC<YMapProps> = ({
                 }
             };
 
-            updatePoints();
+            if (document.visibilityState === 'visible') {
+                updatePoints();
+            }
         }
         catch (error) {
             console.error('Error updating points:', error);
