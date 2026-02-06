@@ -19,6 +19,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - ./logs:/app/logs
     restart: unless-stopped
@@ -113,6 +115,16 @@ services:
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - grafanadata:/var/lib/grafana
+
+  alembic:
+    build:
+      context: .
+      dockerfile: Dockerfile.alembic
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./alembic/versions:/app/alembic/versions
 
 volumes:
   postgres_data:

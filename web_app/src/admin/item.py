@@ -9,12 +9,18 @@ class ItemAdmin(ModelView, model=Item):
     column_list = [
         Item.id,
         Item.title,
+        Item.brand,
+        Item.quantity,
+        Item.price,
         Item.importance
     ]
 
     column_labels = {
         Item.id: "Идентификатор",
         Item.title: "Название",
+        Item.brand: "Бренд/Марка",
+        Item.quantity: "Количество",
+        Item.price: "Стоимость (1шт.)",
         Item.importance: "Важность",
         Item.created_at: "Дата создания",
         Item.apartments: "Объекты"
@@ -23,19 +29,26 @@ class ItemAdmin(ModelView, model=Item):
     column_searchable_list = [Item.id, Item.title] # список столбцов, которые можно искать
     column_sortable_list = [
         Item.id,
-        Item.importance
+        Item.importance,
+        Item.title
     ]  # список столбцов, которые можно сортировать
 
     column_default_sort = [(Item.id, True)]
 
     form_create_rules = [
         "title",
+        "brand",
+        "quantity",
+        "price",
         "importance"
     ]
 
     column_details_list = [
         Item.id,
         Item.title,
+        Item.brand,
+        Item.quantity,
+        Item.price,
         Item.importance,
         Item.created_at,
         Item.apartments
@@ -43,6 +56,9 @@ class ItemAdmin(ModelView, model=Item):
 
     form_edit_rules = [
         "title",
+        "brand",
+        "quantity",
+        "price",
         "importance"
     ]
 

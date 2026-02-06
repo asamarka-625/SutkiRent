@@ -36,3 +36,5 @@ pg_hba.conf
 postgresql.conf
 parser.env
 run_parser.py
+alembic/
+alembic.ini

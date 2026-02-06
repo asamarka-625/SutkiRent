@@ -35,3 +35,5 @@ nginx.conf
 pg_hba.conf
 postgresql.conf
 web.env
+alembic/
+alembic.ini
