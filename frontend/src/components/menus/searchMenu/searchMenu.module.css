@@ -143,3 +143,14 @@
     display: block;
   }
 }
+
+.circleIndicator {
+  border-radius: 100%;
+  font-size: 12px;
+  padding: 6px;
+  background-color: var(--mantine-color-sberGreenColor-9);
+  color: white;
+  padding: 8px;
+  font-weight: 500;
+  margin-top: 16px;
+}

@@ -269,7 +269,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
       console.log('filters.ok');
       if (data?.metro.length == 0) IsRegionChangedRef.current = true;
       else IsRegionChangedRef.current = false;
-      
+
       console.log(data?.metro.length == 0)
       console.log(IsRegionChangedRef.current)
 
@@ -482,13 +482,13 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
   }, [filtersSearch]);
 
   useEffect(() => {
-    filterForm.setValues({
-      near_metros: []
-    });
-    console.log(filterForm.getValues().near_metros)
+    // filterForm.setValues({
+    //   near_metros: []
+    // });
+    // console.log(filterForm.getValues().near_metros)
 
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete('near_metros');
+    // const newParams = new URLSearchParams(searchParams);
+    // newParams.delete('near_metros');
   }, [IsRegionChangedRef]);
 
   const [dopsData, setDopsData] = useState(['Парковка', 'Бесконтакт. заселение', 'Отчетные документы'])
@@ -558,7 +558,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
 
-    useEffect(() => {
+  useEffect(() => {
     getFiltersData();
     console.log('useEffect getFiltersData opened')
   }, [opened]);
@@ -646,6 +646,10 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
           <CheckboxGroup  {...filterForm.getInputProps('category')} mt={10}>
             {categoryList}
           </CheckboxGroup>
+          <Button size="xs" onClick={() => filterForm.setFieldValue('category', [])} mt="md" disabled={filterForm.getValues().category.length == 0}>
+            Сбросить выбор
+          </Button>
+
         </Flex>
 
 
@@ -653,11 +657,14 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
 
         {/* МЕТРО РЯДОМ */}
         <Flex className="papercard" align='' direction="column" >
-          <div style={{ marginLeft: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Метро рядом</h4>
+            <div className={styles.circleIndicator} style={{display: filterForm.values['near_metros']?.length ? 'inherit' : 'none'}}>
+              {'+ ' + filterForm.values['near_metros']?.length}
+            </div>
           </div>
           <div>
-            <Popover width={200} position="bottom" withArrow shadow="md" keepMounted  withinPortal zIndex={20000} >
+            <Popover width={200} position="bottom" withArrow shadow="md" keepMounted withinPortal zIndex={20000} >
               <Popover.Target>
                 <Button variant="outline" mt={10} size="xs" fullWidth
                   className={styles["metroButton"]}
@@ -671,12 +678,18 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
                 </CheckboxGroup>
               </Popover.Dropdown>
             </Popover>
+          
 
             {/* <Button variant="outline" mt={10} size="xs" fullWidth onClick={openMetroModal}
               className={styles["metroButton"]}>
               Выбрать станции
             </Button> */}
           </div>
+          <Button variant='subtle' size="xs" fullwidth onClick={() => filterForm.setFieldValue('near_metros', [])} mt="md" 
+          disabled={filterForm.getValues().near_metros.length == 0}
+          color={filterForm.getValues().near_metros.length == 0 ? 'white' : 'green'}>
+            Сбросить выбор
+          </Button>
         </Flex>
 
 
@@ -791,6 +804,9 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
                 </Button>
               )}
             </div>
+            <Button size="xs" onClick={() => filterForm.setFieldValue('inRoom', [])} mt="md" disabled={filterForm.getValues().inRoom.length == 0}>
+              Сбросить выбор
+            </Button>
 
           </div>
         </Flex>

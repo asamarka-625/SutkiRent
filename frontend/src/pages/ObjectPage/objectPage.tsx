@@ -78,8 +78,8 @@ function transformPropertyData(originalData: any): Property {
         finding_description: '',
         helpful_info: '',
         parking_info: '',
-        object_inventories: [],
-        services: originalData.items ? originalData.items.map((item: string) => ({ name: item })) : [],
+        object_inventories: originalData.items ? originalData.items.map((item: string) => ({ name: item })) : [],
+        services: [],
         near_metro: originalData.metro 
             ? originalData.metro.map((station: string) => ({ name: station }))
             : [],

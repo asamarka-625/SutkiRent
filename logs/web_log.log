@@ -1595,3 +1595,103 @@ HAVING count(apartment_availability_1.id) = $11::INTEGER ORDER BY apartments.pri
 2026-02-05 13:11:04,530 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
 2026-02-05 13:13:13,246 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = None: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
 2026-02-05 13:13:13,454 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = None: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 08:29:42,885 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 08:29:43,734 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 08:29:43,735 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 08:29:43,737 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 08:29:43,840 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 08:29:43,841 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 08:58:35,039 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 08:58:35,539 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 08:58:35,540 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 08:58:35,541 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 08:58:35,612 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 08:58:35,613 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:13:06,665 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:13:07,168 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:13:07,169 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:13:07,170 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:13:07,242 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:13:07,245 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:13:23,230 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 1: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:20:48,135 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:20:48,660 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:20:48,661 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:20:48,662 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:20:48,734 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:20:48,736 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:29:09,124 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:29:10,036 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:29:10,762 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:29:11,803 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:29:47,413 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:29:48,267 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:29:48,270 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:29:48,272 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:29:48,537 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:29:48,541 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:35:55,709 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:35:56,328 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:35:56,329 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:35:56,330 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:35:56,408 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:35:56,409 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:36:28,370 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:36:28,445 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:41:03,097 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:41:03,572 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:41:03,573 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:41:03,574 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:41:03,644 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:41:03,645 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:41:17,836 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:41:18,093 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:43:25,419 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:43:25,889 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:43:25,890 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:43:25,891 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:43:25,962 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:43:25,963 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:47:53,260 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:47:54,975 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:54:22,455 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:54:23,015 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:54:23,017 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:54:23,018 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:54:23,092 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:54:23,093 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:54:48,538 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:54:48,873 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:54:49,263 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:57:22,379 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:57:22,867 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:57:22,868 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:57:22,869 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:57:22,943 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:57:22,944 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:57:56,552 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:57:56,764 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:57:57,636 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:59:33,941 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 09:59:34,467 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 09:59:34,468 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 09:59:34,469 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 09:59:34,553 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 09:59:34,554 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 09:59:58,601 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:59:58,666 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 09:59:59,068 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 10:01:14,406 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 10:01:15,111 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 10:01:15,112 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 10:01:15,113 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 10:01:15,253 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 10:01:15,259 - web_app.src.core.logger - INFO - Инициализируем соединение Redis
+2026-02-06 10:01:16,828 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 10:01:17,155 - web_app.src.core.logger - ERROR - Database error get data for filters by region_id = 2: This session is provisioning a new connection; concurrent operations are not permitted (Background on this error at: https://sqlalche.me/e/20/isce)
+2026-02-06 10:03:32,384 - web_app.src.core.logger - INFO - Configuration initialized
+2026-02-06 10:03:32,939 - web_app.src.core.logger - INFO - Запускаем приложение...
+2026-02-06 10:03:32,941 - web_app.src.core.logger - INFO - Инициализируем базу данных
+2026-02-06 10:03:32,942 - web_app.src.core.logger - INFO - Инициализируем таблицы
+2026-02-06 10:03:33,012 - web_app.src.core.logger - INFO - Инициализируем redis
+2026-02-06 10:03:33,014 - web_app.src.core.logger - INFO - Инициализируем соединение Redis

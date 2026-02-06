@@ -171,31 +171,39 @@ export function ObjectPageCard(props: Property) {
         </li>
     ));
 
+    const inventory2List = (Array.isArray(props.object_inventories) ? props.object_inventories : []).map((item) => (
+        <li>
+            {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />}
+            {item.name[0].toUpperCase() + item.name.slice(1)}
+        </li>
+    ));
 
-    const inventoryList = (Array.isArray(props.object_inventories) ? props.object_inventories : [])
-        // Сначала группируем по id инвентаря
-        .reduce((acc, current) => {
-            const existing = acc.find(item => item.inventory.id === current.inventory.id);
-            if (existing) {
-                existing.totalAmount += current.amount;
-            } else {
-                acc.push({
-                    ...current,
-                    totalAmount: current.amount
-                });
-            }
-            return acc;
-        }, [])
-        // Затем преобразуем в JSX
-        .map((item) => (
-            <li key={item.inventory.id} className="bullet-item">
-                {/* <div className="bullet-number"></div> */}
-                <div className="bullet-content" style={{ padding: "10px" }}>
-                    <p style={{color: "var(--mantine-color-grayColor-9)"}}>{item.inventory.name[0].toUpperCase() + item.inventory.name.slice(1)}</p>
-                    <p>В количестве: {item.totalAmount}</p>
-                </div>
-            </li>
-        ));
+
+
+    // const inventoryList = (Array.isArray(props.object_inventories) ? props.object_inventories : [])
+    //     // Сначала группируем по id инвентаря
+    //     .reduce((acc, current) => {
+    //         const existing = acc.find(item => item.inventory.id === current.inventory.id);
+    //         if (existing) {
+    //             existing.totalAmount += current.amount;
+    //         } else {
+    //             acc.push({
+    //                 ...current,
+    //                 totalAmount: current.amount
+    //             });
+    //         }
+    //         return acc;
+    //     }, [])
+    //     // Затем преобразуем в JSX
+    //     .map((item) => (
+    //         <li key={item.inventory.id} className="bullet-item">
+    //             {/* <div className="bullet-number"></div> */}
+    //             <div className="bullet-content" style={{ padding: "10px" }}>
+    //                 <p style={{color: "var(--mantine-color-grayColor-9)"}}>{item.inventory.name[0].toUpperCase() + item.inventory.name.slice(1)}</p>
+    //                 <p>В количестве: {item.totalAmount}</p>
+    //             </div>
+    //         </li>
+    //     ));
 
 
     async function displayType() {
@@ -487,7 +495,7 @@ export function ObjectPageCard(props: Property) {
 
                                 <div className={`tab-content ${activeTab === 'inventory' ? 'active' : ''}`} id="inv-content">
                                     <ul className="inv-list">
-                                        {props.object_inventories?.length != 0 ? inventoryList : "Инвентарь не перечислен"}
+                                        {props.object_inventories?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
                                     </ul>
                                 </div>
                             </div>
@@ -617,7 +625,7 @@ export function ObjectPageCard(props: Property) {
 
                                 <div>
                                     <ul className="inv-list">
-                                        {props.object_inventories?.length != 0 ? inventoryList : "Инвентарь не перечислен"}
+                                        {props.object_inventories?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
                                         {/* <li><i className="fas fa-tv"></i>Телевизор</li>
                                         <li><i className="fas fa-wifi"></i> Wi-Fi</li>
                                         <li><i className="fas fa-soap"></i> Стиральная машина</li>
