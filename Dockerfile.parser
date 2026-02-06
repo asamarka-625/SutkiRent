@@ -8,5 +8,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
-# CMD ["sleep", "infinity"]
 CMD ["python", "run_parser.py"]

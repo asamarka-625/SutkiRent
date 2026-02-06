@@ -384,7 +384,10 @@ class Item(Base):
     __tablename__ = "items"
 
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
-    title: so.Mapped[str] = so.mapped_column(sa.String(200), index=True, unique=True)
+    title: so.Mapped[str] = so.mapped_column(sa.String(128), index=True, unique=True)
+    brand: so.Mapped[str] = so.mapped_column(sa.String(64), nullable=True)
+    quantity: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
+    price: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
     importance: so.Mapped[bool] = so.mapped_column(sa.Boolean, index=True)
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 

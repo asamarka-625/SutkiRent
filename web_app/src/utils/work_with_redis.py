@@ -132,7 +132,7 @@ class RedisService:
         await self.redis.set(
             name=f"{self.user_prefix}{user_id}",
             value=json.dumps(data, cls=CustomJSONEncoder),
-            ex=cfg.USER_CACHE_MINUTES * 60
+            ex=cfg.USER_CACHE_SECONDS
         )
 
     async def get_user_data(

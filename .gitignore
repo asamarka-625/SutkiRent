@@ -9,14 +9,16 @@ __pycache__/
 
 # Other
 backend
-frontend-old
+old-version/
+old-version/frontend-old
 pg_hba.conf
 postgresql
-docker-compose-main.yml
-google1d57d613b149a8b2.html
+old-version/docker-compose-main.yml
 
 # Logs
 .log
+parser_log.log
+web_log.log
 
 # Файлы IDE
 .idea/
