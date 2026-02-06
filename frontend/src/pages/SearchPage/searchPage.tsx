@@ -791,12 +791,13 @@ export function SearchPage() {
                                 // rightSection={<span />}
                                 withCheckIcon={false}
                                 searchable
+                                rightSectionPointerEvents="all"
                                 size="lg"
                                 placeholder="Куда поехать?"
                                 rightSection={
                                     objectFilterForm.values.region ? (
                                         <CloseButton
-                                            onClick={() => objectFilterForm.setFieldValue('region', null)}
+                                            onClick={() => objectFilterForm.setValues({region: null })}
                                             size="sm"
                                             style={{
                                                 display: 'flex',

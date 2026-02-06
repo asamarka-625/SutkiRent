@@ -299,7 +299,7 @@ console.log("regions 1 started")
                                 rightSection={
                                     objectFilterForm.values.region ? (
                                         <CloseButton
-                                            onClick={() => objectFilterForm.setFieldValue('region', null)}
+                                            onClick={() => objectFilterForm.setValues({region: null })}
                                             size="sm"
                                             style={{
                                                 display: 'flex',

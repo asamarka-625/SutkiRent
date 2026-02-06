@@ -660,7 +660,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginLeft: 10 }}>
             <h4 className="HeadingStyle3">Метро рядом</h4>
             <div className={styles.circleIndicator} style={{display: filterForm.values['near_metros']?.length ? 'inherit' : 'none'}}>
-              {'+ ' + filterForm.values['near_metros']?.length}
+              {'+' + filterForm.values['near_metros']?.length}
             </div>
           </div>
           <div>
