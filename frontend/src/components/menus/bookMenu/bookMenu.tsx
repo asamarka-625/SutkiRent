@@ -393,7 +393,7 @@ export function BookMenu(props: Props) {
     }
 
     const response = await setBron(
-      id || '',
+      props.external_id.toString() || '',
       bookFormDetails.getValues().guest,
       formattedDateToday,
       formattedDateTomo,
