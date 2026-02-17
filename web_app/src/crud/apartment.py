@@ -202,8 +202,6 @@ async def sql_get_available_apartments(
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
 
     except Exception as e:
-        import traceback
-        traceback.print_exc()
         cfg.logger.error(f"Unexpected error get available apartments: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
 
@@ -321,7 +319,7 @@ async def sql_get_apartment_by_id(
             sa.select(Apartment)
             .options(
                 so.joinedload(Apartment.apartment_type),
-                so.joinedload(Apartment.bathrooms),
+                so.selectinload(Apartment.bathrooms),
                 so.selectinload(Apartment.photos),
                 so.selectinload(Apartment.metro_stations),
                 so.selectinload(Apartment.windows),
@@ -357,6 +355,8 @@ async def sql_get_apartment_by_id(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Apartment not found")
 
     except SQLAlchemyError as e:
+        import traceback
+        traceback.print_exc()
         cfg.logger.error(f"Database error get apartment by id = {apartment_id}: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
 
