@@ -58,6 +58,10 @@ async def sql_get_user_by_id(
         )
         user = user_result.scalar_one()
 
+        if not user.is_active:
+            cfg.logger.info(f"User not active: {user_id}")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not active")
+
         return user
 
     except NoResultFound:

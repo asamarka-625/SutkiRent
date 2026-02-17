@@ -1,39 +1,39 @@
 # Внешние зависимости
 from sqladmin import ModelView
 # Внутренние модули
-from models import BathroomApartment
+from models import Bathroom
 
 
-# Админка для BathroomApartment
-class BathroomApartmentAdmin(ModelView, model=BathroomApartment):
+# Админка для Bathroom
+class BathroomAdmin(ModelView, model=Bathroom):
     column_list = [
-        BathroomApartment.id,
-        BathroomApartment.title
+        Bathroom.id,
+        Bathroom.title
     ]
 
     column_labels = {
-        BathroomApartment.id: "Идентификатор",
-        BathroomApartment.title: "Название",
-        BathroomApartment.created_at: "Дата создания",
-        BathroomApartment.apartments: "Объекты"
+        Bathroom.id: "Идентификатор",
+        Bathroom.title: "Название",
+        Bathroom.created_at: "Дата создания",
+        Bathroom.apartments: "Объекты"
     }
 
-    column_searchable_list = [BathroomApartment.id] # список столбцов, которые можно искать
+    column_searchable_list = [Bathroom.id] # список столбцов, которые можно искать
     column_sortable_list = [
-        BathroomApartment.id,
+        Bathroom.id,
     ]  # список столбцов, которые можно сортировать
 
-    column_default_sort = [(BathroomApartment.id, True)]
+    column_default_sort = [(Bathroom.id, True)]
 
     form_create_rules = [
-        'title'
+        "title"
     ]
 
     column_details_list = [
-        BathroomApartment.id,
-        BathroomApartment.title,
-        BathroomApartment.created_at,
-        BathroomApartment.apartments
+        Bathroom.id,
+        Bathroom.title,
+        Bathroom.created_at,
+        Bathroom.apartments
     ]
 
     form_edit_rules = [

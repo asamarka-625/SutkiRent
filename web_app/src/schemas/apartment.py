@@ -1,5 +1,5 @@
 # Внешние зависимости
-from typing import Optional, Annotated, List, Dict
+from typing import Optional, Annotated, List, Dict, Set
 from datetime import date
 from pydantic import BaseModel, Field, HttpUrl, ConfigDict
 
@@ -53,11 +53,11 @@ class ApartmentFilter(BaseModel):
     floor: Optional[FloorFilter] = None
     area: Optional[AreaFilter] = None
     room: Optional[RoomFilter] = None
-    type_apartment: Optional[List[int]] = None
-    metro: Optional[List[int]] = None
-    windows: Optional[List[int]] = None
-    bathrooms: Optional[List[int]] = None
-    items: Optional[List[int]] = None
+    type_apartment: Optional[Set[int]] = None
+    metro: Optional[Set[int]] = None
+    windows: Optional[Set[int]] = None
+    bathrooms: Optional[Set[int]] = None
+    items: Optional[Set[int]] = None
 
 
 # Базовая схема объекта
@@ -65,7 +65,7 @@ class ApartmentBase(BaseModel):
     id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
     type: Optional[Annotated[str, Field(strict=True)]]
-    bathroom: Optional[Annotated[str, Field(strict=True)]]
+    bathroom: List[str]
     price: Annotated[float, Field(ge=0)]
     rooms: Annotated[int, Field(ge=0)]
     sleeps: Annotated[str, Field(strict=True)]
@@ -89,7 +89,7 @@ class ApartmentResponse(ApartmentBase):
 class ApartmentDetailResponse(ApartmentBase):
     external_id: Annotated[int, Field(ge=1)]
     description: Annotated[str, Field(strict=True)]
-    media: Dict[int, HttpUrl]
+    media: Dict[int, str]
     windows: List[str]
     items: List[str]
 

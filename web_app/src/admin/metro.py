@@ -22,7 +22,7 @@ class MetroStationAdmin(ModelView, model=MetroStation):
         MetroStation.apartments: "Объекты"
     }
 
-    column_searchable_list = [MetroStation.id, MetroStation.external_id] # список столбцов, которые можно искать
+    column_searchable_list = [MetroStation.title] # список столбцов, которые можно искать
     column_sortable_list = [
         MetroStation.id,
         MetroStation.external_id

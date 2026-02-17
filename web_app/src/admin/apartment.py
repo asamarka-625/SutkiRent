@@ -24,7 +24,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.address: "Адрес",
         Apartment.apartment_type: "Тип жилья",
         Apartment.windows: "Вид из окна",
-        Apartment.apartment_bathroom: "Тип санузла",
+        Apartment.bathrooms: "Тип санузла",
         Apartment.rooms: "Комнаты",
         Apartment.sleeps: "Формат спальных мест",
         Apartment.floor: "Этаж",
@@ -50,15 +50,18 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.increase_capacity: "Надбавка к цене от ко-во жильцов",
         Apartment.increase_capacity_price: "Надбавочная цена за ко-во жильцов",
         Apartment.services: "Услуги",
-        Apartment.items: "Предметы"
+        Apartment.apartment_items: "Предметы"
     }
 
-    column_searchable_list = [Apartment.external_id] # список столбцов, которые можно искать
+    column_searchable_list = [
+        Apartment.address
+    ] # список столбцов, которые можно искать
     column_sortable_list = [
         Apartment.id,
         Apartment.external_id,
         Apartment.priority,
-        Apartment.visibility
+        Apartment.visibility,
+        Apartment.address
     ]  # список столбцов, которые можно сортировать
 
     column_default_sort = [(Apartment.id, True)]
@@ -68,7 +71,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.external_id,
         Apartment.apartment_type,
         Apartment.windows,
-        Apartment.apartment_bathroom,
+        Apartment.bathrooms,
         Apartment.title,
         Apartment.address,
         Apartment.region_rel,
@@ -90,7 +93,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.latitude,
         Apartment.longitude,
         Apartment.services,
-        Apartment.items,
+        Apartment.apartment_items,
         Apartment.price_without_discount,
         Apartment.price_with_discount,
         Apartment.discount_percent,
@@ -101,13 +104,12 @@ class ApartmentAdmin(ModelView, model=Apartment):
     form_edit_rules = [
         "apartment_type",
         "windows",
-        "apartment_bathroom",
+        "bathrooms",
         "priority",
         "visibility",
         "region_rel",
         "increase_capacity",
-        "increase_capacity_price",
-        "items"
+        "increase_capacity_price"
     ]
 
     can_create = False # право создавать

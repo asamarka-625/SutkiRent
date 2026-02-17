@@ -5,4 +5,4 @@ from web_app.src.schemas.apartment import (ApartmentFilter, ApartmentResponse, O
 from web_app.src.schemas.content import ContentResponse
 from web_app.src.schemas.region import RegionResponse
 from web_app.src.schemas.auth import UserCreate, VerifyRequest, EmailBase, PasswordResetConfirmRequest, TokenRequest
-from web_app.src.schemas.user import UserUpdate
+from web_app.src.schemas.user import UserUpdate, UserScheme

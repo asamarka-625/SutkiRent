@@ -61,7 +61,7 @@ async def sql_get_content_by_id(
             )
             .where(Content.id == content_id)
         )
-        content = content_result.scalar_one_or_none()
+        content = content_result.scalar_one()
 
         return ContentResponse(
             id=content.id,

@@ -10,6 +10,7 @@ from models import User
 from web_app.src.utils import verify_password, redis_service
 from web_app.src.crud import sql_get_user_by_email, sql_get_user_by_id
 from web_app.src.core import cfg
+from web_app.src.schemas import UserScheme
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
@@ -121,7 +122,7 @@ def create_csrf_token(user_id: str) -> str:
 # Получаем пользователя по access токену
 async def get_current_user_by_access_token(
     access_token: Optional[str] = Depends(oauth2_scheme)
-) -> User:
+) -> UserScheme:
     if not access_token:
         raise credentials_exception
 
@@ -143,18 +144,13 @@ async def get_current_user_by_access_token(
 
     user = await redis_service.get_user_data(user_id=user_id)
     if user is None:
-        user = await sql_get_user_by_id(user_id=int(user_id))
+        user_orm = await sql_get_user_by_id(user_id=int(user_id))
 
-        if user is None:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="User not found"
-            )
+        user = UserScheme.model_validate(user_orm).model_dump(mode="json")
 
-        user = user.to_dict()
         await redis_service.add_user_data(user_id=user_id, data=user)
 
-    return user
+    return UserScheme.model_validate(user)
 
 
 # Получаем данные refresh токена
