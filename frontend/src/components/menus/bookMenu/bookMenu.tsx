@@ -25,7 +25,8 @@ import { declineGuestWord } from "../../../handlers/pravopisanieHandler.ts";
 
 type Props = {
   cost: number,
-  capacity: number
+  capacity: number,
+  external_id: number
 }
 
 
@@ -231,7 +232,7 @@ export function BookMenu(props: Props) {
 
     setIsCostLoading(true);
     try {
-      const response = await getObjectCostByDate(id || '', formattedDateToday, formattedDateTomo)
+      const response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo)
       if (response.ok) {
         const data = await response.json();
         setCostData(data.price.details.amount);
@@ -287,7 +288,7 @@ export function BookMenu(props: Props) {
     // twoMonthsLater.setMonth(twoMonthsLater.getDate() + 30);
     // const formattedDateTwo = twoMonthsLater.toISOString().split('T')[0];
 
-    const response = await getObjectCalendar(id || '', formattedinToDate, formattedDateEnd)
+    const response = await getObjectCalendar(props.external_id.toString() || '', formattedinToDate, formattedDateEnd)
     if (response.ok) {
       const data = await response.json();
       const calendar = Array.isArray(data.calendar) ? data.calendar : [];

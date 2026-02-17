@@ -55,6 +55,7 @@ interface Property {
     all_media: MediaItem[];
     latitude: number,
     longitude: number,
+    external_id: number
 }
 
 function transformPropertyData(originalData: any): Property {
@@ -89,7 +90,8 @@ function transformPropertyData(originalData: any): Property {
                 url: String(url)
             })),
         latitude: originalData.latitude || 0,
-        longitude: originalData.longitude || 0
+        longitude: originalData.longitude || 0,
+        external_id: originalData.external_id || 0
     };
 }
 
@@ -163,34 +165,34 @@ export function ObjectPage() {
     }
 
 
-    async function getObjectsCost() {
-        const today = new Date()
-        const tomorrow = new Date()
-        const formattedDateToday = today.toISOString().split('T')[0];
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const formattedDateTomo = tomorrow.toISOString().split('T')[0];
+    // async function getObjectsCost() {
+    //     const today = new Date()
+    //     const tomorrow = new Date()
+    //     const formattedDateToday = today.toISOString().split('T')[0];
+    //     tomorrow.setDate(tomorrow.getDate() + 1);
+    //     const formattedDateTomo = tomorrow.toISOString().split('T')[0];
 
-        const response = await getObjectCostByDate(id || '', formattedDateToday, formattedDateTomo)
-        if (response.ok) {
-            const data = await response.json();
-            setObjects(prev => ({
-                ...prev,
-                cost: data.price.details.amount // новое значение
-            }));
-            // setObjects(data)
-        }
-        else {
-            // setObjects([])
-            const error = await response.json();
-            if (errorHandler(response.status) == 5) {
-                showNotification({
-                    title: "Ошибка сервера, обновите страницу",
-                    message: error.statusText,
-                    icon: <IconX />
-                })
-            }
-        }
-    }
+    //     const response = await getObjectCostByDate(id || '', formattedDateToday, formattedDateTomo)
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         setObjects(prev => ({
+    //             ...prev,
+    //             cost: data.price.details.amount // новое значение
+    //         }));
+    //         // setObjects(data)
+    //     }
+    //     else {
+    //         // setObjects([])
+    //         const error = await response.json();
+    //         if (errorHandler(response.status) == 5) {
+    //             showNotification({
+    //                 title: "Ошибка сервера, обновите страницу",
+    //                 message: error.statusText,
+    //                 icon: <IconX />
+    //             })
+    //         }
+    //     }
+    // }
 
 
 
@@ -210,7 +212,7 @@ export function ObjectPage() {
                 {/* БАЗА */}
                 <ObjectPageCard {...objects} />
 
-                <div><BookMenu cost={objects.cost} capacity={objects.capacity}></BookMenu></div>
+                <div><BookMenu cost={objects.cost} capacity={objects.capacity} external_id={objects.external_id}></BookMenu></div>
 
                 {/* <div className={styles["navbar"]}
                 ><SearchMenu opened={opened} catagoryData={categoryData}></SearchMenu></div> */}
