@@ -246,7 +246,7 @@ export function ObjectPageCard(props: Property) {
     const [hasNavigated, setHasNavigated] = useState(false);
 
     useEffect(() => {
-        displayType()
+        // displayType()
         displayRegion()
         // getInventoryDataFunc()
     }, [props]);

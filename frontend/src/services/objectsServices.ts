@@ -171,7 +171,7 @@ function getAggregatedInventoryForObject(data: DataItem[], objectId: number): { 
 //   "arrival_time":null,
 //   "departure_time":null}
 
-export async function getObjectCostByDate(id: string, dateB: string, dateE: string) {
+export async function getObjectCostByDate(id: string, dateB: string, dateE: string, guests: number) {
 
   const response = await fetch('https://realtycalendar.ru/v2/widget/Usf1JgFvIi/price', {
     method: 'POST',
@@ -181,7 +181,7 @@ export async function getObjectCostByDate(id: string, dateB: string, dateE: stri
     body: JSON.stringify({
       begin_date: dateB,
       end_date: dateE,
-      guests: { "adults": 1, "children": [] },
+      guests: { "adults": guests, "children": [] },
       apartment_id: id,
       arrival_time: null,
       departure_time: null,

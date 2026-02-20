@@ -232,7 +232,7 @@ export function BookMenu(props: Props) {
 
     setIsCostLoading(true);
     try {
-      const response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo)
+      const response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest)
       if (response.ok) {
         const data = await response.json();
         setCostData(data.price.details.amount);
@@ -506,6 +506,7 @@ export function BookMenu(props: Props) {
               data={guestTabs}
               key={bookFormDetails.key('guest')}
               {...bookFormDetails.getInputProps('guest')}
+              onChange={getObjectsCost}
 
             // mt="md"
             />

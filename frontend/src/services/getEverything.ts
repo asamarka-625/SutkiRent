@@ -171,17 +171,3 @@ export async function getTypeNameById(id: string) {
 
 }
 
-export async function getTypeData() {
-  const response = await fetch(
-    fetchAddress + '/objects/type/'
-    , {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        //   'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
-        //   'X-CSRFToken': 'csrftoken',
-        //   'Authorization': ` Bearer ${localStorage.getItem("token")}`,
-      }
-    })
-  return response
-}
