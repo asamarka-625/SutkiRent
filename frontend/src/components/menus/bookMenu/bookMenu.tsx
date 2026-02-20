@@ -148,7 +148,7 @@ export function BookMenu(props: Props) {
   const bookFormDetails = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      guest: 1,
+      guest: '',
       phone: '',
       email: '',
       fam: '',
@@ -171,27 +171,27 @@ export function BookMenu(props: Props) {
 
   useEffect(() => {
     bookForm.setValues({
-      in: [searchParams.get('in_start') ? new Date(searchParams.get('in_start')!) : datein, 
-         searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : dateout],
+      in: [searchParams.get('in_start') ? new Date(searchParams.get('in_start')!) : datein,
+      searchParams.get('in_end') ? new Date(searchParams.get('in_end')!) : dateout],
     });
-    
+
     // Автозаполнение данных пользователя в форму бронирования
     const loadUserData = async () => {
       try {
         const token = localStorage.getItem('token');
         const userStr = localStorage.getItem('user');
-        
+
         if (!token || !userStr) return;
-        
+
         const response = await fetch('/api/auth/profile/', {
           headers: {
             'Authorization': `Token ${token}`,
           },
         });
-        
+
         if (response.ok) {
           const profile = await response.json();
-          
+
           // Форматируем телефон для отображения
           const formatPhone = (phone: string) => {
             if (!phone) return '';
@@ -201,7 +201,7 @@ export function BookMenu(props: Props) {
             }
             return phone;
           };
-          
+
           bookFormDetails.setValues({
             fam: profile.last_name || '',
             name: profile.first_name || '',
@@ -213,7 +213,7 @@ export function BookMenu(props: Props) {
         console.error('Error loading user profile for booking:', error);
       }
     };
-    
+
     loadUserData();
   }, []);
 
@@ -232,6 +232,7 @@ export function BookMenu(props: Props) {
 
     setIsCostLoading(true);
     try {
+      console.log('bookFormDetails.getValues().guest', bookFormDetails.getValues().guest)
       const response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest)
       if (response.ok) {
         const data = await response.json();
@@ -377,15 +378,15 @@ export function BookMenu(props: Props) {
     const start = range?.[0] ? new Date(range[0]) : null;
     const end = range?.[1] ? new Date(range[1]) : null;
     const formattedDateToday = start
-    ? `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, '0')}-${String(start.getDate()).padStart(2, '0')}`
-    : '';
+      ? `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, '0')}-${String(start.getDate()).padStart(2, '0')}`
+      : '';
     const formattedDateTomo = end
-    ? `${end.getFullYear()}-${String(end.getMonth() + 1).padStart(2, '0')}-${String(end.getDate()).padStart(2, '0')}`
-    : '';
+      ? `${end.getFullYear()}-${String(end.getMonth() + 1).padStart(2, '0')}-${String(end.getDate()).padStart(2, '0')}`
+      : '';
 
     // Проверяем, что количество бонусов не превышает баланс
     const bonusesToUse = useBonuses > 0 ? Math.min(Math.max(0, useBonuses), bonusBalance) : 0;
-    
+
     // Если пользователь попытался использовать больше бонусов, чем есть, показываем ошибку
     if (useBonuses > bonusBalance) {
       alert(`Нельзя использовать больше ${bonusBalance.toFixed(2)} бонусов. Доступно: ${bonusBalance.toFixed(2)}`);
@@ -439,30 +440,30 @@ export function BookMenu(props: Props) {
         <div className={styles["grayArea"]}></div>
         <div className={styles["paper"]}>
           <Flex className="papercard" align='' direction="column" gap={10}>
-              <DoubleDateRangePicker
+            <DoubleDateRangePicker
               className=""
-                // блокируем выбор дат после успешной заявки
-                style={{ pointerEvents: bookingSubmitted ? 'none' : 'auto', opacity: bookingSubmitted ? 0.6 : 1 }}
-                excludeDate={(date) => {
-                  // Отключаем все даты, которые не доступны для бронирования
-                  return disabledDates.some(disabledDate =>
-                    date.getDate() === disabledDate.getDate() &&
-                    date.getMonth() === disabledDate.getMonth() &&
-                    date.getFullYear() === disabledDate.getFullYear()
-                  );
-                }}
-                value={bookForm.values.in}
-                // ref={dateInputRef}
-                // onBlur={() => guestInputRef.current?.focus()}
-                onChange={(value) => {
-                  if (!bookingSubmitted) {
-                    bookForm.setFieldValue('in', value);
-                  }
-                  // guestInputRef.current?.focus()
-                }}
+              // блокируем выбор дат после успешной заявки
+              style={{ pointerEvents: bookingSubmitted ? 'none' : 'auto', opacity: bookingSubmitted ? 0.6 : 1 }}
+              excludeDate={(date) => {
+                // Отключаем все даты, которые не доступны для бронирования
+                return disabledDates.some(disabledDate =>
+                  date.getDate() === disabledDate.getDate() &&
+                  date.getMonth() === disabledDate.getMonth() &&
+                  date.getFullYear() === disabledDate.getFullYear()
+                );
+              }}
+              value={bookForm.values.in}
+              // ref={dateInputRef}
+              // onBlur={() => guestInputRef.current?.focus()}
+              onChange={(value) => {
+                if (!bookingSubmitted) {
+                  bookForm.setFieldValue('in', value);
+                }
+                // guestInputRef.current?.focus()
+              }}
 
-              />
-              {/* <DateInput
+            />
+            {/* <DateInput
                 {...bookForm.getInputProps('in')}
                 excludeDate={(date) => {
                   // Отключаем все даты, которые не доступны для бронирования
@@ -496,7 +497,7 @@ export function BookMenu(props: Props) {
                 size="xs"
                 style={{ flex: 1, minWidth: 0 }}
               /> */}
- 
+
             <Select
               withCheckIcon={false}
               placeholder="Количество человек"
@@ -506,7 +507,10 @@ export function BookMenu(props: Props) {
               data={guestTabs}
               key={bookFormDetails.key('guest')}
               {...bookFormDetails.getInputProps('guest')}
-              onChange={getObjectsCost}
+              onChange={(value) => {
+                bookFormDetails.setFieldValue('guest', value);
+                getObjectsCost();
+              }}
 
             // mt="md"
             />

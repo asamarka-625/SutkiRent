@@ -181,7 +181,7 @@ export async function getObjectCostByDate(id: string, dateB: string, dateE: stri
     body: JSON.stringify({
       begin_date: dateB,
       end_date: dateE,
-      guests: { "adults": guests, "children": [] },
+      guests: { "adults": guests || 1, "children": [] },
       apartment_id: id,
       arrival_time: null,
       departure_time: null,
