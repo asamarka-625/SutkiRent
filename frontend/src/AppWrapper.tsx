@@ -38,6 +38,8 @@ import { LoginPageNatural } from './pages/LoginPage/loginPageNatural/loginPageNa
 import { RegisterNaturalPage } from './pages/LoginPage/registerNaturalPage';
 import { PasswordLostPage } from './pages/LoginPage/passwordLost/passwordLostPage';
 import { ResetPasswordPage } from './pages/LoginPage/passwordReset/passwordResetPage';
+import { AdminPage } from './pages/AdminPages/adminPage';
+import { PropertyTablePage } from './pages/AdminPages/AdminTable/adminTablePage';
 
 export function AppWrapper() {
   // Глобальный обработчик ошибок
@@ -109,6 +111,11 @@ export function AppWrapper() {
           <Route path="bonus" element={<BonusPage />} />
           <Route path="notifications" element={<NotificationsPage />} />
           <Route path="settings" element={<SettingsPage />} />
+        </Route>
+         <Route path="/admPanel" element={<PrivateRoute Component={WrapperPage} />}>
+          <Route index element={<AdminPage />} />
+          <Route path="admin" element={<BookingsPage />} />
+          <Route path="table" element={<PropertyTablePage />} />
         </Route>
         {/* <Route path="/auth" element={<LoginPage />}></Route>
       <Route path="/register" element={<RegisterPage />}></Route> */}
