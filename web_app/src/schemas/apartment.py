@@ -1,6 +1,7 @@
 # Внешние зависимости
 from typing import Optional, Annotated, List, Dict, Set
 from datetime import date
+from decimal import Decimal
 from pydantic import BaseModel, Field, HttpUrl, ConfigDict
 
 
@@ -106,34 +107,45 @@ class FavoriteRequest(BaseModel):
     apartment_id: Annotated[int, Field(ge=1)]
 
 
-# Схема тип жилья
-class ApartmentType(BaseModel):
+# Базовый класс для всех объектов с id и title
+class BaseElementScheme(BaseModel):
     id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
+
+
+# Схема тип жилья
+class ApartmentType(BaseElementScheme):
+    pass
 
 
 # Схема метро
-class ApartmentMetro(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentMetro(BaseElementScheme):
+    pass
 
 
 # Схема вида из окна
-class ApartmentWindow(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentWindow(BaseElementScheme):
+    pass
 
 
 # Схема типов санузлов
-class ApartmentBathroom(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentBathroom(BaseElementScheme):
+    pass
 
 
 # Схема предмета
-class ApartmentItem(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentItem(BaseElementScheme):
+    pass
+
+
+# Схема ответа предмета
+class ItemResponse(BaseElementScheme):
+    pass
+
+
+# Схема ответа брэнда
+class BrandResponse(BaseElementScheme):
+    pass
 
 
 # Схема вывода данных для фильтров
@@ -143,3 +155,19 @@ class DataFiltersResponse(BaseModel):
     windows: List[ApartmentWindow]
     bathrooms: List[ApartmentBathroom]
     items: List[ApartmentItem]
+
+
+# Схема ответа инвентаря
+class InventoryResponse(BaseModel):
+    item: Annotated[str, Field(strict=True)]
+    brand: Annotated[str, Field(strict=True)]
+    quantity: Annotated[int, Field(ge=0)]
+    price: Annotated[Decimal, Field(ge=0)]
+
+
+# Класс запроса на обновление инвентаря
+class UpdateInventoryRequest(BaseModel):
+    item_id: Annotated[int, Field(ge=1)]
+    brand_id: Annotated[int, Field(ge=1)]
+    quantity: Annotated[int, Field(ge=0)]
+    price: Annotated[Decimal, Field(ge=0)]

@@ -37,6 +37,30 @@ class User(Base):
         back_populates="user",
         cascade="all, delete-orphan"
     )
+    apartments: so.Mapped[List["Apartment"]] = so.relationship(
+        secondary="apartment_owner", back_populates="owners"
+    )
 
     def __repr__(self):
-        return f"<User(id={self.id}, username='{self.username}')>"
+        return f"<User(id={self.id}, name='{self.name}')>"
+
+    def __str__(self):
+        return self.email
+
+
+# Промежуточная таблица связи owner и apartment
+class ApartmentOwner(Base):
+    __tablename__ = "apartment_owner"
+
+    apartment_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("apartments.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    user_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("users.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    def __repr__(self):
+        return f"<ApartmentWindow(apartment_id={self.apartment_id}, user_id={self.user_id})>"

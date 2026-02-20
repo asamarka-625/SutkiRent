@@ -1,6 +1,7 @@
 # Внешние зависимости
 from typing import Optional, List
 from datetime import datetime, date
+from decimal import Decimal
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 # Внутренние модули
@@ -247,7 +248,14 @@ class Apartment(Base):
     price_history: so.Mapped[List["PriceHistory"]] = so.relationship(
         back_populates="apartment", cascade="all, delete-orphan"
     )
-    favorites: so.Mapped[List["Favorite"]] = so.relationship(back_populates="apartment", cascade="all, delete-orphan")
+    favorites: so.Mapped[List["Favorite"]] = so.relationship(
+        back_populates="apartment",
+        cascade="all, delete-orphan"
+    )
+
+    owners: so.Mapped[List["User"]] = so.relationship(
+        secondary="apartment_owner", back_populates="apartments"
+    )
 
     __table_args__ = (
         sa.Index('idx_apartments_location', 'latitude', 'longitude'),
@@ -381,6 +389,26 @@ class Item(Base):
         return self.title
 
 
+# Таблица брендов
+class Brand(Base):
+    __tablename__ = "brands"
+
+    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    title: so.Mapped[str] = so.mapped_column(sa.String(128), index=True, unique=True)
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    # Связи
+    apartment_items: so.Mapped[List["ApartmentItem"]] = so.relationship(
+        back_populates="brand"
+    )
+
+    def __repr__(self):
+        return f"<Brand(id={self.id}, title='{self.title}')>"
+
+    def __str__(self):
+        return self.title
+
+
 # Таблица видов из окна
 class Window(Base):
     __tablename__ = "windows"
@@ -433,18 +461,15 @@ class Bathroom(Base):
 class Favorite(Base):
     __tablename__ = "favorites"
 
-    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     user_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("users.id", ondelete="CASCADE"),
-        index=True,
-        nullable=False
+        primary_key=True
     )
     apartment_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("apartments.id", ondelete="CASCADE"),
-        index=True,
-        nullable=False
+        primary_key=True
     )
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
@@ -452,12 +477,11 @@ class Favorite(Base):
     user: so.Mapped["User"] = so.relationship(back_populates="favorites")
     apartment: so.Mapped["Apartment"] = so.relationship(back_populates="favorites")
 
-    __table_args__ = (
-        sa.UniqueConstraint('user_id', 'apartment_id', name='_user_favorite_uc'),
-    )
-
     def __repr__(self):
-        return f"<Favorite(id={self.id}, user_id={self.user_id}, apartment_id={self.apartment_id})>"
+        return f"<Favorite(user_id={self.user_id}, apartment_id={self.apartment_id})>"
+
+    def __str__(self):
+        return f"user_id={self.user_id}, apartment_id={self.apartment_id}"
 
 
 # Таблица связывающая предметы и апартаменты
@@ -465,33 +489,39 @@ class ApartmentItem(Base):
     __tablename__ = "apartment_item"
 
     apartment_id: so.Mapped[int] = so.mapped_column(
-        sa.Integer, sa.ForeignKey("apartments.id", ondelete="CASCADE"),
+        sa.Integer,
+        sa.ForeignKey("apartments.id", ondelete="CASCADE"),
         primary_key=True
     )
     item_id: so.Mapped[int] = so.mapped_column(
-        sa.Integer, sa.ForeignKey("items.id", ondelete="CASCADE"),
+        sa.Integer,
+        sa.ForeignKey("items.id", ondelete="CASCADE"),
         primary_key=True
     )
-    brand: so.Mapped[str] = so.mapped_column(sa.String(64), nullable=True)
+    brand_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer,
+        sa.ForeignKey("brands.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+
     quantity: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
-    price: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
+    price: so.Mapped[Decimal] = so.mapped_column(
+        sa.Numeric(precision=10, scale=2),
+        nullable=False
+    )
 
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     # Связи
     apartment: so.Mapped["Apartment"] = so.relationship(back_populates="apartment_items")
     item: so.Mapped["Item"] = so.relationship(back_populates="apartment_items")
-
-    # Уникальности пары Квартира + Предмет
-    __table_args__ = (
-        sa.UniqueConstraint("apartment_id", "item_id", name="uq_apartment_item"),
-    )
+    brand: so.Mapped["Brand"] = so.relationship(back_populates="apartment_items")
 
     def __repr__(self):
-        return f"<ApartmentItem(apartment_id={self.apartment_id}, item_id={self.item_id})>"
+        return f"<ApartmentItem(apartment_id={self.apartment_id}, item_id={self.item_id}, brand_id={self.brand_id})>"
 
     def __str__(self):
-        return f"apartment_id={self.apartment_id}, item_id={self.item_id}"
+        return f"apartment_id={self.apartment_id}, item_id={self.item_id}, brand_id={self.brand_id}"
 
 
 # Промежуточные таблицы для связей многие-ко-многим

@@ -10,7 +10,7 @@ from web_app.src.routers import router
 from web_app.src.admin import (ContentAdmin, PhotoContentAdmin, CategoryContentAdmin, ApartmentAdmin,
                                MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin,
                                ServiceAdmin, TypeApartmentAdmin, BathroomAdmin, ItemAdmin, WindowAdmin,
-                               ApartmentItemAdmin, authentication_backend)
+                               ApartmentItemAdmin, BrandAdmin, authentication_backend)
 from web_app.src.utils import redis_service
 
 
@@ -27,6 +27,9 @@ async def startup():
 async def shutdown():
     cfg.logger.info("Закрываем соединение с redis")
     await redis_service.close_redis()
+
+    await engine.dispose()
+    cfg.logger.info("Ресурсы освобождены")
 
     cfg.logger.info("Останавливаем приложение...")
 
@@ -66,6 +69,37 @@ app.add_middleware(
     max_age=600
 )
 
+"""
+# Admin Starlette
+from starlette_admin.contrib.sqla import Admin
+
+admin = Admin(
+    engine=engine,
+    title="Панель управления",
+    base_url="/admin",  # URL админки
+    route_name="admin",
+    # auth_provider=BasicAuthProvider(),  # если нужна аутентификация
+    # middlewares=[Middleware(SessionMiddleware, secret_key="secret")],
+    # templates_dir=None,  # можно указать свой кастомный шаблон
+    # logo_url=None,  # URL логотипа
+    # login_logo_url=None,  # URL логотипа на странице входа
+)
+
+admin.add_view(ApartmentAdmin(Apartment))
+admin.add_view(BathroomAdmin(Bathroom))
+admin.add_view(BrandAdmin(Brand))
+admin.add_view(CityAdmin(City))
+admin.add_view(ApartmentItemAdmin(ApartmentItem))
+admin.add_view(ItemAdmin(Item))
+admin.add_view(RegionAdmin(Region))
+admin.add_view(ServiceAdmin(Service))
+admin.add_view(TypeApartmentAdmin(TypeApartment))
+admin.add_view(WindowAdmin(Window))
+
+# Монтируем админку к приложению
+admin.mount_to(app)
+"""
+
 # Метрики /metrics
 instrumentator = Instrumentator()
 instrumentator.instrument(app).expose(app)
@@ -85,6 +119,7 @@ admin.add_view(ServiceAdmin)
 admin.add_view(TypeApartmentAdmin)
 admin.add_view(BathroomAdmin)
 admin.add_view(ItemAdmin)
+admin.add_view(BrandAdmin)
 admin.add_view(ApartmentItemAdmin)
 admin.add_view(WindowAdmin)
 

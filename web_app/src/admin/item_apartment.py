@@ -4,7 +4,7 @@ from sqladmin import ModelView
 from models import ApartmentItem
 
 
-# Админка для Item
+# Админка для ApartmentItem
 class ApartmentItemAdmin(ModelView, model=ApartmentItem):
     column_list = [
         ApartmentItem.apartment,

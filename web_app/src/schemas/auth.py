@@ -79,3 +79,9 @@ class TokenRequest(BaseModel):
 # Схема создания нового пароля
 class PasswordResetConfirmRequest(TokenRequest):
     new_password: Annotated[str, Field(strict=True, max_length=100)]
+
+
+# Схема ответа токенов
+class TokensResponse(BaseModel):
+    csrf_token: str
+    access_token: str

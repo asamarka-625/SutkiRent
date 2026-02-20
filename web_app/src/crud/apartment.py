@@ -1,5 +1,5 @@
 # Внешние зависимости
-from typing import Optional, List, Set
+from typing import Optional, Set
 from datetime import date
 import sqlalchemy as sa
 import sqlalchemy.orm as so

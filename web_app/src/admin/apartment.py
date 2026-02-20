@@ -106,7 +106,7 @@ class ApartmentAdmin(ModelView, model=Apartment):
         "windows",
         "bathrooms",
         "priority",
-        "visibility",
+        "visibility",   
         "region_rel",
         "increase_capacity",
         "increase_capacity_price"

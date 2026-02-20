@@ -11,6 +11,7 @@ from web_app.src.admin.window import WindowAdmin
 from web_app.src.admin.bathroom_apartment import BathroomAdmin
 from web_app.src.admin.item import ItemAdmin
 from web_app.src.admin.item_apartment import ApartmentItemAdmin
+from web_app.src.admin.brand import BrandAdmin
 from web_app.src.admin.authentication import BasicAuthBackend
 from web_app.src.core import cfg
 

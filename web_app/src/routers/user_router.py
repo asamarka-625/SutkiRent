@@ -3,9 +3,8 @@ from typing import Dict
 from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 # Внутренние модули
-from models import User
 from web_app.src.crud import sql_update_user_info
-from web_app.src.schemas import UserUpdate
+from web_app.src.schemas import UserUpdate, UserScheme
 from web_app.src.dependencies import get_current_user_by_access_token, get_data_by_refresh_token, verify_csrf_token
 
 
@@ -22,7 +21,7 @@ router = APIRouter(
 )
 async def update_info_user(
     data: UserUpdate,
-    current_user: User = Depends(get_current_user_by_access_token),
+    current_user: UserScheme = Depends(get_current_user_by_access_token),
     token_data: Dict[str, str] = Depends(get_data_by_refresh_token),
     csrf_user_id: str = Depends(verify_csrf_token)
 ):

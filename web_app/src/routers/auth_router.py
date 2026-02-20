@@ -13,7 +13,7 @@ from web_app.src.dependencies import (authenticate_user, create_refresh_token, c
 from web_app.src.core import cfg
 from web_app.src.utils import redis_service, email_service, get_password_hash, create_reset_token
 from web_app.src.schemas import (UserCreate, UserScheme, VerifyRequest, EmailBase, PasswordResetConfirmRequest,
-                                 TokenRequest)
+                                 TokenRequest, TokensResponse)
 from web_app.src.crud import sql_create_user, sql_get_user_by_email, sql_update_password_user_by_email
 
 
@@ -25,7 +25,7 @@ router = APIRouter(
 
 @router.post(
     "/login",
-    response_class=JSONResponse,
+    response_model=TokensResponse,
     summary="Аутентификация пользователя"
 )
 async def login(
@@ -58,17 +58,15 @@ async def login(
         max_age=cfg.REFRESH_TOKEN_EXPIRE_MINUTES * 60
     )
 
-    tokens = {
-        "csrf_token": create_csrf_token(user_id=str(user.id)),
-        "access_token": create_access_token(user_id=str(user.id))
-    }
-
-    return tokens
+    return TokensResponse(
+        csrf_token=create_csrf_token(user_id=str(user.id)),
+        access_token=create_access_token(user_id=str(user.id)),
+    )
 
 
 @router.post(
     "/refresh",
-    response_class=JSONResponse,
+    response_model=TokensResponse,
     summary="Обновление токена"
 )
 async def get_refresh_token(
@@ -93,12 +91,10 @@ async def get_refresh_token(
         max_age=cfg.REFRESH_TOKEN_EXPIRE_MINUTES * 60
     )
 
-    tokens = {
-        "csrf_token": create_csrf_token(user_id=token_data["user_id"]),
-        "access_token": create_access_token(user_id=token_data["user_id"])
-    }
-
-    return tokens
+    return TokensResponse(
+        csrf_token=create_csrf_token(user_id=token_data["user_id"]),
+        access_token=create_access_token(user_id=token_data["user_id"])
+    )
 
 
 @router.post("/logout")

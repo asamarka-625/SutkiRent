@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import SQLAlchemyError, NoResultFound
 from fastapi import HTTPException, status
 # Внутренние модули
-from models import User
+from models import User, ApartmentOwner
 from web_app.src.core import cfg, connection
 from web_app.src.schemas import UserUpdate
 
@@ -160,4 +160,53 @@ async def sql_update_user_info(
 
     except Exception as e:
         cfg.logger.error(f"Unexpected error update info user: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Проверяем, является ли пользователь owner
+@connection
+async def sql_check_user_has_apartments(
+    user_id: int,
+    session: AsyncSession
+) -> bool:
+    try:
+        stmt = sa.select(
+            sa.exists().where(ApartmentOwner.user_id == user_id)
+        )
+        result = await session.execute(stmt)
+        return result.scalar()
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error check user has apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error check user has apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Проверяем, является ли пользователь owner для объекта
+@connection
+async def sql_check_user_has_apartment_by_id(
+    user_id: int,
+    apartment_id: int,
+    session: AsyncSession
+) -> bool:
+    try:
+        stmt = sa.select(
+            sa.exists()
+            .where(
+                ApartmentOwner.user_id == user_id,
+                ApartmentOwner.apartment_id == apartment_id
+            )
+        )
+        result = await session.execute(stmt)
+        return result.scalar()
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error check user has apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error check user has apartments: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
