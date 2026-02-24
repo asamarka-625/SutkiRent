@@ -9,20 +9,23 @@ import {
   ActionIcon,
   NumberInput,
   Loader,
-  Flex
+  Flex,
+  Stack
 } from "@mantine/core";
-import { IconTrash, IconPlus } from "@tabler/icons-react";
+import { IconTrash, IconPlus, IconX } from "@tabler/icons-react";
 import { showNotification } from "@mantine/notifications";
-import { IconX } from "@tabler/icons-react";
 import { errorHandler } from "../../../handlers/errorBasicHandler";
+import inventoryService from "../../../services/adminServices"
 
 // Типы данных, приходящих с бекенда
 interface PropertyItem {
-  id?: number; // для существующих строк
-  property: string;
-  model: string;
+  id?: number;
+  item_id: number;      // id предмета из /api/objects/items
+  brand_id: number;      // id бренда из /api/objects/brands
+  property: string;      // title предмета (для отображения)
+  model: string;         // title бренда/модели (для отображения)
   quantity: number;
-  cost: number;
+  cost: number;          // price в API
 }
 
 interface DictionaryItem {
@@ -30,41 +33,107 @@ interface DictionaryItem {
   label: string;
 }
 
+interface ObjectOption {
+  value: string;
+  label: string;
+}
+
+// Интерфейсы для данных из API
+interface ApiItem {
+  id: number;
+  title: string;
+}
+
+interface ApiBrand {
+  id: number;
+  title: string;
+}
+
+interface ApiInventory {
+  id?: number;
+  item_id: number;
+  brand_id: number;
+  quantity: number;
+  price: number;
+  item_name?: string;
+  brand_name?: string;
+}
+
+interface ApiApartment {
+  id: number;
+  name: string;
+  address?: string;
+}
+
 export function PropertyTablePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isObjectsLoading, setIsObjectsLoading] = useState(false);
   const [tableData, setTableData] = useState<PropertyItem[]>([]);
+  const [selectedObject, setSelectedObject] = useState<string | null>(null);
+  const [objectsList, setObjectsList] = useState<ObjectOption[]>([]);
   
   // Справочники для выпадающих списков
   const [propertyDict, setPropertyDict] = useState<DictionaryItem[]>([]);
   const [modelDict, setModelDict] = useState<DictionaryItem[]>([]);
 
-  // Загрузка данных таблицы
-  const getTableDataFunc = async () => {
+  // Загрузка списка объектов для выбора
+  const getObjectsList = async () => {
+    setIsObjectsLoading(true);
+    try {
+      const data = await inventoryService.getApartments();
+      
+      setObjectsList(data.map((item: ApiApartment) => ({
+        value: item.id.toString(),
+        label: item.name || `Объект ${item.id}`
+      })));
+    } catch (error: any) {
+      console.error("Error loading objects list:", error);
+      setObjectsList([]);
+      
+      if (error.message?.includes('401') || error.message?.includes('авторизован')) {
+        showNotification({
+          title: "Ошибка авторизации",
+          message: "Пожалуйста, войдите в систему",
+          icon: <IconX />
+        });
+      } else {
+        showNotification({
+          title: "Ошибка",
+          message: error.message || "Не удалось загрузить список объектов",
+          icon: <IconX />
+        });
+      }
+    } finally {
+      setIsObjectsLoading(false);
+    }
+  };
+
+  // Загрузка данных таблицы для выбранного объекта
+  const getTableDataFunc = async (objectId: string) => {
     setIsLoading(true);
     try {
-      const response = await getContentListByCategory('property-table'); // замените на нужный эндпоинт
+      const data = await inventoryService.getApartmentInventory(objectId);
       
-      if (response.ok) {
-        const data = await response.json();
-        // Предполагаем, что данные приходят в формате, который можно преобразовать в PropertyItem[]
-        setTableData(data);
-      } else {
-        setTableData([]);
-        const error = await response.json();
-        if (errorHandler(response.status) === 5) {
-          showNotification({
-            title: "Ошибка сервера, обновите страницу",
-            message: error.statusText,
-            icon: <IconX />
-          });
-        }
-      }
-    } catch (error) {
+      // Преобразуем данные из API в формат PropertyItem
+      const transformedData: PropertyItem[] = data.map((item: ApiInventory) => ({
+        id: item.id,
+        item_id: item.item_id,
+        brand_id: item.brand_id,
+        property: item.item_name || getItemTitleById(item.item_id),
+        model: item.brand_name || getBrandTitleById(item.brand_id),
+        quantity: item.quantity,
+        cost: item.price
+      }));
+      
+      setTableData(transformedData);
+    } catch (error: any) {
       console.error("Error loading table data:", error);
+      setTableData([]);
+      
       showNotification({
         title: "Ошибка",
-        message: "Не удалось загрузить данные таблицы",
+        message: error.message || "Не удалось загрузить данные таблицы",
         icon: <IconX />
       });
     } finally {
@@ -72,56 +141,84 @@ export function PropertyTablePage() {
     }
   };
 
+  // Вспомогательная функция для получения названия предмета по ID
+  const getItemTitleById = (itemId: number): string => {
+    const item = propertyDict.find(dict => parseInt(dict.value) === itemId);
+    return item?.label || itemId.toString();
+  };
+
+  // Вспомогательная функция для получения названия бренда по ID
+  const getBrandTitleById = (brandId: number): string => {
+    const brand = modelDict.find(dict => parseInt(dict.value) === brandId);
+    return brand?.label || brandId.toString();
+  };
+
   // Загрузка справочников (вызывается один раз при инициализации)
   const getDictionaries = async () => {
     try {
-      // Замените на реальные эндпоинты для получения списков имущества и моделей
-      const [propertyRes, modelRes] = await Promise.all([
-        getDictionariesList('property'), 
-        getDictionariesList('model')
+      // Параллельно загружаем предметы и бренды
+      const [itemsData, brandsData] = await Promise.all([
+        inventoryService.getItems(),
+        inventoryService.getBrands()
       ]);
       
-      if (propertyRes.ok) {
-        const data = await propertyRes.json();
-        setPropertyDict(data.map((item: any) => ({
-          value: item.id?.toString() || item.name,
-          label: item.name
-        })));
-      }
+      // API возвращает массив объектов с полями id и title
+      setPropertyDict(itemsData.map((item: ApiItem) => ({
+        value: item.id.toString(),
+        label: item.title
+      })));
       
-      if (modelRes.ok) {
-        const data = await modelRes.json();
-        setModelDict(data.map((item: any) => ({
-          value: item.id?.toString() || item.name,
-          label: item.name
-        })));
-      }
-    } catch (error) {
+      setModelDict(brandsData.map((brand: ApiBrand) => ({
+        value: brand.id.toString(),
+        label: brand.title
+      })));
+    } catch (error: any) {
       console.error("Error loading dictionaries:", error);
       showNotification({
         title: "Ошибка",
-        message: "Не удалось загрузить справочники",
+        message: error.message || "Не удалось загрузить справочники",
         icon: <IconX />
       });
     }
   };
 
-  // Инициализация страницы
+  // Инициализация страницы - загружаем справочники и список объектов
   useEffect(() => {
     const initialize = async () => {
       setIsLoading(true);
-      await Promise.all([getDictionaries(), getTableDataFunc()]);
-      setIsLoading(false);
+      try {
+        await Promise.all([getDictionaries(), getObjectsList()]);
+      } catch (error) {
+        console.error("Initialization error:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     
     initialize();
   }, []);
 
+  // Загрузка данных таблицы при изменении выбранного объекта
+  useEffect(() => {
+    if (selectedObject) {
+      getTableDataFunc(selectedObject);
+    } else {
+      setTableData([]);
+    }
+  }, [selectedObject]);
+
   // Добавление новой пустой строки
   const addNewRow = () => {
     setTableData(prev => [
       ...prev,
-      { property: '', model: '', quantity: 1, cost: 0 }
+      { 
+        item_id: 0,
+        brand_id: 0,
+        property: '', 
+        model: '', 
+        quantity: 1, 
+        cost: 0 
+      }
     ]);
   };
 
@@ -135,40 +232,78 @@ export function PropertyTablePage() {
     setTableData(prev => {
       const newData = [...prev];
       newData[index] = { ...newData[index], [field]: value };
+      
+      // Если обновляем property, также обновляем item_id
+      if (field === 'property') {
+        const selectedItem = propertyDict.find(item => item.label === value);
+        if (selectedItem) {
+          newData[index].item_id = parseInt(selectedItem.value);
+        } else {
+          newData[index].item_id = 0;
+        }
+      }
+      
+      // Если обновляем model, также обновляем brand_id
+      if (field === 'model') {
+        const selectedBrand = modelDict.find(item => item.label === value);
+        if (selectedBrand) {
+          newData[index].brand_id = parseInt(selectedBrand.value);
+        } else {
+          newData[index].brand_id = 0;
+        }
+      }
+      
       return newData;
     });
   };
 
-  // Сохранение всех данных таблицы
+  // Сохранение всех данных таблицы для выбранного объекта
   const saveTableData = async () => {
-    setIsSaving(true);
-    try {
-      // Фильтруем строки, где не заполнены обязательные поля
-      const validData = tableData.filter(row => row.property && row.model);
-      
-      const response = await saveTableDataEndpoint(validData); // замените на реальный эндпоинт
-      
-      if (response.ok) {
-        showNotification({
-          title: "Успешно",
-          message: "Данные сохранены",
-          color: "green"
-        });
-        // Опционально: обновить данные с сервера, чтобы получить актуальные ID
-        await getTableDataFunc();
-      } else {
-        const error = await response.json();
-        showNotification({
-          title: "Ошибка сохранения",
-          message: error.message || "Попробуйте снова",
-          icon: <IconX />
-        });
-      }
-    } catch (error) {
-      console.error("Error saving table data:", error);
+    if (!selectedObject) {
       showNotification({
         title: "Ошибка",
-        message: "Не удалось сохранить данные",
+        message: "Выберите объект для редактирования",
+        icon: <IconX />
+      });
+      return;
+    }
+
+    // Проверяем, что все строки заполнены корректно
+    const invalidRows = tableData.filter(row => !row.item_id || !row.brand_id || row.item_id === 0 || row.brand_id === 0);
+    if (invalidRows.length > 0) {
+      showNotification({
+        title: "Ошибка валидации",
+        message: "Заполните имущество и марку/модель для всех строк",
+        icon: <IconX />
+      });
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      // Преобразуем в формат, который ожидает API
+      const apiData = tableData.map(row => ({
+        item_id: row.item_id,
+        brand_id: row.brand_id,
+        quantity: row.quantity,
+        price: row.cost
+      }));
+      
+      await inventoryService.updateApartmentInventory(selectedObject, apiData);
+      
+      showNotification({
+        title: "Успешно",
+        message: "Данные сохранены",
+        color: "green"
+      });
+      
+      // Обновляем данные с сервера, чтобы получить актуальные ID
+      await getTableDataFunc(selectedObject);
+    } catch (error: any) {
+      console.error("Error saving table data:", error);
+      showNotification({
+        title: "Ошибка сохранения",
+        message: error.message || "Не удалось сохранить данные",
         icon: <IconX />
       });
     } finally {
@@ -176,47 +311,7 @@ export function PropertyTablePage() {
     }
   };
 
-  // Заглушки для функций запросов (замените на реальные)
-  const getContentListByCategory = async (category: string) => {
-    // Имитация запроса
-    return {
-      ok: true,
-      json: async () => [
-        { id: 1, property: 'Недвижимость', model: 'Квартира', quantity: 2, cost: 5000000 },
-        { id: 2, property: 'Транспорт', model: 'Автомобиль', quantity: 1, cost: 1500000 }
-      ]
-    } as any;
-  };
-
-  const getDictionariesList = async (type: string) => {
-    // Имитация запроса справочников
-    const dicts = {
-      property: [
-        { id: 1, name: 'Недвижимость' },
-        { id: 2, name: 'Транспорт' },
-        { id: 3, name: 'Оборудование' }
-      ],
-      model: [
-        { id: 1, name: 'Квартира' },
-        { id: 2, name: 'Автомобиль' },
-        { id: 3, name: 'Станок' }
-      ]
-    };
-    return {
-      ok: true,
-      json: async () => dicts[type as keyof typeof dicts] || []
-    } as any;
-  };
-
-  const saveTableDataEndpoint = async (data: PropertyItem[]) => {
-    // Имитация сохранения
-    return {
-      ok: true,
-      json: async () => ({ success: true })
-    } as any;
-  };
-
-  if (isLoading) {
+  if (isLoading && !selectedObject) {
     return (
       <Flex justify="center" align="center" style={{ height: '400px' }}>
         <Loader size="lg" />
@@ -226,123 +321,183 @@ export function PropertyTablePage() {
 
   return (
     <Paper shadow="sm" p="md" radius="md" style={{ backgroundColor: 'white' }}>
-      <Group justify="space-between" mb="md">
-        <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 600 }}>Редактирование имущества</h2>
-        <Group>
-          <Button 
-            onClick={addNewRow} 
-            leftSection={<IconPlus size={16} />}
-            variant="outline"
-          >
-            Добавить строку
-          </Button>
-          <Button 
-            onClick={saveTableData} 
-            loading={isSaving}
-            color="var(--mantine-color-sberGreenColor-9)"
-          >
-            Сохранить
-          </Button>
-        </Group>
-      </Group>
+      <Stack gap="md">
+        {/* Блок выбора объекта */}
+        <Paper withBorder p="md" radius="md" style={{ backgroundColor: '#f8f9fa' }}>
+          <Group align="flex-end">
+            <div style={{ flex: 1 }}>
+              <Select
+                label="Выберите объект для редактирования"
+                placeholder={isObjectsLoading ? "Загрузка объектов..." : "Выберите из списка"}
+                data={objectsList}
+                value={selectedObject}
+                onChange={setSelectedObject}
+                searchable
+                clearable
+                disabled={isObjectsLoading}
+                styles={{
+                  label: { fontWeight: 600, marginBottom: 4 }
+                }}
+              />
+            </div>
+            {selectedObject && (
+              <Button 
+                variant="subtle" 
+                color="gray"
+                onClick={() => setSelectedObject(null)}
+                leftSection={<IconX size={16} />}
+              >
+                Очистить
+              </Button>
+            )}
+          </Group>
+        </Paper>
 
-      <Table 
-        striped 
-        highlightOnHover 
-        withTableBorder 
-        withColumnBorders
-        style={{ 
-          borderCollapse: 'collapse',
-          '& th': { 
-            backgroundColor: '#f8f9fa',
-            fontWeight: 600,
-            padding: '12px 8px'
-          }
-        }}
-      >
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th style={{ width: '50px', textAlign: 'center' }}>№ п/п</Table.Th>
-            <Table.Th>Имущество</Table.Th>
-            <Table.Th>Марка/Модель</Table.Th>
-            <Table.Th style={{ width: '100px' }}>Кол-во</Table.Th>
-            <Table.Th style={{ width: '120px' }}>Стоимость</Table.Th>
-            <Table.Th style={{ width: '50px' }}></Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {tableData.length === 0 ? (
-            <Table.Tr>
-              <Table.Td colSpan={6} style={{ textAlign: 'center', padding: '40px' }}>
-                Нет данных. Добавьте первую строку.
-              </Table.Td>
-            </Table.Tr>
-          ) : (
-            tableData.map((row, index) => (
-              <Table.Tr key={index}>
-                <Table.Td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {index + 1}
-                </Table.Td>
-                <Table.Td>
-                  <Select
-                    data={propertyDict}
-                    value={row.property}
-                    onChange={(value) => updateRow(index, 'property', value || '')}
-                    placeholder="Выберите"
-                    searchable
-                    clearable
-                    styles={{
-                      input: { border: 'none', background: 'transparent' }
-                    }}
-                  />
-                </Table.Td>
-                <Table.Td>
-                  <Select
-                    data={modelDict}
-                    value={row.model}
-                    onChange={(value) => updateRow(index, 'model', value || '')}
-                    placeholder="Выберите"
-                    searchable
-                    clearable
-                    styles={{
-                      input: { border: 'none', background: 'transparent' }
-                    }}
-                  />
-                </Table.Td>
-                <Table.Td>
-                  <NumberInput
-                    value={row.quantity}
-                    onChange={(value) => updateRow(index, 'quantity', value || 0)}
-                    min={1}
-                    hideControls
-                    styles={{
-                      input: { border: 'none', textAlign: 'center', background: 'transparent' }
-                    }}
-                  />
-                </Table.Td>
-                <Table.Td>
-                  <TextInput
-                    value={row.cost}
-                    onChange={(e) => updateRow(index, 'cost', e.currentTarget.value)}
-                    styles={{
-                      input: { border: 'none', textAlign: 'right', background: 'transparent' }
-                    }}
-                  />
-                </Table.Td>
-                <Table.Td style={{ textAlign: 'center' }}>
-                  <ActionIcon 
-                    color="red" 
-                    onClick={() => deleteRow(index)}
-                    variant="subtle"
-                  >
-                    <IconTrash size={16} />
-                  </ActionIcon>
-                </Table.Td>
-              </Table.Tr>
-            ))
-          )}
-        </Table.Tbody>
-      </Table>
+        {selectedObject ? (
+          <>
+            <Group justify="space-between" mb="md">
+              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 600 }}>
+                Редактирование имущества
+                {objectsList.find(obj => obj.value === selectedObject) && (
+                  <span style={{ fontSize: '1rem', fontWeight: 400, marginLeft: 8, color: '#666' }}>
+                    {objectsList.find(obj => obj.value === selectedObject)?.label}
+                  </span>
+                )}
+              </h2>
+              <Group>
+                <Button 
+                  onClick={addNewRow} 
+                  leftSection={<IconPlus size={16} />}
+                  variant="outline"
+                >
+                  Добавить строку
+                </Button>
+                <Button 
+                  onClick={saveTableData} 
+                  loading={isSaving}
+                  color="var(--mantine-color-sberGreenColor-9)"
+                >
+                  Сохранить
+                </Button>
+              </Group>
+            </Group>
+
+            {isLoading ? (
+              <Flex justify="center" align="center" style={{ height: '300px' }}>
+                <Loader size="lg" />
+              </Flex>
+            ) : (
+              <Table 
+                striped 
+                highlightOnHover 
+                withTableBorder 
+                withColumnBorders
+                style={{ 
+                  borderCollapse: 'collapse',
+                  '& th': { 
+                    backgroundColor: '#f8f9fa',
+                    fontWeight: 600,
+                    padding: '12px 8px'
+                  }
+                }}
+              >
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th style={{ width: '50px', textAlign: 'center' }}>№ п/п</Table.Th>
+                    <Table.Th>Имущество</Table.Th>
+                    <Table.Th>Марка/Модель</Table.Th>
+                    <Table.Th style={{ width: '100px' }}>Кол-во</Table.Th>
+                    <Table.Th style={{ width: '120px' }}>Стоимость</Table.Th>
+                    <Table.Th style={{ width: '50px' }}></Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {tableData.length === 0 ? (
+                    <Table.Tr>
+                      <Table.Td colSpan={6} style={{ textAlign: 'center', padding: '40px' }}>
+                        Нет данных для этого объекта. Добавьте первую строку.
+                      </Table.Td>
+                    </Table.Tr>
+                  ) : (
+                    tableData.map((row, index) => (
+                      <Table.Tr key={row.id || index}>
+                        <Table.Td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+                          {index + 1}
+                        </Table.Td>
+                        <Table.Td>
+                          <Select
+                            data={propertyDict}
+                            value={row.property}
+                            onChange={(value) => updateRow(index, 'property', value || '')}
+                            placeholder="Выберите"
+                            searchable
+                            clearable
+                            styles={{
+                              input: { border: 'none', background: 'transparent' }
+                            }}
+                          />
+                        </Table.Td>
+                        <Table.Td>
+                          <Select
+                            data={modelDict}
+                            value={row.model}
+                            onChange={(value) => updateRow(index, 'model', value || '')}
+                            placeholder="Выберите"
+                            searchable
+                            clearable
+                            styles={{
+                              input: { border: 'none', background: 'transparent' }
+                            }}
+                          />
+                        </Table.Td>
+                        <Table.Td>
+                          <NumberInput
+                            value={row.quantity}
+                            onChange={(value) => updateRow(index, 'quantity', value || 0)}
+                            min={1}
+                            hideControls
+                            styles={{
+                              input: { border: 'none', textAlign: 'center', background: 'transparent' }
+                            }}
+                          />
+                        </Table.Td>
+                        <Table.Td>
+                          <NumberInput
+                            value={row.cost}
+                            onChange={(value) => updateRow(index, 'cost', value || 0)}
+                            min={0}
+                            hideControls
+                            thousandSeparator=" "
+                            styles={{
+                              input: { border: 'none', textAlign: 'right', background: 'transparent' }
+                            }}
+                          />
+                        </Table.Td>
+                        <Table.Td style={{ textAlign: 'center' }}>
+                          <ActionIcon 
+                            color="red" 
+                            onClick={() => deleteRow(index)}
+                            variant="subtle"
+                          >
+                            <IconTrash size={16} />
+                          </ActionIcon>
+                        </Table.Td>
+                      </Table.Tr>
+                    ))
+                  )}
+                </Table.Tbody>
+              </Table>
+            )}
+          </>
+        ) : (
+          <Flex justify="center" align="center" style={{ height: '300px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <h3 style={{ color: '#666', marginBottom: 8 }}>Объект не выбран</h3>
+              <p style={{ color: '#999' }}>Выберите объект из списка выше для редактирования имущества</p>
+            </div>
+          </Flex>
+        )}
+      </Stack>
     </Paper>
   );
 }
