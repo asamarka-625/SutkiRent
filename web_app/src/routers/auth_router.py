@@ -11,9 +11,9 @@ from web_app.src.dependencies import (authenticate_user, create_refresh_token, c
                                       create_csrf_token, get_connection_info, get_current_user_by_access_token,
                                       get_data_by_refresh_token, verify_csrf_token)
 from web_app.src.core import cfg
-from models import User
 from web_app.src.utils import redis_service, email_service, get_password_hash, create_reset_token
-from web_app.src.schemas import UserCreate, VerifyRequest, EmailBase, PasswordResetConfirmRequest, TokenRequest
+from web_app.src.schemas import (UserCreate, UserScheme, VerifyRequest, EmailBase, PasswordResetConfirmRequest,
+                                 TokenRequest, TokensResponse)
 from web_app.src.crud import sql_create_user, sql_get_user_by_email, sql_update_password_user_by_email
 
 
@@ -25,7 +25,7 @@ router = APIRouter(
 
 @router.post(
     "/login",
-    response_class=JSONResponse,
+    response_model=TokensResponse,
     summary="Аутентификация пользователя"
 )
 async def login(
@@ -58,17 +58,15 @@ async def login(
         max_age=cfg.REFRESH_TOKEN_EXPIRE_MINUTES * 60
     )
 
-    tokens = {
-        "csrf_token": create_csrf_token(user_id=str(user.id)),
-        "access_token": create_access_token(user_id=str(user.id))
-    }
-
-    return tokens
+    return TokensResponse(
+        csrf_token=create_csrf_token(user_id=str(user.id)),
+        access_token=create_access_token(user_id=str(user.id)),
+    )
 
 
 @router.post(
     "/refresh",
-    response_class=JSONResponse,
+    response_model=TokensResponse,
     summary="Обновление токена"
 )
 async def get_refresh_token(
@@ -93,22 +91,20 @@ async def get_refresh_token(
         max_age=cfg.REFRESH_TOKEN_EXPIRE_MINUTES * 60
     )
 
-    tokens = {
-        "csrf_token": create_csrf_token(user_id=token_data["user_id"]),
-        "access_token": create_access_token(user_id=token_data["user_id"])
-    }
-
-    return tokens
+    return TokensResponse(
+        csrf_token=create_csrf_token(user_id=token_data["user_id"]),
+        access_token=create_access_token(user_id=token_data["user_id"])
+    )
 
 
 @router.post("/logout")
 async def logout(
     response: Response,
-    current_user: User = Depends(get_current_user_by_access_token),
+    current_user: UserScheme = Depends(get_current_user_by_access_token),
     token_data: Dict[str, str] = Depends(get_data_by_refresh_token),
     csrf_user_id: str = Depends(verify_csrf_token)
 ):
-    user_id_str = str(current_user["id"])
+    user_id_str = str(current_user.id)
     if not (user_id_str == token_data["user_id"] == csrf_user_id):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Token user mismatch")
 

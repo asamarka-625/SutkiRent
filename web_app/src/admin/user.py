@@ -27,7 +27,8 @@ class UserAdmin(ModelView, model=User):
         User.about: "Описание",
         User.created_at: "Дата создания",
         User.updated_at: "Дата обновления информации",
-        User.favorites: "Избранное"
+        User.favorites: "Избранное",
+        User.apartments: "Объекты"
     }
 
     column_searchable_list = [User.id, User.email] # список столбцов, которые можно искать
@@ -50,7 +51,8 @@ class UserAdmin(ModelView, model=User):
         User.is_active,
         User.created_at,
         User.updated_at,
-        User.favorites
+        User.favorites,
+        User.apartments
     ]
 
     form_edit_rules = [
@@ -62,7 +64,8 @@ class UserAdmin(ModelView, model=User):
         "phone",
         "email",
         "bonuses",
-        "is_active"
+        "is_active",
+        "apartments"
     ]
 
     can_create = False # право создавать

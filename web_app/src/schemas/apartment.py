@@ -1,6 +1,7 @@
 # Внешние зависимости
-from typing import Optional, Annotated, List, Dict
+from typing import Optional, Annotated, List, Dict, Set
 from datetime import date
+from decimal import Decimal
 from pydantic import BaseModel, Field, HttpUrl, ConfigDict
 
 
@@ -53,11 +54,11 @@ class ApartmentFilter(BaseModel):
     floor: Optional[FloorFilter] = None
     area: Optional[AreaFilter] = None
     room: Optional[RoomFilter] = None
-    type_apartment: Optional[List[int]] = None
-    metro: Optional[List[int]] = None
-    windows: Optional[List[int]] = None
-    bathrooms: Optional[List[int]] = None
-    items: Optional[List[int]] = None
+    type_apartment: Optional[Set[int]] = None
+    metro: Optional[Set[int]] = None
+    windows: Optional[Set[int]] = None
+    bathrooms: Optional[Set[int]] = None
+    items: Optional[Set[int]] = None
 
 
 # Базовая схема объекта
@@ -65,7 +66,7 @@ class ApartmentBase(BaseModel):
     id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
     type: Optional[Annotated[str, Field(strict=True)]]
-    bathroom: Optional[Annotated[str, Field(strict=True)]]
+    bathroom: List[str]
     price: Annotated[float, Field(ge=0)]
     rooms: Annotated[int, Field(ge=0)]
     sleeps: Annotated[str, Field(strict=True)]
@@ -89,7 +90,7 @@ class ApartmentResponse(ApartmentBase):
 class ApartmentDetailResponse(ApartmentBase):
     external_id: Annotated[int, Field(ge=1)]
     description: Annotated[str, Field(strict=True)]
-    media: Dict[int, HttpUrl]
+    media: Dict[int, str]
     windows: List[str]
     items: List[str]
 
@@ -106,34 +107,45 @@ class FavoriteRequest(BaseModel):
     apartment_id: Annotated[int, Field(ge=1)]
 
 
-# Схема тип жилья
-class ApartmentType(BaseModel):
+# Базовый класс для всех объектов с id и title
+class BaseElementScheme(BaseModel):
     id: Annotated[int, Field(ge=1)]
     title: Annotated[str, Field(strict=True)]
+
+
+# Схема тип жилья
+class ApartmentType(BaseElementScheme):
+    pass
 
 
 # Схема метро
-class ApartmentMetro(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentMetro(BaseElementScheme):
+    pass
 
 
 # Схема вида из окна
-class ApartmentWindow(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentWindow(BaseElementScheme):
+    pass
 
 
 # Схема типов санузлов
-class ApartmentBathroom(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentBathroom(BaseElementScheme):
+    pass
 
 
 # Схема предмета
-class ApartmentItem(BaseModel):
-    id: Annotated[int, Field(ge=1)]
-    title: Annotated[str, Field(strict=True)]
+class ApartmentItem(BaseElementScheme):
+    pass
+
+
+# Схема ответа предмета
+class ItemResponse(BaseElementScheme):
+    pass
+
+
+# Схема ответа брэнда
+class BrandResponse(BaseElementScheme):
+    pass
 
 
 # Схема вывода данных для фильтров
@@ -143,3 +155,19 @@ class DataFiltersResponse(BaseModel):
     windows: List[ApartmentWindow]
     bathrooms: List[ApartmentBathroom]
     items: List[ApartmentItem]
+
+
+# Схема ответа инвентаря
+class InventoryResponse(BaseModel):
+    item: Annotated[str, Field(strict=True)]
+    brand: Annotated[str, Field(strict=True)]
+    quantity: Annotated[int, Field(ge=0)]
+    price: Annotated[Decimal, Field(ge=0)]
+
+
+# Класс запроса на обновление инвентаря
+class UpdateInventoryRequest(BaseModel):
+    item_id: Annotated[int, Field(ge=1)]
+    brand_id: Annotated[int, Field(ge=1)]
+    quantity: Annotated[int, Field(ge=0)]
+    price: Annotated[Decimal, Field(ge=0)]

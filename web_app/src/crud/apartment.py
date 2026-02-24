@@ -1,5 +1,5 @@
 # Внешние зависимости
-from typing import Optional, List
+from typing import Optional, Set
 from datetime import date
 import sqlalchemy as sa
 import sqlalchemy.orm as so
@@ -8,12 +8,12 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError, NoResultFound
 from fastapi import HTTPException, status
 # Внутренние модули
 from models import (Apartment, ApartmentAvailability, Favorite, TypeApartment, MetroStation, Window,
-                    BathroomApartment, Item)
+                    Bathroom, Item, ApartmentItem)
 from web_app.src.core import cfg, connection
 from web_app.src.schemas import (ApartmentResponse, ObjectsResponse, PriceFilter, SleepFilter,
                                  FloorFilter, AreaFilter, RoomFilter, ApartmentDetailResponse,
                                  DataFiltersResponse, ApartmentType, ApartmentMetro, ApartmentWindow,
-                                 ApartmentBathroom, ApartmentItem)
+                                 ApartmentBathroom, ApartmentItem as ApartmentItemScheme)
 
 
 # Поиск объектов по фильтрам
@@ -32,11 +32,11 @@ async def sql_get_available_apartments(
     floor: Optional[FloorFilter] = None,
     area: Optional[AreaFilter] = None,
     room: Optional[RoomFilter] = None,
-    type_apartment_ids: Optional[List[int]] = None,
-    bathroom_ids: Optional[List[int]] = None,
-    metro_ids: Optional[List[int]] = None,
-    window_ids: Optional[List[int]] = None,
-    item_ids: Optional[List[int]] = None
+    type_apartment_ids: Optional[Set[int]] = None,
+    bathroom_ids: Optional[Set[int]] = None,
+    metro_ids: Optional[Set[int]] = None,
+    window_ids: Optional[Set[int]] = None,
+    item_ids: Optional[Set[int]] = None
 ) -> ObjectsResponse:
     try:
         nights_count = (end_date - start_date).days if (start_date and end_date) else 0
@@ -71,7 +71,7 @@ async def sql_get_available_apartments(
             filters.append(Apartment.apartment_type_id.in_(type_apartment_ids))
 
         if bathroom_ids:
-            filters.append(Apartment.apartment_bathroom_id.in_(bathroom_ids))
+            filters.append(Apartment.bathrooms.any(Bathroom.id.in_(bathroom_ids)))
 
         if window_ids:
             filters.append(Apartment.windows.any(Window.id.in_(window_ids)))
@@ -80,7 +80,12 @@ async def sql_get_available_apartments(
             filters.append(Apartment.metro_stations.any(MetroStation.id.in_(metro_ids)))
 
         if item_ids:
-            filters.append(Apartment.items.any(Item.id.in_(item_ids)))
+            for i_id in item_ids:
+                filters.append(
+                    Apartment.apartment_items.any(
+                        ApartmentItem.item_id == i_id
+                    )
+                )
 
         # 2. Формируем запрос
         if nights_count > 0:
@@ -141,7 +146,7 @@ async def sql_get_available_apartments(
         # 3. Опции загрузки, пагинация и выполнение
         query = query.options(
             so.selectinload(Apartment.apartment_type),
-            so.selectinload(Apartment.apartment_bathroom),
+            so.selectinload(Apartment.bathrooms),
             so.selectinload(Apartment.photos),
             so.selectinload(Apartment.metro_stations)
         ).limit(page_size + 1).offset((page - 1) * page_size).order_by(Apartment.priority.desc())
@@ -172,7 +177,7 @@ async def sql_get_available_apartments(
                 id=apt.id,
                 title=apt.title,
                 type=apt.apartment_type.title if apt.apartment_type else None,
-                bathroom=apt.apartment_bathroom.title if apt.apartment_bathroom else None,
+                bathroom=[bathroom.title for bathroom in apt.bathrooms],
                 cost=float(t_cost) + increase_cost if t_cost else 0.0,
                 price=apt.price_without_discount,
                 rooms=apt.rooms,
@@ -314,22 +319,22 @@ async def sql_get_apartment_by_id(
             sa.select(Apartment)
             .options(
                 so.joinedload(Apartment.apartment_type),
-                so.joinedload(Apartment.apartment_bathroom),
+                so.selectinload(Apartment.bathrooms),
                 so.selectinload(Apartment.photos),
                 so.selectinload(Apartment.metro_stations),
                 so.selectinload(Apartment.windows),
-                so.selectinload(Apartment.items)
+                so.selectinload(Apartment.apartment_items).joinedload(ApartmentItem.item)
             )
             .where(Apartment.id == apartment_id)
         )
-        apartment = apartment_result.scalar_one_or_none()
+        apartment = apartment_result.scalar_one()
 
         return ApartmentDetailResponse(
             id=apartment.id,
             external_id=apartment.external_id,
             title=apartment.title,
             type=apartment.apartment_type.title if apartment.apartment_type else None,
-            bathroom=apartment.apartment_bathroom.title if apartment.apartment_bathroom else None,
+            bathroom=[bathroom.title for bathroom in apartment.bathrooms],
             description=apartment.description,
             price=apartment.price_without_discount,
             rooms=apartment.rooms,
@@ -342,7 +347,7 @@ async def sql_get_apartment_by_id(
             latitude=apartment.latitude,
             longitude=apartment.longitude,
             windows=[window.title for window in apartment.windows],
-            items=[item.title for item in apartment.items]
+            items=[ai.item.title for ai in apartment.apartment_items]
         )
 
     except NoResultFound:
@@ -350,6 +355,8 @@ async def sql_get_apartment_by_id(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Apartment not found")
 
     except SQLAlchemyError as e:
+        import traceback
+        traceback.print_exc()
         cfg.logger.error(f"Database error get apartment by id = {apartment_id}: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
 
@@ -368,7 +375,7 @@ async def sql_get_data_for_filters(
         queries = {
             "types": sa.select(TypeApartment.id, TypeApartment.title),
             "windows": sa.select(Window.id, Window.title),
-            "bathrooms": sa.select(BathroomApartment.id, BathroomApartment.title),
+            "bathrooms": sa.select(Bathroom.id, Bathroom.title),
             "items": sa.select(Item.id, Item.title).where(Item.importance == True)
         }
 
@@ -390,7 +397,7 @@ async def sql_get_data_for_filters(
                 if data.get("metro", False) else [],
             windows=[ApartmentWindow(id=row[0], title=row[1]) for row in data["windows"]],
             bathrooms=[ApartmentBathroom(id=row[0], title=row[1]) for row in data["bathrooms"]],
-            items=[ApartmentItem(id=row[0], title=row[1]) for row in data["items"]]
+            items=[ApartmentItemScheme(id=row[0], title=row[1]) for row in data["items"]]
         )
 
     except SQLAlchemyError as e:

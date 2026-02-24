@@ -1,6 +1,7 @@
 # Внешние зависимости
 from typing import Optional, List
 from datetime import datetime, date
+from decimal import Decimal
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 # Внутренние модули
@@ -99,36 +100,17 @@ class TypeApartment(Base):
     def __str__(self):
         return self.title
 
-# Таблица санузлов
-class BathroomApartment(Base):
-    __tablename__ = "apartment_bathrooms"
-
-    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
-    title: so.Mapped[str] = so.mapped_column(
-        sa.String(200),
-        nullable=False
-    )
-    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
-
-    # Связи
-    apartments: so.Mapped[List["Apartment"]] = so.relationship(
-        back_populates="apartment_bathroom"
-    )
-
-    def __repr__(self):
-        return f"<BathroomApartment(id={self.id}, title='{self.title}')>"
-
-    def __str__(self):
-        return self.title
-
-
 # Таблица станций метро
 class MetroStation(Base):
     __tablename__ = "metro_stations"
 
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     external_id: so.Mapped[int] = so.mapped_column(sa.Integer, unique=True, index=True, nullable=False)
-    title: so.Mapped[str] = so.mapped_column(sa.String(200), nullable=False)
+    title: so.Mapped[str] = so.mapped_column(
+        sa.String(200),
+        nullable=False,
+        index=True
+    )
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     # Связь с регионом
@@ -162,15 +144,19 @@ class Apartment(Base):
 
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     external_id: so.Mapped[int] = so.mapped_column(sa.Integer, unique=True, nullable=False, index=True)
-    address: so.Mapped[str] = so.mapped_column(sa.String(500))
+    address: so.Mapped[str] = so.mapped_column(
+        sa.String(500),
+        nullable=False,
+        index=True
+    )
     rooms: so.Mapped[int] = so.mapped_column(sa.Integer)
     sleeps: so.Mapped[str] = so.mapped_column(sa.String(50))  # "2+1+1"
     description: so.Mapped[Optional[str]] = so.mapped_column(sa.Text)
     floor: so.Mapped[Optional[int]] = so.mapped_column(sa.Integer)
     title: so.Mapped[str] = so.mapped_column(sa.String(500))
-    area: so.Mapped[Optional[sa.Float]] = so.mapped_column(sa.Float)
-    latitude: so.Mapped[sa.Float] = so.mapped_column(sa.Float)
-    longitude: so.Mapped[sa.Float] = so.mapped_column(sa.Float)
+    area: so.Mapped[Optional[float]] = so.mapped_column(sa.Float)
+    latitude: so.Mapped[float] = so.mapped_column(sa.Float)
+    longitude: so.Mapped[float] = so.mapped_column(sa.Float)
 
     capacity: so.Mapped[int] = so.mapped_column(sa.Integer)
     max_children_count: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
@@ -196,8 +182,8 @@ class Apartment(Base):
     )
 
     # Цены (текущие)
-    price_without_discount: so.Mapped[sa.Float] = so.mapped_column(sa.Float, nullable=False)
-    price_with_discount: so.Mapped[Optional[sa.Float]] = so.mapped_column(sa.Float)
+    price_without_discount: so.Mapped[float] = so.mapped_column(sa.Float, nullable=False)
+    price_with_discount: so.Mapped[Optional[float]] = so.mapped_column(sa.Float)
     discount_percent: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
 
     # Детали цены (храним как JSON для гибкости)
@@ -232,18 +218,11 @@ class Apartment(Base):
         index=True,
         nullable=True
     )
-    apartment_bathroom_id: so.Mapped[Optional[int]] = so.mapped_column(
-        sa.Integer,
-        sa.ForeignKey("apartment_bathrooms.id", ondelete="SET NULL"),
-        index=True,
-        nullable=True
-    )
 
     # Связи
     city_rel: so.Mapped["City"] = so.relationship(back_populates="apartments")
     region_rel: so.Mapped["Region"] = so.relationship(back_populates="apartments")
     apartment_type: so.Mapped["TypeApartment"] = so.relationship(back_populates="apartments")
-    apartment_bathroom: so.Mapped["BathroomApartment"] = so.relationship(back_populates="apartments")
 
     calendar: so.Mapped[List["ApartmentAvailability"]] = so.relationship(
         back_populates="apartment", cascade="all, delete-orphan"
@@ -257,16 +236,26 @@ class Apartment(Base):
     services: so.Mapped[List["Service"]] = so.relationship(
         secondary="apartment_service", back_populates="apartments"
     )
-    items: so.Mapped[List["Item"]] = so.relationship(
-        secondary="apartment_item", back_populates="apartments"
+    apartment_items: so.Mapped[List["ApartmentItem"]] = so.relationship(
+        back_populates="apartment", cascade="all, delete-orphan"
     )
     windows: so.Mapped[List["Window"]] = so.relationship(
         secondary="apartment_window", back_populates="apartments"
     )
+    bathrooms: so.Mapped[List["Bathroom"]] = so.relationship(
+        secondary="apartment_bathroom", back_populates="apartments"
+    )
     price_history: so.Mapped[List["PriceHistory"]] = so.relationship(
         back_populates="apartment", cascade="all, delete-orphan"
     )
-    favorites: so.Mapped[List["Favorite"]] = so.relationship(back_populates="apartment", cascade="all, delete-orphan")
+    favorites: so.Mapped[List["Favorite"]] = so.relationship(
+        back_populates="apartment",
+        cascade="all, delete-orphan"
+    )
+
+    owners: so.Mapped[List["User"]] = so.relationship(
+        secondary="apartment_owner", back_populates="apartments"
+    )
 
     __table_args__ = (
         sa.Index('idx_apartments_location', 'latitude', 'longitude'),
@@ -325,8 +314,8 @@ class PriceHistory(Base):
         index=True,
         nullable=False
     )
-    price_without_discount: so.Mapped[sa.Float] = so.mapped_column(sa.Float, nullable=False)
-    price_with_discount: so.Mapped[Optional[sa.Float]] = so.mapped_column(sa.Float)
+    price_without_discount: so.Mapped[float] = so.mapped_column(sa.Float, nullable=False)
+    price_with_discount: so.Mapped[Optional[float]] = so.mapped_column(sa.Float)
     discount_percent: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
     price_details: so.Mapped[Optional[dict]] = so.mapped_column(sa.JSON)
     changed_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
@@ -385,19 +374,36 @@ class Item(Base):
 
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     title: so.Mapped[str] = so.mapped_column(sa.String(128), index=True, unique=True)
-    brand: so.Mapped[str] = so.mapped_column(sa.String(64), nullable=True)
-    quantity: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
-    price: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
     importance: so.Mapped[bool] = so.mapped_column(sa.Boolean, index=True)
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     # Связи
-    apartments: so.Mapped[List["Apartment"]] = so.relationship(
-        secondary="apartment_item", back_populates="items"
+    apartment_items: so.Mapped[List["ApartmentItem"]] = so.relationship(
+        back_populates="item"
     )
 
     def __repr__(self):
         return f"<Item(id={self.id}, title='{self.title}')>"
+
+    def __str__(self):
+        return self.title
+
+
+# Таблица брендов
+class Brand(Base):
+    __tablename__ = "brands"
+
+    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    title: so.Mapped[str] = so.mapped_column(sa.String(128), index=True, unique=True)
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    # Связи
+    apartment_items: so.Mapped[List["ApartmentItem"]] = so.relationship(
+        back_populates="brand"
+    )
+
+    def __repr__(self):
+        return f"<Brand(id={self.id}, title='{self.title}')>"
 
     def __str__(self):
         return self.title
@@ -427,22 +433,43 @@ class Window(Base):
         return self.title
 
 
+# Таблица санузлов
+class Bathroom(Base):
+    __tablename__ = "bathrooms"
+
+    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    title: so.Mapped[str] = so.mapped_column(
+        sa.String(200),
+        unique=True,
+        nullable=False
+    )
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    # Связи
+    apartments: so.Mapped[List["Apartment"]] = so.relationship(
+        secondary="apartment_bathroom", back_populates="bathrooms"
+    )
+
+    def __repr__(self):
+        return f"<Bathroom(id={self.id}, title='{self.title}')>"
+
+    def __str__(self):
+        return self.title
+
+
 # Таблица избранного
 class Favorite(Base):
     __tablename__ = "favorites"
 
-    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     user_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("users.id", ondelete="CASCADE"),
-        index=True,
-        nullable=False
+        primary_key=True
     )
     apartment_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("apartments.id", ondelete="CASCADE"),
-        index=True,
-        nullable=False
+        primary_key=True
     )
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
@@ -450,12 +477,51 @@ class Favorite(Base):
     user: so.Mapped["User"] = so.relationship(back_populates="favorites")
     apartment: so.Mapped["Apartment"] = so.relationship(back_populates="favorites")
 
-    __table_args__ = (
-        sa.UniqueConstraint('user_id', 'apartment_id', name='_user_favorite_uc'),
+    def __repr__(self):
+        return f"<Favorite(user_id={self.user_id}, apartment_id={self.apartment_id})>"
+
+    def __str__(self):
+        return f"user_id={self.user_id}, apartment_id={self.apartment_id}"
+
+
+# Таблица связывающая предметы и апартаменты
+class ApartmentItem(Base):
+    __tablename__ = "apartment_item"
+
+    apartment_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer,
+        sa.ForeignKey("apartments.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    item_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer,
+        sa.ForeignKey("items.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    brand_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer,
+        sa.ForeignKey("brands.id", ondelete="CASCADE"),
+        primary_key=True
     )
 
+    quantity: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
+    price: so.Mapped[Decimal] = so.mapped_column(
+        sa.Numeric(precision=10, scale=2),
+        nullable=False
+    )
+
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    # Связи
+    apartment: so.Mapped["Apartment"] = so.relationship(back_populates="apartment_items")
+    item: so.Mapped["Item"] = so.relationship(back_populates="apartment_items")
+    brand: so.Mapped["Brand"] = so.relationship(back_populates="apartment_items")
+
     def __repr__(self):
-        return f"<Favorite(id={self.id}, user_id='{self.user_id}, apartment_id={self.apartment_id}')>"
+        return f"<ApartmentItem(apartment_id={self.apartment_id}, item_id={self.item_id}, brand_id={self.brand_id})>"
+
+    def __str__(self):
+        return f"apartment_id={self.apartment_id}, item_id={self.item_id}, brand_id={self.brand_id}"
 
 
 # Промежуточные таблицы для связей многие-ко-многим
@@ -475,7 +541,7 @@ class ApartmentMetro(Base):
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     def __repr__(self):
-        return f"<ApartmentMetro(apartment_id='{self.apartment_id}, metro_station_id={self.metro_station_id}')>"
+        return f"<ApartmentMetro(apartment_id={self.apartment_id}, metro_station_id={self.metro_station_id})>"
 
 
 class ApartmentService(Base):
@@ -492,24 +558,7 @@ class ApartmentService(Base):
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     def __repr__(self):
-        return f"<ApartmentService(apartment_id='{self.apartment_id}, service_id={self.service_id}')>"
-
-
-class ApartmentItem(Base):
-    __tablename__ = "apartment_item"
-
-    apartment_id: so.Mapped[int] = so.mapped_column(
-        sa.Integer, sa.ForeignKey("apartments.id", ondelete="CASCADE"),
-        primary_key=True
-    )
-    item_id: so.Mapped[int] = so.mapped_column(
-        sa.Integer, sa.ForeignKey("items.id", ondelete="CASCADE"),
-        primary_key=True
-    )
-    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
-
-    def __repr__(self):
-        return f"<ApartmentItem(apartment_id='{self.apartment_id}, item_id={self.item_id}')>"
+        return f"<ApartmentService(apartment_id={self.apartment_id}, service_id={self.service_id})>"
 
 
 class ApartmentWindow(Base):
@@ -526,4 +575,21 @@ class ApartmentWindow(Base):
     created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
 
     def __repr__(self):
-        return f"<ApartmentWindow(apartment_id='{self.apartment_id}, window_id={self.item_id}')>"
+        return f"<ApartmentWindow(apartment_id={self.apartment_id}, window_id={self.window_id})>"
+
+
+class ApartmentBathroom(Base):
+    __tablename__ = "apartment_bathroom"
+
+    apartment_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("apartments.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    bathroom_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("bathrooms.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    def __repr__(self):
+        return f"<ApartmentBathroom(apartment_id={self.apartment_id}, bathroom_id={self.bathroom_id})>"

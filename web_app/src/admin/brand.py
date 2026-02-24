@@ -1,39 +1,42 @@
 # Внешние зависимости
 from sqladmin import ModelView
 # Внутренние модули
-from models import Bathroom
+from models import Brand
 
 
-# Админка для Bathroom
-class BathroomAdmin(ModelView, model=Bathroom):
+# Админка для Brand
+class BrandAdmin(ModelView, model=Brand):
     column_list = [
-        Bathroom.id,
-        Bathroom.title
+        Brand.id,
+        Brand.title
     ]
 
+    searchable_columns = [Brand.title]
+
     column_labels = {
-        Bathroom.id: "Идентификатор",
-        Bathroom.title: "Название",
-        Bathroom.created_at: "Дата создания",
-        Bathroom.apartments: "Объекты"
+        Brand.id: "Идентификатор",
+        Brand.title: "Название",
+        Brand.created_at: "Дата создания",
+        Brand.apartment_items: "Предметы на объектах"
     }
 
-    column_searchable_list = [Bathroom.id] # список столбцов, которые можно искать
+    column_searchable_list = [Brand.title] # список столбцов, которые можно искать
     column_sortable_list = [
-        Bathroom.id,
+        Brand.id,
+        Brand.title
     ]  # список столбцов, которые можно сортировать
 
-    column_default_sort = [(Bathroom.id, True)]
+    column_default_sort = [(Brand.id, True)]
 
     form_create_rules = [
         "title"
     ]
 
     column_details_list = [
-        Bathroom.id,
-        Bathroom.title,
-        Bathroom.created_at,
-        Bathroom.apartments
+        Brand.id,
+        Brand.title,
+        Brand.created_at,
+        Brand.apartment_items
     ]
 
     form_edit_rules = [
@@ -46,8 +49,8 @@ class BathroomAdmin(ModelView, model=Bathroom):
     can_view_details = True # право смотреть всю информацию
     can_export = True # право экспортировать
 
-    name = "Тип санузла" # название
-    name_plural = "Типы санузлов" # множественное название
+    name = "Бренд" # название
+    name_plural = "Бренды" # множественное название
     icon = "fa-solid fa-layer-group" # иконка
     category = "Объекты" # категория
     category_icon = "fa-solid fa-list" # иконка категории
