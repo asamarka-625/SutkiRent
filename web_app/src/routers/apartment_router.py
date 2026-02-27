@@ -8,10 +8,10 @@ from web_app.src.crud import (sql_get_available_apartments, sql_get_regions, sql
                               sql_remove_favorite_for_user, sql_get_apartment_by_id, sql_get_data_for_filters,
                               sql_get_inventory_by_apartment_id, sql_get_items, sql_get_brands,
                               sql_update_inventory_by_apartment_id, sql_check_user_has_apartments,
-                              sql_check_user_has_apartment_by_id)
+                              sql_check_user_has_apartment_by_id, sql_get_user_apartments)
 from web_app.src.schemas import (ApartmentFilter, ObjectsResponse, RegionResponse, FavoriteRequest,
                                  ApartmentDetailResponse, DataFiltersResponse, UserScheme, InventoryResponse,
-                                 ItemResponse, BrandResponse, UpdateInventoryRequest)
+                                 ItemResponse, BrandResponse, UpdateInventoryRequest, ApartmentOwnerResponse)
 from web_app.src.dependencies import (get_current_user_by_access_token, get_data_by_refresh_token,
                                       verify_csrf_token)
 
@@ -245,3 +245,24 @@ async def update_inventory(
     return {
         "status": "success"
     }
+
+
+@router.get(
+    "/me",
+    response_model=List[ApartmentOwnerResponse],
+    summary="Получаем объекты, которые принадлежат пользователю"
+)
+async def get_my_apartments(
+    current_user: UserScheme = Depends(get_current_user_by_access_token),
+    token_data: Dict[str, str] = Depends(get_data_by_refresh_token),
+    csrf_user_id: str = Depends(verify_csrf_token)
+):
+    user_id_str = str(current_user.id)
+    if not (user_id_str == token_data["user_id"] == csrf_user_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Token user mismatch")
+
+    apartments = await sql_get_user_apartments(
+        user_id=current_user.id,
+    )
+
+    return apartments
