@@ -40,6 +40,9 @@ class User(Base):
     apartments: so.Mapped[List["Apartment"]] = so.relationship(
         secondary="apartment_owner", back_populates="owners"
     )
+    reservations: so.Mapped[List["Order"]] = so.relationship(
+        back_populates="user"
+    )
 
     def __repr__(self):
         return f"<User(id={self.id}, name='{self.name}')>"

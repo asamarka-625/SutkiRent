@@ -1,10 +1,20 @@
 # Внешние зависимости
-from typing import List, Optional, Dict, Any
-from datetime import date
+from typing import Dict, Any
 import httpx
-from tenacity import retry, stop_after_attempt, wait_exponential
+from tenacity import (retry, stop_after_attempt, wait_exponential,
+                      retry_if_exception_type, retry_if_exception)
+from fastapi import HTTPException
 # Внутренние модули
 from web_app.src.core import cfg
+from web_app.src.schemas import CreateBookingRequest, PriceBookingRequest
+
+
+def is_server_error(exception) -> bool:
+    """Проверяем, является ли ошибка ошибкой сервера (5xx)"""
+    return (
+            isinstance(exception, httpx.HTTPStatusError) and
+            exception.response.status_code >= 500
+    )
 
 
 class RealtyCalendarClient:
@@ -23,7 +33,12 @@ class RealtyCalendarClient:
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=4, max=10)
+        wait=wait_exponential(multiplier=1, min=4, max=10),
+        retry=(
+                retry_if_exception_type((httpx.NetworkError,)) |
+                retry_if_exception(is_server_error)
+        ),
+        reraise=True
     )
     async def _make_request(
         self,
@@ -39,81 +54,89 @@ class RealtyCalendarClient:
             response.raise_for_status()
             return response.json()
 
-    async def get_available_apartments(
+    async def create_booking(
         self,
-        begin_date: Optional[date] = None,
-        end_date: Optional[date] = None,
-        city: Optional[str] = None,
-        page: int = 1,
-        adults: int = 1
-    ) -> List[Dict[str, Any]]:
-        """Get available apartments from RealtyCalendar"""
+        data: CreateBookingRequest
+    ) -> Dict[str, Any]:
         try:
             data = {
-                "begin_date": begin_date.isoformat() if begin_date else None,
-                "end_date": end_date.isoformat() if end_date else None,
-                "guests": {
-                    "adults": adults,
-                    "children": []
-                },
-                "apartment_ids": [],
-                "page": page
+                "apartment_id": data.external_apartment_id,
+                "begin_date": data.begin_date.isoformat() if data.begin_date else None,
+                "end_date": data.end_date.isoformat() if data.end_date else None,
+                "phone": data.phone,
+                "first_name": data.first_name,
+                "last_name": data.last_name,
+                "guests": data.guests.model_dump(),
+                "email": data.email,
+                "wish": data.wish
             }
 
             response = await self._make_request(
-                "POST", "/apartments", json=data
+                "POST", "/confirm", json=data
             )
 
-            apartments = response.get("apartments", [])
+            return response
 
-            # Filter by city if specified
-            if city:
-                apartments = [
-                    apt for apt in apartments
-                    if city.lower() in apt.get("city", {}).get("title", "").lower()
-                ]
-
-            return apartments
-
-        except Exception as e:
-            cfg.logger.error(f"Error fetching apartments: {str(e)}")
-            return []
-
-    async def get_reservation_info(self, reservation_id: str) -> Optional[Dict[str, Any]]:
-        """Get reservation info from RealtyCalendar"""
-        endpoints = [
-            f"/reservations/{reservation_id}",
-            f"/reservation/{reservation_id}",
-            f"/booking/{reservation_id}",
-        ]
-
-        for endpoint in endpoints:
+        except httpx.HTTPStatusError as e:
             try:
-                data = await self._make_request("GET", endpoint)
-                return data
-            except httpx.HTTPStatusError as e:
-                if e.response.status_code == 404:
-                    continue
-                raise
+                error_detail = e.response.json()
 
-        return None
+            except (ValueError, UnicodeDecodeError):
+                error_detail = e.response.text or "Internal Server Error"
 
-    async def get_apartment_by_id(self, apartment_id: int) -> Optional[Dict[str, Any]]:
-        """Get apartment details by ID"""
-        try:
-            # Try to get from list first
-            apartments = await self.get_available_apartments()
-            for apt in apartments:
-                if apt.get("id") == apartment_id:
-                    return apt
+            cfg.logger.error(f"HTTPStatusError error create booking [{e.response.status_code}]: {error_detail}")
+            if e.response.status_code == 500:
+                raise HTTPException(status_code=500, detail="The service is temporarily unavailable")
 
-            # If not found, try specific endpoint
-            data = await self._make_request("GET", f"/apartments/{apartment_id}")
-            return data
+            raise HTTPException(
+                status_code=e.response.status_code,
+                detail=error_detail
+            )
 
         except Exception as e:
-            cfg.logger.error(f"Error fetching apartment {apartment_id}: {str(e)}")
-            return None
+            cfg.logger.error(f"Unexpected error create booking: {e}")
+            return {}
+
+    async def get_price_booking(
+        self,
+        data: PriceBookingRequest
+    ) -> Dict[str, Any]:
+        try:
+            data = {
+                "apartment_id": data.external_apartment_id,
+                "arrival_time": data.arrival_time.isoformat(timespec='minutes') if data.arrival_time else None,
+                "begin_date": data.begin_date.isoformat() if data.begin_date else None,
+                "departure_time": data.departure_time.isoformat(timespec='minutes') if data.departure_time else None,
+                "end_date": data.end_date.isoformat() if data.end_date else None,
+                "guests": data.guests.model_dump()
+            }
+
+            response = await self._make_request(
+                "POST", "/price", json=data
+            )
+
+            return response
+
+        except httpx.HTTPStatusError as e:
+            try:
+                error_detail = e.response.json()
+
+            except (ValueError, UnicodeDecodeError):
+                error_detail = e.response.text or "Internal Server Error"
+
+            cfg.logger.error(f"HTTPStatusError error get price booking [{e.response.status_code}]: {error_detail}")
+            if e.response.status_code == 500:
+                raise HTTPException(status_code=500, detail="The service is temporarily unavailable")
+
+            raise HTTPException(
+                status_code=e.response.status_code,
+                detail=error_detail
+            )
+
+        except Exception as e:
+            cfg.logger.error(f"Unexpected error get price booking: {e}")
+            return {}
+
 
 
 _instance = None

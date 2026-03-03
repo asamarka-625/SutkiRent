@@ -159,7 +159,9 @@ class DataFiltersResponse(BaseModel):
 
 # Схема ответа инвентаря
 class InventoryResponse(BaseModel):
+    item_id: Annotated[int, Field(ge=1)]
     item: Annotated[str, Field(strict=True)]
+    brand_id: Annotated[int, Field(ge=1)]
     brand: Annotated[str, Field(strict=True)]
     quantity: Annotated[int, Field(ge=0)]
     price: Annotated[Decimal, Field(ge=0)]

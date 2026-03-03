@@ -10,7 +10,7 @@ from web_app.src.routers import router
 from web_app.src.admin import (ContentAdmin, PhotoContentAdmin, CategoryContentAdmin, ApartmentAdmin,
                                MetroStationAdmin, CityAdmin, RegionAdmin, PhotoApartmentAdmin, UserAdmin,
                                ServiceAdmin, TypeApartmentAdmin, BathroomAdmin, ItemAdmin, WindowAdmin,
-                               ApartmentItemAdmin, BrandAdmin, authentication_backend)
+                               ApartmentItemAdmin, BrandAdmin, OrderAdmin, authentication_backend)
 from web_app.src.utils import redis_service
 
 
@@ -120,6 +120,7 @@ admin.add_view(TypeApartmentAdmin)
 admin.add_view(BathroomAdmin)
 admin.add_view(ItemAdmin)
 admin.add_view(BrandAdmin)
+admin.add_view(OrderAdmin)
 admin.add_view(ApartmentItemAdmin)
 admin.add_view(WindowAdmin)
 

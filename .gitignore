@@ -9,11 +9,6 @@ __pycache__/
 
 # Other
 backend
-old-version/
-old-version/frontend-old
-pg_hba.conf
-postgresql
-old-version/docker-compose-main.yml
 
 # Logs
 .log

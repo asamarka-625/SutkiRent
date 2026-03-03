@@ -9,3 +9,4 @@ from web_app.src.crud.user import (sql_get_user_by_email, sql_get_user_by_id, sq
                                    sql_get_user_apartments)
 from web_app.src.crud.inventory import (sql_get_inventory_by_apartment_id, sql_get_brands, sql_get_items,
                                         sql_update_inventory_by_apartment_id)
+from web_app.src.crud.booking import sql_create_booking
