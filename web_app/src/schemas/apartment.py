@@ -165,9 +165,15 @@ class InventoryResponse(BaseModel):
     price: Annotated[Decimal, Field(ge=0)]
 
 
-# Класс запроса на обновление инвентаря
+# Схема запроса на обновление инвентаря
 class UpdateInventoryRequest(BaseModel):
     item_id: Annotated[int, Field(ge=1)]
     brand_id: Annotated[int, Field(ge=1)]
     quantity: Annotated[int, Field(ge=0)]
     price: Annotated[Decimal, Field(ge=0)]
+
+
+# Схема ответа объектов, принадлежащих пользователю
+class ApartmentOwnerResponse(BaseModel):
+    id: Annotated[int, Field(ge=1)]
+    title: Annotated[str, Field(strict=True)]

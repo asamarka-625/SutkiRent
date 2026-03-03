@@ -2,7 +2,8 @@ from web_app.src.schemas.apartment import (ApartmentFilter, ApartmentResponse, O
                                            SleepFilter, FloorFilter, AreaFilter, RoomFilter, FavoriteRequest,
                                            ApartmentDetailResponse, DataFiltersResponse, ApartmentType,
                                            ApartmentWindow, ApartmentBathroom, ApartmentItem, ApartmentMetro,
-                                           InventoryResponse, ItemResponse, BrandResponse, UpdateInventoryRequest)
+                                           InventoryResponse, ItemResponse, BrandResponse, UpdateInventoryRequest,
+                                           ApartmentOwnerResponse)
 from web_app.src.schemas.content import ContentResponse
 from web_app.src.schemas.region import RegionResponse
 from web_app.src.schemas.auth import (UserCreate, VerifyRequest, EmailBase, PasswordResetConfirmRequest,

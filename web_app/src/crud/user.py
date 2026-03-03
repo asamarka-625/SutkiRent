@@ -1,14 +1,15 @@
 # Внешние зависимости
-from typing import Optional
+from typing import Optional, List
 from datetime import date
 import sqlalchemy as sa
+import sqlalchemy.orm as so
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import SQLAlchemyError, NoResultFound
 from fastapi import HTTPException, status
 # Внутренние модули
 from models import User, ApartmentOwner
 from web_app.src.core import cfg, connection
-from web_app.src.schemas import UserUpdate
+from web_app.src.schemas import UserUpdate, ApartmentOwnerResponse
 
 
 # Получаем пользователя по email
@@ -202,6 +203,38 @@ async def sql_check_user_has_apartment_by_id(
         )
         result = await session.execute(stmt)
         return result.scalar()
+
+    except SQLAlchemyError as e:
+        cfg.logger.error(f"Database error check user has apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        cfg.logger.error(f"Unexpected error check user has apartments: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")
+
+
+# Выводим объекты, прикрепленные к пользователю
+@connection
+async def sql_get_user_apartments(
+    user_id: int,
+    session: AsyncSession
+) -> List[ApartmentOwnerResponse]:
+    try:
+        user_result = await session.execute(
+            sa.select(User)
+            .where(User.id == user_id)
+            .options(
+                so.selectinload(User.apartments)
+            )
+        )
+        user = user_result.scalar_one_or_none()
+        return [
+            ApartmentOwnerResponse(
+                id=apartment.id,
+                title=apartment.title
+            )
+            for apartment in user.apartments
+        ]
 
     except SQLAlchemyError as e:
         cfg.logger.error(f"Database error check user has apartments: {e}")
