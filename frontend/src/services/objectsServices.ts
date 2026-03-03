@@ -193,7 +193,7 @@ export async function getObjectCostByDate(id: string, dateB: string, dateE: stri
 
 export async function getObjectCalendar(id: string, dateB: string, dateE: string) {
 
-  const response = await fetch(fetchAddress + '/booking/create', {
+  const response = await fetch('https://realtycalendar.ru/v2/widget/Usf1JgFvIi/calendar', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -232,7 +232,7 @@ export async function setBron(
   }
   
   // Отправляем бронирование в RealtyCalendar
-  const response = await fetch('https://realtycalendar.ru/v2/widget/Usf1JgFvIi/confirm', {
+  const response = await fetch(fetchAddress + '/booking/create', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
