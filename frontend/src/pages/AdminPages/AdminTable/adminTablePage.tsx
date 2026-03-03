@@ -414,7 +414,7 @@ export function PropertyTablePage() {
                     <Table.Th>Имущество</Table.Th>
                     <Table.Th>Марка/Модель</Table.Th>
                     <Table.Th style={{ width: '100px' }}>Кол-во</Table.Th>
-                    <Table.Th style={{ width: '120px' }}>Стоимость</Table.Th>
+                    <Table.Th style={{ width: '120px' }}>Стоимость (1 шт.)</Table.Th>
                     <Table.Th style={{ width: '50px' }}></Table.Th>
                   </Table.Tr>
                 </Table.Thead>

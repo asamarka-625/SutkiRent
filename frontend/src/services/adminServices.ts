@@ -9,11 +9,11 @@ class InventoryService {
     this.token = localStorage.getItem('token');
     this.accessToken = localStorage.getItem('access_token');
     this.csrfToken = localStorage.getItem('csrf_token');
-    console.log('InventoryService initialized with tokens:', {
-      token: !!this.token,
-      accessToken: !!this.accessToken,
-      csrfToken: !!this.csrfToken
-    });
+    // console.log('InventoryService initialized with tokens:', {
+    //   token: !!this.token,
+    //   accessToken: !!this.accessToken,
+    //   csrfToken: !!this.csrfToken
+    // });
   }
 
   public static getInstance(): InventoryService {
