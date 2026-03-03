@@ -23,7 +23,7 @@ export function AdminPage() {
           </Title>
 
           <Flex gap={'20px'}> 
-            <Button onClick={() => navigate('/admPanel/admin')}>Админ</Button>
+            {/* <Button onClick={() => navigate('/admPanel/admin')}>Админ</Button> */}
             <Button onClick={() => navigate('/admPanel/table')}>Заполнение описи</Button>
           </Flex>
 

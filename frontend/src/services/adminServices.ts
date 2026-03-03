@@ -41,7 +41,7 @@ class InventoryService {
     let response = await fetch(url, { ...options, headers });
 
     // Если получили 401, пробуем обновить токен
-    if (response.status === 401) {
+    if (response.status === 401 || response.status === 403) {
       await this.checkAuthNatural(); 
       
       // Обновляем заголовки с новым токеном
@@ -64,7 +64,7 @@ class InventoryService {
    */
   public async checkAuthNatural(): Promise<void> {
     try {
-      const response = await fetch('/api/auth/refresh', { method: 'POST' });
+      const response = await fetch('/api/v1/auth/refresh', { method: 'POST' });
 
       if (response.ok) {
         const data = await response.json();
@@ -81,6 +81,7 @@ class InventoryService {
       }
     } catch (error) {
       console.error("Ошибка фонового обновления токена:", error);
+      window.location.href = "/login";
       throw new Error('Не удалось обновить токен авторизации');
     }
   }
@@ -149,7 +150,7 @@ class InventoryService {
    */
   public async getApartments(): Promise<Apartment[]> {
     try {
-      return await this.apiRequest<Apartment[]>('/api/objects/apartments');
+      return await this.apiRequest<Apartment[]>('/api/objects/me');
     } catch (error) {
       console.error('Error fetching apartments:', error);
       throw error;

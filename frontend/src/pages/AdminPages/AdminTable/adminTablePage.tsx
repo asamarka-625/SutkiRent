@@ -4,7 +4,6 @@ import {
   Button,
   Group,
   Select,
-  TextInput,
   Paper,
   ActionIcon,
   NumberInput,
@@ -17,20 +16,22 @@ import { showNotification } from "@mantine/notifications";
 import { errorHandler } from "../../../handlers/errorBasicHandler";
 import inventoryService from "../../../services/adminServices"
 
-// Типы данных, приходящих с бекенда
+// Типы данных для таблицы (внутреннее представление)
 interface PropertyItem {
   id?: number;
-  item_id: number;      // id предмета из /api/objects/items
-  brand_id: number;      // id бренда из /api/objects/brands
-  property: string;      // title предмета (для отображения)
-  model: string;         // title бренда/модели (для отображения)
+  item_id: string;      // id предмета как строка (из API приходит как строка)
+  brand_id: string;      // id бренда как строка (из API приходит как строка)
   quantity: number;
-  cost: number;          // price в API
+  cost: number;          // цена как число (из API приходит как строка)
+  
+  // Поля для отображения в UI (заполняются из справочников)
+  item_title?: string;
+  brand_title?: string;
 }
 
 interface DictionaryItem {
-  value: string;
-  label: string;
+  value: string;        // id как строка для Select
+  label: string;        // название для отображения
 }
 
 interface ObjectOption {
@@ -50,19 +51,15 @@ interface ApiBrand {
 }
 
 interface ApiInventory {
-  id?: number;
-  item_id: number;
-  brand_id: number;
+  item: string;         // id предмета как строка
+  brand: string;        // id бренда как строка
   quantity: number;
-  price: number;
-  item_name?: string;
-  brand_name?: string;
+  price: string;        // цена как строка
 }
 
 interface ApiApartment {
   id: number;
-  name: string;
-  address?: string;
+  title: string;
 }
 
 export function PropertyTablePage() {
@@ -85,7 +82,7 @@ export function PropertyTablePage() {
       
       setObjectsList(data.map((item: ApiApartment) => ({
         value: item.id.toString(),
-        label: item.name || `Объект ${item.id}`
+        label: item.title || `Объект ${item.id}`
       })));
     } catch (error: any) {
       console.error("Error loading objects list:", error);
@@ -116,15 +113,21 @@ export function PropertyTablePage() {
       const data = await inventoryService.getApartmentInventory(objectId);
       
       // Преобразуем данные из API в формат PropertyItem
-      const transformedData: PropertyItem[] = data.map((item: ApiInventory) => ({
-        id: item.id,
-        item_id: item.item_id,
-        brand_id: item.brand_id,
-        property: item.item_name || getItemTitleById(item.item_id),
-        model: item.brand_name || getBrandTitleById(item.brand_id),
-        quantity: item.quantity,
-        cost: item.price
-      }));
+      // API возвращает: { item: "2", brand: "2", quantity: 1, price: "110.00" }
+      const transformedData: PropertyItem[] = data.map((item: ApiInventory) => {
+        // Находим названия для отображения по ID из справочников
+        const itemDict = propertyDict.find(d => d.value === item.item);
+        const brandDict = modelDict.find(d => d.value === item.brand);
+        
+        return {
+          item_id: item.item,                    // оставляем как строку
+          brand_id: item.brand,                   // оставляем как строку
+          quantity: item.quantity,
+          cost: parseFloat(item.price) || 0,      // преобразуем строку в число
+          item_title: itemDict?.label || '',
+          brand_title: brandDict?.label || ''
+        };
+      });
       
       setTableData(transformedData);
     } catch (error: any) {
@@ -141,18 +144,6 @@ export function PropertyTablePage() {
     }
   };
 
-  // Вспомогательная функция для получения названия предмета по ID
-  const getItemTitleById = (itemId: number): string => {
-    const item = propertyDict.find(dict => parseInt(dict.value) === itemId);
-    return item?.label || itemId.toString();
-  };
-
-  // Вспомогательная функция для получения названия бренда по ID
-  const getBrandTitleById = (brandId: number): string => {
-    const brand = modelDict.find(dict => parseInt(dict.value) === brandId);
-    return brand?.label || brandId.toString();
-  };
-
   // Загрузка справочников (вызывается один раз при инициализации)
   const getDictionaries = async () => {
     try {
@@ -163,15 +154,28 @@ export function PropertyTablePage() {
       ]);
       
       // API возвращает массив объектов с полями id и title
-      setPropertyDict(itemsData.map((item: ApiItem) => ({
-        value: item.id.toString(),
+      // Преобразуем id в строку для Select компонента
+      const itemsDict = itemsData.map((item: ApiItem) => ({
+        value: item.id.toString(),    // id как строка
         label: item.title
-      })));
+      }));
       
-      setModelDict(brandsData.map((brand: ApiBrand) => ({
-        value: brand.id.toString(),
+      const brandsDict = brandsData.map((brand: ApiBrand) => ({
+        value: brand.id.toString(),   // id как строка
         label: brand.title
-      })));
+      }));
+      
+      setPropertyDict(itemsDict);
+      setModelDict(brandsDict);
+      
+      // Если уже есть загруженные данные таблицы, обновляем отображаемые названия
+      if (tableData.length > 0) {
+        setTableData(prev => prev.map(row => ({
+          ...row,
+          item_title: itemsDict.find(d => d.value === row.item_id)?.label || '',
+          brand_title: brandsDict.find(d => d.value === row.brand_id)?.label || ''
+        })));
+      }
     } catch (error: any) {
       console.error("Error loading dictionaries:", error);
       showNotification({
@@ -200,24 +204,24 @@ export function PropertyTablePage() {
 
   // Загрузка данных таблицы при изменении выбранного объекта
   useEffect(() => {
-    if (selectedObject) {
+    if (selectedObject && propertyDict.length > 0 && modelDict.length > 0) {
       getTableDataFunc(selectedObject);
     } else {
       setTableData([]);
     }
-  }, [selectedObject]);
+  }, [selectedObject, propertyDict, modelDict]);
 
   // Добавление новой пустой строки
   const addNewRow = () => {
     setTableData(prev => [
       ...prev,
       { 
-        item_id: 0,
-        brand_id: 0,
-        property: '', 
-        model: '', 
+        item_id: '',
+        brand_id: '',
         quantity: 1, 
-        cost: 0 
+        cost: 0,
+        item_title: '',
+        brand_title: ''
       }
     ]);
   };
@@ -228,29 +232,31 @@ export function PropertyTablePage() {
   };
 
   // Обновление поля в конкретной строке
-  const updateRow = (index: number, field: keyof PropertyItem, value: string | number) => {
+  const updateRow = (index: number, field: keyof PropertyItem, value: string | number | null) => {
+    if (value === null) return;
+    
     setTableData(prev => {
       const newData = [...prev];
-      newData[index] = { ...newData[index], [field]: value };
       
-      // Если обновляем property, также обновляем item_id
-      if (field === 'property') {
-        const selectedItem = propertyDict.find(item => item.label === value);
-        if (selectedItem) {
-          newData[index].item_id = parseInt(selectedItem.value);
-        } else {
-          newData[index].item_id = 0;
-        }
-      }
-      
-      // Если обновляем model, также обновляем brand_id
-      if (field === 'model') {
-        const selectedBrand = modelDict.find(item => item.label === value);
-        if (selectedBrand) {
-          newData[index].brand_id = parseInt(selectedBrand.value);
-        } else {
-          newData[index].brand_id = 0;
-        }
+      if (field === 'item_id') {
+        // При выборе имущества
+        const selectedItem = propertyDict.find(item => item.value === value);
+        newData[index] = { 
+          ...newData[index], 
+          item_id: value as string,
+          item_title: selectedItem?.label || ''
+        };
+      } else if (field === 'brand_id') {
+        // При выборе бренда
+        const selectedBrand = modelDict.find(brand => brand.value === value);
+        newData[index] = { 
+          ...newData[index], 
+          brand_id: value as string,
+          brand_title: selectedBrand?.label || ''
+        };
+      } else {
+        // Для числовых полей
+        newData[index] = { ...newData[index], [field]: value };
       }
       
       return newData;
@@ -269,7 +275,7 @@ export function PropertyTablePage() {
     }
 
     // Проверяем, что все строки заполнены корректно
-    const invalidRows = tableData.filter(row => !row.item_id || !row.brand_id || row.item_id === 0 || row.brand_id === 0);
+    const invalidRows = tableData.filter(row => !row.item_id || !row.brand_id);
     if (invalidRows.length > 0) {
       showNotification({
         title: "Ошибка валидации",
@@ -282,11 +288,12 @@ export function PropertyTablePage() {
     setIsSaving(true);
     try {
       // Преобразуем в формат, который ожидает API
+      // API ожидает: { item: "2", brand: "2", quantity: 1, price: "110.00" }
       const apiData = tableData.map(row => ({
-        item_id: row.item_id,
-        brand_id: row.brand_id,
+        item_id: row.item_id,                    // уже строка
+        brand_id: row.brand_id,                   // уже строка
         quantity: row.quantity,
-        price: row.cost
+        price: row.cost.toFixed(2)             // число в строку с двумя знаками
       }));
       
       await inventoryService.updateApartmentInventory(selectedObject, apiData);
@@ -297,7 +304,7 @@ export function PropertyTablePage() {
         color: "green"
       });
       
-      // Обновляем данные с сервера, чтобы получить актуальные ID
+      // Обновляем данные с сервера, чтобы получить актуальные
       await getTableDataFunc(selectedObject);
     } catch (error: any) {
       console.error("Error saving table data:", error);
@@ -340,7 +347,7 @@ export function PropertyTablePage() {
                 }}
               />
             </div>
-            {selectedObject && (
+            {/* {selectedObject && (
               <Button 
                 variant="subtle" 
                 color="gray"
@@ -349,7 +356,7 @@ export function PropertyTablePage() {
               >
                 Очистить
               </Button>
-            )}
+            )} */}
           </Group>
         </Paper>
 
@@ -427,8 +434,8 @@ export function PropertyTablePage() {
                         <Table.Td>
                           <Select
                             data={propertyDict}
-                            value={row.property}
-                            onChange={(value) => updateRow(index, 'property', value || '')}
+                            value={row.item_id}
+                            onChange={(value) => updateRow(index, 'item_id', value)}
                             placeholder="Выберите"
                             searchable
                             clearable
@@ -440,8 +447,8 @@ export function PropertyTablePage() {
                         <Table.Td>
                           <Select
                             data={modelDict}
-                            value={row.model}
-                            onChange={(value) => updateRow(index, 'model', value || '')}
+                            value={row.brand_id}
+                            onChange={(value) => updateRow(index, 'brand_id', value)}
                             placeholder="Выберите"
                             searchable
                             clearable
@@ -468,6 +475,7 @@ export function PropertyTablePage() {
                             min={0}
                             hideControls
                             thousandSeparator=" "
+                            precision={2}
                             styles={{
                               input: { border: 'none', textAlign: 'right', background: 'transparent' }
                             }}

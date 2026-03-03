@@ -11,4 +11,4 @@ COPY alembic.ini .
 COPY alembic alembic
 
 # CMD ["sleep", "infinity"]
-CMD ["alembic", "upgrade", "head"]
+# CMD ["alembic", "upgrade", "head"]
