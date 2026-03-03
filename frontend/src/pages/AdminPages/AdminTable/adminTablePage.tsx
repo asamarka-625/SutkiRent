@@ -19,14 +19,12 @@ import inventoryService from "../../../services/adminServices"
 // Типы данных для таблицы (внутреннее представление)
 interface PropertyItem {
   id?: number;
-  item_id: string;      // id предмета как строка (из API приходит как строка)
-  brand_id: string;      // id бренда как строка (из API приходит как строка)
+  item_id: string;      // id предмета как строка
+  brand_id: string;      // id бренда как строка
   quantity: number;
-  cost: number;          // цена как число (из API приходит как строка)
-  
-  // Поля для отображения в UI (заполняются из справочников)
-  item_title?: string;
-  brand_title?: string;
+  cost: number;          // цена как число
+  item_title: string;    // название предмета для отображения
+  brand_title: string;   // название бренда для отображения
 }
 
 interface DictionaryItem {
@@ -50,9 +48,12 @@ interface ApiBrand {
   title: string;
 }
 
+// Новый интерфейс для данных инвентаря с сервера
 interface ApiInventory {
-  item: string;         // id предмета как строка
-  brand: string;        // id бренда как строка
+  item: string;         // название предмета
+  brand: string;        // название бренда (может быть "Unknown")
+  item_id: number;      // id предмета
+  brand_id: number;     // id бренда
   quantity: number;
   price: string;        // цена как строка
 }
@@ -113,19 +114,15 @@ export function PropertyTablePage() {
       const data = await inventoryService.getApartmentInventory(objectId);
       
       // Преобразуем данные из API в формат PropertyItem
-      // API возвращает: { item: "2", brand: "2", quantity: 1, price: "110.00" }
+      // API возвращает: { item: "Стиральная машина", brand: "Unknown", item_id: 4, brand_id: 3, quantity: 1, price: "540.00" }
       const transformedData: PropertyItem[] = data.map((item: ApiInventory) => {
-        // Находим названия для отображения по ID из справочников
-        const itemDict = propertyDict.find(d => d.value === item.item);
-        const brandDict = modelDict.find(d => d.value === item.brand);
-        
         return {
-          item_id: item.item,                    // оставляем как строку
-          brand_id: item.brand,                   // оставляем как строку
+          item_id: item.item_id.toString(),        // преобразуем number в string
+          brand_id: item.brand_id.toString(),       // преобразуем number в string
           quantity: item.quantity,
-          cost: parseFloat(item.price) || 0,      // преобразуем строку в число
-          item_title: itemDict?.label || '',
-          brand_title: brandDict?.label || ''
+          cost: parseFloat(item.price) || 0,        // преобразуем строку в число
+          item_title: item.item,                     // сохраняем название
+          brand_title: item.brand                     // сохраняем название бренда
         };
       });
       
@@ -168,14 +165,6 @@ export function PropertyTablePage() {
       setPropertyDict(itemsDict);
       setModelDict(brandsDict);
       
-      // Если уже есть загруженные данные таблицы, обновляем отображаемые названия
-      if (tableData.length > 0) {
-        setTableData(prev => prev.map(row => ({
-          ...row,
-          item_title: itemsDict.find(d => d.value === row.item_id)?.label || '',
-          brand_title: brandsDict.find(d => d.value === row.brand_id)?.label || ''
-        })));
-      }
     } catch (error: any) {
       console.error("Error loading dictionaries:", error);
       showNotification({
@@ -204,12 +193,12 @@ export function PropertyTablePage() {
 
   // Загрузка данных таблицы при изменении выбранного объекта
   useEffect(() => {
-    if (selectedObject && propertyDict.length > 0 && modelDict.length > 0) {
+    if (selectedObject) {
       getTableDataFunc(selectedObject);
     } else {
       setTableData([]);
     }
-  }, [selectedObject, propertyDict, modelDict]);
+  }, [selectedObject]);
 
   // Добавление новой пустой строки
   const addNewRow = () => {
@@ -232,7 +221,7 @@ export function PropertyTablePage() {
   };
 
   // Обновление поля в конкретной строке
-  const updateRow = (index: number, field: keyof PropertyItem, value: string | number | null) => {
+  const updateRow = (index: number, field: 'item_id' | 'brand_id' | 'quantity' | 'cost', value: string | number | null) => {
     if (value === null) return;
     
     setTableData(prev => {
@@ -256,7 +245,7 @@ export function PropertyTablePage() {
         };
       } else {
         // Для числовых полей
-        newData[index] = { ...newData[index], [field]: value };
+        newData[index] = { ...newData[index], [field]: value as number };
       }
       
       return newData;
@@ -288,12 +277,12 @@ export function PropertyTablePage() {
     setIsSaving(true);
     try {
       // Преобразуем в формат, который ожидает API
-      // API ожидает: { item: "2", brand: "2", quantity: 1, price: "110.00" }
+      // API ожидает: { item_id: 4, brand_id: 3, quantity: 1, price: "540.00" }
       const apiData = tableData.map(row => ({
-        item_id: row.item_id,                    // уже строка
-        brand_id: row.brand_id,                   // уже строка
+        item_id: parseInt(row.item_id),                    // строку в число
+        brand_id: parseInt(row.brand_id),                   // строку в число
         quantity: row.quantity,
-        price: row.cost.toFixed(2)             // число в строку с двумя знаками
+        price: row.cost.toFixed(2)                          // число в строку с двумя знаками
       }));
       
       await inventoryService.updateApartmentInventory(selectedObject, apiData);
@@ -347,16 +336,6 @@ export function PropertyTablePage() {
                 }}
               />
             </div>
-            {/* {selectedObject && (
-              <Button 
-                variant="subtle" 
-                color="gray"
-                onClick={() => setSelectedObject(null)}
-                leftSection={<IconX size={16} />}
-              >
-                Очистить
-              </Button>
-            )} */}
           </Group>
         </Paper>
 
