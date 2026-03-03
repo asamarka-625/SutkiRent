@@ -173,7 +173,7 @@ function getAggregatedInventoryForObject(data: DataItem[], objectId: number): { 
 
 export async function getObjectCostByDate(id: string, dateB: string, dateE: string, guests: number) {
 
-  const response = await fetch('https://realtycalendar.ru/v2/widget/Usf1JgFvIi/price', {
+  const response = await fetch(fetchAddress + '/booking/price', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -193,7 +193,7 @@ export async function getObjectCostByDate(id: string, dateB: string, dateE: stri
 
 export async function getObjectCalendar(id: string, dateB: string, dateE: string) {
 
-  const response = await fetch('https://realtycalendar.ru/v2/widget/Usf1JgFvIi/calendar', {
+  const response = await fetch(fetchAddress + '/booking/create', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",

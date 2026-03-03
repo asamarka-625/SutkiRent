@@ -24,7 +24,7 @@ export function AdminPage() {
           </Title>
 
           <Flex gap={'20px'} justify="center"> 
-            <Button onClick={() => navigate(adminAddress + 'admin')}>Админ</Button>
+            <Button onClick={() => window.location.href = adminAddress + 'admin/'}>Админ</Button>
             <Button onClick={() => navigate('/admPanel/table')}>Заполнение описи</Button>
           </Flex>
 
