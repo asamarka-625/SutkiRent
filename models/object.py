@@ -204,7 +204,7 @@ class Apartment(Base):
         sa.Integer,
         sa.ForeignKey("cities.id", ondelete="SET NULL"),
         index=True,
-        nullable=False
+        nullable=True
     )
     region_id: so.Mapped[Optional[int]] = so.mapped_column(
         sa.Integer,
@@ -252,7 +252,9 @@ class Apartment(Base):
         back_populates="apartment",
         cascade="all, delete-orphan"
     )
-
+    reservations: so.Mapped[List["Order"]] = so.relationship(
+        back_populates="apartment", cascade="all, delete-orphan"
+    )
     owners: so.Mapped[List["User"]] = so.relationship(
         secondary="apartment_owner", back_populates="apartments"
     )
@@ -273,12 +275,20 @@ class ApartmentAvailability(Base):
     __tablename__ = "apartment_availability"
 
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+
     apartment_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("apartments.id", ondelete="CASCADE"),
         index=True,
         nullable=False
     )
+    reservation_id: so.Mapped[Optional[int]] = so.mapped_column(
+        sa.Integer,
+        sa.ForeignKey("orders.id", ondelete="SET NULL"),
+        index=True,
+        nullable=True
+    )
+
     date: so.Mapped[date] = so.mapped_column(sa.Date, nullable=False)
     price: so.Mapped[Optional[float]] = so.mapped_column(sa.Float, nullable=True)
     is_available: so.Mapped[Optional[bool]] = so.mapped_column(sa.Boolean, default=False, nullable=True)
@@ -286,6 +296,9 @@ class ApartmentAvailability(Base):
 
     closed_on_arrival: so.Mapped[bool] = so.mapped_column(sa.Boolean, default=False)
     closed_on_departure: so.Mapped[bool] = so.mapped_column(sa.Boolean, default=False)
+
+    apartment: so.Mapped["Apartment"] = so.relationship(back_populates="calendar")
+    reservation: so.Mapped[Optional["Order"]] = so.relationship(back_populates="dates")
 
     __table_args__ = (
         # Составной частичный индекс для ускорения JOIN и фильтрации цен
@@ -296,8 +309,6 @@ class ApartmentAvailability(Base):
         ),
         sa.UniqueConstraint("apartment_id", "date", name="uq_apt_date"),
     )
-
-    apartment: so.Mapped["Apartment"] = so.relationship(back_populates="calendar")
 
     def __repr__(self):
         return f"<ApartmentAvailability(id={self.id}, date='{self.date}')>"
@@ -516,6 +527,10 @@ class ApartmentItem(Base):
     apartment: so.Mapped["Apartment"] = so.relationship(back_populates="apartment_items")
     item: so.Mapped["Item"] = so.relationship(back_populates="apartment_items")
     brand: so.Mapped["Brand"] = so.relationship(back_populates="apartment_items")
+
+    __table_args__ = (
+        sa.UniqueConstraint('apartment_id', 'item_id', 'brand_id', name='uq_apartment_item_fields'),
+    )
 
     def __repr__(self):
         return f"<ApartmentItem(apartment_id={self.apartment_id}, item_id={self.item_id}, brand_id={self.brand_id})>"

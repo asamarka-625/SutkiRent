@@ -5,3 +5,4 @@ from models.object import (City, Region, Apartment, MetroStation, PriceHistory, 
                            ApartmentAvailability, PhotoApartment, TypeApartment,
                            Bathroom, Item, Window, ApartmentItem, Brand)
 from models.content import CategoryContent, Content, PhotoContent
+from models.order import Order

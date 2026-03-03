@@ -31,7 +31,9 @@ async def sql_get_inventory_by_apartment_id(
 
         return [
             InventoryResponse(
+                item_id=el.item_id,
                 item=el.item.title,
+                brand_id=el.brand_id,
                 brand=el.brand.title,
                 quantity=el.quantity,
                 price=el.price
@@ -147,18 +149,20 @@ async def sql_update_inventory_by_apartment_id(
             cfg.logger.warning(f"Validation failed for apartment {apartment_id}: {error_msg}")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error_msg)
 
-        values = [
-            {
+        unique_values_map = {}
+        for el in data:
+            key = (el.item_id, el.brand_id)
+            unique_values_map[key] = {
                 "apartment_id": apartment_id,
                 "item_id": el.item_id,
                 "brand_id": el.brand_id,
                 "quantity": el.quantity,
                 "price": el.price
             }
-            for el in data
-        ]
 
-        active_keys = [(el.item_id, el.brand_id) for el in data]
+        values = list(unique_values_map.values())
+
+        active_keys = list(unique_values_map.keys())
 
         # Удаляем записи, которых нет в новом списке
         await session.execute(
@@ -168,17 +172,18 @@ async def sql_update_inventory_by_apartment_id(
             )
         )
 
-        # UPSERT (вставляем новые или обновляем существующие)
-        stmt = pg_insert(ApartmentItem).values(values)
-        update_stmt = stmt.on_conflict_do_update(
-            index_elements=['apartment_id', 'item_id', 'brand_id'],
-            set_={
-                "quantity": stmt.excluded.quantity,
-                "price": stmt.excluded.price,
-            }
-        )
+        if values:
+            # UPSERT (вставляем новые или обновляем существующие)
+            stmt = pg_insert(ApartmentItem).values(values)
+            update_stmt = stmt.on_conflict_do_update(
+                constraint="uq_apartment_item_fields",
+                set_={
+                    "quantity": stmt.excluded.quantity,
+                    "price": stmt.excluded.price,
+                }
+            )
+            await session.execute(update_stmt)
 
-        await session.execute(update_stmt)
         await session.commit()
 
     except HTTPException:

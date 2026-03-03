@@ -15,25 +15,25 @@ __pycache__/
 Dockerfile.parser
 Dockerfile.web
 docker-compose.yml
-docker-compose-main.yml
 Dockerfile.parser.dockerignore
 Dockerfile.web.dockerignore
-.dockerignore
 
 # Git
 .git
 .gitignore
 
 # Other
-old-version/
-backend
-frontend
-frontend-old
-postgresql
-web_app
-nginx.conf
-pg_hba.conf
-postgresql.conf
 web.env
-alembic/
 alembic.ini
+
+grafana-config.json
+loki-config.yaml
+prometheus.yml
+promtail-config.yaml
+
+alembic/
+frontend/
+grafana/
+nginx/
+media/
+web_app/
