@@ -5,6 +5,7 @@ import { useForm } from '@mantine/form';
 // import LogoSVG from "../../../icons/logo2.svg?react";
 import { Cookies } from 'react-cookie-consent';
 import styles from './adminPage.module.css';
+import { adminAddress, fetchAddress } from '../../globalSettings';
 // import AuthService from '../../../services/authService';
 
 export function AdminPage() {
@@ -23,7 +24,7 @@ export function AdminPage() {
           </Title>
 
           <Flex gap={'20px'}> 
-            {/* <Button onClick={() => navigate('/admPanel/admin')}>Админ</Button> */}
+            <Button onClick={() => navigate(adminAddress + 'admin')}>Админ</Button>
             <Button onClick={() => navigate('/admPanel/table')}>Заполнение описи</Button>
           </Flex>
 

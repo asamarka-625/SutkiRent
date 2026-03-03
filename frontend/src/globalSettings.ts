@@ -4,6 +4,11 @@ export const fetchAddress = import.meta.env.VITE_API_URL
   ? import.meta.env.VITE_API_URL
   : "http://localhost:8000/api"
 
+export const adminAddress = import.meta.env.VITE_ADMIN_URL
+  ? import.meta.env.VITE_ADMIN_URL
+  : "http://localhost:8000/"
+
+
 // Для production: https://sutki.rent/api
 // Для development: http://localhost:8000/api
 

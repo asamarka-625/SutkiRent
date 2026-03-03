@@ -16,7 +16,9 @@ COPY . .
 
 # Принимаем переменную окружения для build time
 ARG VITE_API_URL=/api
+ARG VITE_ADMIN_URL=/
 ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_ADMIN_URL=$VITE_ADMIN_URL
 
 # Сборка production версии
 RUN npm run build
