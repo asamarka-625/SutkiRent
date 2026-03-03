@@ -327,7 +327,7 @@ export function PropertyTablePage() {
   }
 
   return (
-    <Paper shadow="sm" p="md" radius="md" style={{ backgroundColor: 'white' }}>
+    <Paper shadow="sm" p="md" radius="md" style={{ backgroundColor: 'white' }} className="paperdiv">
       <Stack gap="md">
         {/* Блок выбора объекта */}
         <Paper withBorder p="md" radius="md" style={{ backgroundColor: '#f8f9fa' }}>
