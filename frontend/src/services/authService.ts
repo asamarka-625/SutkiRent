@@ -262,6 +262,48 @@ class AuthService {
     return response;
   }
 
+public async apiRequestPartial<T>(url: string, options: RequestInit = {}): Promise<T> {
+  // Собираем заголовки только с существующими токенами
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
+  // Добавляем Authorization только если есть accessToken
+  if (this.accessToken) {
+    headers['Authorization'] = 'Bearer ' + this.accessToken;
+  }
+
+  // Добавляем CSRF-Token только если есть csrfToken
+  if (this.csrfToken) {
+    headers['X-CSRF-Token'] = this.csrfToken;
+  }
+
+  let response = await fetch(url, { ...options, headers });
+
+  // Если получили 401/403 и есть токен, пробуем обновить
+  if ((response.status === 401 || response.status === 403) && this.accessToken) {
+    await this.checkAuthNatural(); 
+    
+    // Обновляем заголовки с новыми токенами (только если они есть)
+    if (this.accessToken) {
+      headers['Authorization'] = 'Bearer ' + this.accessToken;
+    }
+    if (this.csrfToken) {
+      headers['X-CSRF-Token'] = this.csrfToken;
+    }
+    
+    response = await fetch(url, { ...options, headers });
+  }
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(error.message || `Ошибка запроса: ${response.status}`);
+  }
+
+  return response.json();
+}
+
 
   public async logoutNatural(): Promise<void> {
     try {

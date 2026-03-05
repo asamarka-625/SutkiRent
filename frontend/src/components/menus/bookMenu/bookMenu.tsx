@@ -119,30 +119,30 @@ export function BookMenu(props: Props) {
 
   // Загружаем баланс бонусов пользователя
   useEffect(() => {
-    async function loadBonusBalance() {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) return;
+    // async function loadBonusBalance() {
+    //   try {
+    //     const token = localStorage.getItem('token');
+    //     if (!token) return;
 
-        const response = await fetch('/api/auth/bonus/info/', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Token ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+    //     const response = await fetch('/api/auth/bonus/info/', {
+    //       method: 'GET',
+    //       headers: {
+    //         'Authorization': `Token ${token}`,
+    //         'Content-Type': 'application/json',
+    //       },
+    //     });
 
-        if (response.ok) {
-          const data = await response.json();
-          if (data.success && data.balance) {
-            setBonusBalance(parseFloat(data.balance) || 0);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading bonus balance:', error);
-      }
-    }
-    loadBonusBalance();
+    //     if (response.ok) {
+    //       const data = await response.json();
+    //       if (data.success && data.balance) {
+    //         setBonusBalance(parseFloat(data.balance) || 0);
+    //       }
+    //     }
+    //   } catch (error) {
+    //     console.error('Error loading bonus balance:', error);
+    //   }
+    // }
+    // loadBonusBalance();
   }, []);
 
   const bookFormDetails = useForm({

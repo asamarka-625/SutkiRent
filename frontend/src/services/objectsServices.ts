@@ -1,4 +1,5 @@
 import { fetchAddress } from '../globalSettings.ts'
+import AuthService from './authService' // импортируем ваш сервис
 
 // Тип для нового формата запроса (все поля необязательные)
 type ObjectsRequestParams = Partial<{
@@ -232,11 +233,8 @@ export async function setBron(
   }
   
   // Отправляем бронирование в RealtyCalendar
-  const response = await fetch(fetchAddress + '/booking/create', {
+  const response = await AuthService.apiRequestPartial(fetchAddress + '/booking/create', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({
       apartment_id: id,
       begin_date: dateB,
@@ -256,40 +254,40 @@ export async function setBron(
   })
 
   // Если бронирование в RealtyCalendar успешно, сохраняем в нашу БД
-  if (response.ok) {
-    try {
-      const rcData = await response.json();
-      const token = localStorage.getItem('token');
+  // if (response.ok) {
+  //   try {
+  //     const rcData = await response.json();
+  //     const token = localStorage.getItem('token');
       
-      if (token) {
-        // Сохраняем бронирование в нашу БД
-        await fetch('/api/bookings/create/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`,
-          },
-          body: JSON.stringify({
-            object_id: id,
-            begin_date: dateB,
-            end_date: dateE,
-            guests: guest,
-            first_name: first_name,
-            last_name: last_name,
-            phone: phone,
-            email: email,
-            bonuses_used: bonuses_used,
-            additional_phone: additional_phone,
-            wish: finalWish, // Используем finalWish с информацией о бонусах
-            external_id: rcData.reservation_id || '',
-            status: 'pending'
-          }),
-        });
-      }
-    } catch (error) {
-      console.error('Error saving booking to DB:', error);
-    }
-  }
+  //     if (token) {
+  //       // Сохраняем бронирование в нашу БД
+  //       await fetch('/api/bookings/create/', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Token ${token}`,
+  //         },
+  //         body: JSON.stringify({
+  //           object_id: id,
+  //           begin_date: dateB,
+  //           end_date: dateE,
+  //           guests: guest,
+  //           first_name: first_name,
+  //           last_name: last_name,
+  //           phone: phone,
+  //           email: email,
+  //           bonuses_used: bonuses_used,
+  //           additional_phone: additional_phone,
+  //           wish: finalWish, // Используем finalWish с информацией о бонусах
+  //           external_id: rcData.reservation_id || '',
+  //           status: 'pending'
+  //         }),
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error saving booking to DB:', error);
+  //   }
+  // }
 
   return response
 }
