@@ -28,10 +28,10 @@ class EmailBase(BaseModel):
 # Схема user
 class UserBase(EmailBase):
     name: Annotated[str, Field(strict=True, max_length=64)]
-    surname: Optional[Annotated[str, Field(strict=True, max_length=64)]]
-    patronymic: Optional[Annotated[str, Field(strict=True, max_length=64)]]
-    date_of_birth: Optional[date]
-    phone: Optional[Annotated[str, Field(strict=True, max_length=11)]]
+    surname: Optional[Annotated[str, Field(strict=True, max_length=64)]] = None
+    patronymic: Optional[Annotated[str, Field(strict=True, max_length=64)]] = None
+    date_of_birth: Optional[date] = None
+    phone: Optional[Annotated[str, Field(strict=True, max_length=11)]] = None
 
     @model_validator(mode='before')
     @classmethod
