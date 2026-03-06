@@ -86,10 +86,10 @@ class OrderAdmin(ModelView, model=Order):
     can_view_details = True # право смотреть всю информацию
     can_export = True # право экспортировать
 
-    name = "Бронирование" # название
-    name_plural = "Бронирования" # множественное название
+    name = "Бронь" # название
+    name_plural = "Брони" # множественное название
     icon = "fa-solid fa-layer-group" # иконка
-    category = "Объекты" # категория
+    category = "Бронирования" # категория
     category_icon = "fa-solid fa-list" # иконка категории
 
     page_size = 10

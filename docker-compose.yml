@@ -28,12 +28,14 @@ services:
   db:
     image: postgres:16-alpine
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      POSTGRES_DB: sutki
-      POSTGRES_USER: maks
-      POSTGRES_PASSWORD: maks123
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U maks -d sutki" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -125,6 +127,32 @@ services:
         condition: service_healthy
     volumes:
       - ./alembic/versions:/app/alembic/versions
+
+  db_backup:
+    image: postgres:16-alpine
+    container_name: db_backup
+    restart: no # unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./backup:/backup
+      - ./backup.sh:/app/backup.sh
+    environment:
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+    entrypoint: ["/bin/true"] # [ "/bin/sh", "-c" ]
+    command:
+      - |
+        apk add --no-cache curl
+        mkdir -p /backup
+        echo "0 3 * * * /app/backup.sh >> /var/log/cron.log 2>&1" > /etc/crontabs/root
+        touch /var/log/cron.log
+        echo ">>> Running initial backup..."
+        /app/backup.sh
+        echo ">>> Cron started. Next backup at 03:00 daily"
+        crond -f -l 2
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:

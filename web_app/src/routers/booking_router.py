@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks, Cookie, 
 from fastapi.responses import JSONResponse
 # Внутренние модули
 from web_app.src.crud import sql_create_booking
-from web_app.src.schemas import CreateBookingRequest, PriceBookingRequest
+from web_app.src.schemas import CreateBookingRequest, PriceBookingRequest, CalendarBookingRequest
 from web_app.src.dependencies import (oauth2_scheme, get_current_user_by_access_token,
                                       get_data_by_refresh_token, verify_csrf_token)
 from web_app.src.utils import rc_client
@@ -41,11 +41,9 @@ async def create_booking(
 
         final_user_id = user_scheme.id
 
-    """
     response = await rc_client.create_booking(
         data=data
     )
-    """
 
     background_tasks.add_task(
         sql_create_booking,
@@ -54,7 +52,7 @@ async def create_booking(
         price=100
     )
 
-    return {"status": "success"} # response
+    return response
 
 
 @router.post(
@@ -66,6 +64,21 @@ async def get_price_for_booking(
     data: PriceBookingRequest
 ):
     response = await rc_client.get_price_booking(
+        data=data
+    )
+
+    return response
+
+
+@router.post(
+    "/calendar",
+    response_class=JSONResponse,
+    summary="Получаем календарь для объекта"
+)
+async def get_calendar_for_booking(
+    data: CalendarBookingRequest
+):
+    response = await rc_client.get_calendar_booking(
         data=data
     )
 

@@ -22,7 +22,7 @@ async def sql_create_booking(
     try:
         apartment_id_result = await session.execute(
             sa.select(Apartment.id)
-            .where(Apartment.external_id == data.external_apartment_id)
+            .where(Apartment.external_id == data.apartment_id)
         )
         apartment_id = apartment_id_result.scalar_one()
 
@@ -65,19 +65,19 @@ async def sql_create_booking(
         await session.commit()
 
     except NoResultFound:
-        cfg.logger.info(f"Apartment not found by external_apartment_id: {data.external_apartment_id}")
+        cfg.logger.info(f"Apartment not found by external_apartment_id: {data.apartment_id}")
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Apartment not found")
 
     except SQLAlchemyError as e:
         cfg.logger.error(
-            f"Database error create booking by external_apartment_id = {data.external_apartment_id}, "
+            f"Database error create booking by external_apartment_id = {data.apartment_id}, "
             f"user_id: {user_id}: {e}"
         )
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
 
     except Exception as e:
         cfg.logger.error(
-            f"Unexpected error create booking by external_apartment_id = {data.external_apartment_id}, "
+            f"Unexpected error create booking by external_apartment_id = {data.apartment_id}, "
             f"user_id: {user_id}: {e}"
         )
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected server error")

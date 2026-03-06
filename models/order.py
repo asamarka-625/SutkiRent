@@ -13,7 +13,7 @@ class Order(Base):
 
     # Основная информация
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
-    phone: so.Mapped[Optional[str]] = so.mapped_column(sa.String(11), nullable=True)
+    phone: so.Mapped[str] = so.mapped_column(sa.String(11), nullable=False)
     first_name: so.Mapped[str] = so.mapped_column(sa.String(64), nullable=False)
     last_name: so.Mapped[str] = so.mapped_column(sa.String(64), nullable=False)
     adult_count: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
@@ -22,8 +22,8 @@ class Order(Base):
         nullable=False,
         default=0
     )
-    email: so.Mapped[str] = so.mapped_column(sa.String(255), unique=True, nullable=False)
-    wish: so.Mapped[str] = so.mapped_column(sa.String(512), unique=True, nullable=False)
+    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(255), nullable=True)
+    wish: so.Mapped[Optional[str]] = so.mapped_column(sa.String(512), nullable=True)
     price: so.Mapped[float] = so.mapped_column(sa.Float, nullable=False)
 
     created_at: so.Mapped[datetime] = so.mapped_column(

@@ -6,7 +6,7 @@ from tenacity import (retry, stop_after_attempt, wait_exponential,
 from fastapi import HTTPException
 # Внутренние модули
 from web_app.src.core import cfg
-from web_app.src.schemas import CreateBookingRequest, PriceBookingRequest
+from web_app.src.schemas import CreateBookingRequest, PriceBookingRequest, CalendarBookingRequest
 
 
 def is_server_error(exception) -> bool:
@@ -60,7 +60,7 @@ class RealtyCalendarClient:
     ) -> Dict[str, Any]:
         try:
             data = {
-                "apartment_id": data.external_apartment_id,
+                "apartment_id": data.apartment_id,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
                 "phone": data.phone,
@@ -103,7 +103,7 @@ class RealtyCalendarClient:
     ) -> Dict[str, Any]:
         try:
             data = {
-                "apartment_id": data.external_apartment_id,
+                "apartment_id": data.apartment_id,
                 "arrival_time": data.arrival_time.isoformat(timespec='minutes') if data.arrival_time else None,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "departure_time": data.departure_time.isoformat(timespec='minutes') if data.departure_time else None,
@@ -137,6 +137,43 @@ class RealtyCalendarClient:
             cfg.logger.error(f"Unexpected error get price booking: {e}")
             return {}
 
+    async def get_calendar_booking(
+        self,
+        data: CalendarBookingRequest
+    ) -> Dict[str, Any]:
+        try:
+            data = {
+                "apartment_id": data.apartment_id,
+                "begin_date": data.begin_date.isoformat() if data.begin_date else None,
+                "end_date": data.end_date.isoformat() if data.end_date else None,
+                "guests": data.guests.model_dump()
+            }
+
+            response = await self._make_request(
+                "POST", "/calendar", json=data
+            )
+
+            return response
+
+        except httpx.HTTPStatusError as e:
+            try:
+                error_detail = e.response.json()
+
+            except (ValueError, UnicodeDecodeError):
+                error_detail = e.response.text or "Internal Server Error"
+
+            cfg.logger.error(f"HTTPStatusError error get calendar booking [{e.response.status_code}]: {error_detail}")
+            if e.response.status_code == 500:
+                raise HTTPException(status_code=500, detail="The service is temporarily unavailable")
+
+            raise HTTPException(
+                status_code=e.response.status_code,
+                detail=error_detail
+            )
+
+        except Exception as e:
+            cfg.logger.error(f"Unexpected error get calendar booking: {e}")
+            return {}
 
 
 _instance = None

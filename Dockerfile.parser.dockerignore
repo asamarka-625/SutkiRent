@@ -24,6 +24,7 @@ Dockerfile.web.dockerignore
 
 # Other
 web.env
+.env
 alembic.ini
 
 grafana-config.json
