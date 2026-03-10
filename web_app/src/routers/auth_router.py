@@ -33,7 +33,7 @@ async def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     connection_info: Dict[str, str] = Depends(get_connection_info)
 ):
-    user = await authenticate_user(form_data.username, form_data.password)
+    user = await authenticate_user(form_data.username.lower(), form_data.password)
 
     if not user:
         raise HTTPException(
