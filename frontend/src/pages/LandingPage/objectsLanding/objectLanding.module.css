@@ -59,7 +59,8 @@
     padding: 0;
     font-size: 24px;
     /* color: aqua; */
-    color: var(--mantine-color-sberGreenColor-9);
+    /* color: var(--mantine-color-sberGreenColor-9); */
+    color: white;
 }
 
 .bannerText {
