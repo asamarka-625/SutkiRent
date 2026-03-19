@@ -86,7 +86,8 @@
       justify-items: center;
       font-size: medium;
       font-weight: 500;
-      color: var(--mantine-color-sutkiGreenColor-9);
+      color: white;
+      /* box-shadow: red 60px -16px;; */
     @media (max-width: 48em) {
       display: flex;
       flex-direction: column;

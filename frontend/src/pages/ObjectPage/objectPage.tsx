@@ -219,7 +219,7 @@ export function ObjectPage() {
 
             </div>
             <Divider mt={20} size={"md"} color="sutkiGreenColor.4"></Divider>
-            <EventsPage></EventsPage>
+            {/* <EventsPage></EventsPage> */}
             <h2 className="HeadingStyle2" style={{marginTop: 16}}>Может быть интересно</h2>
             <ArticlesLandingPage />
 
