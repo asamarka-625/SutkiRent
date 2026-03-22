@@ -18,7 +18,7 @@ export function LandingPage() {
             {/* <ArticlesLandingPage/> */}
             <ObjectsLandingPage />
             {/* <DoubleDateRangePicker/> */}
-            <h2 className="HeadingStyle2Main">Популярные экскурсии</h2>
+            {/* <h2 className="HeadingStyle2Main">Популярные экскурсии</h2> */}
             {/* <ExcursionLanding/> */}
             <BannerCityLanding/>
             <FeatObjects/>
