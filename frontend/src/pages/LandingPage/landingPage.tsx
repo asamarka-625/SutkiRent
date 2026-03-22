@@ -19,13 +19,13 @@ export function LandingPage() {
             <ObjectsLandingPage />
             {/* <DoubleDateRangePicker/> */}
             <h2 className="HeadingStyle2Main">Популярные экскурсии</h2>
-            <ExcursionLanding/>
+            {/* <ExcursionLanding/> */}
             <BannerCityLanding/>
             <FeatObjects/>
-            <h2 className="HeadingStyle2Main">Куда сходить в Санкт-Петербурге</h2>
-            <WhereGoLanding></WhereGoLanding>
-             <h2 className="HeadingStyle2Main">Полезные статьи</h2>
-            <ArticlesLandingPage/>
+            {/* <h2 className="HeadingStyle2Main">Куда сходить в Санкт-Петербурге</h2> */}
+            {/* <WhereGoLanding></WhereGoLanding> */}
+             {/* <h2 className="HeadingStyle2Main">Полезные статьи</h2>
+            <ArticlesLandingPage/> */}
         </div>
     )
 }
