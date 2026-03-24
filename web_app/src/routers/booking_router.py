@@ -30,7 +30,7 @@ async def create_booking(
 ):
     final_user_id = None
 
-    if access_token or refresh_token or x_csrf_token:
+    if access_token and refresh_token and x_csrf_token:
         user_scheme = await get_current_user_by_access_token(access_token)
         t_data = await get_data_by_refresh_token(refresh_token)
         csrf_id = await verify_csrf_token(x_csrf_token)

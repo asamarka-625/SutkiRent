@@ -68,7 +68,8 @@ class RealtyCalendarClient:
                 "last_name": data.last_name,
                 "guests": data.guests.model_dump(),
                 "email": data.email,
-                "wish": data.wish
+                "wish": data.wish,
+                "redirect_url": "/"
             }
 
             response = await self._make_request(
