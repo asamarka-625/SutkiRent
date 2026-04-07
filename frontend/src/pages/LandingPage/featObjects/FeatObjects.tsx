@@ -67,6 +67,7 @@ export function FeatObjects() {
   const isLoading = useRef<boolean>(false);
 
   const [items, setItems] = useState<Point[]>([]);
+  const [page, setPage] = useState(1);
 
 
   const navigateTo = (id?: number) => {
@@ -80,7 +81,7 @@ export function FeatObjects() {
     isLoading.current = true
     console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
 
-    const response = await getFeatObjectsData()
+    const response = await getFeatObjectsData({ page: page })
 
     if (response.ok) {
       const responseData = await response.json();
@@ -143,9 +144,15 @@ export function FeatObjects() {
         <>
           {(Array.isArray(items) ? items : []).map(items => <SearchPageCard
             {...items}
-            landing={true} 
-            refreshList={() => handleNavigateToObject(items.id)}/>
+            landing={true}
+            refreshList={() => handleNavigateToObject(items.id)} />
           )}
+          <div
+            className={styles.descShowMore}
+            onClick={() => {setPage(page + 1) }}
+          >
+              Показать ещё
+          </div>
           {isLoading.current && <div style={{ width: "100%", gridColumn: '1 / -1' }}>
             <Skeleton mt={10} radius={20} animate height={"250px"} width={"100%"}></Skeleton>
             <Skeleton mt={10} radius={20} animate height={"250px"} width={"100%"}></Skeleton>
