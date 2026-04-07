@@ -40,9 +40,25 @@ export function BurgerMenu(props: Props) {
     { link: '/favorites', name: 'Избранное' }
   ]
 
-    const likeTab = likes.map((tab, index) => (
+  const main = [
+    { link: '/', name: 'На главную' }
+  ]
+
+  const likeTab = likes.map((tab, index) => (
     <Button
-    key={index.toString()}
+      key={index.toString()}
+      className={styles[`tab`]}
+      onClick={() => { navigate(tab.link); props.toggle() }}
+      variant="outline">
+      <Group gap={"8px"}>
+        {tab.name}
+      </Group>
+    </Button>
+  ));
+
+  const mainTab = main.map((tab, index) => (
+    <Button
+      key={index.toString()}
       className={styles[`tab`]}
       onClick={() => { navigate(tab.link); props.toggle() }}
       variant="outline">
@@ -54,7 +70,7 @@ export function BurgerMenu(props: Props) {
 
   const upperSecondTabs = props.upperSecondTabsData.map((tab, index) => (
     <Button
-    key={index.toString()}
+      key={index.toString()}
       className={styles[`tab`]}
       onClick={() => { navigate(tab.link); props.toggle() }}
       variant="outline">
@@ -66,7 +82,7 @@ export function BurgerMenu(props: Props) {
 
   const burgerUpperTabs = props.upperTabsData.map((tab, index) => (
     <Button
-    key={index.toString()}
+      key={index.toString()}
       className={styles[`tab`]}
       onClick={() => { navigate(tab.link); props.toggle(); }}
       variant="outline">
@@ -81,12 +97,12 @@ export function BurgerMenu(props: Props) {
 
   return (
     <div className="mantine-hidden-from-sm">
-      <AppShell.Navbar 
-        p="md" 
+      <AppShell.Navbar
+        p="md"
         bg={'grayColor.2'} >
-        <Flex 
-          className={styles["lowerUpperMenuMobile"]} 
-          align='center' 
+        <Flex
+          className={styles["lowerUpperMenuMobile"]}
+          align='center'
           direction="column"
           style={{
             position: "relative",
@@ -97,7 +113,7 @@ export function BurgerMenu(props: Props) {
           }}
         >
           {/* Кнопка закрытия */}
-          <Flex justify="flex-end" style={{ width: "100%", marginBottom: "16px", paddingTop: "8px" }}>
+          {/* <Flex justify="flex-end" style={{ width: "100%", marginBottom: "16px", paddingTop: "8px" }}>
             <CloseButton
               onClick={(e) => {
                 e.preventDefault();
@@ -108,7 +124,7 @@ export function BurgerMenu(props: Props) {
               aria-label="Закрыть меню"
               style={{ zIndex: 10000 }}
             />
-          </Flex>
+          </Flex> */}
 
           {/* Ссылка на личный кабинет, если пользователь авторизован */}
           {isAuthenticated && (
@@ -124,6 +140,9 @@ export function BurgerMenu(props: Props) {
               </Group>
             </Button>
           )}
+          <div style={{marginBottom: "10px"}}>
+            {mainTab}
+          </div>
 
           {upperSecondTabs}
           {burgerUpperTabs}

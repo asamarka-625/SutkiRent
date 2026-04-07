@@ -23,7 +23,7 @@
     cursor: pointer;
     border: none;
     background: none;
-    font-size: 12px;
+    font-size: 14px;
     /* color: var(--mantine-color-grayColor-9); */
     position: relative;
     transition: color 0.3s ease;
