@@ -66,8 +66,10 @@ export function FeatObjects() {
   const isXS = useMediaQuery('(max-width: 30em)');
   const isLoading = useRef<boolean>(false);
 
+  const pageRef = useRef<number>(1);
+
   const [items, setItems] = useState<Point[]>([]);
-  const [page, setPage] = useState(1);
+  const [allDone, setAllDone] = useState(false);
 
 
   const navigateTo = (id?: number) => {
@@ -81,14 +83,33 @@ export function FeatObjects() {
     isLoading.current = true
     console.log('🚀 идет запуск запроса (backend делает параллельную загрузку)...')
 
-    const response = await getFeatObjectsData({ page: page })
+    const response = await getFeatObjectsData({ page: pageRef.current })
 
     if (response.ok) {
       const responseData = await response.json();
       const data = responseData.apartments || [];
       const transformedData = transformObjectsToPoints(data);
-      setItems(transformedData);
-      isLoading.current = false
+
+      if (responseData.next_page) {
+          console.log('responseData.next_page')
+        if (pageRef.current > 1) {
+          setItems(prev => [...prev, ...transformedData]);
+          console.log('pageRef.current > 1 ', transformedData)
+        }
+        else {
+          console.log('else first page');
+          setItems(transformedData);
+          setAllDone(false)
+        }
+        pageRef.current += 1;
+      }
+      else {
+        console.log('no responseData.next_page');
+        setItems(prev => [...prev, ...transformedData]);
+        setAllDone(true);
+        pageRef.current = 1;
+      }
+
     }
     else {
       setItems([])
@@ -101,6 +122,8 @@ export function FeatObjects() {
         })
       }
     }
+
+    isLoading.current = false
   }
 
   const handleNavigateToObject = (id: number) => {
@@ -139,7 +162,7 @@ export function FeatObjects() {
           </Text>
         </div>
       ) : items.length == 0 && !isLoading.current ? (
-        <Text style={{ gridColumn: '1 / -1' }}>На выбранные даты не нашлось больше свободных вариантов</Text>
+        <Text style={{ gridColumn: '1 / -1' }}>Не нашлось больше свободных вариантов</Text>
       ) : (
         <>
           {(Array.isArray(items) ? items : []).map(items => <SearchPageCard
@@ -149,9 +172,10 @@ export function FeatObjects() {
           )}
           <div
             className={styles.descShowMore}
-            onClick={() => {setPage(page + 1) }}
+            // styles={{display: allDone ? 'none' : 'inherit'}}
+            onClick={() => { getObjectsDataFunc() }}
           >
-              Показать ещё
+           {allDone ? 'Вернуться к началу' : " Показать ещё"}
           </div>
           {isLoading.current && <div style={{ width: "100%", gridColumn: '1 / -1' }}>
             <Skeleton mt={10} radius={20} animate height={"250px"} width={"100%"}></Skeleton>
