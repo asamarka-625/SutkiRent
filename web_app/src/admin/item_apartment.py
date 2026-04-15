@@ -22,6 +22,21 @@ class ApartmentItemAdmin(ModelView, model=ApartmentItem):
         ApartmentItem.price: "Цена (1 шт.)"
     }
 
+    form_ajax_refs = {
+        "apartment": {
+            "fields": ("address",),
+            "order_by": "address",
+        },
+        "item": {
+            "fields": ("title",),
+            "order_by": "title",
+        },
+        "brand": {
+            "fields": ("title",),
+            "order_by": "title",
+        }
+    }
+
     column_searchable_list = [
         "apartment.title",
         "item.title"

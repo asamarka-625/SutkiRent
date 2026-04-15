@@ -1,5 +1,7 @@
 services:
   parser:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     build:
       context: .
       dockerfile: Dockerfile.parser
@@ -65,7 +67,12 @@ services:
         max-file: "3"
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      network: host
+      args:
+        - http_proxy=http://127.0.0.1:10808
+        - https_proxy=http://127.0.0.1:10808
     depends_on:
       - web
 
@@ -76,7 +83,7 @@ services:
     #  - "443:443"
     depends_on:
       - web
-      - frontend
+      # - frontend
     volumes:
       - ./nginx/nginx.local.conf:/etc/nginx/nginx.conf
     # - - ./nginx/promapp:/etc/nginx/conf.d/promapp.conf
