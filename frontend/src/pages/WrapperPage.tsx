@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import { Flex, AppShell, Button, Burger, Group, Divider } from "@mantine/core";
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { Flex, AppShell, Button, Burger, Group, Divider, HoverCard,Tooltip } from "@mantine/core";
 // core styles are required for all packages
 import '@mantine/core/styles.css';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
@@ -22,15 +22,23 @@ export function WrapperPage() {
   const navigate = useNavigate()
   const [opened, { toggle }] = useDisclosure();
   const [regionName, setRegionName] = useState('')
+  // const isMobile = useMediaQuery('(max-width: 48em)');
 
   const likes = [
-    { link: '/favorites', icon: <LikeSVG /> }
+    { link: '/favorites', icon: <LikeSVG width={17} height={17} />}
   ]
 
 
   const upperTabsData = [
-    { name: 'Партнерам', link: '/partners', icon: <Partners width={25} height={25} />, sicon: <Partners /> },
-    { name: 'Консультация', link: '/countdown', icon: <Consult width={25} height={25} />, sicon: <Consult /> },
+    {
+      name: 'Партнерам', link: '/partners', icon:
+
+              <Partners width={17} height={17}/>,
+           
+
+      sicon: <Partners />
+    },
+    { name: 'Консультация', link: '/countdown', icon: <Consult width={17} height={17} />, sicon: <Consult /> },
   ]
 
   const upperSecondTabsData = [
@@ -39,7 +47,7 @@ export function WrapperPage() {
     { name: 'Экскурсии', link: '/excursion' },
     { name: 'Новости', link: '/articles' },
   ]
-  
+
   // Для мобильной версии добавляем "Личный кабинет"
   const upperSecondTabsDataMobile = [
     ...upperSecondTabsData,
@@ -50,21 +58,31 @@ export function WrapperPage() {
 
 
   const upperlikes = likes.map((tab, index) => (
+    <Tooltip label={"Избранное"}>
     <Flex gap={"xs"} align={"center"} className={styles[`tab`]} key={index.toString()}
       onClick={() => navigate(tab.link || '/countdown')}>
-      {tab.icon}
+        {tab.icon}
     </Flex>
+    </Tooltip>
   ));
 
-  const upperTabs = upperTabsData.map((tab, index) => (
+  const upperTabs = upperTabsData.map((tab, index) => (   
+  <Tooltip label={tab.name}>
     <Button
       key={index.toString()}
+      color="grayColor.7"
       size='xs'
       className={styles[`tab`]}
       onClick={() => navigate(tab.link || '/countdown')}
       variant="outline">
       <Flex gap={"xs"} align={"center"}>
-        {tab.sicon}
+        <div className='mantine-visible-from-lg'>
+          {tab.sicon}
+        </div>
+        <div className='mantine-hidden-from-lg'>
+          {tab.icon}
+        </div>
+        {/* {isMobile ? tab.icon : tab.sicon} */}
         <div
           className='mantine-visible-from-lg'
           // className={styles['desktop-component']}
@@ -72,6 +90,7 @@ export function WrapperPage() {
         >{tab.name}</div>
       </Flex>
     </Button>
+      </Tooltip>
   ));
 
 
@@ -104,6 +123,7 @@ export function WrapperPage() {
   const upperSecondTabs = upperSecondTabsData.map((tab, index) => (
     <Button
       key={index.toString()}
+      color="grayColor.7"
       className={styles[`tab`]}
       onClick={() => navigate(tab.link)}
       variant="outline">
@@ -118,7 +138,7 @@ export function WrapperPage() {
   return (
     <div>
       <CookieBanner />
-      <WidgetBanner/>
+      <WidgetBanner />
       <AppShell
         navbar={{ width: 'sm', breakpoint: 'sm', collapsed: { mobile: !opened } }}
         padding="md">
@@ -195,10 +215,10 @@ export function WrapperPage() {
         {/* } */}
 
         {/* <BurgerMenu upperSecondTabsData={upperSecondTabsData} upperTabsData={upperTabsData} /> */}
-        <AppShell.Main 
-        bg={'rgb(241, 235, 238)'}
+        <AppShell.Main
+          bg={'rgb(241, 235, 238)'}
         // bg={'grayColor.2'}
-        
+
         >
           {/* gray color2 */}
 

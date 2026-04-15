@@ -12,11 +12,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --color-partner: var(--mantine-color-grayColor-6);
-  --color-phone: var(--mantine-color-grayColor-6);
+  --color-partner: var(--mantine-color-grayColor-7);
+  --color-phone: var(--mantine-color-grayColor-7);
   --color-location: var(--mantine-color-sberGreenColor-9);
-  --color-plus: var(--mantine-color-grayColor-6);
-  --color-enter: var(--mantine-color-grayColor-6);
+  --color-plus: var(--mantine-color-grayColor-7);
+  --color-enter: var(--mantine-color-grayColor-7);
   --color-like: var(--mantine-color-grayColor-6);
   --color-logo: #05A508;
   /* padding: 25px 80px 25px 80px; */

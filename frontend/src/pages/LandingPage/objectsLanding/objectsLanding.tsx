@@ -270,11 +270,12 @@ console.log("regions 1 started")
                 style={{
                     backgroundSize: "100% 150%",
                     backgroundRepeat: "no-repeat",
-                    backgroundImage: isMobile ? "none" : `url(/backgorund2.jpg)`
+                    backgroundImage: isMobile ? "none" : `url(/backgorund3.jpg)`
                 }}>
                 <div className='mantine-visible-from-sm'>
                     <h1 className="HeadingStyle1"
                         style={{
+                            textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
                             marginTop: "90px",
                             marginBottom: "0px",
                             textAlign: "center",
@@ -284,6 +285,7 @@ console.log("regions 1 started")
                     </h1>
                     <h1 className="HeadingStyle1"
                         style={{
+                            textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
                             marginBottom: "50px",
                             textAlign: "center",
                             fontSize: "24px",

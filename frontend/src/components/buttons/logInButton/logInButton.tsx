@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Button, Flex } from "@mantine/core";
+import { Button, Flex, Tooltip} from "@mantine/core";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./logInButton.module.css";
-import  EnterSVG  from "../../../icons/enter.svg?react";
+import EnterSVG from "../../../icons/enter.svg?react";
 import authService from "../../../services/authService";
 
 export function LogInNavButton() {
@@ -17,12 +17,12 @@ export function LogInNavButton() {
             setIsAuthenticated(authService.isAuthenticated());
             setUser(authService.getUser());
         };
-        
+
         updateAuthState();
-        
+
         // Слушаем изменения localStorage
         window.addEventListener('storage', updateAuthState);
-        
+
         return () => {
             window.removeEventListener('storage', updateAuthState);
         };
@@ -35,15 +35,25 @@ export function LogInNavButton() {
     const target = isAuthenticated ? "/lk" : "/login";
 
     return (
-        <Button className={styles[`tab`]} variant="outline"  size='xs' onClick={() => navigate(target)}>
-            <Flex gap={"xs"} align={"center"}>
-                    <EnterSVG/>
+        <Tooltip label="Войти">
+            <Button className={styles[`tab`]} variant="outline" size='xs' onClick={() => navigate(target)} color="grayColor.7">
+                <Flex gap={"xs"} align={"center"}>
                     <div
-                      className='mantine-visible-from-lg'
-                      style={{ marginBottom: 1 }}
+                        className='mantine-visible-from-lg'>
+                        <EnterSVG />
+                    </div>
+                    <div
+                        className='mantine-hidden-from-lg'>
+                        <EnterSVG width={17} height={17} />
+                    </div>
+
+                    <div
+                        className='mantine-visible-from-lg'
+                        style={{ marginBottom: 1 }}
                     >{label}
                     </div>
-            </Flex>
-        </Button>
+                </Flex>
+            </Button >
+        </Tooltip>
     )
 }
