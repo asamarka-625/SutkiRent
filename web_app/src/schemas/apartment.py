@@ -129,6 +129,11 @@ class ApartmentWindow(BaseElementScheme):
     pass
 
 
+# Схема парковки
+class ApartmentParking(BaseElementScheme):
+    pass
+
+
 # Схема типов санузлов
 class ApartmentBathroom(BaseElementScheme):
     pass
@@ -154,6 +159,7 @@ class DataFiltersResponse(BaseModel):
     types: List[ApartmentType]
     metro: List[ApartmentMetro]
     windows: List[ApartmentWindow]
+    parking: List[ApartmentParking]
     bathrooms: List[ApartmentBathroom]
     items: List[ApartmentItem]
 

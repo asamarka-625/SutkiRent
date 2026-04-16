@@ -13,7 +13,7 @@ from web_app.src.core import cfg, connection
 from web_app.src.schemas import (ApartmentResponse, ObjectsResponse, PriceFilter, SleepFilter,
                                  FloorFilter, AreaFilter, RoomFilter, ApartmentDetailResponse,
                                  DataFiltersResponse, ApartmentType, ApartmentMetro, ApartmentWindow,
-                                 ApartmentBathroom, ApartmentItem as ApartmentItemScheme)
+                                 ApartmentBathroom, ApartmentItem as ApartmentItemScheme, ApartmentParking)
 
 
 # Поиск объектов по фильтрам
@@ -379,6 +379,7 @@ async def sql_get_data_for_filters(
         queries = {
             "types": sa.select(TypeApartment.id, TypeApartment.title),
             "windows": sa.select(Window.id, Window.title),
+            "parking": sa.select(Parking.id, Parking.title),
             "bathrooms": sa.select(Bathroom.id, Bathroom.title),
             "items": sa.select(Item.id, Item.title).where(Item.importance == True)
         }
@@ -400,6 +401,7 @@ async def sql_get_data_for_filters(
             metro= [ApartmentMetro(id=row[0], title=row[1]) for row in data["metro"]] \
                 if data.get("metro", False) else [],
             windows=[ApartmentWindow(id=row[0], title=row[1]) for row in data["windows"]],
+            parking=[ApartmentParking(id=row[0], title=row[1]) for row in data["parking"]],
             bathrooms=[ApartmentBathroom(id=row[0], title=row[1]) for row in data["bathrooms"]],
             items=[ApartmentItemScheme(id=row[0], title=row[1]) for row in data["items"]]
         )
