@@ -226,7 +226,7 @@ export function SearchPage() {
     const getSideParamsFromURL = (searchParams: URLSearchParams) => {
         if (!searchParams) return {};
         // Обработка массивов
-        const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService', 'view', 'toilet'];
+        const arrayFields = ['service', 'category', 'parking', 'near_metros', 'inRoom', 'availability', 'dopService', 'view', 'toilet'];
         const arrayParams: Record<string, string[]> = {};
 
         // Получаем все параметры как entries [key, value][]
@@ -357,6 +357,9 @@ export function SearchPage() {
 
                 ...(params.category && {
                     type_apartment: params.category
+                }),
+                 ...(params.parking && {
+                    parking: params.parking
                 }),
                 ...(params.near_metros && {
                     metro: params.near_metros

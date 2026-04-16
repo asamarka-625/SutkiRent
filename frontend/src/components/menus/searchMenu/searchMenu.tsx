@@ -114,7 +114,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
 
     // Обработка массивов
     console.log(formValues['near_metros'])
-    const arrayFields = ['service', 'category', 'near_metros', 'inRoom', 'availability', 'dopService', 'toilet', 'view'];
+    const arrayFields = ['service', 'category', 'parking', 'near_metros', 'inRoom', 'availability', 'dopService', 'toilet', 'view'];
     arrayFields.forEach(field => {
       if (formValues[field]?.length) {
         newParams.set(field, formValues[field].join(','));
@@ -153,6 +153,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
       cost: costForm,
       service: [],
       category: [],
+      parking: [],
       near_metros: [],
       // amount_rooms_min: '',
       // amount_rooms_max: '',
@@ -187,6 +188,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
     filterForm.setValues({
       service: [],
       category: [],
+      parking: [],
       near_metros: [],
       amount_sleeps_min: '',
       amount_sleeps_max: '',
@@ -273,6 +275,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
       console.log(data?.metro.length == 0)
       console.log(IsRegionChangedRef.current)
 
+      setParkingData(data?.parking || [])
       setMetroData(data?.metro || [])
       setCategoryData(data?.types || [])
       setAdditions(data?.items || [])
@@ -282,6 +285,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
     else {
       setMetroData([])
       setCategoryData([])
+      setParkingData([])
       setAdditions([])
       setView([])
       setTualet([])
@@ -435,6 +439,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
     filterForm.setValues({
       service: searchParams.get('service')?.split(',').filter(Boolean) || [],
       category: searchParams.get('category')?.split(',').filter(Boolean) || [],
+      parking: searchParams.get('parking')?.split(',').filter(Boolean) || [],
       near_metros: searchParams.get('near_metros')?.split(',').filter(Boolean) || [],
       amount_rooms_min: searchParams.get('amount_rooms_min') || '',
       amount_rooms_max: searchParams.get('amount_rooms_max') || '',
@@ -495,6 +500,7 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
   const [availaBData, setAvailaBData] = useState<AvailbType[]>([])
 
   const [categoryData, setCategoryData] = useState<FilterItem[]>([])
+  const [parkingData, setParkingData] = useState<FilterItem[]>([])
   const [viewData, setView] = useState<FilterItem[]>([])
   const [tualetData, setTualet] = useState<FilterItem[]>([])
 
@@ -526,6 +532,11 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
   ));
 
   const categoryList = (Array.isArray(categoryData) ? categoryData : []).map((tab, index) => (
+    <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
+      styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
+  ));
+
+  const parkingList = (Array.isArray(parkingData) ? parkingData : []).map((tab, index) => (
     <Checkbox size="xs" mt={5} value={tab.id.toString()} label={tab.title} key={tab.id} color="sberGreenColor.9" classNames={stylescheckbox}
       styles={{ input: { boxShadow: "inset 1px 1px lightGray" } }} />
   ));
@@ -647,6 +658,22 @@ export function SearchMenu({ opened, closeApply, openMetroModal, filtersSearch }
             {categoryList}
           </CheckboxGroup>
           <Button size="xs" onClick={() => filterForm.setFieldValue('category', [])} mt="md" disabled={filterForm.getValues().category.length == 0}>
+            Сбросить выбор
+          </Button>
+
+        </Flex>
+
+
+        <Divider></Divider>
+
+         <Flex className="papercard" align='' direction="column" >
+          <div style={{ marginLeft: 10 }}>
+            <h4 className="HeadingStyle3" style={{ paddingTop: 0 }}>Парковка</h4>
+          </div>
+          <CheckboxGroup  {...filterForm.getInputProps('parking')} mt={10}>
+            {parkingList}
+          </CheckboxGroup>
+          <Button size="xs" onClick={() => filterForm.setFieldValue('parking', [])} mt="md" disabled={filterForm.getValues().parking.length == 0}>
             Сбросить выбор
           </Button>
 
