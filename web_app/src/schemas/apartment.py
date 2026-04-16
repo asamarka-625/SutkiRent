@@ -57,6 +57,7 @@ class ApartmentFilter(BaseModel):
     type_apartment: Optional[Set[int]] = None
     metro: Optional[Set[int]] = None
     windows: Optional[Set[int]] = None
+    parking: Optional[Set[int]] = None
     bathrooms: Optional[Set[int]] = None
     items: Optional[Set[int]] = None
 

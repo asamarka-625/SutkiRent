@@ -49,6 +49,7 @@ async def get_apartments(
         bathroom_ids=filter_params.bathrooms,
         metro_ids=filter_params.metro,
         window_ids=filter_params.windows,
+        parking_ids=filter_params.parking,
         item_ids=filter_params.items
     )
 

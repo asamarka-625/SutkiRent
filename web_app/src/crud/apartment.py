@@ -8,7 +8,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError, NoResultFound
 from fastapi import HTTPException, status
 # Внутренние модули
 from models import (Apartment, ApartmentAvailability, Favorite, TypeApartment, MetroStation, Window,
-                    Bathroom, Item, ApartmentItem)
+                    Parking, Bathroom, Item, ApartmentItem)
 from web_app.src.core import cfg, connection
 from web_app.src.schemas import (ApartmentResponse, ObjectsResponse, PriceFilter, SleepFilter,
                                  FloorFilter, AreaFilter, RoomFilter, ApartmentDetailResponse,
@@ -36,6 +36,7 @@ async def sql_get_available_apartments(
     bathroom_ids: Optional[Set[int]] = None,
     metro_ids: Optional[Set[int]] = None,
     window_ids: Optional[Set[int]] = None,
+    parking_ids: Optional[Set[int]] = None,
     item_ids: Optional[Set[int]] = None
 ) -> ObjectsResponse:
     try:
@@ -75,6 +76,9 @@ async def sql_get_available_apartments(
 
         if window_ids:
             filters.append(Apartment.windows.any(Window.id.in_(window_ids)))
+
+        if parking_ids:
+            filters.append(Apartment.parking.any(Parking.id.in_(parking_ids)))
 
         if metro_ids:
             filters.append(Apartment.metro_stations.any(MetroStation.id.in_(metro_ids)))
