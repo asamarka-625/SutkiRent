@@ -584,14 +584,14 @@ export function ObjectPageCard(props: Property) {
                                             }}></div> : "Условий для заселения нет."}</div>
                                     </ div>
                                 </div>
-                                    <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Как найти?</h3>
+                                    {/* <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Как найти?</h3>
 
                                     <div className={styles["desc"]}>
                                         <div>{props.finding_description ? <div
                                             dangerouslySetInnerHTML={{
                                                 __html: DOMPurify.sanitize(props.finding_description) + "<p></p>"
                                             }}></div> : "Инструкций нет."}</div>
-                                    </div>
+                                    </div> */}
 
                                     <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Информация по парковке</h3>
                                     <div className={styles["desc"]}>
