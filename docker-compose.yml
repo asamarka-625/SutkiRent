@@ -71,8 +71,8 @@ services:
       context: ./frontend
       # network: host
       # args:
-        # - http_proxy=http://127.0.0.1:10808
-        # - https_proxy=http://127.0.0.1:10808
+      #  - http_proxy=http://127.0.0.1:10808
+      #  - https_proxy=http://127.0.0.1:10808
     depends_on:
       - web
 

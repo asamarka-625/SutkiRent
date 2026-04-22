@@ -22,8 +22,8 @@ class ApartmentAdmin(ModelView, model=Apartment):
         Apartment.id: "Идентификатор",
         Apartment.external_id: "Внутренний ID",
         Apartment.address: "Адрес",
-        Apartment.contacts: "Контакты",
         Apartment.useful_information: "Полезная информация",
+        Apartment.contacts: "Контакты",
         Apartment.apartment_type: "Тип жилья",
         Apartment.windows: "Вид из окна",
         Apartment.parking: "Парковка",
@@ -108,8 +108,8 @@ class ApartmentAdmin(ModelView, model=Apartment):
     ]
 
     form_edit_rules = [
-        "contacts",
         "useful_information",
+        "contacts",
         "apartment_type",
         "windows",
         "parking",

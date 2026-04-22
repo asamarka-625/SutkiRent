@@ -149,11 +149,6 @@ class Apartment(Base):
         nullable=False,
         index=True
     )
-    contacts: so.Mapped[str] = so.mapped_column(
-        sa.String(512),
-        nullable=False,
-        default=""
-    )
     useful_information: so.Mapped[str] = so.mapped_column(
         sa.String(1024),
         nullable=False,
@@ -254,6 +249,9 @@ class Apartment(Base):
     )
     parking: so.Mapped[List["Parking"]] = so.relationship(
         secondary="apartment_parking", back_populates="apartments"
+    )
+    contacts: so.Mapped[List["Contact"]] = so.relationship(
+        secondary="apartment_contact", back_populates="apartments"
     )
     bathrooms: so.Mapped[List["Bathroom"]] = so.relationship(
         secondary="apartment_bathroom", back_populates="apartments"
@@ -481,6 +479,30 @@ class Parking(Base):
         return self.title
 
 
+# Таблица контактов
+class Contact(Base):
+    __tablename__ = "contacts"
+
+    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    number: so.Mapped[str] = so.mapped_column(
+        sa.String(200),
+        unique=True,
+        nullable=False
+    )
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    # Связи
+    apartments: so.Mapped[List["Apartment"]] = so.relationship(
+        secondary="apartment_contact", back_populates="contacts"
+    )
+
+    def __repr__(self):
+        return f"<Contact(id={self.id}, number='{self.number}')>"
+
+    def __str__(self):
+        return self.number
+
+
 # Таблица санузлов
 class Bathroom(Base):
     __tablename__ = "bathrooms"
@@ -645,6 +667,23 @@ class ApartmentParking(Base):
 
     def __repr__(self):
         return f"<ApartmentParking(apartment_id={self.apartment_id}, parking_id={self.parking_id})>"
+
+
+class ApartmentContact(Base):
+    __tablename__ = "apartment_contact"
+
+    apartment_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("apartments.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    contact_id: so.Mapped[int] = so.mapped_column(
+        sa.Integer, sa.ForeignKey("contacts.id", ondelete="CASCADE"),
+        primary_key=True
+    )
+    created_at: so.Mapped[datetime] = so.mapped_column(sa.DateTime, default=sa.func.now())
+
+    def __repr__(self):
+        return f"<ApartmentContact(apartment_id={self.apartment_id}, contact_id={self.contact_id})>"
 
 
 class ApartmentBathroom(Base):
