@@ -42,7 +42,7 @@ interface Property {
     pk: number;
     short_name: string;
     cost: number;
-    type: number;
+    type: string;
     amount_rooms: number;
     floor: number;
     sleeps: string;
@@ -54,11 +54,13 @@ interface Property {
     address: string;
     description: string;
     conditions_accommodation: string;
-    contacts: string;
+    contacts: any[];
     finding_description: string;
-    helpful_info: string;
-    parking_info: string;
-    object_inventories: any[]; // Replace 'any' with more specific type if possible
+    useful_information: string;
+    parking: any[];
+    bathroom: any[];
+    windows: any[];
+    items: any[]; // Replace 'any' with more specific type if possible
     services: any[]; // Replace 'any' with more specific type if possible
     near_metro: NearMetro[];
     all_media: MediaItem[];
@@ -171,7 +173,36 @@ export function ObjectPageCard(props: Property) {
         </li>
     ));
 
-    const inventory2List = (Array.isArray(props.object_inventories) ? props.object_inventories : []).map((item) => (
+
+    const parking2List = (Array.isArray(props.parking) ? props.parking : []).map((item) => (
+        <li>
+            {/* {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />} */}
+            • {item.name[0].toUpperCase() + item.name.slice(1)}
+        </li>
+    ));
+
+    const windows2List = (Array.isArray(props.windows) ? props.windows : []).map((item) => (
+        <li>
+            {/* {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />} */}
+            • {item.name[0].toUpperCase() + item.name.slice(1)}
+        </li>
+    ));
+
+    const bathroom2List = (Array.isArray(props.bathroom) ? props.bathroom : []).map((item) => (
+        <li>
+            {/* {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />} */}
+            • {item.name[0].toUpperCase() + item.name.slice(1)}
+        </li>
+    ));
+
+    const contacts2List = (Array.isArray(props.contacts) ? props.contacts : []).map((item) => (
+        <li>
+            {/* {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />} */}
+            {item.name[0].toUpperCase() + item.name.slice(1)}
+        </li>
+    ));
+
+    const inventory2List = (Array.isArray(props.items) ? props.items : []).map((item) => (
         <li>
             {item.icon && <ImageWithFallback src={item.icon} alt="" fallbackSrc="/src/icons/Knob_Start.svg" className={styles.serviceIcon} />}
             {item.name[0].toUpperCase() + item.name.slice(1)}
@@ -180,7 +211,7 @@ export function ObjectPageCard(props: Property) {
 
 
 
-    // const inventoryList = (Array.isArray(props.object_inventories) ? props.object_inventories : [])
+    // const inventoryList = (Array.isArray(props.items) ? props.items : [])
     //     // Сначала группируем по id инвентаря
     //     .reduce((acc, current) => {
     //         const existing = acc.find(item => item.inventory.id === current.inventory.id);
@@ -425,7 +456,7 @@ export function ObjectPageCard(props: Property) {
                         </div>
 
                         {/* Информация из "Дополнительно" */}
-                        <div style={{ marginBottom: '1.5rem' }}>
+                        <div style={{ marginBottom: '3.5rem' }}>
                             <p style={{ color: '#4b5563' }}>
                                 <i className="fas fa-info-circle" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
 
@@ -495,7 +526,7 @@ export function ObjectPageCard(props: Property) {
 
                                 <div className={`tab-content ${activeTab === 'inventory' ? 'active' : ''}`} id="inv-content">
                                     <ul className="inv-list">
-                                        {props.object_inventories?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
+                                        {props.items?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
                                     </ul>
                                 </div>
                             </div>
@@ -569,13 +600,13 @@ export function ObjectPageCard(props: Property) {
                                 <h3 className={styles["HeadingStyle3"]}>Полезная информация</h3>
 
                                 <div className={styles["desc"]}>
-                                    <div>{props.helpful_info ? <div
+                                    <div>{props.useful_information ? <div
                                         dangerouslySetInnerHTML={{
-                                            __html: DOMPurify.sanitize(props.helpful_info) + "<p></p>"
+                                            __html: DOMPurify.sanitize(props.useful_information) + "<p></p>"
                                         }}></div> : "Дополнительной информации нет."}</div>
                                 </ div>
 
-                                <div style={{display: !isMobile ? 'none' : 'inherit' }}>
+                                <div style={{ display: !isMobile ? 'none' : 'inherit' }}>
                                     <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Условия заселения:</h3>
                                     <div className={styles["desc"]}>
                                         <div>{props.conditions_accommodation ? <div
@@ -584,7 +615,7 @@ export function ObjectPageCard(props: Property) {
                                             }}></div> : "Условий для заселения нет."}</div>
                                     </ div>
                                 </div>
-                                    {/* <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Как найти?</h3>
+                                {/* <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Как найти?</h3>
 
                                     <div className={styles["desc"]}>
                                         <div>{props.finding_description ? <div
@@ -593,16 +624,42 @@ export function ObjectPageCard(props: Property) {
                                             }}></div> : "Инструкций нет."}</div>
                                     </div> */}
 
-                                    <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Информация по парковке</h3>
-                                    <div className={styles["desc"]}>
-                                        <div>{props.parking_info ? <div
-                                            dangerouslySetInnerHTML={{
-                                                __html: DOMPurify.sanitize(props.parking_info) + "<p></p>"
-                                            }}></div> : "Информации нет."}</div>
-                                    </div>
+                                <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Информация по парковке</h3>
+                                <div className={styles["desc"]}>
+                                    <ul className="amenities-list">
+                                        {props.parking?.length != 0 ? parking2List : "Информации нет."}
+                                    </ul>
+                                    {/* <div>{props.parking ? <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(props.parking) + "<p></p>"
+                                        }}></div> : "Информации нет."}</div> */}
+                                </div>
+
+                                <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Санузел</h3>
+                                <div className={styles["desc"]}>
+                                    <ul className="amenities-list">
+                                        {props.bathroom?.length != 0 ? bathroom2List : "Информации нет."}
+                                    </ul>
+                                    {/* <div>{props.parking ? <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(props.parking) + "<p></p>"
+                                        }}></div> : "Информации нет."}</div> */}
+                                </div>
+
+                                 <h3 className={styles["HeadingStyle3"]} style={{ marginTop: "10px" }}>Вид из окна</h3>
+                                <div className={styles["desc"]}>
+                                    <ul className="amenities-list">
+                                        {props.windows?.length != 0 ? windows2List : "Информации нет."}
+                                    </ul>
+                                    {/* <div>{props.parking ? <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(props.parking) + "<p></p>"
+                                        }}></div> : "Информации нет."}</div> */}
+                                </div>
 
 
-                                    {/* {props.services.length != 0 ?
+
+                                {/* {props.services.length != 0 ?
                                     <div className="bullet-list-container">
                                         <ul className="cool-bullet-list">
                                             {servicesList}
@@ -621,11 +678,11 @@ export function ObjectPageCard(props: Property) {
                                 <h3 className={styles["HeadingStyle3"]}>Инвентарь</h3>
                             </Accordion.Control>
                             <Accordion.Panel>
-                                {props.object_inventories?.length != 0 ? <Divider mb={18} mt={10}></Divider> : ""}
+                                {props.items?.length != 0 ? <Divider mb={18} mt={10}></Divider> : ""}
 
                                 <div>
                                     <ul className="inv-list">
-                                        {props.object_inventories?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
+                                        {props.items?.length != 0 ? inventory2List : "Инвентарь не перечислен"}
                                         {/* <li><i className="fas fa-tv"></i>Телевизор</li>
                                         <li><i className="fas fa-wifi"></i> Wi-Fi</li>
                                         <li><i className="fas fa-soap"></i> Стиральная машина</li>
@@ -655,7 +712,7 @@ export function ObjectPageCard(props: Property) {
             >
                 <div className={styles["papercardItem"]}>
                     <Group>
-                        <h3 className={styles["HeadingStyle3"]} style={{marginBottom: "15px"}}>{props.address}, {props.region}</h3>
+                        <h3 className={styles["HeadingStyle3"]} style={{ marginBottom: "15px" }}>{props.address}, {props.region}</h3>
                     </Group>
                     <YandexMap
                         // lat={55.751574} lon={37.573856} 
@@ -678,10 +735,17 @@ export function ObjectPageCard(props: Property) {
                     <Group gap={26}>
                         <ContactPhone width="35" height="35"></ContactPhone>
                         <h3 className={styles["HeadingStyle3"]}>Контакты</h3>
-                        <div>{props.contacts ? <div
+
+                        <div className={styles["desc"]}>
+                            <ul className="amenities-list">
+                                {props.contacts?.length != 0 ? contacts2List : "Информации нет."}
+                            </ul>
+                        </div>
+
+                        {/* <div>{props.contacts ? <div
                             dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(props.contacts) + "<p></p>"
-                            }}></div> : "Без обратной связи"}</div>
+                            }}></div> : "Без обратной связи"}</div> */}
                     </Group>
                 </div>
             </div>

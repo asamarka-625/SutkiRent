@@ -461,7 +461,7 @@ background:
 .tabs {
   position: relative;
   display: block;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
   margin-bottom: 20px;
 }
 
@@ -510,7 +510,7 @@ background:
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
+  gap: 5px;
 }
 
 .amenities-list li,

@@ -58,12 +58,12 @@ interface Property {
     external_id: number
 }
 
-function transformPropertyData(originalData: any): Property {
+function transformPropertyData(originalData: any) {
     return {
         pk: originalData.id || originalData.external_id || 0,
         short_name: originalData.title || '',
         cost: originalData.price || 0,
-        type: originalData.type === 'string' ? 0 : 0, // Нужно маппить на числа
+        type: originalData.type, // Нужно маппить на числа
         amount_rooms: originalData.rooms || 0,
         floor: originalData.floor || 0,
         sleeps: originalData.sleeps || '',
@@ -75,11 +75,13 @@ function transformPropertyData(originalData: any): Property {
         address: originalData.address || '',
         description: originalData.description || '',
         conditions_accommodation: '',
-        contacts: '',
+        contacts: originalData.contacts ? originalData.contacts.map((item: string) => ({ name: item })) : [],
         finding_description: '',
-        helpful_info: '',
-        parking_info: '',
-        object_inventories: originalData.items ? originalData.items.map((item: string) => ({ name: item })) : [],
+        useful_information: originalData.useful_information || '',
+        parking: originalData.parking ? originalData.parking.map((item: string) => ({ name: item })) : [],
+        bathroom: originalData.bathroom ? originalData.bathroom.map((item: string) => ({ name: item })) : [],
+        windows: originalData.windows ? originalData.windows.map((item: string) => ({ name: item })) : [],
+        items: originalData.items ? originalData.items.map((item: string) => ({ name: item })) : [],
         services: [],
         near_metro: originalData.metro 
             ? originalData.metro.map((station: string) => ({ name: station }))
@@ -153,6 +155,9 @@ export function ObjectPage() {
         }
         else {
             const error = await response.json();
+            if (error.detail = 'Apartment not found') {
+                navigate('/NotFound')
+            }
             if (errorHandler(response.status) == 5) {
                 showNotification({
                     title: "Ошибка сервера, обновите страницу",
