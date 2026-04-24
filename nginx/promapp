@@ -147,16 +147,17 @@ server {
 }
 
 server {
-    if ($host = www.sutki.rent) {
-        return 301 https://$host$request_uri;
-    }
-
-    if ($host = sutki.rent) {
-        return 301 https://$host$request_uri;
-    }
-
     listen 80;
     listen [::]:80;
     server_name sutki.rent www.sutki.rent;
-    return 404;
+
+    # ✅ важно для certbot
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    # всё остальное → HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
 }

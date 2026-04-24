@@ -14,6 +14,7 @@ from web_app.src.admin.item import ItemAdmin
 from web_app.src.admin.item_apartment import ApartmentItemAdmin
 from web_app.src.admin.brand import BrandAdmin
 from web_app.src.admin.booking import OrderAdmin
+from web_app.src.admin.contact import ContactAdmin
 from web_app.src.admin.authentication import BasicAuthBackend
 from web_app.src.core import cfg
 

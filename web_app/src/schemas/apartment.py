@@ -91,8 +91,11 @@ class ApartmentResponse(ApartmentBase):
 class ApartmentDetailResponse(ApartmentBase):
     external_id: Annotated[int, Field(ge=1)]
     description: Annotated[str, Field(strict=True)]
+    useful_information: Annotated[str, Field(strict=True)]
     media: Dict[int, str]
+    contacts: List[str]
     windows: List[str]
+    parking: List[str]
     items: List[str]
 
 

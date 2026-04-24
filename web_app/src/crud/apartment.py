@@ -326,7 +326,9 @@ async def sql_get_apartment_by_id(
                 so.selectinload(Apartment.bathrooms),
                 so.selectinload(Apartment.photos),
                 so.selectinload(Apartment.metro_stations),
+                so.selectinload(Apartment.contacts),
                 so.selectinload(Apartment.windows),
+                so.selectinload(Apartment.parking),
                 so.selectinload(Apartment.apartment_items).joinedload(ApartmentItem.item)
             )
             .where(Apartment.id == apartment_id)
@@ -340,6 +342,7 @@ async def sql_get_apartment_by_id(
             type=apartment.apartment_type.title if apartment.apartment_type else None,
             bathroom=[bathroom.title for bathroom in apartment.bathrooms],
             description=apartment.description,
+            useful_information=apartment.useful_information,
             price=apartment.price_without_discount,
             rooms=apartment.rooms,
             sleeps=apartment.sleeps,
@@ -350,6 +353,8 @@ async def sql_get_apartment_by_id(
             media={p.order: p.url for p in apartment.photos},
             latitude=apartment.latitude,
             longitude=apartment.longitude,
+            contacts=[contact.number for contact in apartment.contacts],
+            parking=[p.title for p in apartment.parking],
             windows=[window.title for window in apartment.windows],
             items=[ai.item.title for ai in apartment.apartment_items]
         )
