@@ -285,14 +285,19 @@ class Apartment(Base):
 class ApartmentAvailability(Base):
     __tablename__ = "apartment_availability"
 
-    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    # id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
 
     apartment_id: so.Mapped[int] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("apartments.id", ondelete="CASCADE"),
-        index=True,
-        nullable=False
+        primary_key=True
+
     )
+    date: so.Mapped[date] = so.mapped_column(
+        sa.Date,
+        primary_key=True
+    )
+
     reservation_id: so.Mapped[Optional[int]] = so.mapped_column(
         sa.Integer,
         sa.ForeignKey("orders.id", ondelete="SET NULL"),
@@ -300,7 +305,6 @@ class ApartmentAvailability(Base):
         nullable=True
     )
 
-    date: so.Mapped[date] = so.mapped_column(sa.Date, nullable=False)
     price: so.Mapped[Optional[float]] = so.mapped_column(sa.Float, nullable=True)
     is_available: so.Mapped[Optional[bool]] = so.mapped_column(sa.Boolean, default=False, nullable=True)
     min_stay: so.Mapped[Optional[int]] = so.mapped_column(sa.Integer, default=1, nullable=True)
@@ -318,11 +322,12 @@ class ApartmentAvailability(Base):
             "apartment_id", "date", "price",
             postgresql_where=sa.text("is_available = true AND price > 0")
         ),
-        sa.UniqueConstraint("apartment_id", "date", name="uq_apt_date"),
+
+        # sa.UniqueConstraint("apartment_id", "date", name="uq_apt_date"),
     )
 
     def __repr__(self):
-        return f"<ApartmentAvailability(id={self.id}, date='{self.date}')>"
+        return f"<ApartmentAvailability(apartment_id={self.apartment_id}, date='{self.date}')>"
 
 
 # Таблица истории цен
