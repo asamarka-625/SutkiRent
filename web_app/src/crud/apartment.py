@@ -116,7 +116,7 @@ async def sql_get_available_apartments(
                 .where(*filters)
                 .group_by(Apartment.id)
                 # Ожидаем nights_count ночей + 1 день выезда
-                .having(sa.func.count(avail.id) == nights_count + 1)
+                .having(sa.func.count() == nights_count + 1)
             )
 
             arrival_check = sa.select(1).where(
