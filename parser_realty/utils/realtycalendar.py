@@ -32,7 +32,7 @@ class RealtyCalendarClient:
         endpoint: str,
         **kwargs
     ) -> Any:
-        async with httpx.AsyncClient(timeout=self.timeout, proxy="http://host.docker.internal:15030") as client: #
+        async with httpx.AsyncClient(timeout=self.timeout) as client: # proxy="http://host.docker.internal:15030"
             url = f"{self.base_url}{endpoint}"
             response = await client.request(
                 method, url, headers=self.headers, **kwargs
