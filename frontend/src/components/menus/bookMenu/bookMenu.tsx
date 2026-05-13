@@ -164,6 +164,7 @@ export function BookMenu(props: Props) {
         // +7 (XXX) XXX-XX-XX => 11 цифр вместе с ведущей 7
         return digits.length === 11 ? null : 'Заполните, пожалуйста';
       },
+      email: (value) => (value && value.trim().length > 0 ? null : 'Заполните, пожалуйста'),
       name: (value) => (value && value.trim().length > 0 ? null : 'Заполните, пожалуйста'),
       fam: (value) => (value && value.trim().length > 0 ? null : 'Заполните, пожалуйста'),
     },
@@ -566,7 +567,7 @@ export function BookMenu(props: Props) {
           </Flex>
           <Flex className="papercard" align='' direction="column" >
             <TextInput
-              label="Ваш телефон для бронирования"
+              label="Ваш телефон для бронирования:"
               withAsterisk
               placeholder="+7 (___) ___-__-__"
               component={IMaskInput}
@@ -583,7 +584,8 @@ export function BookMenu(props: Props) {
             // }}
             />
             <TextInput
-              label="E-Mail (опционально):"
+              label="E-Mail:"
+              withAsterisk
               // placeholder="+7 (___) ___-__-__"
               placeholder="example@domain.com"
               type="email"
