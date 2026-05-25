@@ -38,7 +38,7 @@ const footer2Data = [
 const footer3Data = [
   { name: 'Компания', link: '/about' },
   { name: 'Реквизиты', link: '/credits' },
-  { name: 'Сотрудничество', link: '/partners' },
+  { name: 'Сотрудничество', link: '/partners'},
   { name: 'Документы', link: '' },
   { name: 'Политика конфиденциальности', link: '/policy' },
 ]
