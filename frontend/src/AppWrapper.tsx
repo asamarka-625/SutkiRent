@@ -40,6 +40,7 @@ import { PasswordLostPage } from './pages/LoginPage/passwordLost/passwordLostPag
 import { ResetPasswordPage } from './pages/LoginPage/passwordReset/passwordResetPage';
 import { AdminPage } from './pages/AdminPages/adminPage';
 import { PropertyTablePage } from './pages/AdminPages/AdminTable/adminTablePage';
+import { ContactPage } from './pages/InfoPages/contactPage/contactPage';
 
 export function AppWrapper() {
   // Глобальный обработчик ошибок
@@ -93,6 +94,7 @@ export function AppWrapper() {
           <Route path="policy" element={<PolicyPage />} />
           <Route path="partners" element={<PartnersPage></PartnersPage>} />
           <Route path="credits" element={<RecvPage />} />
+          <Route path="contactinfo" element={<ContactPage />} />
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="excursion" element={<ExPage />} />
           <Route path="exPage.html" element={null} />

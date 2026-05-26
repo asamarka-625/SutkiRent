@@ -24,7 +24,7 @@ const footer1Data = [
   { name: 'Как бронировать жилье', link: '' },
   { name: 'Новости', link: '/articles' },
   { name: 'Экскурсии', link: '/excursion' },
-  { name: 'Контакты', link: '' },
+  { name: 'Контакты', link: '/contactinfo' },
 ]
 
 const footer2Data = [
@@ -32,7 +32,7 @@ const footer2Data = [
   { name: 'Разместить объявление', link: '' },
   { name: 'Новости', link: '/articles' },
   { name: 'Экскурсии', link: '/excursion' },
-  { name: 'Контакты', link: '' },
+  { name: 'Контакты', link: '/contactinfo' },
 ]
 
 const footer3Data = [

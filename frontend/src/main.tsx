@@ -26,6 +26,7 @@ import { ExPage } from './pages/ExcursionPage/exPage';
 import { PolicyPage } from './pages/InfoPages/policyPage/policyPage';
 import { CookieBanner } from './components/cookieBanner/cookieBanner';
 import { AppWrapper } from './AppWrapper';
+import { ContactPage } from './pages/InfoPages/contactPage/contactPage';
 
 
 
