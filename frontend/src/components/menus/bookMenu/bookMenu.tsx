@@ -9,7 +9,7 @@ import { DateInput } from "@mantine/dates";
 import 'dayjs/locale/ru';
 import { IconChevronDown, IconX } from "@tabler/icons-react";
 import { IMaskInput } from 'react-imask';
-import { getObjectCalendar, getObjectCostByDate, setBron } from "../../../services/objectsServices.ts";
+import { getObjectCalendar, getObjectCostByDate, getPromo, setBron } from "../../../services/objectsServices.ts";
 import { errorHandler } from "../../../handlers/errorBasicHandler.ts";
 import { showNotification } from "@mantine/notifications";
 import { DoubleDateRangePicker } from "../../buttons/dateRange_copy.tsx";
@@ -75,6 +75,11 @@ export function BookMenu(props: Props) {
   const [peopleData, setPeopleData] = useState<string[]>([''])
   const [costData, setCostData] = useState<number>()
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null)
+  const [isDiscount, setIsDiscount] = useState<boolean | null>(null)
+  const [discountPercent, setDiscountPercent] = useState<number>()
+  const [oldPrice, setOldPrice] = useState<number>()
+
+
   const guestTabs = peopleData.map((item, index) => ({
     value: (index + 1).toString(),
     label: item.toString(),
@@ -218,7 +223,49 @@ export function BookMenu(props: Props) {
     loadUserData();
   }, []);
 
+  async function getObjectPromo() {
+    const promo = bookFormDetails.getValues().promo;
+    if (promo) {
+      const inDate = new Date(bookForm.getValues().in[0] || '');
+      const outDate = new Date(bookForm.getValues().in[1] || '');
+
+      if (isNaN(inDate.getTime()) || isNaN(outDate.getTime())) {
+        return false;
+      }
+
+      const formattedDateToday = formatDateLocal(inDate);
+      const formattedDateTomo = formatDateLocal(outDate);
+      console.log('promo ' + promo)
+
+      try {
+        console.log('bookFormDetails.getValues().promo', bookFormDetails.getValues().promo)
+        const promoResponse = await getPromo(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest, promo)
+        if (promoResponse.ok) {
+          const promoData = await promoResponse.json();
+          console.log("sucess promo ", promoData)
+          if (promoData.valid == true) {
+            return true
+          }
+          else {
+            return false
+          }
+        }
+        else {
+          return false
+        }
+      } catch (error) {
+        console.error('Error getting object promo:', error);
+        return false
+      }
+
+    }
+    else {
+      return false
+    }
+  }
+
   async function getObjectsCost() {
+    setIsDiscount(false)
     const inDate = new Date(bookForm.getValues().in[0] || '');
     const outDate = new Date(bookForm.getValues().in[1] || '');
 
@@ -228,15 +275,29 @@ export function BookMenu(props: Props) {
       return;
     }
 
+    const promo = await getObjectPromo()
+    console.log('promo from func' + promo)
+
     const formattedDateToday = formatDateLocal(inDate);
     const formattedDateTomo = formatDateLocal(outDate);
 
     setIsCostLoading(true);
     try {
       console.log('bookFormDetails.getValues().guest', bookFormDetails.getValues().guest)
-      const response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest)
+      let response
+      if (await promo) {
+        response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest, bookFormDetails.getValues().promo)
+      }
+      response = await getObjectCostByDate(props.external_id.toString() || '', formattedDateToday, formattedDateTomo, bookFormDetails.getValues().guest, bookFormDetails.getValues().promo)
+
       if (response.ok) {
         const data = await response.json();
+        if (data.price.common.with_discount) {
+          setIsDiscount(true)
+          setDiscountPercent(data.price.common.discount_percent)
+          setOldPrice(data.price.common.without_discount)
+          // setCostData(data.price.common.with_discount);
+        }
         setCostData(data.price.details.amount);
       }
       else {
@@ -515,7 +576,6 @@ export function BookMenu(props: Props) {
 
             // mt="md"
             />
-
             {(costData == 0 && !isCostLoading) ? "" :
               <Group justify="space-between" mt={10} direction="column" align="stretch" gap="xs">
                 {useBonuses > 0 && !isCostLoading && costData && costData > 0 && (
@@ -535,12 +595,23 @@ export function BookMenu(props: Props) {
                   {isCostLoading ? (
                     <Loader size="xs" />
                   ) : (
-                    <h3 className={styles["HeadingStyle3Cost"]} style={useBonuses > 0 ? { color: "var(--mantine-color-sberGreenColor-9)" } : {}}>
-                      {costData == 0 ? "Ошибка " : Math.max(0, costData - useBonuses)} ₽
+                    <h3 className={styles["HeadingStyle3Cost"]}>
+                      {costData == 0 ? "Ошибка " :
+                        isDiscount ? (
+                          <div>
+                            <span className={styles["xsText"]} style={{ textDecoration: "line-through", marginRight: '10px' }}>{oldPrice}</span>
+                            <span style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>{costData} ₽ </span>
+                          </div>
+                        ) : (
+                          `${costData} ₽`
+                        )
+                      }
                     </h3>
                   )}
                 </Group>
-              </Group>}
+              </Group>
+            }
+
             {isAvailable === false ? (
               <span className={styles.redText}>
                 Недоступна бронь на эти даты {isLoading && <Loader size="xs" ml={10} />}
@@ -549,11 +620,24 @@ export function BookMenu(props: Props) {
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <div className={styles["grayBlock"]}>
                 <Group justify="space-between">
+
+                  {!isDiscount ? "" : (
+                    <Group justify="space-between" align="center">
+                      <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>Скидка: </h3>
+                      <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>
+                        {discountPercent}%
+                      </h3>
+                    </Group>
+
+                  )}
+
                   {costData == 0 || !costOneDay ? "" : (
                     <p className={styles["HeadingStyle3"]}>
                       Внести предоплату в размере стоимости одного дня: {costOneDay}₽
                     </p>
                   )}
+
+
                   {/* <p className={styles["HeadingStyle3Cost"]}></p> */}
                 </Group>
               </div>
@@ -644,7 +728,7 @@ export function BookMenu(props: Props) {
               // }}
               />
             </Group>
-            {bonusBalance > 0 && (
+            {/* {bonusBalance > 0 && (
               <NumberInput
                 mt={10}
                 label="Использовать бонусы"
@@ -662,7 +746,7 @@ export function BookMenu(props: Props) {
                 }}
                 error={useBonuses > bonusBalance ? `Нельзя использовать больше ${bonusBalance.toFixed(2)} бонусов` : undefined}
               />
-            )}
+            )} */}
             <Textarea mt={10}
               autosize
               maxRows={50}
@@ -673,24 +757,34 @@ export function BookMenu(props: Props) {
               description="Ваши пожелания:">
             </Textarea>
 
-            {/* <TextInput
-              size="sm"
-              key={bookFormDetails.key('promo')}
-              {...bookFormDetails.getInputProps('promo')}
-              mt={10}
-              style={{ flex: 1, minWidth: 0 }}
-              description="Ввести промокод"
-              // placeholder="Имя"
-              component={IMaskInput}
-            // mask="+7 (000) 000-00-00"
-            // inputRef={ref}
-            // styles={{
-            //   input: {
-            //     fontSize: '16px',
-            //     letterSpacing: '0.5px'
-            //   }
-            // }}
-            /> */}
+            <Flex direction="column" >
+              <Flex align="flex-end" justify="space-between">
+                <TextInput
+                  size="sm"
+                  key={bookFormDetails.key('promo')}
+                  {...bookFormDetails.getInputProps('promo')}
+                  mt={10}
+                  style={{ flex: 1, minWidth: 0 }}
+                  description="Ввести промокод"
+                  // placeholder="Имя"
+                  component={IMaskInput}
+                // mask="+7 (000) 000-00-00"
+                // inputRef={ref}
+                // styles={{
+                //   input: {
+                //     fontSize: '16px',
+                //     letterSpacing: '0.5px'
+                //   }
+                // }}
+                />
+                <Button onClick={() => getObjectsCost()} variant="subtle" color="sberGreenColor.9">
+                  Применить
+                </Button>
+              </Flex>
+              {/* <span className={styles["xsText"]}>Инфа по промокоду</span> */}
+            </Flex>
+
+
           </Flex>
           <Flex className="papercard" align='center' direction="column" >
             <span className={styles["xsText"]}>Нажимая «Забронировать», вы соглашаетесь с условиями оферты
@@ -712,7 +806,7 @@ export function BookMenu(props: Props) {
 
         </div>
       </div>
-    </form>
+    </form >
   )
 }
 

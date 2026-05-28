@@ -39,7 +39,7 @@ export function WrapperLKPage() {
   // Верхнее меню сайта (Партнёрам, Консультация)
   const siteTabsData: { name: string; link: string; icon: JSX.Element; sicon: JSX.Element }[] = [
     { name: 'Партнерам', link: '/partners', icon: <Partners width={25} height={25} />, sicon: <Partners /> },
-    { name: 'Консультация', link: '/countdown', icon: <Consult width={25} height={25} />, sicon: <Consult /> },
+    { name: 'Консультация', link: '/contactinfo', icon: <Consult width={25} height={25} />, sicon: <Consult /> },
   ];
 
   const upperSecondTabsDataSite = [

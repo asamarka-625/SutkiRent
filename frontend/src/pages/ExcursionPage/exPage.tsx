@@ -40,7 +40,7 @@ export function ExPage() {
                 <iframe
                     // height={"1000"}
                     src={docUrl}
-                    sandbox="allow-scripts allow-same-origin"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-top-navigation allow-top-navigation-by-user-activation"
                     // title="Embedded HTML"
                     style={{ width: '100%', height: '100vh', border: 'none' }}
                 />

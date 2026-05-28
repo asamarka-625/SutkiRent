@@ -172,7 +172,7 @@ function getAggregatedInventoryForObject(data: DataItem[], objectId: number): { 
 //   "arrival_time":null,
 //   "departure_time":null}
 
-export async function getObjectCostByDate(id: string, dateB: string, dateE: string, guests: number) {
+export async function getObjectCostByDate(id: string, dateB: string, dateE: string, guests: number, promo?: string) {
 
   const response = await fetch(fetchAddress + '/booking/price', {
     method: 'POST',
@@ -186,6 +186,7 @@ export async function getObjectCostByDate(id: string, dateB: string, dateE: stri
       apartment_id: id,
       arrival_time: null,
       departure_time: null,
+      ...(promo && { promo_code: promo }),
     }),
   })
 
@@ -205,6 +206,28 @@ export async function getObjectCalendar(id: string, dateB: string, dateE: string
       end_date: dateE,
       guests: { "adults": 1, "children": [] },
 
+    }),
+  })
+
+  return response
+}
+
+
+export async function getPromo(id: string, dateB: string, dateE: string, guests: number, promo: string) {
+
+  const response = await fetch('https://realtycalendar.ru/v2/widget/AAAwUw/check_promo_code', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      begin_date: dateB,
+      end_date: dateE,
+      guests: { "adults": guests || 1, "children": [] },
+      apartment_id: id,
+      arrival_time: null,
+      departure_time: null,
+      promo_code: promo
     }),
   })
 
@@ -291,6 +314,8 @@ export async function setBron(
 
   return response
 }
+
+
 
 export async function getFavoriteObjects(id: number[]) {
 

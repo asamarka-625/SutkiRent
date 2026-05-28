@@ -38,7 +38,7 @@ export function BurgerMenu(props: Props) {
 
   const likes = [
     { link: '/favorites', name: 'Избранное' },
-    { link: '/contactinfo', name: 'Контакты' }
+    // { link: '/contactinfo', name: 'Контакты' }
   ]
 
   const main = [

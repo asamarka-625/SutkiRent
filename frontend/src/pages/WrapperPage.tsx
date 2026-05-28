@@ -38,7 +38,7 @@ export function WrapperPage() {
 
       sicon: <Partners />
     },
-    { name: 'Консультация', link: '/countdown', icon: <Consult width={17} height={17} />, sicon: <Consult /> },
+    { name: 'Консультация', link: '/contactinfo', icon: <Consult width={17} height={17} />, sicon: <Consult /> },
   ]
 
   const upperSecondTabsData = [
