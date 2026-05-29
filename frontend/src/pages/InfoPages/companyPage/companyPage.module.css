@@ -1,0 +1,37 @@
+
+.text-high {
+    color: var(--mantine-color-sberGreenColor-9);
+    text-decoration: underline;
+    text-decoration-color:  var(--mantine-color-sberGreenColor-9);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.bulletNumber {
+    /* background: linear-gradient(135deg, #6b940c, #31da07); */
+    /* color: white; */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+
+  .list { 
+    margin-left: 16px;
+    list-style-type: none; /* Убираем стандартные маркеры */
+    padding-left: 1em; /* Добавляем отступ слева */
+  }
+  .list li::before { 
+    content: "•"; /* Вставляем свой символ */
+    color: var(--mantine-color-orangeColor-6); /* Красный цвет */
+    font-weight: bold; /* Жирный */
+    display: inline-block; 
+    width: 1em; /* Ширина символа */
+    margin-left: -1em; /* Смещаем влево */
+  }

@@ -41,6 +41,7 @@ import { ResetPasswordPage } from './pages/LoginPage/passwordReset/passwordReset
 import { AdminPage } from './pages/AdminPages/adminPage';
 import { PropertyTablePage } from './pages/AdminPages/AdminTable/adminTablePage';
 import { ContactPage } from './pages/InfoPages/contactPage/contactPage';
+import { CompanyPage } from './pages/InfoPages/companyPage/companyPage';
 
 export function AppWrapper() {
   // Глобальный обработчик ошибок
@@ -93,6 +94,7 @@ export function AppWrapper() {
           <Route path="countdown" element={<CountdownPage />} />
           <Route path="policy" element={<PolicyPage />} />
           <Route path="partners" element={<PartnersPage></PartnersPage>} />
+          <Route path="companies" element={<CompanyPage></CompanyPage>} />
           <Route path="credits" element={<RecvPage />} />
           <Route path="contactinfo" element={<ContactPage />} />
           <Route path="articles" element={<ArticlesPage />} />
