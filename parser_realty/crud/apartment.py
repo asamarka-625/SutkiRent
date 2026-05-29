@@ -323,7 +323,7 @@ async def sql_update_calendar(
         stmt = pg_insert(ApartmentAvailability).values(values)
 
         stmt = stmt.on_conflict_do_update(
-            constraint="uq_apt_date",
+            index_elements=["apartment_id", "date"],
             set_={
                 "price": stmt.excluded.price,
                 "is_available": stmt.excluded.is_available,

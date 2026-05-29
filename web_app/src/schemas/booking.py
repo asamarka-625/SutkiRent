@@ -15,8 +15,8 @@ class CreateBookingRequest(BaseModel):
     begin_date: date
     end_date: date
     phone: Annotated[str, Field(max_length=25)]
-    first_name: str
-    last_name: str
+    first_name: Annotated[str, Field(min_length=1)]
+    last_name: Annotated[str, Field(min_length=1)]
     guests: GuestRequest
     email: Optional[str] = None,
     wish: Optional[str] = None
