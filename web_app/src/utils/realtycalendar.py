@@ -19,7 +19,8 @@ def is_server_error(exception) -> bool:
 
 class RealtyCalendarClient:
     def __init__(self):
-        self.base_url = cfg.RC_API_URL
+        self.base_url_1 = cfg.RC_API_URL_1
+        self.base_url_2 = cfg.RC_API_URL_2
         self.headers = {
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -44,10 +45,16 @@ class RealtyCalendarClient:
         self,
         method: str,
         endpoint: str,
+        v_api: int = 1,
         **kwargs
     ) -> Dict[str, Any]:
         async with httpx.AsyncClient(timeout=self.timeout) as client:
-            url = f"{self.base_url}{endpoint}"
+            if v_api == 1:
+                base_url = self.base_url_1
+            else:
+                base_url = self.base_url_2
+
+            url = f"{base_url}{endpoint}"
             response = await client.request(
                 method, url, headers=self.headers, **kwargs
             )
@@ -74,7 +81,7 @@ class RealtyCalendarClient:
             }
 
             response = await self._make_request(
-                "POST", "/confirm", json=data
+                method="POST", endpoint="/confirm", json=data
             )
 
             return response
@@ -115,7 +122,7 @@ class RealtyCalendarClient:
             }
 
             response = await self._make_request(
-                "POST", "/price", json=data
+                method="POST", endpoint="/price", v_api=2, json=data
             )
 
             return response
@@ -153,7 +160,7 @@ class RealtyCalendarClient:
             }
 
             response = await self._make_request(
-                "POST", "/calendar", json=data
+                endpoint="POST", method="/calendar", json=data
             )
 
             return response

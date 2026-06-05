@@ -36,7 +36,8 @@ class Config:
     VERIFICATION_CODE_TTL: int = field(default_factory=lambda: int(os.getenv("VERIFICATION_CODE_TTL")))
 
     # RealtyCalendar
-    RC_API_URL: str = field(default_factory=lambda: os.getenv("RC_API_URL"))
+    RC_API_URL_1: str = field(default_factory=lambda: os.getenv("RC_API_URL_1"))
+    RC_API_URL_2: str = field(default_factory=lambda: os.getenv("RC_API_URL_2"))
     RC_TIMEOUT: int = 30
 
     SMTP_HOST: str = field(default_factory=lambda: os.getenv("SMTP_HOST"))
