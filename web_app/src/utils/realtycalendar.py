@@ -67,6 +67,7 @@ class RealtyCalendarClient:
                 "first_name": data.first_name,
                 "last_name": data.last_name,
                 "guests": data.guests.model_dump(),
+                "promo_code": data.promo_code,
                 "email": data.email,
                 "wish": data.wish,
                 "redirect_url": "/"
@@ -109,7 +110,8 @@ class RealtyCalendarClient:
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "departure_time": data.departure_time.isoformat(timespec='minutes') if data.departure_time else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
-                "guests": data.guests.model_dump()
+                "guests": data.guests.model_dump(),
+                "promo_code": data.promo_code
             }
 
             response = await self._make_request(
