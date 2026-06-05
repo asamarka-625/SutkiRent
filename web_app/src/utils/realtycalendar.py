@@ -165,7 +165,7 @@ class RealtyCalendarClient:
             }
 
             response = await self._make_request(
-                endpoint="POST", method="/calendar", json=data
+                method="POST", endpoint="/calendar", json=data
             )
 
             return response
