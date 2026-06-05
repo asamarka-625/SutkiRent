@@ -18,7 +18,7 @@ class CreateBookingRequest(BaseModel):
     first_name: Annotated[str, Field(min_length=1)]
     last_name: Annotated[str, Field(min_length=1)]
     guests: GuestRequest
-    promo_code: Annotated[str, Field(max_length=64)]
+    promo_code: Optional[Annotated[str, Field(max_length=64)]] = None
     email: Optional[str] = None,
     wish: Optional[str] = None
 
@@ -46,7 +46,7 @@ class PriceBookingRequest(BaseModel):
     departure_time: Optional[time] = None
     end_date: date
     guests: GuestRequest
-    promo_code: Annotated[str, Field(max_length=64)]
+    promo_code: Optional[Annotated[str, Field(max_length=64)]] = None
 
 
 # Схема запроса на получения календаря объекта

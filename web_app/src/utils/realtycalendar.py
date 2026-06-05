@@ -66,7 +66,7 @@ class RealtyCalendarClient:
         data: CreateBookingRequest
     ) -> Dict[str, Any]:
         try:
-            data = {
+            data_dict = {
                 "apartment_id": data.apartment_id,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
@@ -80,8 +80,11 @@ class RealtyCalendarClient:
                 "redirect_url": "/"
             }
 
+            if data.promo_code:
+                data_dict["promo_code"] = data.promo_code
+
             response = await self._make_request(
-                method="POST", endpoint="/confirm", json=data
+                method="POST", endpoint="/confirm", json=data_dict
             )
 
             return response
@@ -111,18 +114,20 @@ class RealtyCalendarClient:
         data: PriceBookingRequest
     ) -> Dict[str, Any]:
         try:
-            data = {
+            data_dict = {
                 "apartment_id": data.apartment_id,
                 "arrival_time": data.arrival_time.isoformat(timespec='minutes') if data.arrival_time else None,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "departure_time": data.departure_time.isoformat(timespec='minutes') if data.departure_time else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
                 "guests": data.guests.model_dump(),
-                "promo_code": data.promo_code
             }
 
+            if data.promo_code:
+                data_dict["promo_code"] = data.promo_code
+
             response = await self._make_request(
-                method="POST", endpoint="/price", v_api=2, json=data
+                method="POST", endpoint="/price", v_api=2, json=data_dict
             )
 
             return response
