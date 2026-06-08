@@ -296,7 +296,7 @@ export function BookMenu(props: Props) {
           setIsDiscount(true)
           setDiscountPercent(data.price.common.discount_percent)
           setOldPrice(data.price.common.without_discount)
-          // setCostData(data.price.common.with_discount);
+          setCostData(data.price.common.with_discount);
         }
         setCostData(data.price.details.amount);
       }
@@ -596,7 +596,7 @@ export function BookMenu(props: Props) {
                     <Loader size="xs" />
                   ) : (
                     <h3 className={styles["HeadingStyle3Cost"]}>
-                      {costData == 0 ? "Ошибка " :
+                      {!costData ? "Ошибка " :
                         isDiscount ? (
                           <div>
                             <span className={styles["xsText"]} style={{ textDecoration: "line-through", marginRight: '10px' }}>{oldPrice}</span>
@@ -625,17 +625,17 @@ export function BookMenu(props: Props) {
                     <Group justify="space-between" align="center">
                       <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>Скидка: </h3>
                       <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>
-                        {discountPercent}%
+                        {costData * discountPercent / 100} ₽
                       </h3>
                     </Group>
 
                   )}
 
-                  {costData == 0 || !costOneDay ? "" : (
+                  {/* {costData == 0 || !costOneDay ? "" : (
                     <p className={styles["HeadingStyle3"]}>
                       Внести предоплату в размере стоимости одного дня: {costOneDay}₽
                     </p>
-                  )}
+                  )} */}
 
 
                   {/* <p className={styles["HeadingStyle3Cost"]}></p> */}
