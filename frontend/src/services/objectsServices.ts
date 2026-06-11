@@ -240,20 +240,16 @@ export async function setBron(
   guest: number,
   dateB: string,
   dateE: string,
-  wish: string,
   first_name: string, // имя
   last_name: string, // фамилия
   phone: string, // телефон
   additional_phone: string, // доп телефон
   email: string, // почта
-  bonuses_used: number = 0, // использовано бонусов
+  promo?: string
+
 ) {
   
   // Добавляем информацию о бонусах в поле пожеланий, если они используются
-  let finalWish = wish || '';
-  if (bonuses_used > 0) {
-    finalWish = (finalWish ? finalWish + '\n\n' : '') + `Применены бонусы: списано ${bonuses_used} бонусов (1 бонус = 1 рубль).`;
-  }
   
   // Отправляем бронирование в RealtyCalendar
   const response = await AuthService.apiRequestPartial(fetchAddress + '/booking/create', {
@@ -266,7 +262,7 @@ export async function setBron(
       arrival_time: null,
       departure_time: null,
       redirect_url: "https://homereserve.ru/AAAwUw/status",
-      wish: finalWish, // Используем finalWish с информацией о бонусах
+       ...(promo && { promo_code: promo }),
       first_name: first_name,
       last_name: last_name,
       phone: phone,
@@ -275,42 +271,6 @@ export async function setBron(
       widget_type: "widget_page"
     }),
   })
-
-  // Если бронирование в RealtyCalendar успешно, сохраняем в нашу БД
-  // if (response.ok) {
-  //   try {
-  //     const rcData = await response.json();
-  //     const token = localStorage.getItem('token');
-      
-  //     if (token) {
-  //       // Сохраняем бронирование в нашу БД
-  //       await fetch('/api/bookings/create/', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': `Token ${token}`,
-  //         },
-  //         body: JSON.stringify({
-  //           object_id: id,
-  //           begin_date: dateB,
-  //           end_date: dateE,
-  //           guests: guest,
-  //           first_name: first_name,
-  //           last_name: last_name,
-  //           phone: phone,
-  //           email: email,
-  //           bonuses_used: bonuses_used,
-  //           additional_phone: additional_phone,
-  //           wish: finalWish, // Используем finalWish с информацией о бонусах
-  //           external_id: rcData.reservation_id || '',
-  //           status: 'pending'
-  //         }),
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error('Error saving booking to DB:', error);
-  //   }
-  // }
 
   return response
 }

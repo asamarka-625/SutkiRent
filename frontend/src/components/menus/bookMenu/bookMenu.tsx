@@ -293,12 +293,16 @@ export function BookMenu(props: Props) {
       if (response.ok) {
         const data = await response.json();
         if (data.price.common.with_discount) {
+          console.log(data.price.common.with_discount)
           setIsDiscount(true)
-          setDiscountPercent(data.price.common.discount_percent)
+          setDiscountPercent(data.price.details.discounts.promo_code)
           setOldPrice(data.price.common.without_discount)
           setCostData(data.price.common.with_discount);
         }
-        setCostData(data.price.details.amount);
+        else {
+          setCostData(data.price.details.amount);
+        }
+
       }
       else {
         setCostData(0)
@@ -460,13 +464,12 @@ export function BookMenu(props: Props) {
       bookFormDetails.getValues().guest,
       formattedDateToday,
       formattedDateTomo,
-      bookFormDetails.getValues().wish,
       bookFormDetails.getValues().fam,
       bookFormDetails.getValues().name,
       bookFormDetails.getValues().phone,
       bookFormDetails.getValues().additional_phone,
       bookFormDetails.getValues().email,
-      bonusesToUse
+      bookFormDetails.getValues().promo
     )
 
     if (response.ok) {
@@ -625,7 +628,7 @@ export function BookMenu(props: Props) {
                     <Group justify="space-between" align="center">
                       <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>Скидка: </h3>
                       <h3 className={styles["HeadingStyle3"]} style={{ color: "var(--mantine-color-sberGreenColor-9)" }}>
-                        {costData * discountPercent / 100} ₽
+                        {discountPercent} ₽
                       </h3>
                     </Group>
 
