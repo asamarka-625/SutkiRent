@@ -19,7 +19,8 @@ def is_server_error(exception) -> bool:
 
 class RealtyCalendarClient:
     def __init__(self):
-        self.base_url = cfg.RC_API_URL
+        self.base_url_1 = cfg.RC_API_URL_1
+        self.base_url_2 = cfg.RC_API_URL_2
         self.headers = {
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -44,10 +45,16 @@ class RealtyCalendarClient:
         self,
         method: str,
         endpoint: str,
+        v_api: int = 1,
         **kwargs
     ) -> Dict[str, Any]:
         async with httpx.AsyncClient(timeout=self.timeout) as client:
-            url = f"{self.base_url}{endpoint}"
+            if v_api == 1:
+                base_url = self.base_url_1
+            else:
+                base_url = self.base_url_2
+
+            url = f"{base_url}{endpoint}"
             response = await client.request(
                 method, url, headers=self.headers, **kwargs
             )
@@ -59,7 +66,7 @@ class RealtyCalendarClient:
         data: CreateBookingRequest
     ) -> Dict[str, Any]:
         try:
-            data = {
+            data_dict = {
                 "apartment_id": data.apartment_id,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
@@ -67,13 +74,17 @@ class RealtyCalendarClient:
                 "first_name": data.first_name,
                 "last_name": data.last_name,
                 "guests": data.guests.model_dump(),
+                "promo_code": data.promo_code,
                 "email": data.email,
                 "wish": data.wish,
                 "redirect_url": "/"
             }
 
+            if data.promo_code:
+                data_dict["promo_code"] = data.promo_code
+
             response = await self._make_request(
-                "POST", "/confirm", json=data
+                method="POST", endpoint="/confirm", json=data_dict
             )
 
             return response
@@ -103,17 +114,20 @@ class RealtyCalendarClient:
         data: PriceBookingRequest
     ) -> Dict[str, Any]:
         try:
-            data = {
+            data_dict = {
                 "apartment_id": data.apartment_id,
                 "arrival_time": data.arrival_time.isoformat(timespec='minutes') if data.arrival_time else None,
                 "begin_date": data.begin_date.isoformat() if data.begin_date else None,
                 "departure_time": data.departure_time.isoformat(timespec='minutes') if data.departure_time else None,
                 "end_date": data.end_date.isoformat() if data.end_date else None,
-                "guests": data.guests.model_dump()
+                "guests": data.guests.model_dump(),
             }
 
+            if data.promo_code:
+                data_dict["promo_code"] = data.promo_code
+
             response = await self._make_request(
-                "POST", "/price", json=data
+                method="POST", endpoint="/price", v_api=2, json=data_dict
             )
 
             return response
@@ -151,7 +165,7 @@ class RealtyCalendarClient:
             }
 
             response = await self._make_request(
-                "POST", "/calendar", json=data
+                method="POST", endpoint="/calendar", json=data
             )
 
             return response
