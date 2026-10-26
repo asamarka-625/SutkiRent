@@ -39,22 +39,9 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'build',
     chunkSizeWarningLimit: 1200,
-    rollupOptions: {
-      output: {
-        // Разбиваем крупные библиотеки в отдельные чанки — лучше кэшируются
-        // и не грузятся одним большим файлом.
-        manualChunks(id) {
-          if (!id.includes('node_modules')) return;
-          if (id.includes('@mantine')) return 'mantine';
-          if (id.includes('@tabler')) return 'icons';
-          if (id.includes('react-router') || id.includes('react-dom')) return 'react';
-          if (id.includes('embla-carousel')) return 'carousel';
-          if (id.includes('dompurify') || id.includes('imask') || id.includes('date-fns')) {
-            return 'utils';
-          }
-          return 'vendor';
-        },
-      },
-    },
+    // Ручное разбиение по чанкам убрано: разделение React и react-dom по разным
+    // чанкам ломало инициализацию в рантайме (React.Children у undefined).
+    // Код-сплиттинг безопаснее делать ленивой загрузкой маршрутов (React.lazy) —
+    // это отдельная задача.
   },
 }))
