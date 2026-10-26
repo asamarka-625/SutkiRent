@@ -4,7 +4,7 @@ from datetime import date
 import random
 import string
 from fastapi import APIRouter, Depends, HTTPException, status, Response, BackgroundTasks
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapzi.security import OAuth2PasswordRequestForm
 from starlette.responses import JSONResponse
 # Внутренние модули
 from web_app.src.dependencies import (authenticate_user, create_refresh_token, create_access_token,
