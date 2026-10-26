@@ -1,12 +1,16 @@
 
 import LogoSVG from "../../../icons/logo.svg?react"
 import styles from "./aboutPage.module.css";
+import { Seo } from "../../../components/seo/Seo";
 
 
 
 export function AboutPage() {
     return (
         <div className="paperdiv">
+            <Seo
+                title="О нас"
+                description="Sutki Rent — сеть посуточной аренды жилья. Более 100 объектов в управлении, 15 лет на рынке, 4 региона присутствия." />
            <div className="paperdiv" style={{display: "flex", justifyContent:"center"}}>
             <LogoSVG width="415" height="340"></LogoSVG>
             </div>

@@ -1,4 +1,5 @@
 import { Divider, Group, Accordion, Spoiler } from "@mantine/core";
+import { IconBed, IconBuilding, IconDoorEnter, IconInfoCircle } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import styles from './objectPageCard.module.css'
 import React, { useEffect, useRef, useState } from "react";
@@ -394,7 +395,7 @@ export function ObjectPageCard(props: Property) {
                                 borderRadius: '9999px',
                                 padding: '0.5rem 1rem'
                             }}>
-                                <i className="fas fa-door-open" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
+                                <IconDoorEnter size={16} style={{ marginRight: '0.5rem', color: '#4b5563' }} />
                                 {props.amount_rooms} {declineRoomWord(props.amount_rooms)}
                             </div>
 
@@ -406,7 +407,7 @@ export function ObjectPageCard(props: Property) {
                                 borderRadius: '9999px',
                                 padding: '0.5rem 1rem'
                             }}>
-                                <i className="fas fa-bed" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
+                                <IconBed size={16} style={{ marginRight: '0.5rem', color: '#4b5563' }} />
                                 {props.sleeps} {declineSleepsWord(props.sleeps)}
                             </div>
 
@@ -418,7 +419,7 @@ export function ObjectPageCard(props: Property) {
                                 borderRadius: '9999px',
                                 padding: '0.5rem 1rem'
                             }}>
-                                <i className="fas fa-building" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
+                                <IconBuilding size={16} style={{ marginRight: '0.5rem', color: '#4b5563' }} />
                                 {props.floor} этаж
                             </div>
                             {/* Остальные характеристики аналогично */}
@@ -427,7 +428,7 @@ export function ObjectPageCard(props: Property) {
                         {/* Информация из "Дополнительно" */}
                         <div style={{ marginBottom: '1.5rem' }}>
                             <p style={{ color: '#4b5563' }}>
-                                <i className="fas fa-info-circle" style={{ marginRight: '0.5rem', color: '#4b5563' }}></i>
+                                <IconInfoCircle size={16} style={{ marginRight: '0.5rem', color: '#4b5563' }} />
 
                                 <Spoiler
                                     hideLabel={"Скрыть"}
