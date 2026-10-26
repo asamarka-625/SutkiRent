@@ -23,6 +23,7 @@ import YMap from "../../components/map/YMapOnSearch.tsx";
 import { GuestPicker } from "../../components/buttons/guestButton/guestButton.tsx";
 import { apiKey } from "../../globalSettings.ts";
 import { Seo } from "../../components/seo/Seo";
+import { EmptyState } from "../../components/states/EmptyState";
 
 
 
@@ -1254,7 +1255,9 @@ export function SearchPage() {
                                     </Text>
                                 </div>
                             ) : visibleObjects.length == 0 && !isLoading.current ? (
-                                <Text>На выбранные даты не нашлось больше свободных вариантов</Text>
+                                <EmptyState
+                                    title="Ничего не найдено"
+                                    description="На выбранные даты и параметры свободных вариантов нет. Попробуйте изменить даты или сбросить часть фильтров." />
                             ) : (
                                 <>
                                     {(Array.isArray(visibleObjects) ? visibleObjects : []).map(visibleObjects => <div style={{ width: "100%" }}
@@ -1307,7 +1310,11 @@ export function SearchPage() {
                                     </Text>
                                 </div>
                             ) : visibleObjects.length == 0 && !isLoading.current ? (
-                                <Text style={{ gridColumn: '1 / -1' }}>На выбранные даты не нашлось больше свободных вариантов</Text>
+                                <div style={{ gridColumn: '1 / -1' }}>
+                                    <EmptyState
+                                        title="Ничего не найдено"
+                                        description="На выбранные даты и параметры свободных вариантов нет. Попробуйте изменить даты или сбросить часть фильтров." />
+                                </div>
                             ) : (
                                 <>
                                     {(Array.isArray(visibleObjects) ? visibleObjects : []).map(visibleObjects => <SearchPageCard
