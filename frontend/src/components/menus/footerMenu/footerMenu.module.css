@@ -82,8 +82,8 @@
     } 
   }
 
-   .copy { 
-    background-color: #05A508;
+   .copy {
+    background-color: var(--mantine-color-sberGreenColor-9);
     /* padding: 70px 80px 90px 80px;
     @media (min-width: 90em){
       padding: 70px 200px 90px 200px;
