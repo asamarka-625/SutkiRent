@@ -22,6 +22,7 @@ import { DoubleDateRangePicker } from "../../components/buttons/dateRange_copy.t
 import YMap from "../../components/map/YMapOnSearch.tsx";
 import { GuestPicker } from "../../components/buttons/guestButton/guestButton.tsx";
 import { apiKey } from "../../globalSettings.ts";
+import { Seo } from "../../components/seo/Seo";
 
 
 
@@ -783,6 +784,9 @@ export function SearchPage() {
 
     return (
         <div className={styles.pageLayoutLarge}>
+            <Seo
+                title="Поиск жилья"
+                description="Подбор квартир и апартаментов посуточно: фильтры по цене, метро, числу комнат и гостей. Актуальные цены и бронирование онлайн." />
             <div style={{ backgroundColor: isMobile ? "" : "var(--mantine-color-grayColor-0" }}>
                 <form>
                     <div className="filterBlockMobile">

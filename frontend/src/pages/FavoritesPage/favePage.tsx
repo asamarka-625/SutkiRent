@@ -1,4 +1,4 @@
-import { Button, Text, Group, Select, Divider, NumberInput, SimpleGrid, Modal, Skeleton, Loader } from "@mantine/core";
+import { Button, Group, Select, Divider, NumberInput, SimpleGrid, Modal, Skeleton, Loader } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import styles from "./favePage.module.css";
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -8,6 +8,8 @@ import '@mantine/dates/styles.css';
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 import { SearchPageCard } from "../SearchPage/searchPageCard/searchPageCard.tsx";
+import { EmptyState } from "../../components/states/EmptyState";
+import { IconHeartOff } from "@tabler/icons-react";
 
 import YMap from "../../components/map/YMapOnSearch.tsx";
 
@@ -433,7 +435,13 @@ export function FavePage() {
                             <div>r</div>
                             <div>dftgh</div>
                             <div>dfss</div> */}
-                            {visibleObjects.length == 0 && !isLoading ? <Text>У вас пока нет избранных объектов</Text> :
+                            {visibleObjects.length == 0 && !isLoading ? <EmptyState
+                                icon={IconHeartOff}
+                                title="В избранном пока пусто"
+                                description="Добавляйте понравившиеся варианты в избранное, чтобы вернуться к ним позже."
+                                actionLabel="Перейти в поиск"
+                                onAction={() => navigate('/search')}
+                            /> :
                                 (Array.isArray(visibleObjects) ? visibleObjects : []).map(visibleObjects => <div style={{ width: "100%" }}
                                     // key={visibleObjects.id}
                                     onMouseEnter={() => setHighlightedId(visibleObjects.id)} // вызываем при наведении
@@ -465,7 +473,13 @@ export function FavePage() {
 
                         }}>
 
-                            {visibleObjects.length == 0 && !isLoading ? <Text>У вас пока нет избранных объектов</Text> :
+                            {visibleObjects.length == 0 && !isLoading ? <EmptyState
+                                icon={IconHeartOff}
+                                title="В избранном пока пусто"
+                                description="Добавляйте понравившиеся варианты в избранное, чтобы вернуться к ним позже."
+                                actionLabel="Перейти в поиск"
+                                onAction={() => navigate('/search')}
+                            /> :
                                 (Array.isArray(visibleObjects) ? visibleObjects : []).map(visibleObjects => <SearchPageCard
                                     {...visibleObjects}
                                     refreshList={() => handleNavigateToObject(visibleObjects.id)}

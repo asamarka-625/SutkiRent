@@ -18,6 +18,7 @@ import { getObjectCostByDate, getObjectDataById } from "../../services/objectsSe
 import { errorHandler } from "../../handlers/errorBasicHandler.ts";
 import { ArticlesLandingPage } from "../LandingPage/articlesLanding/articlesLanding.tsx";
 import { EventsPage } from "../InfoPages/eventsPage/eventsPage.tsx";
+import { Seo } from "../../components/seo/Seo";
 
 
 interface NearMetro {
@@ -206,6 +207,11 @@ export function ObjectPage() {
 
     return (
         <div className="paperdiv">
+            <Seo
+                title={objects.short_name || 'Объект'}
+                description={`Посуточная аренда: ${objects.short_name}. До ${objects.capacity} гостей, ${objects.amount_rooms} комн. Бронирование онлайн на Sutki Rent.`}
+                image={objects.all_media?.[0]?.url}
+            />
             <div className={styles[`pageLayout`]}>
                 {/* БАЗА */}
                 <ObjectPageCard {...objects} />

@@ -47,7 +47,7 @@
   font-weight: 700;
 
   @media (max-width: 64em) {
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 }
 

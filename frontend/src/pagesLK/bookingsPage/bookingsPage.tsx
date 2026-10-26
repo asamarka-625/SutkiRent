@@ -1,11 +1,14 @@
 
 // import LogoSVG from "../../../icons/logo.svg?react"
-import { Button, Divider, Flex, TextInput, Loader } from "@mantine/core";
+import { IconCalendarOff } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 import styles from "./bookingsPage.module.css";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState, useEffect } from "react";
 import { BookingCard } from "../../components/cards/bookingLkCard/bookingsCard";
 import { FilterBlock } from "./filter/filter";
+import { EmptyState } from "../../components/states/EmptyState";
+import { ListSkeleton } from "../../components/states/ListSkeleton";
 
 
 export function BookingsPage() {
@@ -15,6 +18,7 @@ export function BookingsPage() {
     const isMobile = useMediaQuery('(max-width: 48em)');
     const isMD = useMediaQuery('(max-width: 74em)');
     const [isRedacted, setIsRedacted] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -105,9 +109,15 @@ export function BookingsPage() {
                     {/* <Divider></Divider> */}
                     <div className="papercard">
                         {loading ? (
-                            <Loader />
+                            <ListSkeleton variant="row" count={3} />
                         ) : hotelData.length === 0 ? (
-                            'У вас пока нет бронирований'
+                            <EmptyState
+                                icon={IconCalendarOff}
+                                title="Пока нет бронирований"
+                                description="Здесь появятся ваши бронирования. Начните с подбора подходящего жилья."
+                                actionLabel="Перейти в поиск"
+                                onAction={() => navigate('/search')}
+                            />
                         ) : (
                             hotelData.map(booking => (
                                 <BookingCard key={booking.id} {...booking} />

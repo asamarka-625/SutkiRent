@@ -45,10 +45,9 @@
   /* padding: 2rem 2rem 1.5rem; Отступы только для заголовка */
   margin: 0;
   font-weight: 700;
-  /* line-height: 30px; */
 
   @media (max-width: 64em) {
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 }
 
