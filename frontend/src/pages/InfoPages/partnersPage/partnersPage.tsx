@@ -10,6 +10,8 @@ const TabsData = [
     'Вы в настоящий момент сдаете квартиру в аренду, но доход не оправдывает Ваши ожидания?',
 ]
 
+import { Seo } from "../../../components/seo/Seo";
+
 export function PartnersPage() {
     const servicesList = TabsData.map((item) => (
 
@@ -25,6 +27,9 @@ export function PartnersPage() {
 
     return (
         <div className="paperdiv">
+            <Seo
+                title="Партнёрам"
+                description="Станьте партнёром Sutki Rent: профессиональное управление вашей недвижимостью и максимизация доходности." />
             <h2 className="HeadingStyle2" style={{ marginBottom: "2px" }}>Сервис посуточной аренды жилья Sutki Rent ищет партнеров!</h2>
             <div className={styles.orangeBlock}>
                 <div className="bullet-list-container">

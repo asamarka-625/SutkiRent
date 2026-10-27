@@ -36,6 +36,8 @@ const CACHE_DURATION = 5 * 60 * 1000;
 const ARTICLES_CACHE_KEY = "articles_cache";
 
 
+import { Seo } from "../../../components/seo/Seo";
+
 export function ArticlesPage() {
 
 
@@ -120,6 +122,9 @@ const getObjectsDataFunc = async () => {
 
     return (
         <div className="paperdiv">
+            <Seo
+                title="Новости и статьи"
+                description="Новости, статьи и полезные материалы о посуточной аренде жилья от Sutki Rent." />
             <Paper shadow="sm" p={"md"} mt={"sm"} radius={20}>
                 <h2 className="HeadingStyle2">Наши новости</h2>
 

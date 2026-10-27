@@ -2,10 +2,15 @@
 // import { ArticlesLandingPage } from "./articlesLanding/articlesLanding.tsx";
 
 
+import { Seo } from "../../../components/seo/Seo";
+
 export function PolicyPage() {
 
     return (
         <div className="paperdiv">
+            <Seo
+                title="Политика конфиденциальности"
+                description="Политика обработки персональных данных и условия конфиденциальности сервиса Sutki Rent." />
             <h2 className="HeadingStyle2" style={{ marginBottom: "2px" }}>Политика обработки ПДн и Политика конфиденциальности</h2>
             {/* <div className={styles.orangeBlock}>
                 <div className="bullet-list-container">

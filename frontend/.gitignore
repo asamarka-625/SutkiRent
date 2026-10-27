@@ -23,3 +23,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# npm lockfile не отслеживается в этом репозитории
+package-lock.json
