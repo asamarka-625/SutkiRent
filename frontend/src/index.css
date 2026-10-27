@@ -2,6 +2,7 @@
 @import "./styles/headingsGlobal.css";
 @import "./styles/bulletsGlobal.css";
 @import "./styles/embla.css";
+@import "./styles/lkGlobal.css";
 
 body {
   height: 100%;
